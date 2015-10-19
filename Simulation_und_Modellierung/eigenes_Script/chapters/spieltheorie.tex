@@ -1,0 +1,73 @@
+% ===========
+% Spieltehorie
+% ===========
+
+\chapter{Spieltheorie}
+\label{chap:spieltheorie}
+
+\begin{bsp}[Gefangenendilemma]
+	Bankräuber A und B sind verhaftet. Ohne Geständnis kriegen beide 3 Jahre haft, gesteht einer, bekommt er nur 1 Jahr, der andere 9. Falls beide gestehen bekommen beide 7 Jahre Haft
+\end{bsp}
+
+\begin{bsp}[Geschlechterkampf]
+	Die Frau möchte zum Fußball Spiel, der Mann zum Helene Fischer Konzert. Sie können nicht miteinander kommunizieren und sie haben sich nicht abgesprochen, wo sie sich treffen. Beide wollen sich am liebsten treffen. 
+\end{bsp}
+
+\section{Spiele in Strategischer Normalform}
+
+\begin{defi}[Spieler]
+	Ein Spieler ist ein Beteiligter in einem Spiel. Er wird mit $X \in M$ bezeichnet, wobei M die Menge aller Spieler ist.  
+\end{defi}
+
+\begin{defi}[Strategie]
+	Strategien sind die Handlungen, die die Spieler ausführen. Dabei bezeichnet $S_X$ die Menge der Strategien von Spieler X. 
+\end{defi}
+
+
+\begin{thm}
+	Falls ein Spiel nur zwei Spieler $X$ und $Y$ hat, gilt 
+	\begin{align*}
+		S_Y=S_{-X}
+	\end{align*}
+\end{thm}
+
+\begin{defi}[endliches Spiel]
+	ein Spiel heißt endlich, falls jeder Spieler nur endlich viele Strategien hat. Es gilt $n_X=|S_X|$ 
+\end{defi}
+
+\begin{defi}[Menge aller Strategiepaare]
+	Sei ein Spiel mit zwei Spielern $A$ und $B$ gegeben. Dann ist die Menge aller Strategiepaare $S:=S_A \times S_B$  
+\end{defi}
+
+\begin{defi}[Auszahlungsfunktion]
+	\begin{align*}
+		U_X: S \rightarrow \R
+	\end{align*}
+	beschreibt den Nutzen. 
+\end{defi}
+
+\begin{defi}[Nutzenmatrix]
+	Betrachte ein zwei Spieler Spiel mit die Spielern $A$ und $B$. Sei $S_A=\{a_1, \cdots, a_{n_A}\}$ und $S_B=\{b_1, \cdots, b_{n_B}\}$. Dann wird die Nutzenmatrix $U$ definiert durch
+	\begin{align*}
+		U \in \R^{n_A \times n_B}, \hspace{2ex} U_{ij}:=\left( U_{ij}^A, U_{ij}^B \right), \hspace{2ex} i \in \{ 1,\dots, n_A \} \hspace{1ex} j \in \{ 1, \cdots n_B\}
+	\end{align*} 
+	
+\end{defi}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+% ==============================
+% Vorspann des LaTeX Dokumentes
+% ==============================
+
+% --- Definition der Dokumentenklasse: \documentclass[Optionen]{Klassenname}
+% --- Dokumentenklasse gibt zahlreiche Vereinbarungen ueber Layout und Gliederung vor
+% --- Wir verwenden hier die KOMA-Script Klasse 'srcreprt'
+% --- Siehe dazu Anleitung zum KOMA-Script, insb. Abschnitt 2.6, Kapitel 3,
+\documentclass[%
+	a4paper,%							Papiergroesse im DIN A4-Format
+	oneside,%							Einseitiger Druck
+%	twoside,%							Zweiseitiger Druck
+	12pt,%								Schriftgroesse
+%	draft,%								Option unterscheidet zw. Dokument im Entwurfsstadium und fertigen Dokument
+	toc=listof,%					Abbildungs- und Tabellenverzeichnis erhalten einen Eintrag im Inhaltsverzeichnis ohne Nummerierung
+	toc=bibliography,%		Literaturverzeichnis erhaelt einen Eintrag im Inhaltsverzeichnis ohne Nummerierung
+%	toc=flat,%						Inhaltsverzeichnis erhaelt eine tabellarische Form (ohne Einruecken der unteren Ebenen)
+%	chapterprefix,%				Kapitelueberschriften werden nicht in kompakter Form dargestellt
+%	appendixprefix%				Anhangueberschriften werden nicht in kompakter Form dargestellt
+%	titlepage%						Titel und Zusammenfassung erscheinen auf einer eigenen Seite (Voreinstellung f�r 'book' und 'report')
+%	fleqn%								Mathematische Formeln werden linksbuendig statt zentriert gesetzt
+%	leqno%								Mathematische Formeln werden auf der linken Seite statt auf der rechten Seite nummeriert
+]{scrreprt}%
+
+
+% --- Eigene Stildatei (Hier werden alle grundlegenden Einstellungen fuer Layout und Packages vorgenommen)
+% --- Moeglicher Inhalt: Einbindung von haeufig verwendeten Pakete und Erweiterungspaketen
+% ---										 Definition eigener Befehle
+% ---                    Ausfuehrung global wirkender Befehle (z.B. globale Layout Einstellungen etc.)
+\usepackage{styles/abschlussarbeit}
+
+
+% =============================
+%	Hauptdokument mit Textinhalt
+% =============================
+
+% --- Aufteilung in mehrere Quelldateien
+%			LaTeX unterstuetzt die Aufsplittung in Teildokumente, so dass in einem Uebersetzungslauf nur ein gewisser Anteil verarbeitet wird
+%			\include{Dateiname} - bindet 'Dateiname' (ohne .tex Endung) in das Dokument, LaTeX sorgt fuer Seitenumbruch vor und nach dem Inhalt dieser Datei und verwaltet eine eigene Hilfsdatei ('Dateiname'.aux) mit Querreferenzen u.ae.
+%			\includeonly{Dateiname,Dateiname,...} - werden nur diejenigen Dateien tatsaechlich mit \include eingebunden, die hier aufgaehlt werden. Ist \includeonly nicht vorhanden, so werden alle Dateien eingebunden.
+
+%\includeonly{chapters/heranfuehrende_kapitel,chapters/hauptteil}
+
+\begin{document}
+
+% --- Titelblatt
+\include{chapters/titelseite}
+
+% kleine roemische Seitenzahlen im Vorspann der Arbeit, Seitenzaehler wird automatisch auf 1 gesetzt
+
+% --- Inhaltsverzeichnis wird automatisch erzeugt
+\tableofcontents
+
+% technische Gruende, damit Inhaltsverzeichnis roemische Seitenzahl erhaelt
+\newpage
+% arabische Seitenzahlen im Rest der Arbeit, Seitenzaehler wird automatisch auf 1 gesetzt
+\pagenumbering{arabic}
+
+% --- Einleitung (Introduction)
+\include{chapters/spieltheorie}
+
+% --- Heranfuehrende Kapitel
+\include{chapters/heranfuehrende_kapitel}
+
+% --- Hauptteil der Arbeit I
+\include{chapters/hauptteil_1}
+
+% --- Hauptteil der Arbeit II
+\include{chapters/hauptteil_2}
+
+% --- Zusammenfassung, Fazit und Ausblick
+\include{chapters/fazit}
+
+
+\end{document}
