@@ -23,7 +23,6 @@
 	Strategien sind die Handlungen, die die Spieler ausführen. Dabei bezeichnet $S_X$ die Menge der Strategien von Spieler X. 
 \end{defi}
 
-
 \begin{thm}
 	Falls ein Spiel nur zwei Spieler $X$ und $Y$ hat, gilt 
 	\begin{align*}
@@ -49,25 +48,84 @@
 \begin{defi}[Nutzenmatrix]
 	Betrachte ein zwei Spieler Spiel mit die Spielern $A$ und $B$. Sei $S_A=\{a_1, \cdots, a_{n_A}\}$ und $S_B=\{b_1, \cdots, b_{n_B}\}$. Dann wird die Nutzenmatrix $U$ definiert durch
 	\begin{align*}
-		U \in \R^{n_A \times n_B}, \hspace{2ex} U_{ij}:=\left( U_{ij}^A, U_{ij}^B \right), \hspace{2ex} i \in \{ 1,\dots, n_A \} \hspace{1ex} j \in \{ 1, \cdots n_B\}
+		U \in \R^{n_A \times n_B}, \hspace{2ex} U_{ij}:=\left( U_{ij}^A, U_{ij}^B \right), \hspace{2ex} i \in \{ 1,\dots, n_A \} \hspace{1ex} j \in \{ 1, \dots, n_B\}
 	\end{align*} 
-	
+	wobei $U_{ij}^A:=U_A(a_j,b_j)$ mit der Nutzenfunktion $U_A$.  
+\end{defi}
+\begin{noti}
+	A ist der Zeilenspieler und B ist der Spaltenspieler. 
+\end{noti}
+
+\begin{bsp}[Gefangenendilemma]
+	Die Spieler sind die Gefangenen A und B. Die Strategien sind Schweigen und Gestehen, also $S_A=S_B=\{S,G\}$. Die Auszahlungsfunktionen werden definiert durch
+	\begin{align*}
+	& 	U_A:S \rightarrow \R \\
+	& 	\begin{array}{ll}
+			U_A(S,S)= -3 & U_A(S,G)=-9 \\
+			U_A(G,S)= -1 & U_A(G,G)=-7 \\ 
+		\end{array}
+	\end{align*}
+	$U_B$ analog, nur gespiegelt an der Diagonalen. Dadurch ergibt sich eine Nutzenmatrix
+	\begin{align*}
+		U^{AB}= 
+		\begin{pmatrix}
+			(-7,-7) & (-1,-9) \\
+			(-9,-1) & (-3,-3) 
+		\end{pmatrix}
+	\end{align*}
+\end{bsp}
+
+\begin{defi}[Nullsummenspiel]
+	Ein Spiel mit zwei Spieler $X$ und $Y$ heißt Nullsummenspiel, falls gilt 
+	\begin{align*}
+		U_A(S)=-U_B(S)
+	\end{align*}
 \end{defi}
 
+\begin{defi}[Strategische Normalform]
+	Eine strategische Normalform ist die Darstellung eines Spiels mit Strategiemengen und Auszahlungsfunktion. 
+\end{defi}
 
+\begin{defi}[vollständige Information]
+	Beiden Spielern ist die komplette Auszahlungsfunktion bekannt. 
+\end{defi}
 
+\section{Spiele ohne Annahmen über den Gegner}
+Betrachten wir hier zwei Spieler Spiele, in denen B seine Entscheidungen unabhängig vom Spieler A trifft. A ist das bekannt. Es reicht, sich nur die Auszahlungsfunktion $U_A$ anzusehen. 
+\begin{bsp}
+	A ist eine Person mit oder ohne Regenschirm und B ist das Wetter. 
+\end{bsp} 
+Es gibt hier zwei Arten von Spielen: Das Spiel mit Gewissheit und das mit Risiko. 
 
+\subsection{Spiel mit Gewissheit}
+A kennt die Strategie $b_j$ von Spieler B und maximiert seinen Nutzen. Wähle
+\begin{align*}
+	\tilde{i} \in \{ 1, \dots n_A \} \text{ mit } U_{\tilde{i}j}=\max\limits_{1 \leq i \leq n_A} U_{ij}
+\end{align*}
 
+\subsection{Spiel mit Risiko}
+A hat keine Information über die Wahl der Strategie von B. 
 
+\subsubsection{Risikobereiter Spieler}
+Zunächst wählt A das eigene Maximum und geht davon aus, dass B auch das Maximum gewählt hat. Das heißt: Wähle 
+\begin{align*}
+	\tilde{i} \in \{1, \dots, n_A  \} \text{ mit } \max\limits_{1 \leq j \leq n_B} U_{\tilde{i}j}=\max\limits_{1 \leq i \leq n_A} \max\limits_{1 \leq j \leq n_B} U_{ij}
+\end{align*} 
 
+\subsubsection{Vorsichtiger Spieler}
+Der vorsichtige Spieler probiert den garantierten Gewinn zu maximieren. Das heißt: Wähle 
+\begin{align*}
+	\tilde{i} \in \{1, \dots, n_A  \} \text{ mit } \min\limits_{1 \leq j \leq n_B} U_{\tilde{i}j}=\max\limits_{1 \leq i \leq n_A} \min\limits_{1 \leq j \leq n_B} U_{ij}
+\end{align*} 
 
+\begin{bsp}[Regenschirm?]
+	\begin{align*} U=
+		\begin{pmatrix}
+			0 & 30 \\ 10 & 10
+		\end{pmatrix}
+	\end{align*}
+	Der vorsichtige Spieler wählt die zweite Zeile und der risikofreudige Spieler die erste Zeile. 
+\end{bsp}
 
-
-
-
-
-
-
-
-
+\section{Reaktionsabbildungen}
 
