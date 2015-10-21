@@ -128,4 +128,12 @@ Der vorsichtige Spieler probiert den garantierten Gewinn zu maximieren. Das hei�
 \end{bsp}
 
 \section{Reaktionsabbildungen}
+Beide Spieler versuchen gleichzeitig ihren Gewinn zu maximieren. Es müssen also Annahmen über den Gegner gemacht werden. Was muss man also tun, wenn man wüsste, dass der Gegner eine bestimmte Wahl $y \in S_{-X}$ trifft? 
 
+\begin{defi}[Reaktionsabbildung]
+	Eine Reaktionsabbildung $r_X$ bildet $y \in S_{-X}$  auf die Menge aller $s \in S_X$ ab, die optimal sind, wenn der andere Spieler $y$ wählt.
+	\begin{align*}
+		 r_X:\hspace{1ex}&  S_{-X} \rightarrow P(S_X) \\
+		& y \mapsto \{\tilde{x} \in S_X | U_X(\tilde{x},y)=\max\limits_{x \in S_X} U_X(x,y)
+	\end{align*}
+\end{defi}

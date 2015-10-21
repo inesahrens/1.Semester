@@ -6,7 +6,8 @@
 \contentsline {subsection}{\numberline {1.2.2}Spiel mit Risiko}{3}{subsection.1.2.2}
 \contentsline {subsubsection}{\nonumberline Risikobereiter Spieler}{3}{section*.2}
 \contentsline {subsubsection}{\nonumberline Vorsichtiger Spieler}{3}{section*.3}
-\contentsline {chapter}{\numberline {2}Heranf\@inpenc@undefined@ {utf8}hrende Kapitel}{4}{chapter.2}
-\contentsline {chapter}{\numberline {3}Hauptteil der Arbeit I}{5}{chapter.3}
-\contentsline {chapter}{\numberline {4}Hauptteil der Arbeit II}{6}{chapter.4}
-\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{7}{chapter.5}
+\contentsline {section}{\numberline {1.3}Reaktionsabbildungen}{3}{section.1.3}
+\contentsline {chapter}{\numberline {2}Heranf\@inpenc@undefined@ {utf8}hrende Kapitel}{5}{chapter.2}
+\contentsline {chapter}{\numberline {3}Hauptteil der Arbeit I}{6}{chapter.3}
+\contentsline {chapter}{\numberline {4}Hauptteil der Arbeit II}{7}{chapter.4}
+\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{8}{chapter.5}
