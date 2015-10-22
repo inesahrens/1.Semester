@@ -1,8 +1,10 @@
 to do 
 
 gglo
-- ü zettel 	6      1	
-- tut zettel    2      1
+- ü zettel 	      1	
+  - 0 		3
+  - 1		4
+  - 2 		6
 - vl nacharb   
   - 1           .5
   - 2           .5 
@@ -22,7 +24,7 @@ modred
   - 4		2
 - zettel bearb	8	1
 	_______________ 
-		28.5
+		35.5
 
 Do: 3
 Fr: 6
