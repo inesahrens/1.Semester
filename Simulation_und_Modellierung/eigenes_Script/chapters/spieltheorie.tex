@@ -137,3 +137,15 @@ Beide Spieler versuchen gleichzeitig ihren Gewinn zu maximieren. Es müssen also
 		& y \mapsto \{\tilde{x} \in S_X | U_X(\tilde{x},y)=\max\limits_{x \in S_X} U_X(x,y)
 	\end{align*}
 \end{defi}
+
+\begin{defi}[Gesamtreaktionsabbildung]
+	Die Gesamtreaktionsabbildung $r$ für ein zwei Spieler Spiel bildet ein Strategiepaar $(a,b)$ auf alle Strategiepaare ab, bei denen Spieler A eine optimale Antwort auf $b$ gibt und Spieler B eine optimale Antwort auf $a$ wählt. 
+	\begin{align*}
+		r:  & S \rightarrow P(S) \\
+			& (a,b) \mapsto r_A(b) \times r_B(a) 
+	\end{align*} 
+\end{defi}
+
+
+
+
