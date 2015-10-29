@@ -103,7 +103,7 @@ The task of MOR can be described as
 		& y(\dot ) : I \rightarrow \R^p & \text{output (function)}
 \end{align*}
 
-LTI system: There are matrixes $A,B,C,D$ s.t. 
+LTI system: There are matrices $A,B,C,D$ s.t. 
 \begin{align}
 	\label{eq:LTI}
 	& \dot{x}(t)=A x(t) + B u(t), \hspace{2ex} x(0)=x_0\\
@@ -117,7 +117,7 @@ An LTI can be given by
 	\item transfer function G. then $L(y)(s)=\hat{y}(u)= G(s)\hat{u}(s)=L(u(s))$ (only for $x=0$)
 \end{itemize}
 
-the three parametrizations can be transformed into one another. 
+the three parametrization can be transformed into one another. 
 \begin{align*}
 	y_0(t) & = \left\{ \begin{array}{ll}
 			C e^{At}B+ \partial (t) D & t \leq 0 \\
@@ -127,8 +127,86 @@ the three parametrizations can be transformed into one another.
 	G(s) & = L(y_d)(s)
 \end{align*}
 For $u(t)=e^{iwt}I_m$ and $x_0=(iwI-A)^{-1}B$ we have $y(t)= \cdots = G(iw)u(t)$ 
-So, exitation of a suitably initialized LTI-System \ref{eq:LTI} with an input of frequency $\omega$ leads to an output of frequency $\omega$ only emplified by a (frequency dependent) factor $G( i \omega) $. For that reason the distriction of G to the imaginary axis is called frequency response.
+So, excitation of a suitably initialized LTI-System \ref{eq:LTI} with an input of frequency $\omega$ leads to an output of frequency $\omega$ only amplified by a (frequency dependent) factor $G( i \omega) $. For that reason the distraction of G to the imaginary axis is called frequency response.
 
 \section{realization} 
 
+The entries of the matrix valued function G must be rational functions. To see this we use
 
+\begin{defi}
+	For $A \in \C^{n \times n}$ we define its adjoint $adj(A) \in \C^{n \times n}$ as
+	\begin{align*}
+		(adj(A))_{ij}= (-1)^{ij} \det A^{ij}
+	\end{align*}
+	where $A^{ij}$ is the matrix so that the i-th column and the j-th row is removed. 
+\end{defi}
+
+\begin{thm}
+	For invertible $A \in \C^{n \times n } $ we have 
+	\begin{align*}
+		A^{-1}= \frac{adj(A)}{\det A}
+	\end{align*} 
+\end{thm}
+\begin{proof}
+	apply Cramers rule to $Ax=I$
+\end{proof}
+
+Hence, for the transfer function we have 
+\begin{align}
+\label{eq:N(s)}
+	G(s)=C(sI-A)^{-1}B+D= C \frac{adj(sI-A)}{\det (sI-A)} B + D \notag \\
+	= \frac{adj(sT-a)B+\det (sI-A) D}{\det (sT-A)}= \frac{N(s)}{d(s)}
+\end{align}
+where $d(s)=\det(sI-A)$ is a polynomial of degree n and $N(s):= adj(sI-A)B+\det(sT-A)D$ is a $p \limes m$ matrix polynomial. 
+
+Matrix polyonmials are a matrix whose entries are polynomials. 
+
+\begin{defi}
+	The set of $p \times m$ matrix-valued rational functions G st $G(s) \in \R^{p \times m}$ for almost all $s \in \R $ is denoted by $\R^{p \times m}(S)$. Moreover $G \in R^{p \times m}(S)$ is called (strictly) proper if \begin{align*}
+		\lim\limits_{s \rightarrow \infty} G(s)
+	\end{align*}
+	exists (or is zero) 
+\end{defi}
+
+\begin{align*}
+	\R^{p \times m}_p(s):= \{G \in \R^{p \times m}(s)| G \text{ is proper} \} \\
+	\R^{p \times m}_{ps}(s):= \{G \in \R^{p \times m}(s)| G \text{ is strict proper} \} 
+\end{align*}
+
+Since 
+\begin{align*}
+	\lim\limits_{s \rightarrow \infty} (sI -A)^{-1} =0
+\end{align*}
+we have $G(s) \rightarrow D$.
+
+So a transfer function is proper. It's even strictly proper if $D=0$. Thus the degree of the numerator $N(s)$ in \ref{eq:N(s)} is at most n. Also \ref{eq:N(s)} every pole of $G(s)$ must be a zero of a i.e. an eigenvalue of $A$. The converse is not true. 
+
+\begin{exa}
+	\begin{align*}
+		A=\begin{pmatrix}
+		1 & 1 \\ 0  & 1 
+		\end{pmatrix}
+		, \hspace{2ex}
+		B = \begin{pmatrix}
+		3 \\ 0
+		\end{pmatrix}, \hspace{2ex}
+		C=(1,1), \hspace{2ex} D=0 
+	\end{align*}
+	So,
+	\begin{align*}
+		G(s)=\frac{3}{s-1}
+	\end{align*}
+	The sole pole ist at one which is an eigenvalue, but the eigenvalue 2 is not a pole. Also for $A=1, B=3, C=1, D=0$ we have $G(s)=\frac{3}{s-1}$
+\end{exa} 
+
+\begin{defi}
+	For given $G \in \R^{p \times m}_p(s)$ the quadruple $[A,B,C,D] \in \R^{n \times n} \times \R^{n \times n} \times \R^{p \times n} \times \R^{p \times m}$ is called a realization (of G), if $G(s)=C(sI-A)^{-1}B + D $. A realization is called minimal if n is minimal among all realizations. Two realizations $[A_1,B_1,C-1,D_1]$ and $[A_2,B_2,C_2,D_2]$  are called equivalent if there is an invertible $T \in \R^{n \times n}$ s.t. $[A_2,B_2,C_2,D_2]= [T^{-1}A_1 T, T^{-1}B_1,C_1T,D_1]$
+\end{defi}
+
+\begin{thm}
+	Equivalent realizations have the same transfer function. 
+\end{thm}
+
+\begin{thm}
+	Every $G \in \R^{p \times m}_p(s)$ have a realization. 
+\end{thm}

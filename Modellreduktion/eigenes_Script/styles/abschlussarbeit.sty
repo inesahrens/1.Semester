@@ -52,7 +52,7 @@
 % --- Pakete fuer mathematischen Textsatz
 \usepackage{amsmath}%		Basis-Paket fuer AMS-LaTeX - erleichtert das Schreiben mathematischer Formeln und verbessert die Qualitaet der Darstellung
 \usepackage{amssymb}%		definiert Namen fuer zahlreiche zusaetzliche mathematische Symbole
-\usepackage{empheq}%		erweitert 'amsmath' um zusaetzliche graphische Anzeigemoeglichkeiten wie z.B. Boxen und Markierungen
+%\usepackage{empheq}%		erweitert 'amsmath' um zusaetzliche graphische Anzeigemoeglichkeiten wie z.B. Boxen und Markierungen
 %\usepackage[intlimits]{empheq}%		bewirkt, dass Integralgrenzen oberhalb und unterhalb des Integralzeichens gewetzt werden (ebenso Summenzeichen)
 \usepackage{dsfont}%		
 \usepackage{amstext}%		liefert ein \text-Befehl fuer die Setzung eines kurzen Textes innerhalb einer mathematischen Umgebung
@@ -125,6 +125,7 @@
 %			\newcommand{\Befehl}{Befehlsdefinition} - Befehl ohne Parameter, '\Befehl' kann abkuerzend fuer die 'Befehlsdefinition' verwendet werden
 %			\renewcommand{\Befehl}{Neue Befehlsdefinition} - Befehl ohne Parameter, um einen schon vorhandenen Befehl umzudefinieren
 \newcommand{\R}{\mathbb{R}}%					Symbol fuer reelle Zahlen
+\newcommand{\C}{\mathbb{C}}%
 \renewcommand{\div}{\mathrm{div}}%		Symbol fuer den Divergenz Operator
 %			\newcommand{\Befehl}[Anzahl]{Befehlsdefinition} - Befehle mit Parametern; 'Anzahl' ist die Zahl der Befehlsparameter, die maximal neun betraegt; innerhalb der 'Befehlsdefinition' werden die Parameter als #1, #2, ... verwendet
 \newcommand{\tv}[1]{|#1|_{BV(\Omega)}}%													TV Halbnorm
