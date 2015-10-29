@@ -146,6 +146,90 @@ Beide Spieler versuchen gleichzeitig ihren Gewinn zu maximieren. Es müssen also
 	\end{align*} 
 \end{defi}
 
+In Nutzenmatrix kann man diese optimale Antwort markieren: in jeder Spalte j die $U_{ij}$ markiert, für die $a_i \in r_A(b_j)$, also die optimale Antort auf $b_j$ ist. (analog Zeile). 
 
+\begin{bsp}
+	\begin{align*}
+		U^{AB} = \begin{pmatrix}
+			(0,20) & (30,20) \\ (10,0) & (10,10) 
+		\end{pmatrix}
+	\end{align*}
+	wobei$b_i$ die Spalten und $a_i$ die Spalten darstellen. Dann gilt: 
+	\begin{align*}
+		r_B(a_1) = \{b_1,b_2\} & r_B(a_2)= \{b_2\} \\
+		r_A(b_1) = \{a_2\} & r_A(b_2) = \{a_1\}
+	\end{align*} 
+\end{bsp}
 
+\section{Dominante Strategien}
+Betrachte Spiele, bei denen beide Spieler gleichzeitig agieren, aber die Überlegung, die der jeweilige andere Spieler vermutlich anstellt ih ihrer Überlegung mit einbezieht. 
 
+\paragraph*{Einfacher Fall}
+Spieler X besitzt die Strategie $x$, die für alle $y \in S_{-X}$ die beste antwort ist ($x \in r_x(y)$ f.a. $y$), kann er ohne weitere Überlegung diese Strategie wählen. Diese Strategie nennt man dominante Strategie. 
+
+\begin{bsp}[Gefangenendilemma]
+	\begin{align*}
+		U^{AB} = \begin{pmatrix}
+			(-7,-7) & (-1,-9) \\
+			(-9,-1) & (-3,-3) 
+		\end{pmatrix}
+	\end{align*}
+	Hier ist \glqq gestehen \grqq die dominate Strategie für beide Spieler, denn unabhängig von der Strategie, die der andere wählt, ist das leugnen niemals günstiger als das gestehen. \glqq Ich wähle etwas, das mich unabhängig vom anderen Spieler macht.\grqq 
+\end{bsp}
+
+Eine Strategie für alle Spieler A heißt redundat, wenn sie durch eine andere Zeile dominiert wird. 
+
+\begin{bsp}[Stein,Papier,Schere,Brunnen]
+	\begin{align*}
+		\begin{pmatrix}
+			0 & 1 & -1 & -1 \\
+			-1 & 0 & 1 & -1 \\
+			1 & -1 & 0 & 1 \\
+			1 & 1 & -1 & 0
+		\end{pmatrix}
+	\end{align*}
+	Brunnen dominiert den Stein, also lässt Spieler A den Stein weg
+	\begin{align*}
+		\begin{pmatrix}
+			-1 & 0 & 1 & -1 \\
+			1 & -1 & 0 & 1 \\
+			1 & 1 & -1 & 0
+		\end{pmatrix}
+	\end{align*}	
+	Aus der Sicht von Spieler B ($u_A=-u_B$) dominiert Brunnen den Stein. Daraus folgt: 
+	\begin{align*}
+		\begin{pmatrix}
+			 0 & 1 & -1 \\
+			-1 & 0 & 1 \\
+			1 & -1 & 0
+		\end{pmatrix}
+	\end{align*}	
+\end{bsp}
+
+\section{Nash-Gleichgewichte}
+
+Betrachte 
+\begin{align*}
+	U^{AB}= \begin{pmatrix}
+		(30,10) & (20,20) & (10,0) \\
+		(40,30) & (0,0) & (0,40)
+	\end{pmatrix}
+	\hat{s}=(a_1,b_2), U^{AB}= (20,20)
+\end{align*}
+sowohl $a_1$ ist die optimale Antwort auf $b_2$ als auch $b_2$ die optimale Antwort auf $a_1$ ist: $a_1 \in r_A(b_2) $ und $b_2 \in r_B(a_1)$. Vereinbaren beide Spieler $\hat{s}$, dann hat A keinen Grund in eine andere Strategie zu wechseln. Er würde sich dadurch nur verschlechtern (Vorausgesetzt, B hält sich an der Vereinbarung) 
+
+ein Strategiepaar mit dieser Eigenschaft heißt Nash-Gleichgewicht. 
+
+\begin{defi}[Nash-Gleichgewichtspunkt]
+	$(\hat{a}, \hat{b})$ ist NGP, falls 
+	\begin{align}
+		\label{eq:1}
+		& \forall b \in S_B : u_B(\hat{a}, \hat{b} ) \geq u_B(\hat{a}, b) \text{ und } \\
+		& \forall a \in S_A : u_A(\hat{a}, \hat{b} ) \geq u_B(a, \hat{b}) 
+	\end{align}
+	Im Falle eines Nullsummenspiels kann man \ref{eq:1} umschreiben zu 
+	\begin{align}
+		\label{eq:2}
+		\forall b \in S_B : u_A(\hat{a}, b) \geq u_A(\hat{a}, \hat{b})
+	\end{align} 
+\end{defi}
