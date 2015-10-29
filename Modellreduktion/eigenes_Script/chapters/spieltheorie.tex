@@ -2,5 +2,79 @@
 % Einleitung
 % ===========
 
-\chapter{Spieltheorie}
-\label{chap:spieltheorie}
+\chapter{Introduction: What is model order reduction}
+\label{chap:introduction}
+
+\begin{itemize}
+	\item rigorous definition is difficult/ impossible
+	\item MOR is the approximation of large-scale systems of equations by small scale ones with similar solution properties
+\end{itemize}
+
+Here, we consider the MOR of dynamical systems of the form
+\begin{align*}
+	& \dot{x}(t) : = f(x(t), u(t), t) \hspace{2ex} x(t_0)=x_0 \hspace{2ex} t \in I \subset \R \hspace{2ex} I=[t_0, t_f] \\
+	& y(t)=g(x(t),u(t),t) 
+\end{align*}
+with 
+\begin{align*}
+	& x(\dot ) : I \rightarrow \R^n & \text{state (function)}\\
+	& u(\dot ) : I \rightarrow \R^m & \text{input (function)}\\
+	& y(\dot ) : I \rightarrow \R^p & \text{output (function)}\\
+	& f : \R^n \times \R^m \times I  \rightarrow \R^n & \text{dynamics of system}\\
+	& g: \R^n \times \R^m \times I \rightarrow \R^p & \text{output map}\\
+\end{align*}
+
+\begin{note}
+	if u is fixed we can calculate u, then y. In this lecture we only consider systems where the pde is solvable. 
+\end{note}
+
+usually the input can be chosen by a system operator in order to influence the system state. The output consists of the system parameters that are servable or that are of interest to the operator.
+
+The task of MOR can be described as 
+\begin{itemize}
+	\item find functions 
+	\begin{align*}
+		& \tilde{f} : \R^l \times \R^m \times I  \rightarrow  \R^n \\
+		& \tilde{g}: \R^l \times \R^m \times I \rightarrow \R^p
+	\end{align*}
+	with $l <<n$ and $\tilde{x}_0 \in \R^l$ such that the output $\tilde{y}$ of the small  system 
+	\begin{align*}
+		& \dot{\tilde{x}}(t) : = f(\tilde{x}(t), u(t), t) \hspace{2ex} \tilde{x}(t_0)=x_0 \\
+		& \tilde{y}(t)=g(\tilde{x}(t),u(t),t) 
+	\end{align*}
+	is very close to $y$ for most (or all admissable) input functions $u:I \rightarrow \R^m$
+	\item meaning of very close will become clear later
+	\item purpose of MOR is to aid numerical simulation of large scale systems, which is computationally very demanding for large $n$, but cheap for small $l$. 
+\end{itemize}
+
+\begin{exa}
+	Consider the linear system with $I=(0,\infty]$
+	\begin{align*}
+		\begin{pmatrix}
+			\dot{x}_1(t) \\\dot{x}_2(t) 
+		\end{pmatrix}
+		= 
+		\begin{pmatrix}
+			-1 & 0 \\ 0 & -2
+		\end{pmatrix}
+		\begin{pmatrix}
+			x_1(t) \\ x_2(t)
+		\end{pmatrix}
+		+
+		\begin{pmatrix}
+			1 \\ \frac{1}{10}
+		\end{pmatrix}
+		u(t), \hspace{2ex} 
+		\begin{pmatrix}
+			x_1(0) \\ x_2(0)
+		\end{pmatrix}
+		= \begin{pmatrix}
+			0 \\ 0
+		\end{pmatrix}
+	\end{align*}
+\end{exa}
+The state variable $x_1(t)$, $x_2(t)$ are mostly decoupled, so using the formular of variation of the constant, we have
+\begin{align*}
+	y(t)=2x_1(t)+x_2(t) & = 2 \int\limits_0^t e^{- (t- \tau)} u(\tau) \diff \tau + \frac{1}{10} \int\limits_0^t e^{-2(t - \tau )} u(\tau) \diff \tau \\
+	& \sim 2 \int\limits_0^t e^{-(t-\tau)} u(\tau) \diff \tau 
+\end{align*}
