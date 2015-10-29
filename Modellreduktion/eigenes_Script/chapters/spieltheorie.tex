@@ -72,9 +72,63 @@ The task of MOR can be described as
 			0 \\ 0
 		\end{pmatrix}
 	\end{align*}
+	
+	The state variable $x_1(t)$, $x_2(t)$ are mostly decoupled, so using the formular of variation of the constant, we have
+	\begin{eqnarray*}
+		y(t)=2x_1(t)+x_2(t) & = 2 \int\limits_0^t e^{- (t- \tau)} u(\tau) \diff \tau + \frac{1}{10} \int\limits_0^t e^{-2(t - \tau )} u(\tau) \diff \tau \\
+		& \sim 2 \int\limits_0^t e^{-(t-\tau)} u(\tau) \diff \tau 
+	\end{eqnarray*}
+	The term after $1/10$ can be erased. 
+	
+	Hence, the smaller System  $\dot{\tilde{x}}(t)= - \tilde{x}(t) +u(t), \hspace{2ex} \tilde{x}(0)=0, \tilde{y}(t)=2 \tilde{x}(t)$ is an approximation of the original one. 
 \end{exa}
-The state variable $x_1(t)$, $x_2(t)$ are mostly decoupled, so using the formular of variation of the constant, we have
+
+\begin{exa}
+	We consider the temper distribution $T(t, \xi)$ in a beam of length 1. (\dots) in the lecture we calculate this discrete and the solution $u$ is a \glqq Schock \grqq
+\end{exa}
+
+\begin{note}
+	lecture 2 is missing
+\end{note}
+
+\section{?}
+
+\section{?}
+
+\textbf{recap: dynamical Systems }
+
 \begin{align*}
-	y(t)=2x_1(t)+x_2(t) & = 2 \int\limits_0^t e^{- (t- \tau)} u(\tau) \diff \tau + \frac{1}{10} \int\limits_0^t e^{-2(t - \tau )} u(\tau) \diff \tau \\
-	& \sim 2 \int\limits_0^t e^{-(t-\tau)} u(\tau) \diff \tau 
+		& x(\dot ) : I \rightarrow \R^n & \text{state (function)}\\
+		& u(\dot ) : I \rightarrow \R^m & \text{input (function)}\\
+		& y(\dot ) : I \rightarrow \R^p & \text{output (function)}
 \end{align*}
+
+LTI system: There are matrixes $A,B,C,D$ s.t. 
+\begin{align}
+	\label{eq:LTI}
+	& \dot{x}(t)=A x(t) + B u(t), \hspace{2ex} x(0)=x_0\\
+	& y(t)=C \dot{x}(t) + D u(t)
+\end{align}
+
+
+An LTI can be given by
+\begin{itemize}
+	\item  $A,B,C,D, x_0$. Then $y(t)= C e^{A(t-\tau)} x_0 + \int\limits_0^t C e^{A(t-\tau)}  B u(\tau) \diff \tau + D u(t)$\item impulse response $y_d$. then $y=y_d * u_0$ (only for $x=0$)
+	\item transfer function G. then $L(y)(s)=\hat{y}(u)= G(s)\hat{u}(s)=L(u(s))$ (only for $x=0$)
+\end{itemize}
+
+the three parametrizations can be transformed into one another. 
+\begin{align*}
+	y_0(t) & = \left\{ \begin{array}{ll}
+			C e^{At}B+ \partial (t) D & t \leq 0 \\
+			0	& t<0
+	\end{array} \right. \\
+	G(s) & = C(sT-A)^{-1} B+D \\
+	G(s) & = L(y_d)(s)
+\end{align*}
+For $u(t)=e^{iwt}I_m$ and $x_0=(iwI-A)^{-1}B$ we have $y(t)= \cdots = G(iw)u(t)$ 
+So, exitation of a suitably initialized LTI-System \ref{eq:LTI} with an input of frequency $\omega$ leads to an output of frequency $\omega$ only emplified by a (frequency dependent) factor $G( i \omega) $. For that reason the distriction of G to the imaginary axis is called frequency response.
+
+\section{realization} 
+
+
