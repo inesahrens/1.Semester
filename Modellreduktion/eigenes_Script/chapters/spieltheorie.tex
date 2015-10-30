@@ -210,3 +210,37 @@ So a transfer function is proper. It's even strictly proper if $D=0$. Thus the d
 \begin{thm}
 	Every $G \in \R^{p \times m}_p(s)$ have a realization. 
 \end{thm}
+
+\section{Controlability and observability}
+
+\begin{defi}
+	Consider a system with given initial and final states $x_0, x_f \in \R^n$
+	\begin{enumerate}
+		\item $x_0$ is called controlable to $x_f$ in time $t_f$, if there is an integrable input function $u:[0,t_f] \rightarrow \R^m$ s.t. the resulting state function $x$ satisfies $x(0)=x_0$ and $x(t_f)=x_f$. 
+		\item $x_0$ is called controlable to $x_f$, if there is a time $t_f>0$ s.t. $x_0$ is controlable to $x_f$ in time $t_f$
+		\item $x_0$ is called controlable, if every $x_0 \in R^n$ is controlable to every $x_f \in \R^n$.
+		\item Controlability of LTI systems only depend on $A$ and $B$. We also speak of controlability of $(A,B)$. 
+	\end{enumerate}	
+\end{defi}
+
+\begin{thm}
+	For $A \in \R^{n \times n}, B \in \R^{n \times m } $ the following are equivalent (tfae)
+	\begin{enumerate}
+		\item $(A,B)$ is controlable 
+		\item every $x_0$ is controlable to every $x_f$ in any time $t_f>0$
+		\item $P(t):=\int\limits_0^t e^{A \tau} B B^T e^{A^T \tau} \diff \tau $ is symmetric positive definit $\forall t>0$
+		\item $P(t)$ is spd for a $t>0$
+		\item $\text{rank} [B,AB, \dots, A^{n-1}B]=n$. this criteria is called Kalman criteria
+		\item $v^TB \neq 0$ for every eigenvector $v$ of $A^T$
+		\item for every $\lambda \in \C$ we have $\text{rank}[\lambda I - A,B]=n$. this criteria is called Hautustest.  
+	\end{enumerate}
+\end{thm}
+
+The matrix $P(\infty)$ will become important. 
+
+
+
+
+
+
+
