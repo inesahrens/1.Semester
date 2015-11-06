@@ -2,5 +2,259 @@
 % Hauptteil der Arbeit I
 % =======================
 
-\chapter{Hauptteil der Arbeit I}
-\label{chap:hauptteil_1}
+\chapter{Gruppenentscheidungen}
+
+\section{Individualpräferenz und Gruppenentscheidungen}
+
+Sei A eine endliche Menge von Kandidaten.
+
+\begin{defi}[Präferenz]
+	Sei A eine endliche Menge von Kandidaten. Einr Präferenz entsteht, wenn jeder Wähler jeden Kandidaten $x \in A$ eine natürliche Zahl als Rang $r(x)$ zuordnet. Bei zwei Kandidaten $x, y \in A$ bedeutet $r(x)<r(y)$, dass $X$ gegenüber $y$ bevorzugt wird. 
+\end{defi}
+
+\begin{defi}[Rangabbildung]
+	Eine Rangabbildung ist eine surjektive Abbildung $r$ von der Kandidaten Menge A auf einen Abschnitt $\{ 1, \dots, k \} \subset \N $ 
+	\begin{align*}
+		r:A \rightarrow \{ 1, \dots, k \} 
+	\end{align*}
+\end{defi}
+
+\begin{defi}[Relation]
+	Eine Relation $R$ auf der Menge A heißt $\forall x,y,z \in A$
+	\begin{itemize}
+		\item transitiv, falls $x Ry, yRz \Rightarrow xRz $
+		\item symmetrisch, falls $xRy \Rightarrow yRx$
+		\item reflexiv $xRx$
+		\item Quasiordnung $R$ ist reflexiv und transitiv
+		\item asymetrisch $xRy \Rightarrow \neq (yRx)$
+		\item konvex: jede zwei Elemente sind vergleichbar:$xRy \vee yRx$
+	\end{itemize}
+\end{defi}
+
+\begin{defi}[Präferenzrelation]
+	Die Rangabbildung r definiert eine Präferenzrelation $\rho \subset A \times A$ über 
+	\begin{align}
+		\label{eq:rangabbildung}
+		x \rho y : \Leftrightarrow r(x) < r(y)
+	\end{align}
+\end{defi}
+$\rho$ ist transitiv und asymetrisch. 
+\begin{defi}
+	Sei $\rho$ die durch der Rangabbildung $r$ definierte Präferenzrelation.  
+	Die Menge aller so darstellbaren Relationen nennen wir 
+	\begin{align*}
+		\mathcal{P}_A:=\{ \rho \subset A \times A| \rho \text{ erfüllt \eqref{eq:rangabbildung} für eine Rangabbildung } r  \}
+	\end{align*}
+\end{defi}
+
+Wir können auch noch Paare hinzunehmen, die beide den gleichen Rang haben: 
+\begin{align}
+	\label{eq:rangabb_stern}
+	x \rho* y : \Leftrightarrow r(x) \leq r(y)
+\end{align}
+$\rho*$ ist transitiv, reflexiv und konvex. Es gilt $\rho \subset \rho* \subset A \times A$
+und damit definieren wir 
+\begin{align*}
+	\mathcal{P}_A^*:=\{ \rho^* \subset A \times A| \rho^* \text{ erfüllt \eqref{eq:rangabb_stern} für eine Rangabbildung } r \}
+	\end{align*}
+
+\begin{thm}
+	Sei $\rho$ die Präferenzrelation und $\rho*$ zugehörig. Dann gilt: 
+	\begin{align*}
+		x \rho y \Leftrightarrow \neq (x \rho* y)
+	\end{align*}
+\end{thm}
+\begin{noti}
+	in Vorlesung ohne Beweis. Vll selber machen
+\end{noti}
+Mit diesem Theorem kann man auch ohne die Rangabbildung $r$ zu kennen, aus gegebenen $\rho$ das zugehörige $\rho*$ bestimmen.  
+ 
+Die Relationen sind also zueinander invers komplementär. 
+
+\begin{defi}[Kollektive Auswahlfunktion]
+	Sei $I=\{1, \dots, n\}$ eine Wählermenge und $\mathcal{P}_A$ wie oben definiert. Die kollektive Auswahlfunktion ist gegeben durch
+	\begin{align*}
+		K: \mathcal{P}_A^n \rightarrow \mathcal{P}_A
+	\end{align*}
+\end{defi}
+Dabei repräsentiert jedes $\mathcal{P}_A$ aus der Eingabemenge eine Präferenz eines Wählers. Die Kollektive Auswahlfunktion berechnet die Präferenz der Gesamtheit. 
+
+Wir haben zwei wesentliche Bedingungen an die Entscheidungsfunktion
+\begin{itemize}
+	\item Die Abbildung $K$ muss total sein, d.h. jedem Element des Definitionsbereiches muss ein Bild zugeordnet werden.
+	\item Das Ergebnis der Wahl muss ebenfalls in $\mathcal{P}_A$ sein. 
+\end{itemize} 
+
+\section{Beispiele für Entscheidungsverfahren}
+Das Ziel dieses Kapitels ist es, eine kollektive auswahlfunktion zu konstruieren, die besonders gerecht ist. 
+Sei in diesem Kapitel $I=\{1, \dots, n\}$ die Menge von Wählern mit den Präferenzrelationen $\rho_i$ $\forall i \in I$. 
+
+\subsection{externer Diktator}
+Es gilt für beliebiges aber festes $\rho_E$: 
+\begin{align*}
+	K_{\rho_E}^E(\rho_1, \dots, \rho_n)= \rho_E
+\end{align*}
+Die ist offfensichtlich eine Abbildung
+
+\subsection{interner Diktator}
+Es gibt beim externen Diktator einen Wähler $d \in I$ mit 
+\begin{align*}
+	K_d^D(\rho_1, \dots, \rho_n)= \rho_d
+\end{align*}
+
+\subsection{Rangaddition}
+Zu jeder Individualpräferenz $\rho_i$ gibt es eine Rangabbildung $r$. Bei der Rangaddition werden die Kandidaten 
+nach der Summe ihrer Rangzahlen bewertet. Es ist $K^A(\rho_1, \dots, \rho_n)$ die Relation $\rho$ mit
+\begin{align*}
+	x \rho y : \Leftrightarrow \sum_{i=1}^n r_i(x) < \sum_{i=1}^n r_i(y)
+\end{align*}
+Das Problem ist, dass dies i.A. keine Rangabbildung ist, da die Abbildung nicht surjektiv sein muss (z.B. kein Kandidat hat genau 5 Punkte). Eine mögliche Lösung ist es, die nicht erreichten Punkte zu streichen und die anderen Kandidaten aufrücken zu lassen. 
+
+\subsection{Cordocct Verfahren} 
+Dieses Verfahren vergleicht die Kandidaten paarweise miteinander. Die kollektive Präferenzrelation lautet damit:
+\begin{align*}
+	x \rho y :\Leftrightarrow |\{i\in I | x \rho_i y \} | > |\{i \in I | y \rho_i x\} |
+\end{align*} 
+
+\subsection{Einstimmigkeit}
+Setze Kandidat $x$ vor $y$, falls alle Wähler $x$ vor $y$ setzen. Die Kollektive Auswahlpräferenz lautet:
+\begin{align*}
+	x \rho y : \Leftrightarrow \forall i \in \{1, \cdots n\} x \rho_i y
+\end{align*}
+Falls nur ein Wähler $x$ genau so schätzt wie $y$,gilt $y \rho^* x$  .
+Deshalb ist dieses Verfahren in der Praxis kaum anwendbar. Außerdem muss das Ergebnis für die Kandidatenmenge $A$ mit $|A|>2$ nicht unbedingt in $\mathcal{P}_A$ sein, da nicht unbedingt jeder Kandidat plaziert werden kann. 
+
+\subsection{Borda-Wahl}  
+Jeder Wähler gibt den k Kandidaten Punkten. Der erst präferierte von Wähler $i$ erhält $k$ Punkte, der letzte 1 Pkt. Der Kandidat mit den meisten Punkten gewinnt. 
+
+\section{Bedingungen an die Auswahlfkt und Satz von Arrow}
+
+Wir wollen zwei Bedingungen an ein gerechtes Verfahren stellen. 
+
+\textbf{Parteo Bedingung: } 
+Die Gesamtheit für einen beliebigen Kandidaten kann durch eine Einstimmigkeit jede gewünschte Richtung erreichen.
+
+\textbf{Unabhängigkeit von irrelevanten Ereignisssen: } Die Reihung zwischen zwei Kandidaten kann nicht dadurch geändert werdne, dass Wähler ihre Präferenz bzgl. eines dritten Kandidaten verändern. 
+
+\begin{defi}[Pareto Bedingung]
+	Eine kollektive Auswahlfunktion $K: \mathcal{P}_A^n \rightarrow \mathcal{P}_A$ erfüllt die Pareto Bedingung, falls für alle $\rho_i \in \mathcal{P}_A, i \in I$ mit $\rho = K(\rho_1, \dots, \rho_n)$ und für alle Kandidaten $x,y \in A$ gilt: 
+	\begin{align*}
+		(\forall i \in O: x \rho_i y) \Rightarrow x \rho y
+	\end{align*}
+\end{defi} 
+
+Die Pareto Bedingung kann auch für $\rho^*$ definiert werden, nur ein Verfahren, das jeden Kandidaten immer gleich bewertet, würde die Bedingung auch erfüllen. 
+
+\begin{defi}[Unabhängigkeit von irrelevanten Alternativen/Ereignissen]
+	Eine kollektive Auswahlfkt $K: \mathcal{P}_A^n \rightarrow \mathcal{P}_A$ erfüllt die unabhängigkeit von irrelevanten Ereignissen, wenn 
+	\begin{align*}
+		\forall \rho_i, \rho_i' \in \mathcal{P}_A, i \in I
+	\end{align*}
+	mit $\rho=K(\rho_1, \dots, \rho_n)$ und $\rho'=K(\rho_1', \dots, \rho_n')$ und für alle $x,y \in A$ gilt: 
+	\begin{align*}
+		(\forall i \in I \text{ mit } x \rho_i y \Leftrightarrow x \rho_i' y) \Rightarrow (x \rho y \Rightarrow x \rho' y)
+	\end{align*}
+\end{defi}
+
+In Worten bedeutet das: Wenn kein Wähler seine Meinung bzgl x und y ändert, dann solte auch im Ergebnis die Reihung von x und y gleich bleiben. 
+
+Nur noch der interne Diktator erfüllt alle Bedingungen einschließlich der Pareto Bedingung und der unabhängigkeit von irrelevanten Ereignissen. 
+
+\begin{thm}[Satz von Arrow]
+	Es sei A mit $|A|>2$ eine Kandidatenmenge und $K:  \mathcal{P}_A^n \rightarrow \mathcal{P}_A$ eine kollektive Auswahlfkt, die die Pareto Bedingung erfüllt und die Unabhängigkeit von irrelevanten Ereignissen erfüllt. Dann gilt es einen internen Diktator. D.h.
+	\begin{align*}
+		\exists d \in I: \forall (\rho_1, \dots, \rho_n) \in \mathcal{P}_A^n : \forall (x,y) \in A \times A \hspace{1ex} x \rho_d y \Rightarrow x \rho y
+	\end{align*}
+	mit $\rho = K(\rho_1, \dots, \rho_n)$
+\end{thm}
+\begin{proof}
+	Seehr lang
+\end{proof}
+
+\begin{lem}[Extremallemma]
+	Für jede Alternative $y$ gilt: Wenn jeder Wähler die Alternative $y$ als bester (\glqq Top \grqq) oder als letzter (\glqq Flop \grqq) gewählt hat, dann muss die kollektive Auswahlfkt die Alternative $y$ ebenfalls als \glqq Top \grqq oder \glqq Flop \grqq setzen. 
+\end{lem}
+
+\begin{rem}[Alternative Formulierung des Satzes von Arrow]
+	\textbf{demokratische Grundregeln:}
+	\begin{itemize}
+		\item Auswahlfkt K muss auf ganz $\mathcal{P}_A$ formuliert sein
+		\item Ergebnis von K muss in $\mathcal{P}_A$ liegen
+		\item Die Pareto Bedingung muss erfüllt sein
+		\item die Unabhängigkeit von irrelevanten Alternativen muss erfüllt sein
+		\item es gibt keinen Diktator
+	\end{itemize}
+	
+	Eine Alternative Formulierung von dem Satz von Arrow ist nun: Es kann keine kollektive Auswahlfunktion geben, die alle demoktratischen Grundregeln erfüllt. 
+\end{rem}
+
+\section{Nicht-Manipulierbkeit von Wahlen}
+Das Problem beim Satz von Arrow ist es, dass das Einfügen von irrelevcanten Alternativen zwischen bevorzugten Kandidaten und Hauptkonkurrenten kann das Ergebnis beeinflussen. 
+
+\begin{defi}[soziale Entscheidungsfkt]
+	$e: \mathcal{P}_A^n \rightarrow A$
+\end{defi}
+
+\begin{defi}[Strategische Manipulation/ Anreizkompatibel]
+	Eine soziale Entscheidungsfunktion $e: \mathcal{P}_A^n \rightarrow A$ kann durch Wähler strategisch manipuliert werden, falls es Präferenzen $\rho_1, \dots, \rho_i, \dots, \rho_n, \rho_i' \in \mathcal{P}_A$ gibt, sodass $\rho_i \neq \rho_i'$ 
+	\begin{align*}
+		a \rho_i b \text{ gilt für }  a=e(\rho_1, \dots, \rho_i, \dots, \rho_n), b=e(\rho_1, \dots, \rho_i', \dots, \rho_n)
+	\end{align*} 
+	Die Fkt $e$ heißt Anzeizkompatibel, falls $e$ nicht strategisch manipulierbar ist. 
+\end{defi}
+
+\begin{rem}[zu definition Strategische Manipulation]
+	e-manipulierbar, falls ein Wähler $i$, der $b$ vor $a$ präferiert, $b$ erzwingen kann, wenn er statt seiner Präferenz $\rho_i$ eine Präferenz $\rho_i' \neq \rho_i$ angibt.  
+\end{rem}
+
+\begin{defi}[Monotonie]
+	Eine soziale Entscheidungsfkt $e$ heißt monoton, falls aus 
+	$ a=e(\rho_1, \dots, \rho_i, \dots, \rho_n), b=e(\rho_1, \dots, \rho_i', \dots, \rho_n)$ mit $a \neq b$ folgt, dass $a \rho_i b$ und $a \rhi_i' b$ gilt. 
+\end{defi}
+
+\begin{thm}
+	Eine soziale Entscheidungsfunktion ist genau dann monoton, wenn sie Anreizkompatibel ist. 
+\end{thm}
+
+\begin{defi}[Diktator eine Entscheidungsfkt]
+	Wähler $i$ heißt Diktator einer sozialen Entscheidungsfkt, falls für alle $\rho_1, \dots \rho_n \in \mathcal{P}_A$ gilt, dass $ a=e(\rho_1, \dots, \rho_n)$, wobei a der eindeutig bestimmte Kandidat mit $a \rho_i b$ für alle $b \neq a$ ist. Die Fkt $e$ heißt diktatorisch, falls er einen Diktator besitzt. 
+\end{defi}
+
+\begin{defi}[Top Menge]
+	Sei $S \subset A$ und $\rho \in \mathcal{P}_A$. Wir führen eine Präferenzrelation $\rho^S$ ein. für 
+	\begin{align*}
+		a,b \in S: a \rho^s b \Leftrightarrow s \rho b \\
+		a,b \notin S: a \rho^s b \Leftrightarrow s \rho b \\
+		a \in S, b \notin S; a \rho^S b
+	\end{align*}
+\end{defi}
+Man kann zeigen, dass $\rho^s$ dadurch eindeutig bestimmt ist. 
+
+\begin{lem}[Top Präferenz]
+	Sei $e$ eine Anreizkompatible und surjektive Entscheidungsfkt. Dann gilt: 
+	\begin{align*}
+		\forall \rho_i, \dots \rho_n \in \mathcal{P}_A \text{ und } S \subset A, S \neq \emptyset \text{ gilt: } e(\rho_q^S, \dots, \rho_n^S) \in S
+	\end{align*}
+\end{lem}
+
+\begin{defi}[Erweiterung der Entscheidungsfkt]
+	Die Funktion $E: \mathcal{P}_A^n \rightarrow \mathcal{P}_A$ ist die Erweiterung der sozialen Entscheidungsfkt e und ist definiert durch $E(\rho_1, \dots, \rho_n)$ wobei 
+	\begin{align*}
+		a \rho b : \Leftrightarrow e(\rho_1^{\{a,b\}} , \dots, \rho_n^{\{a,b\}})=a \forall a,b \in A
+	\end{align*}
+\end{defi}
+
+\begin{lem}
+	Falls e eine Anreizkompatible und surjektive soziale Entscheidungsfkt ist, dann ist ihre Erweiterung eine kollektive Auswahlfkt. 
+\end{lem}
+
+\begin{lem}[Erweiterungslemma]
+	Falls e eine anreizkompatible, surjektive und nicht diktatorische Entscheidungsfkt ist, so ist ihre Erweiterung E eine kollektive Auswahlfkt, die Einstimmigkeit, Unabhängigkeit von irrelevanten Ereignissen und nicht diktator
+\end{lem}
+
+
+
+
+
+
+

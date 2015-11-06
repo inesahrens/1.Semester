@@ -233,3 +233,61 @@ ein Strategiepaar mit dieser Eigenschaft heißt Nash-Gleichgewicht.
 		\forall b \in S_B : u_A(\hat{a}, b) \geq u_A(\hat{a}, \hat{b})
 	\end{align} 
 \end{defi}
+
+\eqref{eq:1} and \eqref{eq:2} zusammen ergeben 
+\begin{align*}
+	\forall a \in S_A, b \in S_B: u_A(\hat{a},b) \geq u_A(\hat{a}, \hat{b}) \geq u_A(a, \hat{b})
+\end{align*}
+daher nennt man dieses Gleichgewicht auch Sattelpunkt. 
+
+\begin{rem}
+	\begin{itemize}
+		\item Ein Strategiepaar aus dominanten Strategien st offenbar immer ein Gleichgewichtspunkt.
+		\item Durch eleiminieren von diminanten Strategien könnnen keine neuen Gleichgewichtspunkte entstehen.  
+	\end{itemize}
+\end{rem}
+
+Der Wunsch ist, dass jedes Spiel genau einen Gleichgewichtspunkt besitzt. Das ist jedoch nicht der Fall. 
+
+\section{Gemischte Strategien}
+Betrachte Nullsummenspiel. 
+
+\textbf{Annahme:} Mehrere Parteien und die Spieler wählen jede ihrer Strategien mit einer W-keit $p_j$ bzw. $q_k$, für $j \in \{1, \dots, m\}, k \in \{1, \dots, n\}$ wobei $p \in \R^m, q \in \R^n$. Diese gewählten W-keiten nennt man gemischte Strategien. Man kann dann die Auszahlung berechnen. 
+\begin{align*}
+	E(U^*, p, q)= \sum\limits_{k=1}^n (U^A)_{j,k} p_j q_k = p^T U^*q
+\end{align*}
+
+Spieler A versucht nun den Wkeits Vektor $p$ so zu wählen, dass der Erwartungsweert maximal wird. Spieler B analog mit $q$. 
+
+Extrema von $E(U^*,\cdot, q)$ leigt entweder auf dem Rand ($p_j=0$ für mind. ein $j$) oder der Gradient wird 0. 
+\begin{align*}
+	0= U^* q = E(U^*,p,q) \text{ f.a.} p
+\end{align*}
+
+\textbf{Interessante Beobachtung:} Wenn $U^*$ nicht invertierbar ist und es $q \geq 0$ oder $p \geq 0$ gibt, s.d. $p^T U^*=0$ od $U^*q=0$, wählt dann der entsprechende Spieler diese Strategie völlig unabhängig. 
+
+\section{Ausblick}
+\begin{itemize}
+	\item Konzept des Gleichgewichts lässt sich mathematisch gut fassen
+	\item Die Wahl der Auswertungsfkt ist sehr wichtig. Das steht auch in Zusammenhang mit derFrage, ob das Modell stimmt. 
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

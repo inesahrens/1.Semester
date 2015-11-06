@@ -157,7 +157,7 @@ Hence, for the transfer function we have
 	G(s)=C(sI-A)^{-1}B+D= C \frac{adj(sI-A)}{\det (sI-A)} B + D \notag \\
 	= \frac{adj(sT-a)B+\det (sI-A) D}{\det (sT-A)}= \frac{N(s)}{d(s)}
 \end{align}
-where $d(s)=\det(sI-A)$ is a polynomial of degree n and $N(s):= adj(sI-A)B+\det(sT-A)D$ is a $p \limes m$ matrix polynomial. 
+where $d(s)=\det(sI-A)$ is a polynomial of degree n and $N(s):= adj(sI-A)B+\det(sT-A)D$ is a $p \times m$ matrix polynomial. 
 
 Matrix polyonmials are a matrix whose entries are polynomials. 
 
@@ -238,9 +238,60 @@ So a transfer function is proper. It's even strictly proper if $D=0$. Thus the d
 
 The matrix $P(\infty)$ will become important. 
 
+\textbf{New setting:} The whole state $x(\cdot)$ is of interest, but only the output $y(\cdot )$ is available. Observability is the property of the system \eqref{eq:LTI} stating that given input and output, the state is uniquely fixed. 
 
+\begin{defi}
+	Consider an LTI System \eqref{eq:LTI}. Let $x(\cdot )$ and $y(\cdot)$ be the state and output functions of \eqref{eq:LTI} for a given input $u(\cdot)$ and initial state $x_0$. Let $\tilde{x}(\cdot)$ and $\tilde{y}(\cdot)$ be the state and output function of \eqref{eq:LTI} for initial state $\tilde{x}_0$ and same input $u(\cdot)$. the system is called observable if for all integrable $u(\cdot)$ we have $y(\cdot) \equiv \tilde{y}(\cdot) \Rightarrow x_0= \tilde{x}_0$  
+\end{defi}
 
+\begin{rem}
+	With $x_0 = \tilde{x}_0$ we have $x(0) \equiv \tilde{x}(\cdot)$
+\end{rem}
 
+\begin{rem}
+	Obserbility of an LTI system \eqref{eq:LTI} only depends of $A$ and $C$, because $u$ is the same for both state and output functions. We speak of obserbility of $(A,C)$
+\end{rem}
 
+\begin{thm}
+	For $A \in \R^{n \times n}, C \in \R^{p \times n } $ tfae
+	\begin{enumerate}
+		\item $(A,C)$ is observable 
+		\item $Q(t):=\int\limits_0^t e^{A^T \tau} C^T C e^{A \tau} \diff \tau $ is symmetric positive definit $\forall t>0$
+		\item $Q(t)$ is spd for a $t>0$
+		\item $\mathcal{O}:= \text{rank} [C,AC, \dots, A^{n-1}C]^T=n$. 
+		\item $Cv \neq 0$ for every eigenvector $v$ of $A$
+		\item for every $\lambda \in \C$ we have $\text{rank}[\lambda I - A,C]^T=n$
+		\item $(A^T,C^T)$ is controlable. 
+	\end{enumerate}
+\end{thm}
 
+\section{Uniquness of realizations and the realization between controbility, obserbility and minimal realizations}
+
+\begin{lem}
+	If $[A,B,C,D]$ and $[\tilde{A}, \tilde{B}, \tilde{C}, \tilde{D}]$ are realizations of the same transferfunction $G(s)$ than $D= \tilde{D}$ and $CA^iB = \tilde{C} \tilde{A}^i \tilde{B} \forall i \in \N_0$  
+\end{lem}
+
+\begin{lem}
+	Let $[A,B,C,D] $ be an observable and controllable LTI system with transferfunction $G(s)$. Then $[A,B,C,D]$ is a minimal realization of $G(s)$. 
+\end{lem}
+
+\begin{rem}
+	We will use Silvester's inequality: If $\mathcal{O}$ is a matrix with n colums and $S$ is an matrix with n rows, then
+	\begin{align*}
+		\text{rank}(\mathcal{O}) + \text{rank}(S) - n \leq \text{rank}(\mathcal{O}S) \leq \max \{\text{rank}(\mathcal{O}), \text{rank}(S) \}
+	\end{align*}
+\end{rem}
+
+\begin{lem}[Kalman controbility composition]
+	Let $A \in \rmat{n}{m}, B \in \rmat{n}{m}$. Let $S=[B,AB, \dots, A^{n-1}B]$ and $r:=\text{rank}(S)$. Then there is an invertible matrix $Q \in \rmat{n}{m}$ s.t.
+	\begin{align*}
+		\tilde{A}=Q^{-1}A Q= 
+		\begin{pmatrix}
+		A_1 & A_3 \\ 0 & A_2
+		\end{pmatrix}, \hspace{2ex} \tilde{B}= Q^{-1} B = \begin{pmatrix}
+		B_1 \\ 0
+		\end{pmatrix} 
+	\end{align*}
+	where $(A_1,B_1) \in \rmat{r}{r} \times \rmat{r}{m}$ is controlable. The $Q$ can always be chosen orthogonal.  
+\end{lem}
 

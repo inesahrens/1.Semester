@@ -126,6 +126,8 @@
 %			\renewcommand{\Befehl}{Neue Befehlsdefinition} - Befehl ohne Parameter, um einen schon vorhandenen Befehl umzudefinieren
 \newcommand{\R}{\mathbb{R}}%					Symbol fuer reelle Zahlen
 \newcommand{\C}{\mathbb{C}}%
+\newcommand{\N}{\mathbb{N}}%
+\newcommand{\rmat}[2]{\mathbb{R}^{#1 \times #2}}%
 \renewcommand{\div}{\mathrm{div}}%		Symbol fuer den Divergenz Operator
 %			\newcommand{\Befehl}[Anzahl]{Befehlsdefinition} - Befehle mit Parametern; 'Anzahl' ist die Zahl der Befehlsparameter, die maximal neun betraegt; innerhalb der 'Befehlsdefinition' werden die Parameter als #1, #2, ... verwendet
 \newcommand{\tv}[1]{|#1|_{BV(\Omega)}}%													TV Halbnorm
@@ -138,7 +140,7 @@
 %			\newtheorem{Umgebungsname}{Markierungstext}[section] - aehnlich wie oben, nur dass die Umgebung einen eigenen Zaehler besitzt, der pro \section gesetzt wird.
 %			Definierte Umgebungen haben jeweils einen optionalen Parameter, der eine Ueberschrift oder Kurzbeschreibung des Theorems enthalten kann, z.B. \begin{thm}[Wichtiger Satz] Text \end{thm}
 \theoremstyle{plain} \newtheorem{lem}{Lemma}[section]
-\theoremstyle{remark} \newtheorem*{rem}{Remarks and Extensions}%		Zaehler wird nicht ausgegeben
+\theoremstyle{remark} \newtheorem*{rem}{Remark}%		Zaehler wird nicht ausgegeben
 \theoremstyle{plain} \newtheorem{thm}[lem]{Theorem}
 \theoremstyle{plain} \newtheorem{defi}[lem]{Definition}
 \theoremstyle{plain} \newtheorem{cor}[lem]{Corollary}
