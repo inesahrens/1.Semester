@@ -209,7 +209,7 @@ Das Problem beim Satz von Arrow ist es, dass das Einfügen von irrelevcanten Alt
 
 \begin{defi}[Monotonie]
 	Eine soziale Entscheidungsfkt $e$ heißt monoton, falls aus 
-	$ a=e(\rho_1, \dots, \rho_i, \dots, \rho_n), b=e(\rho_1, \dots, \rho_i', \dots, \rho_n)$ mit $a \neq b$ folgt, dass $a \rho_i b$ und $a \rhi_i' b$ gilt. 
+	$ a=e(\rho_1, \dots, \rho_i, \dots, \rho_n), b=e(\rho_1, \dots, \rho_i', \dots, \rho_n)$ mit $a \neq b$ folgt, dass $a \rho_i b$ und $a \rho_i' b$ gilt. 
 \end{defi}
 
 \begin{thm}
@@ -252,9 +252,19 @@ Man kann zeigen, dass $\rho^s$ dadurch eindeutig bestimmt ist.
 	Falls e eine anreizkompatible, surjektive und nicht diktatorische Entscheidungsfkt ist, so ist ihre Erweiterung E eine kollektive Auswahlfkt, die Einstimmigkeit, Unabhängigkeit von irrelevanten Ereignissen und nicht diktator
 \end{lem}
 
+\textbf{Unabhängigkeit von irrelevanten Alternativen: } Falls für alle $i=1, \dots, n$ gilt:
+\begin{align*}
+	a \rho_i b \Leftrightarrow a \rho_i' b
+\end{align*}
+dann muss 
+\begin{align*}
+	e(\rho_1^{ \{ a, b \} }, \dots , \rho_n^{\{ a, b\} })= e(\rho_1^{' \{ a, b\} }, \dots , \rho_n^{' \{ a, b\} })
+\end{align*}
+gelten, da sich das Ergebnis wegen der Monotonie von $e$ nicht ändert, wenn man $\rho_i$ durch $\rho'_i$ ersetzt. 
 
-
-
+\begin{thm}[Satz von Gibbord-Salterthwaite]
+	Falls $e$ eine surjektive, anreizkompatible Entscheidungsfunktion ist, sodass drei oder mehr Alternativen wählbar sind, dann ist $e$ diktatorisch. 
+\end{thm} 
 
 
 
