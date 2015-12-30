@@ -1,0 +1,76 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%opening
+\title{MOR - Verständniszusammenfassung}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\section{Kapitel}
+Das Ziel von MOR ist es, Systeme großer Ordnung zu reduzieren. Wir wollen zum Originalsystem ähnliche Systeme finden, die fast die gleichen Eigenschaften haben, wie das Originalsystem. Das neue System soll von niedriger Ordnung sein und ist deshalb einfacher zu berechnen. Auch die Lösung, also die Zustandsfunktion und der gesuchte Output, sollen sehr ähnlich sein. 
+
+Dazu betrachten wir zunächst die explizite Lösung des Originalsystems. Sowohl die Zustandsfunktion als auch der Output enthalten Matrixexponentiale. Diese brauchen grade bei großer Ordnung sehr lange in der Berechung. Nun probieren wir das System anders darzustellen, damit wir kein Matrixexponential mehr berechnen müssen. 
+
+\subsection{Impulse Response}
+In diesem Kapitel betrachten wir als Input die Dirac Delta Funktion und fordern eine 0 Anfangsbedingung. Dabei finden wir heraus, dass die explizite Lösung für den Output sehr viel einfacher ist und nun kein Integral mehr enthält. Außerdem finden wir heraus, dass die Lösung dieses Systems mit Lösungen beliebiger Input funktionen zusammenhängt: Die Faltung von \glqq Impulseresponse\grqq mit dem auf 0 fortgesetzten Input ergibt die Lösung für das LTI System mit beliebigen Input.  
+
+\subsection{Frequency domain}
+Wir wenden auf das LTI System die Laplace Transformation an und erhalten eine andere explizite Lösung, die nun ohne Matrixexponential ist. Im Output ist die transfer function enthalten. (...) Wenn man auf die Impulse response die Laplace transformation anwendet, erhält man die transfer function. Für ein bestimmtes u und $x_0$ ist der output gleich der transfer function (abhängig von \(jw \) (was auch immer jw ist)) mal dem Input. Allgemeiner gilt, dass die Laplace transformation des Outputs gleich der transfer function mal der Laplace transformation der input funktion ist.   
+
+\subsection{realization}
+Dieses Kapitel setzt sich mit der Transfer Function auseinander. Wozu wir die Eigenschaften der transfer function brauchen, ist mir hier noch nicht ganz klar. Die Eigenschaften: 
+\begin{itemize}
+	\item die transfer function ist proper d.h. der limes gegen unendlich existiert
+	\item jeder Pol der Transfer function ist ein eigenwert von der Matrix A
+	\item äquivalente realizations haben die selbe transfer function
+	\item jede proper rationale matrix function hat eine realisierung. 
+\end{itemize}
+
+\subsection{Controlability and observability}
+Zunächst wird der Begriff controlable eingeführt. Dieser besagt, dass für jeden Anfangs- und Endzustand eine Input function gefunden werden kann, die das LTI System erfüllt. Diese Eigenschaft ist sehr nützlich. Warum? Controlability hängt nur von den Matrizen A und B der transfer function ab. 
+
+Nun wollen wir herausfinden, ob das gegebene System controlable ist. Dazu gibt es viele unterschiedliche Methoden u.a. den Hautustest oder das Kalman criteria. 
+
+
+Eine andere Eigenschaft von einem LTI System ist es, observable zu sein. Diesesmal haben wir den Input festgelegt und betrachten das System mit unterschiedlichen State, output und Anfangszuständen. Oberservable besagt nun, dass wenn beide System den gleichen Output liefern, muss auch schon der Anfangszustand gleich gewesen sein. Obserbility hängt nur von den Matrizen A und C ab. 
+
+Wir stellen fest, dass Obserbility und Controlability sehr eng verwandt sind. Die Kriterien sind die gleichen, nur mit anderen Matrizen. 
+
+\subsection{Uniqueness of realizations and the relation between controlability, observability and minimal realizations}
+
+Zunächst stellen wir fest, dass die Realisierung eines Systems minimal ist, gdw es observable und controlable ist. 
+
+Da wir ein Minimales System erhalten wollen (wir wollen es ja in der Ordnung reduzieren) und observable und controlable sehr gute eigenschaften für unser System sind, wollen wir das System in unterschiedliche Teile (die observable/ controlable bzw dies nicht sind) trennen. 
+
+Die Kalman controlable composition besagt, dass wir das System in einem controlable und nicht controlable teil aufspalten können, indem wir die Matrizen des LTI Systems mit einer orthogonalen Matrix multiplizieren. A wird eine untere Dreiecksmatrix und B hat unten eine 0 Matrix. Nun hat die Matrix A einen controlable Teil und einen nicht controlable Teil
+
+Durch das Gleiche Vorgehen erhalten wir auch einen observable und nicht observablen Teil. Hier wird natürlich nicht B sondern C verändert. 
+
+Vereinigt man beide compositions, kommt man zur Kalman decomposition. Dadurch können wir explizit in der Matirx A aufteilen, welcher Teil (nicht) controlable bzw (nicht) observable ist. 
+
+Als letzten Schritt wollen wir die nicht observable und nicht controlablen Teile des Systems loswerden. Dies passiert später. 
+
+Die letzte Eigenschaft ist, dass zwei minimale Realisierungen äquivalent sind. 
+
+\subsection{Stability}
+ Der Begriff Lyapunov stabil besagt, dass falls von einem System die Anfangswerte nicht zu weit voneinander entfernt sind, auch für jeden weiteren Zeitpunkt die Werte nicht stark voneinander abweichen. 
+ 
+ Asymptotisch stabil heißt, dass das System Lyapunov stabil ist und zusätzlich für $ t \rightarrow \infty$
+ die Systeme gleich werden. 
+ 
+ Wir wollen, dass Systeme stabil sind. Um herauszufinden, ob sie es sind, gibt es ein Eigenwert Kriterium. Da früher (heute nicht mehr) es sehr schwierig war, Eigenwerte zu berechnen, wollte man ein anderes Kriterium haben.
+ 
+ Dazu ist die Lyapunov equation sehr nützlich. Sie lautet: $A^T X + XA = -W$. Die Matrix A ist a-stabil gdw ein W, spd, exisitert, sodass doe Lyapunov equation eine spd Lösung hat. Also kann man durch lösen der Lyapunow equation herausfinden, ob ein System A stabil ist.
+ 
+ Betrachten wir nun eine besondere Lyapunov equation. Statt W setzen wir $C^T C$ ein. Falls es so ein C gibt, sodass das System eine Spd Lösung hat, ist A L-Stabil. In diesem Fall ist A sogar a-stbil gdw (A,C) controlable ist. 
+ 
+ \subsection{Norms}
+ Wir wollen die $H_{\infty}$ Norm von der transfer function herausfinden. Warum? Dieses lässt sich darstellen mit dem State und dem Input.  
+ 
+\end{document}
