@@ -7,9 +7,6 @@
 %opening
 \title{Simulation und Modellierung - Verständniszusammenfassung}
 \author{}
-%opening
-\title{}
-\author{}
 
 \begin{document}
 
@@ -270,7 +267,65 @@ Wir wollen ausschließen, dass der We Graph zykelt und einige Zustände nicht me
  
  \subsection{Lösungsstratgien und Sensitivitätsanalyse}   
  
+Betrachten wir dieses Problem genauer: G ist gegeben durch $G= \alpha U + (1 - \alpha ) \frac{1}{n} e e^T$ wobei $U=H+\frac{1}{n}a e^T$. Dabei ist 
+\begin{itemize}
+	\item H Hyperlinmatrix - dünn besetzt
+	\item U Übergangsmatrix, dünn besetzt, stochastisch
+	\item G Google MAtrix - voll besetzt, primitiv, stochastisch
+	\item $E=\frac{1}{n}ee^T$ Teleportationsmatrix
+	\item n Anzahl der WEbseiten - sehr groß
+	\item $\alpha$ Skalierungsparameter
+	\item $\pi^T$ stationäre Verteilung als Zeilenvektor
+	\item a binär hängender Knotenvektor
+\end{itemize}
 
+Betrachten wir nun das Eigenwertproblem und setzten dort die Definition für G ein. Wir erhalten nach rumgerechne:$(I- \alpha U^T) \pi = \frac{1 - \alpha}{n}e$. Da n zu groß ist, ist das direkte Verfahren ungeeignet \\
+
+Frage: Später haben wir immer noch n. Warum ist es dann besser? \\
+
+Deshalb wenden wir ein iteratives Verfahren an: $\pi^{(k+1)} = G^T \pi^{(k)}$. Da G aber voll besetzt ist, ist der Rechenaufwand zu groß. Deshalb ersetzten wir wieder G durch seine Definition und haben dann das Verfahren $\pi^{(k+1)}=\alpha H^T \pi^{(k)} + \frac{e(\alpha a^T \pi^{(k)}) + 1 - \alpha}{n}$ 
+
+Bis jetzt haben wir nur als Anfangsverteilung die Gleichverteilung betrachtet ($e^T$ in der Google Matrix). Diese wollen wir nun durch eine beliebige Anfangsverteilung $\nu^T$ ersetzen. Daraus ergibt sich: $(I- \alpha U) \pi^T = (1-\alpha)\nu^T$ \\
+
+Frage: Wozu brauche ich diese neue Formel mit der Anfangsverteilung, warum nicht das gleiche iterative verfahren, wie vorher? 
+
+\subsubsection*{Potenzmethode} 
+
+Sei eine Matrix A gegeben, wobei ein Eigenwert betragsmäßig echt größer ist, als die anderen Eigenwerte und ein Anfangswert $x_0$. Dann berechnet die Potenzmethode den Betragsmäßig größten Eigenwert und den dazugehörigen Eigenvektor. Genau dies wollen wir für die Google Matrix erreichen. Dann berechnet sich dies durch: $\hat{x}_k=A x_{k-1}$ wobei $x_k = \frac{\hat{x}_k}{max(|\hat{x}_k|)}$.
+
+Es gibt auch andere, \glqq bessere\grqq Methoden die auch den gewünschten EW und zugehörigen EV berechnen, aber die Potenzmethode ist einfacher zu implementieren und bei anderen Methoden muss ein Vektor zwischengespeichert werden, dies ist aber nicht möglich, da n zu groß ist. 
+
+\subsubsection{Konvergenzgeschwindigkeit und Wahl des Parameters $\alpha$} 
+
+Bekannt ist, dass die Konvergenzgeschwindigkeit der Potenzmethode folgender Abschätzung genügt: $\| \pi^{(k)} - \pi\|_1 \le c \frac{|\lambda_2|^k}{|\lambda_1|^k}$, wobei die $\lambda_i$ die Eigenwerte sind und der Betragsmäßig größte EW $\lambda_1$ ist, dann $\lambda_2$ usw.   
+
+Wir können beweisen, dass das Spektrum der Google Matrix das Gleiche ist, wie das der Übergangsmatrix, bis auf dem dem Vorfaktor $\alpha $. 
+
+Normalerweise ist $\lambda_2$ der Übergangsmatrix ungefähr 1. Dies führt dazu $\lambda_2 = \alpha$ bei der Google Matrix gilt. Also: Je kleiner $\alpha>0$ ist, desto schneller konvergiert die Potenzmethode, aber desto mehr widerspricht das der Modellierungsidee. Es zeigt sich, dass $\alpha = 0,85$ eine gute Wahl ist.     
+
+Die bisherigen Überlegungen in Bezug auf den Fehler bezogen sich nicht auf die Reihenfolge in $\pi$. Dies ist fragwürdig, da genau dies wichtig ist. Deshalb könnte man noch andere Fehlermaße betrachten.
+
+\subsubsection{Sensitivitätsanalyse}
+
+In diesem Kapitel gehen wir der Frage nach, wie empfindlich der Page Rank Vektor auf Änderungen von dem Parameter $\alpha, H $ und der Anfangsverteilung $\nu^T$ reagiert. 
+
+\subsection*{Sensitivität bzgl $\alpha$}
+Um die Sensitivität, also Veränderungen bzgl $\alpha$ festzustellen, leiten wir den Pagerank Vektor nach $\alpha$ ab. Es ergibt sich, dass $\left| \frac{d \pi_j(\alpha)}{d \alpha}\right| \le \frac{1}{1 - \alpha} $ und deswegen $\left\| \frac{d \pi(\alpha)}{d \alpha} \right\| \le \frac{2}{1 - \alpha} $ \\
+
+Frage: Müsste statt der 2 da kein n stehen? \\
+
+Frage: Warum ist sensitivität bzgl $\alpha $ wichtig? \\
+
+Falls $\alpha$ nicht zu nahe bei 1 liegt, reagiert der Page Rank Vektor nicht all zu sensitiv auf Änderungen. Für $\alpha \rightarrow 1$ wird die Abschätzung unbrauchbar. Es zeigt sich sogar, dass der Pagerank Vektor immer empfindlicher auf Änderungen reagiert, je näher $\alpha$ bei 1 liegt. 
+
+Betrachten wir nun ein Update der Google Matrix und den daraus resultierenden neuen Page Rank Vektor $\tilde{\pi}^T$. Dann gilt $\| \pi - \tilde{\pi}\|_1 \le \frac{2 \alpha}{1 - \alpha } \sum\limits_{i \in U} \pi_i$, wobei U die Menge aller Seiten ist, die aktualisiert wurden. Diese Abschätzung ist hilfreich, falls $\alpha$ klein ist und die Summe des Page Ranks ebenfalls.  
+
+\subsection*{Sensitivität bzgl $H$}
+
+
+
+
+\subsection*{Sensitivität bzgl $\nu^T$}
 
 
 
