@@ -1,0 +1,144 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%opening
+\title{Simulation und Modellierung - Fragen}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\section{Spieltheorie}
+
+\subsection*{Was ist eine strategische Normalform? }
+Mit der strategischen Normalform kann ich ein Spiel mathematisch darstellen. Dazu die Strategiemenge, also alle Strategien von allen Spielern und die Auszahlungsfunktion angegeben.  
+
+\subsection*{Nutzenmatrix, Auszahlungsfkt, Zeilen/ und Spaltenspieler erklären können}
+
+Die Auszahlungsfkt beschreibt den Nutzen eines Strategiepaares für einen Spieler. Der Nutzen ist dabei eine reelle Zahl und beschreibt, wie sehr sich das Strategiepaar für den Spieler lohnt. Das Strategiepaar ist ein Paar aus einer Strategie von Spieler A und Spieler B.  
+
+Die Nutzenmatrix hat im ij-ten Eintrag den Nutzen der Strategien von Spieler A und B zu dem Strategiepaar ij. 
+
+Der Zeilenspieler ist der Spieler A und der Spaltenspieler der Spieler B? 
+
+
+\subsection*{zu einem gegebenen Bsp Nutzenmatrix aufstellen können}
+Betrachten wir das Gefangenendilemma. Dabei werden Bankräuber A und B verhafet. Falls beide nicht gestehen bekommen sie beide 7 Jahre Gefängnis. Falls beide gestehen je 3 Jahre. Falls einer Kronzeuge wird, dieser 1 Jahr und der andere 9.
+
+Die daraus resultierende Nutzenmatrix lautet:
+
+\begin{align*}
+	\begin{pmatrix}
+		(-7,-7) & (-1,-9) \\
+		(-9,-1) & (-3,-3)
+	\end{pmatrix}
+\end{align*}
+
+\subsection*{Was ist eine Reaktionsabb? }
+Bei der Reaktionsabbildung schaut ein Spieler sich jede Strategie vom Gegner an und wählt seine optimalen Antworten aus. Dieses ist das Bild der Reaktionsabbildung.
+Mathematisch: 
+\begin{align*}
+	r_X:S_{-X} \rightarrow P(S) \\
+	y \mapsto \{ \hat{ x }  \in S_X| U_X(\hat{x},y)= \max\limits_{x \in S_X} U_X(x,y) \} 
+\end{align*}
+
+\subsection*{Anhand einer gegebenen Bsp-Nutzenmatrix die Begriffe dominante Strategie, gemischte Strategie und Nashgleichgewicht erklären}
+
+Bei dem Gefangenendilemma ist gestehen die dominante Strategie, da gestehen immer die beste Antwort ist, egal, was der Gegner tut.  
+
+Die Dominante Strategie kann man auch gut bei dem Spiel Stein-Schere-Papier-Brunnen erklären. Die Nutzenmatrix hat folgende Form
+\begin{align}
+	\begin{pmatrix}
+		0 & 1 & -1 & -1 \\
+		-1 & 0 & 1 & -1 \\
+		1 & -1 & 0 & 1 \\
+		1 & 1 & -1 & 0 
+	\end{pmatrix}
+\end{align}
+Die Zeile bzw Spalte 1 ist strickt kleiner als die letzte Zeile/Spalte. Deswegen dominiert der Brunnen den Stein. 
+
+Ein Nashgleichgewicht liegt vor, wenn sowohl die Strategie a die optimale Antwort auf Strategie b ist, als auch b die optimale Antwort auf die Strategie a ist. Bei dem Gefangenen Dilemma ist dies, wenn beide Spieler gestehen. Falls Der Spieler A gesteht, dann möchte der Spieler B ebenfalls gestehen (andernfalls würde er 9 Jahre bekommen) und andersrum genauso. 
+
+Gemischte Strategien hat man, wenn man mit einer gewissen Wahrscheinlichkeit eine Strategie wählt z.B. bei Stein-Schere Papier wäre eine gemischte Strategie gleichverteilt zu spielen. 
+
+\section{Gruppenentscheidungen}
+
+\subsection*{Welche Eigenschaften für Relationen haben wir kennengelernt? }
+Wir haben folgende Eigenschaften kennengelernt:
+ 
+Reflexiv: jedes Element steht in relation zu sich selbst. 
+
+Transitiv: $xRy \vspace{1ex} yRz \rightarrow xRz$
+
+symmetrisch: Falls $xRy$ dann gilt auch $yRx$
+
+asymmetrisch: Falls $xRy$ so gilt nicht $yRx$
+
+konvex: Je zwei Elemente müssen in Relation zueinander stehen. Also $xRy$ oder $yRx$
+
+\subsection*{Was ist eine Rangabbildung? }
+
+Eine Rangabbildung spiegelt die Meinung eines Wählers wieder. Eine Kandidatenmenge wird auf einen Abschnitt aus den natürlichen Zahlen abgebildet. Eine Rangabbildung muss surjektiv sein, also jeder Rang muss vergeben werden. Dabei gilt: je kleiner der Rang von einem Kandidaten, desto bevorzugter ist der Kandidat.  
+
+\subsection*{Begriffe, wie z.B. externer/ interner Diktator / Einstimmigkeit erklären können}
+
+\subsection*{Was ist das Cordocct Verfahren? Am geg. Bsp erklären}
+
+\subsection*{Was ist die Paretobedingung? Unabhängig von irrelevanten Alternativen}
+
+\subsection*{Satz von Arrow (Satz III.4), Aussage + Beweis können, also auch Lemma III.5}
+
+\subsection*{Was ist eine strategische Manipulation, Top Menge, Diktator einer Entscheidungsfkt}
+
+\subsection*{Satz III.8/ Satz III.10/ Satz III.12/ Satz III.13 und Satz III.14 erklären und beweisen können} 
+
+\section{Informationssuche im Netz}
+
+\subsection*{Was ist ein Page Rank Vektor, ein Webgraph und eine Hyperlinkmatrix? (auch am geg. Bsp erklären können)}
+
+\subsection*{Was ist ein Zufallssurfer? }
+
+\subsection*{Was ist eine Markovkette/ Markovprozess? }
+
+\subsection*{Was ist eine Übergangsmatrix/ Markoveigenschaft?}
+
+\subsection*{Wie kann man eine Markowkette für das Google-Problem benutzen? }
+
+\subsection*{Perron Frobenius Theorie erklären können und die entsprechenden Definitionen beherrschen, sowie Satz IV.1, Satz IV.2, Lemma IV.4, Satz IV.5 erklären und beweisen können}
+
+\subsection*{Erklären können, wie der Page Rank Vektor mittels Vektoriteration berechnet wird}
+
+\subsection*{Konvergenzgeschwindigkeit/ Sensitivitätsanalyse (Satz IV.8 erklären und beweisen können), Satz IV.9/ satz IV.10 erklären und grobe Beweisskizze}
+
+\subsection*{Satz IV.11 und Satz IV.12 erklären und beweisen können}
+
+\section{Verkehrssimulation}
+
+\subsection*{Grundidee der makroskopischen Verkehrssimulation}
+
+\subsection*{Begriffe: Fluss, dichte und Fundermentaldiagramm erklären können}
+
+\subsection*{Erhaltungssätze herleiten können(Anzahl der Autos)}
+
+\subsection*{Modellierung der Geschwindigkeit (über Relativgeschwindigkeit)}
+
+\subsection*{lineare DGL erklären (Gleichung für Störung)}
+
+\subsection*{Charakteristik erklären können und an einem gege Bsp berechnen und skizzieren können}
+
+\subsection*{Numerische Approximation und CFL Bedingung erklären können}
+
+\subsection*{Ungleichförmiger Verkehr/Anfahrvorgang an grüner Ampel/ Anhalten an roter Ampel und unstetige Verkehrsdichte erklären}
+
+\subsection*{Grundidee Godunov Methode}
+
+\subsection*{Grundidee der Mikroskopischen Modellierung mittels Zellulärer Automaten}
+
+\subsection{Stochastische Verkehrssimulation: Wartesystem, exponentielle Verteilung, Poisson Prozess, Ausfallrate erklären und Satz V.1 beweisen können}
+
+
+\end{document}

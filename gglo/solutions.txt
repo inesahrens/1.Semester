@@ -1,0 +1,13 @@
+          Instance            Objective
+            nw_4_5                   14
+            nw_5_9                  150
+            nw_6_9                   92
+           nw_8_12                   28
+          nw_10_17           infeasible
+          chvatal1                   56
+              cap1           2572055650
+           stndrd1            196587626
+           transp9            158058350
+      gte_bad.1160         384186964357
+    gte_bad.298300         247292230822
+    gte_bad.451760         182873054612

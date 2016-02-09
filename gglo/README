@@ -1,0 +1,12 @@
+Die Instanzen liegen in dem folgenden Format vor. Jede Zeile beginnt mit 'c',
+'p', 'n' oder 'a'.
+ - 'c' steht für eine Kommentarzeile. Diese kann beim Einlesen ignoriert werden.
+ - 'p' beschreibt die Probleminstanz. Die Zeile hat die Form 'p min n m', wobei
+   n für die Anzahl der Knoten und m die Anzahl der Kanten steht.
+ - Eine Zeile, die mit 'n' beginnt, beschreibt einen Knoten im Format 'n v b(v)',
+   wobei v der Index des Knoten ist und b(v) seine Knotenbalance.
+ - Beginnt eine Zeile mit 'a', steht sie für eine Kante. Dabei bedeutet
+   'a v w 0 u c', dass die Kante von v nach w führt, der maximale Fluss auf dieser
+   Kante u ist und die Kosten pro Flusseinheit c betragen.
+
+Die Datei solutions.txt enthält alle Lösungen der Instanzen.

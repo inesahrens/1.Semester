@@ -12,6 +12,9 @@
 
 \maketitle
 
+\section{Spieltheorie}
+
+
 \section{Kapitel}
 Das Ziel von MOR ist es, Systeme großer Ordnung zu reduzieren. Wir wollen zum Originalsystem ähnliche Systeme finden, die fast die gleichen Eigenschaften haben, wie das Originalsystem. Das neue System soll von niedriger Ordnung sein und ist deshalb einfacher zu berechnen. Auch die Lösung, also die Zustandsfunktion und der gesuchte Output, sollen sehr ähnlich sein. 
 
@@ -71,6 +74,33 @@ Die letzte Eigenschaft ist, dass zwei minimale Realisierungen äquivalent sind.
  Betrachten wir nun eine besondere Lyapunov equation. Statt W setzen wir $C^T C$ ein. Falls es so ein C gibt, sodass das System eine Spd Lösung hat, ist A L-Stabil. In diesem Fall ist A sogar a-stbil gdw (A,C) controlable ist. 
  
  \subsection{Norms}
- Wir wollen die $H_{\infty}$ Norm von der transfer function herausfinden. Warum? Dieses lässt sich darstellen mit dem State und dem Input.  
+ Wir wollen die $H_{\infty}$ Norm von der transfer function herausfinden. Warum? Damit wir das reduzierte System mit dem nicht reduzierten System vergleichen können. Warum $H_{\infty}$ Norm? Dieses lässt sich darstellen mit dem State und dem Input., bzw mit der observability Grammian und B oder mit der controlability Grammian Q und C. Eine abschätzung für die Norm liefert die Norm von der Matrix D. 
+ 
+ \section{Modal truncation}
+ Wir suchen eine Modal truncation. Dazu müssen wir die Matrix A diagonalisieren und können dann mittels eines äquivalenten Systems das reduzierte System finden. Dieses hat die gleichen Eigenschaften bzg stabilität, observability und controlability. 
+ 
+Nun ist wichtig, wie gut diese reduktion ist. Der Abstand beider systeme hängt von dem realteil der Eigenwerte und den reduzierten Matrixen B und C ab. 
+
+Leider gibt es bei diesem Vorgehen ein paar Probleme: Das System könnte komplex werden, was nicht gewünscht ist. Außerdem  kann es gut sein, dass dsa neue System nicht viel kleiner ist, als das ursprüngliche, falls nur ein kleiner Fehlerterm gewünscht ist. 
+
+\section{Balancing}
+
+\subsection{Energy considerations}
+Also brauchen wir eine neue Idee: Es werden nicht die states weggeworfen, die nicht observable/ controlable sind, sondern solche, die nur schwer controlable / observable sind. Dazu definieren wir uns die Input/ Output energy: 
+
+Die input energie beschreibt die minimale Energie, die benötigt wird, um das LTI System vom Status 0 (bei $- \infty$) auf dem Status $x_0$ (bei 0) zu bringen. 
+
+Die output energy beschreibt, wie viel Output über der gesamten Zeit bei einem Input von 0 herauskommt.  
+ 
+Damit wir die input energie besser berechnen können, suchen wir eine neue Darstellung. Dieses lässt sich durch den Anfangszustand und der controlability grammian beschreiben. Für den Output das gleiche, nur mit obserbility grammian. 
+
+Durch diese Beschreibung finden wir heraus, dass der Vektor, der easyest to reach ist, der eigenvektor von P zum größten Eigenwert ist. Genau das gleiche für easyest to observe. 
+
+Die Idee für die truncation ist es nun, den Stat in der eigenvektorbasis vom controlability grammian P darzustellen und dann die hard to reach states wegzuwerfen. Das gleiche für hard to observe. 
+
+Das Problem ist, dass teilweise Gegensätzliche Ergebnisse dabei herauskommen. Das ganze wäre einfacher, falls P=Q gelten würde. Dazu betrachten wir Balanced Systems.
+
+\subsection{Balanced Systems}
+Bei einem balanced System sind controlability und oservability grammian identisch und diagonal. Jedes System, das a-stabil, observable und controlable ist, ist äquivalent zu einem balanced system. 
  
 \end{document}

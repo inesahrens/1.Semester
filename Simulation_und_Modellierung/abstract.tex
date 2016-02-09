@@ -1,0 +1,283 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%opening
+\title{Simulation und Modellierung - Verständniszusammenfassung}
+\author{}
+%opening
+\title{}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\section{Spieltheorie}
+Hier widmen wir uns Spielen zwischen zwei Spielern. Um über Spiele mathematisch nachdenken zu können, führen wir Notationen ein. Dann teilen wir die Spiele in zwei Kategorien ein: Eine Kathegorie sind Spielen bei denen ein Spieler unabhängig vom anderen seine Entscheidung trifft (Glücksspiel etc). Die andere Kathegorie sind Spiele, bei denen sich ein beide Spieler Gedanken darüber machen, was der andere tut(z.b Schere Stein Papier). Dabei behandeln wir von beiden Spielarten die Strategien der Spieler. Am Ende gehen wir kurz auf Nash Gleichgewichte ein. 
+
+\subsection{Spiele in strategischer Normalform}
+Wichtige Begriffe:
+\begin{itemize}
+	\item Spieler
+	\item Menge der Strategien von einem Spieler X
+	\item Menge aller Strategiepaare: jeder Strategie vom Spieler A werden alle Strategien vom Spieler B zugeordnet und andersrum
+	\item Auszahlungsfunktion: Diese beschreibt den Nutzen eines Strategiepaares für einen Spieler
+	\item Nutzenmatrix: Die Auszahlungsfkten beider Spieler für alle Strategien werden in einer Matrix zusammengefasst. Dies ermöglicht eine genaue Übersicht über die Gewinne/ Verluste  
+\end{itemize}
+
+\subsection{Spiele ohne Annahmen über den Gegner}
+Hier trifft ein Spieler seine Entscheidung, ohne sich Gedanken über den anderen Spieler zu machen. Ein Beispiel ist das Glücksspiel bzw ob ein Spieler einen Regenschirm mitnimmt oder nicht. 
+
+\subsubsection{Spiel bei Gewissheit}
+Falls ein Spieler alle Strategien vom anderen Spieler kennt, kann er einfach seinen nutzen maximieren. 
+
+\subsubsection{Spiel bei Risiko}
+Hier hat der Spieler keine Information, wie der andere Spieler spielen wird. Er muss sich entscheiden, wie er sich verhält. Dabei gibt es den risikobereiten und den vorsichtigen Spieler. Der Risikobereite Spieler geht davon aus, dass der andere Spieler seinen Gewinn maximieren möchte und maximiert auf dieser Annahme seinen Gewinn. Der vorsichtige Spieler redoch versucht den garantierten Gewinn zu maximieren. 
+\begin{align*}
+	U=\begin{pmatrix}
+	0 & 30 \\ 10 & 10
+	\end{pmatrix}
+\end{align*}
+bei diesem Beispiel würde der risiobereite Spieler die erste Zeile wählen und der vorsichtige die zweite Zeile. 
+
+\subsection{Reaktionsabbildungen}
+Nun widmen wir uns dem Spiel, bei dem beide Spieler ihren Gewinn maximieren wollen. Also muss jeder Spieler überlegen, was er tun würde, wenn der Gegner eine bestimmte Strategie wählt. Dazu ist die Reaktionsabbildung gut. Sie bildet jede Strategie vom Gegner auf die Strategie ab, die für ihn die  optimale Antwort auf die Strategie des Gegners ist. 
+
+Die Gesamtreaktionsabbildung bildet jedes Strategiepaar auf die optimale Antwort des Gegners ab. Also wie reagiert Spieler A auf die Strategie b von Spieler B und wie reagiert Spieler B auf die Strategie a von Spieler A. Diese Antwort kann in der Nutzenmatrix durch unterstreichen markiert werden.
+
+\subsection{Dominante Strategien}
+Auch hier überlegen wieder beide Spieler gleichzeitig und beziehen die Überlegung des anderen mit ein.
+
+Falls ein Spieler eine Trategie besitzt, die auf alle Strategien vomn anderen Spieler die beste antwort ist, kann er sie ohne Bedenken spielen. Dies ist die dominante Strategie.Also wird eine Strategie gewählt. die den Spiele unabhängig vom Gegner macht. 
+
+Eine Strategie nennen wir redundant, falls sie durch eine andere Strategie dominiert wird. Beei Schere- Stein-Papier-Brunnen ist der Stein redundat und kann von beiden Spieler weggelassen werden. 
+
+Leider ist nicht immer eine dominante Strategie verfügbar. 
+
+\subsection{Nash-Gleichgewicht}
+
+Ein Nash Gleichgewicht liegt vor, wenn Strategien a und b (von Spieler A bzw B) existieren, sodass die optimale Antwort von B auf a die Strategie b ist und die optimale Antwort von A auf Strategie b die Strategie a ist. Dabei ist ein Strategiepaar aus domianten Strategien immer ien Nsh Gleichgewicht. 
+
+Es wäre schön, wenn es immer nur einen Nash Gleichgewichtspunkt geben würde. Dem ist aber leider nicht so.
+
+\subsection{Gemischte Strategien}
+In diesem Kapitel betrachten wir nur Nullsummenspiele, also Spiele bei denen die Strategien des einen Spieler genau die entgegengesetzten Strategien des anderen Spielers sind. 
+
+Bei gemischten Strategien wählen beide Spieler ihre Strategien mit einer bestimmten Wkeit. Diese Wkeit nennt man gemischte Strategien. 
+
+Die Auszahlungsfkt lässt sich dabei berechnen als multiplikation von dem Wkeitsvektor der Strategie des einen Spielers mit der Nutzenmatrix mit dem Wkeitsvektor der Strategie des anderen Spielers. \\
+
+Frage: Warum lässt sich das so berechnen? \\ 
+
+Dabei versuchen beide Spieler ihren Wkeitsvektor so zu wählen, dass der Erwartungswert für ihn maximal wird.
+
+Es lässt sich beobachten, dass falls die Nutzenmatrix nicht invertierbar ist ein Wkeitsvektor existiert, sodass dieser Wkeitsvektor mit der Nutzenmatrix multipliziert 0 ergibt, dass dann der Spieler diesen Wkeitsvektor völlig unabhängig vom anderen Spieler wählen. 
+
+Mathematische Herleitung ist klar, aber leider nicht die Interpretation. 
+  
+Ein Beispiel dafür ist die das Spiel Schere stein papier. Beide Spieler sollten Gleichverteilt spielen. 
+
+\subsection{Ausblick}
+Mathematisch lässt sich diese Modellierung sehr gut fassen und die meisten Spiele lassen sich mathematisch sehr viel einfacher durchdenken, als in Prosa Form. Das Problem (wie immer in der Modellierung) ist die Wahl der Auswertungsfunktion, also insbesondere die Werte in der Matrix und der Abschätzung was dem Spieler wichtiger ist. Z.b. könnte ihm der reine Gewinn wichtig sein oder das Ärgernis über entgangenen Gewinn.   
+
+\section{Gruppenentscheidungen} 
+Wie der Titel andeutet haben wir in dieser Kategorie eine Menge von Wählern die Kandidaten in eine bestimmte Reihenfolge bringen sollen. Die daraus resultierende Gesamtreihenfolge soll die Wahl der Wähler möglichst gut repräsentieren. Was dieses möglichst gut heißt, werden wir genauer definieren und merken, dass es kein perfektes Verfahren gibt, dass alle Stimmen gut repräsentiert. 
+
+\subsection{Individualpräferenzen und Gruppenentscheidungen}
+
+Um Gruppenentscheidungen treffen zu können, benötigen wir eine Menge von Wählern und eine Menge von Kandidaten. Dabei soll jeder Wähler jedem Kandidaten einen Rang zuordnen, also eine natürliche Zahl. Je kleiner diese ist, desto lieber hat der Wähler den Kandidat. Dies macht die Rangabbildung. Sie ordnet jedem Kandidat eine natürliche Zahl zu. Sie muss surjektiv  sein. \\ 
+
+Frage: Warum surjektiv? Anwort: Falls ich genauso viele Ränge, wie Kandidaten habe, kann ich keinen zwei Kandidaten den gleichen Rang zuordnen. Falls ich weniger Ränge habe, dann bin ich gezwungen mehrere Kandidaten gleich hoch zu wählen. Ergibt diese Forderung wirklich sinn? Wobei wir im Folgenden auch mal damit arbeiten, dass wir zwei Kandidaten den gleichen Rang zuordnen... \\ 
+
+Diese Abbildung definiert eine transitive und asymmetrische Präferenzrelation. Damit zwei Kandidaten in Relation zueinander stehen, muss der Wähler einen Kandidaten strikt besser finden, als den anderen. Sonst haben die Kandidaten keine Relation. 
+
+Damit diese nicht mehr passiert, gibt es die Präferenzrelation Stern. Bei dieser stehen auch zwei Kandidaten in Relation, wenn sie den gleichen Rang haben. 
+
+Die Präferenzrelation und die Präferenzrelation Stern sind invers komplementär zueinander. d.h. falls entweder die Präferenzrelation oder die Präferenzrelation Stern gegeben ist, kann daraus die jeweils andere bestimmt werden. 
+
+Nun wollen wir die Präferenz der Gesamtheit bestimmen. Diese wird durch eine Funktion berechnet (sogenannte Wohlfahrtsfkt oder kollektive Auswahlfkt), die n Präferenzen der Wähler als Eingabe bekommt und daraus die gesamte Präferenz berechnet. 
+
+Wir wollen Bedingungen an die kollektive Auswahlfkt stellen: 
+
+Die Abbildung muss total sein. D.h. jede beliebige Präferenz als Eingabe muss eine Ausgabe haben. 
+
+Außerdem muss das Ergebnis der kollektiven Auswahlfkt ebenfalls eine Relation sein, die jedem Kandidaten einen eindeutigen Rang zuordnet.  \\ 
+
+Frage: Warum verlangen wir einen Eindeutigen Rang? Man könnte auch zwei gleich gute/ schlechte Kandidaten haben. Vll gibt es dann keinen Sieger der Wahl? 
+
+\subsection{Beispiele für Entscheidungsverfahren}
+
+In diesem Kapitel werden ein paar Entscheidungsverfahren vorgestellt. Wie wollen probieren möglichst gerechte Verfahren zu konstruieren, wobei gerecht im Philosophischen bzw juristischen Sinn gemeint ist. 
+
+\subsubsection*{Externer Diktator}
+
+Der Titel ist klar: Ein Mensch, der kein Wähler ist, bestimmt den Ausgang der Wahl. Mathematisch hat die kollektive Auswahlfkt egal bei welcher Eingabe, die Ausgabe, die der Diktator möchte. 
+
+\subsubsection*{Interner Diktator}
+Hier bestimmt ein Wähler, welches Ergebnis bei der Wahl rauskommt. Also Der Ausgang ist immer durch den i-ten Wähler genau festgelegt, egal, was die anderen wählen.
+
+\subsubsection*{Rangaddition}
+Die Präferenz der Wähler gibt eine Rangabbildung vor. \\
+
+Frage: Ist diese Rangabbildung eindeutig? Ja, weil wir surjektivität gefordert haben? \\
+
+Bei der Rangaddition werden alle Ränge für jeden einzelnen Kandidaten addiert addiert. Nun wird wieder geschaut, in welcher Reihenfolge die Kandidaten sind. 
+
+Das Problem hier ist, dass die aus der Rangaddition resultierende Rangabbildung nicht surjektiv ist. Bsp: Zwei Kandidaten, zwei Wähler. Beide finden Kandidat A besser, also hat Kandidat A 2 und Kandidat B 4 Pkt. Die einfache Lösung für das Problem ist, dass man die bijektiv abbildet, also die 2 auf die 1 und die 4 auf die 2. 
+
+\subsubsection*{Cordoct-Verfahren}
+ In diesem Verfahren vergleicht man immer zwei Kandidaten miteinander. Man nehme zwei Kandidaten und alle Präferenzrelationen der n Wähler und zählt die Vergleiche, die Kandidat A und die Kandidat B gewinnt. Gewinnt A mehr Vergleiche, so ist Kandidat A vor Kandidat B. Dies tut man nun für alle Kandidaten.
+ 
+ Das Problem bei dieser Wahl ist, das Zykel entstehen können. Es kann passieren, dass Kandidat A von B vor C vor A ist. Das wollen wir natürlich nicht.
+ 
+\subsubsection*{Einstimmigkeit}
+ Ein Kandiat x wird nur vor y gesetzt, falls alle Wähler x besser finden als y. 
+ 
+ Dieses Verfahren ist kaum anwendbar, da sowas eig nie passiert. Außerdem muss das Einstimmigkeitsprinzip keine Relation liefern, da manche Kandidaten keinem Rang zugeordnet werden. 
+ 
+\subsubsection*{Borda-Wahl}
+Jeder Wähler gibt den k Kandidaten Punkte. Dabei bekommt der erste Wähler k Punkte, der zweite k-1 usw. Der Kandidat mit den meisten Pkt gewinnt die Wahl. \\
+
+Frage: Was ist der unterschied zur Rangaddition? 
+Antwort: Bei der Rangaddition ist am Anfang zugelassen, dass zwei Kandidaten die gleiche Anzahl an Pkt bekommt.  \\
+
+Hier gibt es aber auch ein Problem: Wir haben eine Wahl und Kandidat A ist auf letzter Stelle gekommen. Nehmen wir die gleichen Wahlergebnisse nochmal, nur dass A nicht antritt, kann es sein, dass ein anderer erster wird. \\
+
+Insgesamt zeigt sich, dass die Auswahl des Wahlverfahrens eine große Rolle dabei spielt, was für ein Ergebnis am ende rauskommt. 
+
+\subsection{Bedingungen an die Auswahlfkt und Satz von Arrow}
+
+Wir wollen nun genauer definieren, was ein gerechtes Verfahren ist.  
+
+Um ein gerechtes Verfahren zu erhalten, muss die Pareto Bedingung erfüllt sein. Das heißt, dass falls sich alle Wähler einig sind, muss jedes mögliche Wahlergebnis erreichbar sein.
+
+Außerdem sollte die Unabhängigkeit von irrelevanten Ereignissen erfüllt sein. Die Reihenfolge von zwei Kandidaten sollte nicht dadurch geändert werden können, dass Wähler ihre Präferenz bzgl eines dritten Kandidaten verändern. 
+
+Es zeigt sich leider im Satz von Arrow, dass kein Verfahren, außer der Interne Diktator alle Bedingungen an ein Verfahren erfüllt. Anders formuliert: Es gibt keine kollektive Auswahlfkt, die alle fünf demokratischen Grundregeln erfüllt.
+
+Die Demokratischen Grundregeln sind:
+
+\begin{itemize}
+ \item die Auswahlfkt muss total sein.
+ \item Das Ergebnis muss eine Relation sein, die einer Rangabbildung genügt.
+ \item Die Paretobedingung muss erfüllt sein
+ \item die Unabhängigkeit von irrelevanten Alternativen muss erfüllt sein
+ \item es gibt keinen Diktator
+\end{itemize}
+
+\subsection{Nicht-Manipulierbarkeit von Wahlen}
+
+ Die soziale Entscheidungsfkt bildet die Menge der Präferenzen von den Wählern auf die Menge der Kandidaten ab. Also wird jede Präferenz aller Wähler genau ein Kandidat zugeordnet. Dieser Kandidat ist der Sieger der Wahl.
+ 
+ Die soziale Entscheidungsfkt heißt strategisch manipulierbar, falls ein Wähler der den Kandidaten B vor den Kandidaten A präferiert, statt seiner Präferenz eine andere angeben kann und damit den Kandidaten B erzwingen kann. 
+ 
+ Die soziale Entscheidungsfkt heißt Anreizkompatibel, falls sie nicht manipulierbar ist. 
+ 
+Eine andere Definition von anreizkompatibel ist: falls nur ein Wähler seine Meinung ändert und bei beiden Meinungen unterschiedliche Kandidaten (beim ersten mal a, beim zweiten b) herauskommen, dass man dann schon schlussfolgern kann, dass bei der der ersten Wahl der Wähler a vor b gesetzt hat und bei der zweiten genau andersherum. 
+
+Nun stellt sich aber folgendes Problem dar: Sobalb eine Entscheidungsfunktion anreizkompatibel und surjektiv ist, so ist sie schon diktatorisch. Dies ist der Satz von Gibbard-Satterthwait. 
+ 
+\section{Informationssuche im Netz}
+Ziel dieses Kapitels ist es, eine Idee davon zu bekommen, wie Suchmaschinen die Ergebnisse von einer Suchanfrage ermittelt. Dabei wollen wir eine möglichst akzeptable Lösung der Problemstellung mit den gewünschten Eigenschaften bekommen. 
+
+Die Idee ist es, dass wir einen Index mit allenrelevanten Webseiten haben. Zu jeder Webseite listen wir alle möglichen Suchbegriffe auf. Dieses Verfahren ist die Suche im Index.
+
+Die Suche im invertierten Index ist nun, dass zu jedem möglichen Suchbegriff alle relevanten Webseiten aufgelistet werden. Diese Webseiten müssen nun anhand einer Ratingfunktion gewichtet werden. Dabei sollte die Relevanz und Qualität einer Webseite eine Rolle spielen, ebenso wie die Sichtbarkeit des Suchbegriffes. 
+
+\subsection{Page-Rank und Web-Graph}
+
+Wann ist ein Artikel nun wichtig? Die Grundlegende Idee ist, dass eine Webseite wichtig ist, wenn viele andere Webseiten ihn Zitieren und deswegen Links zu dem Artikel haben. 
+
+Also können wir einen Graphen zeichnen, deren Knoten die Webseiten und die Kanten die Links/ Verweise sind. 
+
+ Dazu definieren wir den Page-Rank-Vektor, der die Wichtigkeit der einzelnen Webseiten in einem Vektor darstellt. 
+ 
+ Als erstes Modell nehmen wir ein lineares: Dabei ist der Page-Rank von einer Seite 
+ \begin{align}
+ \label{PRV}
+ 	r(S_i)= \sum\limits_{S_j \in B_{S_j}} \frac{r(S_j)}{|S_j|}
+ \end{align} 
+wobei $B_{S_j}$ die Menge aller Seiten ist, die einen Link auf Si haben. $|S_j|$ die Anzahl der Seiten ist, auf die die Seite $S_j$ zeigt und $r(S_j)$ der Pagerank von der Webseite $S_j$ ist.
+
+Man kann iterativ den Pagerankvektor bestimmen. \\
+
+To do: Beschreiben, wie es geht, falls zeit \\
+
+Betrachten wir nun die Hyperlinkmatrix von einem Web Graphen. Der $ij$-te Eintrag ist das Inverse Anzahl der Links, die vom Graphen i ausgehen, falls die Webseite $S_i$ einen Link auf die Seite $S_j$ hat und 0 sonst. 
+
+Damit kann die Gleichung \ref{PRV} als Eigenwertproblem ausgedrückt werden: Der Pagerankvektor ist das gleiche wie die transponierte Hyperlinkmatrix mal dem Pagerankvektor. Also wird der Pagerankvektor, der der Eigenvektor zum Eigenwert 1 ist, gesucht. 
+
+Dabei erhält man leider nicht zu jedem Webgraphen eine eindeutige Lösung. Dieses Problem entsteht, wenn eine Webseite existiert, die auf keine anderen Webseiten zeigt. 
+
+Der nächste Abschnitt zeigt, wie man mit diesem Problem umgehen kann. 
+
+\subsection{Zufallssurfer und Markovketten}
+
+Ein Websurfer geht zufällig auf eine Seite und sucht sich dort zufällig einen Link aus, den er folgt. Der Page Rank ist nun die Wkeit, mit der sich ein Nutzer auf einer Seite befindet. 
+
+Über den Zufallssurfer treffen wir nun die Annahme, dass er gedächnislos ist und falls Links vorhanden sind, er einen Link zufällig (gleichverteilt ) folgt oder falls kein Link vorhanden ist, auf eine beliebige Seite springt. 
+
+\subsubsection{Markovketten}
+Um die bessere Modellierung für das Google Problem zu bekommen brauchen wir ein wenig Markovketten Theorie. 
+
+
+
+
+\subsection{Perron-Frobenius Theorie}
+
+    
+
+
+
+
+\section{Verkehrssimulation}
+Es gibt makroskopische Verkehrssimulation. Sie beschäftigt sich mit dem Verkehr im ganzen und lässt einzelne Fahrzeuge außer acht und die mikroskopische betrachtet die einzelnen Fahrzeuge. 
+
+\subsection{Makroskopische Verkehrssimulation}
+Zur Betrachtung des Verkehrs brauchen wir einige Größen: Die Verkehrsdichte beschreibt, wie dicht die Fahrzeuge auf der Straße stehen, also wie viele Fahrzeuge pro Km auf der Straße sind. Der Verkehrsfluss beschreibt, wie viele Fahrzeuge pro Zeiteinheit einen Kontrollpunkt passieren. 
+
+Wofür wollen wir ein Modell?  Was wollen wir damit aussagen über den Verkehr? 
+
+Zunächst treffen wir Annahmen über den Verkehr. Einmal ist die Fahrzeugdichte begrenzt durch eine minimale Kapazität (0) und eine maximale Kapazität, also Stoßstange an Stoßstange. Außerdem dürfen die Fahrzeuge nicht rückwärts fahren (Also befinden wir uns auf einer Autobahn) und die Autos haben eine maximale Geschwindigkeit (wo wird die wichtig? Ist die max Geschwindigkeit, was die Autos dort können oder dürfen? kann man damit den Verkehr regulieren? Passen solche Ideen schon ins Modell? )
+
+Desweiteren nehmen wir an, dass der Verkehrsfluss stetig differenzierbar ist (ergibt das Sinn? Wäre nicht eig ein Diskretes Modell hier besser geeignet?)
+
+Verkehrsfluss, Dichte und Geschwindigkeit stehen im Zusammenhang. Dimensionsanalyse ergibt, dass Fluss = Dichte mal Geschwindigkeit gelten muss. Dies ergibt Sinn:  \\
+
+Andere erklärung als im Script einfügen. \\
+
+Betrachten wir eine unendlich lange Straße. Da die Anzahl der Autos auf der Straße sich nur durch das Verlassen/ Ankommen auf der Straße ändert, verändert sich die Anzahl der Autos auf dieser unendlich langen Straße nicht, bleibt also konstant. Dies ist der Integrale Erhaltungssatz. 
+
+Herleitung davon in Formeln im Script. 
+
+Der differentiale Erhaltungssatz besagt, dass die Veränderung der Dichte in der Zeit das gleiche ist, wie die negative Veränderung des Flusses im Ort. Besagt also: Wenn sich die Dichte der Autos verändert, also mehr (weniger) Fahrzeuge im laufe der Zeit am gleichen Ort befinden, so wird der Fluss entsprechend niedriger (höher), also passieren weniger (mehr) Autos den Kontrollpunkt. 
+
+Erklärung richtig? 
+
+Da sich der Fluss als Geschwindigkeit mal Dichte beschreiben lässt, wollen wir eine Formel für die Geschwindikeit. 
+
+Die Geschwindigkeit hängt von der Dichte ab. Ist die Straße leer, so kann mit voller Geschwindigkeit gefahren werden. Ist die Straße befahren, so sollte langsamer gefahren werden, als wenn sie leer ist, also je voller die Straße desto langsamer fährt man. Ist die Straße komplett voll, so ist die Geschwindigkeit 0. 
+
+Dabei kommt der Verkehr zum erliegen, bevor die Fahrzeuge sich berühren, bzw wenn gar keine Autos auf der Straße sind. 
+
+Die Beschleunigung der Autos hängt von der eigenen Geschwindigkeit und der Geschwindigkeit des Vorgängers ab. Fährt der Vorgänger langsamer, so muss gebremst werden, fährt er schneller, kann das Auto selber beschleunigen. Da wir alle nur Menschen sind, haben wir eine Reaktionszeit und stören dadurch den Ablauf der Autos. Dies ist die Sensitivität (wirklich?) und muss dazu gerechnet werden. Aus der Beschleunigung kann dann die Geschwindigkeit des Autos berechnet werden. Diese Formel ist abhängig davon, wie weit die Autos auseinander sind. Dies nutzen wir als Maß für die Dichte und erhalten dann, dass die Geschwindigkeit das gleiche ist, wie die Sensitivität durch die Dichte + eine Konstante, die sich schreiben lässt als Sensitivität durch maximaler Dichte. (Warum ergibt diese Formel sinn?). Falls sehr wenig Autos auf der Straße sind, ändert sich jedoch die Geschwindigkeit nicht auf diese Weise, sondern bleibt bis zu einem kritischen Wert konstant. 
+
+Bis jetzt haben wir angenommen, dass die Sensitivität konstant ist. Dies ist jedoch nicht der Fall. Sie ist davon abhängig, wie weit die Autos voneinander entfernt sind. Je weiter die Autos voneinander entfernt sind, desto kleiner ist die Sensitivität (Störungen?) und je dichter die Autos beieinander sind, desto größer ist sie. Damit ergibt sich eine andere Formel für die Geschwindigkeit. Falls die Kritische Dichte nicht erreicht ist, ist sie natürlcih immer noch die maximal erlaubt geschwindigkeit. Sonst ist sie das negative einer Konstante mal der logarithmus von der dichte durch die maximale Dichte.  (Warum ist dies Formel sinnvoll? beim letzten mal wurde für die Dichte eine andere Wahl getroffen). 
+
+Nun können wir den Erhaltungssatz umschreiben (wozu wir die Geschwindigkeit überhaupt berechnet haben). Wir nehmen zunächst an, dass die Dichte linear ist und nur kleine Störungen auftreten. Dies führt dann zu der Erhaltungsformel: Die Zeitliche Veränderung der Störungen in der Dichte ist das gleiche wie das negative des Flusses, der von der ungestörten Dichte abhängt, mal der Veränderung der gestörten Dichte im Ort. 
+
+Bedeutung der Formel? 
+
+
+
+\section{Molekulare Simulation}
+
+  
+
+
+
+
+\end{document}
