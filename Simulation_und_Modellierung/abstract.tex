@@ -206,7 +206,7 @@ Man kann iterativ den Pagerankvektor bestimmen. \\
 
 To do: Beschreiben, wie es geht, falls zeit \\
 
-Betrachten wir nun die Hyperlinkmatrix von einem Web Graphen. Der $ij$-te Eintrag ist das Inverse Anzahl der Links, die vom Graphen i ausgehen, falls die Webseite $S_i$ einen Link auf die Seite $S_j$ hat und 0 sonst. 
+Betrachten wir nun die Hyperlinkmatrix von einem Web Graphen. Der $ij$-te Eintrag ist das Inverse der Anzahl der Links, die vom Graphen i ausgehen, falls die Webseite $S_i$ einen Link auf die Seite $S_j$ hat und 0 sonst. 
 
 Damit kann die Gleichung \ref{PRV} als Eigenwertproblem ausgedrückt werden: Der Pagerankvektor ist das gleiche wie die transponierte Hyperlinkmatrix mal dem Pagerankvektor. Also wird der Pagerankvektor, der der Eigenvektor zum Eigenwert 1 ist, gesucht. 
 
@@ -218,17 +218,58 @@ Der nächste Abschnitt zeigt, wie man mit diesem Problem umgehen kann.
 
 Ein Websurfer geht zufällig auf eine Seite und sucht sich dort zufällig einen Link aus, den er folgt. Der Page Rank ist nun die Wkeit, mit der sich ein Nutzer auf einer Seite befindet. 
 
-Über den Zufallssurfer treffen wir nun die Annahme, dass er gedächnislos ist und falls Links vorhanden sind, er einen Link zufällig (gleichverteilt ) folgt oder falls kein Link vorhanden ist, auf eine beliebige Seite springt. 
+Über den Zufallssurfer treffen wir nun die Annahme, dass er gedächnislos ist und falls Links vorhanden sind, er einen Link zufällig (gleichverteilt) folgt oder falls kein Link vorhanden ist, auf eine beliebige Seite springt. 
 
 \subsubsection{Markovketten}
 Um die bessere Modellierung für das Google Problem zu bekommen brauchen wir ein wenig Markovketten Theorie. 
 
+Der Zustandsraum E ist die Menge aller möglichen Zustände. Bei uns sind das alle identifizierten Webseiten.
 
+ Ein stochastischer Prozess ist eine Abbildung $X:T \rightarrow E$ die jedem Zeitpunkt einen Zustand zuordnet, also $X(t)=X_t$. Bei uns heißt dass, dass ein Nutzer zu einer bestimmten Zeit auf einer bestimmten Webseite ist.  Wir brauchen nur diskrete Zeitzustände. 
+ 
+ $\mathbb{P}[X_t=x]$ ist die Wkeit, dass zu einem Zeitpkt $t$ der Zustand $x$ vorliegt, also hier die Wkeit, dass ein Nutzer zum Zeitpkt t auf der Webseite x ist. 
+ 
+Häufiger werden wir die bedingte Wkeit $\mathbb{P}[A|B]$ gebrauchen, die die Wkeit angibt, dass A eintritt unter der Vorraussetzung, dass B eingetreten ist. Dies wird berechnet durch. $\mathbb{P}[A|B]= \frac{\mathbb{P}(A \cup B)}{\mathbb{P}(B)}$
 
+Wir gehen davon aus, dass wir zum k-ten Zeitpunkt einen bestimmten Zustand erreicht haben. Nun wollen wir die Wkeit für ein bestimmtes Ereignis zum nächsten Zeitpkt bestimmen. Falls diese Wkeit nicht davon abhängig ist, welche Ereignisse vor dem k-ten Zeitpunkt eingetreten sind, dann nennen wir den stochastischen Prozess einen Markowprozess. Wenn wir die Webseiten als Ereignisse und die diskreten Zeitpunkte betrachten ist das wechseln von einer Webseite zu einer anderen ein Markowprozess, da er nicht davon abhängt, welche Seiten der Nutzer vorher besucht hat. Die Links auf einer Seite verändern sich dadurch nicht. \\
+
+Frage: wie kann ich homogenen Markowprozess erklären? \\
+
+Der i-te Eintrag des Zustandswahrscheinlichkeitsvektor $\pi^{(k)} \in \mathbb{R}^n$, wobei n die Anzahl der möglichen Zustände sind, gibt die Wkeit an, dass zum Zeitpkt k der Zustand i eingetreten ist.  Dies ist der Pagerank Vektor zum Zeitpunkt k. 
+
+\subsubsection{Anwendung auf den Zufallssurfer}
+Wenden wir nun diese Theorie an, kann man die Übergangsmatrix U der Markowkette aufstellen. Der ij-te Eintrag ist, wie vorher das Inverse der Anzahl der Links, die vom Graphen i ausgehen, falls die Webseite $S_i$ einen Link auf die Seite $S_j$ hat oder das Inverse der Anzahl aller Webseiten, falls die Webseite i überhaupt keinen Link hat und 0 sonst. 
+
+Die Matrix U ist stochastisch, da die Summe der Einträge einer Zeile 1 ist und kein Eintrag negativ ist. 
+
+Aus der Markoweigenschaft folgt nun, dass ${\pi^{(k)}}^T= {\pi^{(k-1)}}^T U = \dots {\pi^{(0)}}^T U^k$ gilt. \\
+
+Frage: Was ist die Markow eigenschaft und warum gilt das? \\
+
+Mit diesem Wissen wollen wir nun den Pagerank Vektor $\pi$ bestimmen, für den gelten soll, dass $\pi^T = \pi^T U$. Außerdem wollen wir, dass ein paar Eigenschaften für $\pi$ gelten. 
+
+Wir wollen zunächst, dass der Pagerank die mittlere Aufenthalts Wkeit eines Nutzers auf einer Internetseite angibt. Außerdem soll, falls wir den Markowprozess schon mit dem berechneten Pagerank starten, wieder der Pagerank zu jedem Zeitschrit rauskommen. Zum Schluss soll noch gelten, dass, wenn wir mit einer beliebigen Anfangsverteilung starten, der Markowprozess gegen den Pagerank vektor strebt. 
+
+Wir suchen also den Eigenvektor zum Eigenwert 1 der Gleichung $\pi = U^T \pi$. 
+
+Nun wollen wir mit der Perron-Frobenius Theorie herausfinden, ob wir einen Pagerank vektor finden, der all diese Eigenschaften genügt. Auch die Eindeutigkeit ist von großer Bedeutung.
 
 \subsection{Perron-Frobenius Theorie}
 
-    
+In diesem Kapitel gehe ich nicht auf die mathematischen Grundlagen, sondern nur auf die wichtigsten Ergebnisse ein. 
+
+Wir wollen das asyptotische Verhalten von $x^{k+1}=U x^k$ untersuchen. 
+
+Zunächst bekommen wir leider nur eine Aussage durch den Satz von Perron über eine positive Übergangsmatrix. Bei dieser existiert die stationäre Verteilung und ist eindeutig. Außerdem können wir sagen, dass der Grenzwert der Folge $\pi^k=\pi$ ist. 
+
+Leider lässt sich das Theorem noch nicht auf die Übergangsmatrix des Zufallssurfers anwenden, da U nur nicht negativ ist. Falls wir nun annehmen, dass U auch irreduzibel ist, dann finden wir einen einfachen Perron Eigenwert $\lambda = 1$ und einen zugehörigen Linkseigenvektor $\pi^T>0$. Nun haben wir aber nicht, dass dies der einzige positive Eigenwert ist. \\
+
+Frage: Wo brauchen wir primitive Matrizen? \\
+  
+Wir wollen ausschließen, dass der We Graph zykelt und einige Zustände nicht mehr erreichen kann. Deshalb verstärken wir unsere Annahmen an den Zufallssurfer: Dieser findet mit einer Wkeit a eine neue Seite, indem er zufällig einem Link auf der momentanen Seite folgt. Falls kein Link vorhanden ist, auf eine beliebige andere Webseite springt und mit einer Wkeit von 1-a zufällig auf eine beliebige Seite springt. Dadurch erhalten wir die Google Matrix. Diese ist irreduzibel, aperiodisch und stochastisch. Also hat sie eine eindeutig stationäre Grenzverteilung $\pi$. Also hat das Problem $G^T \pi = \pi$ mit $\pi^Te = 1$ eine eindeutige Lösung.    
+ 
+ \subsection{Lösungsstratgien und Sensitivitätsanalyse}   
+ 
 
 
 
