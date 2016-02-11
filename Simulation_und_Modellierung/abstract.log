@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.24)  9 FEB 2016 19:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.24)  10 FEB 2016 19:01
 entering extended mode
 **abstract.tex
 
@@ -486,27 +486,97 @@ Underfull \hbox (badness 10000) in paragraph at lines 317--318
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 339--340
+
+ []
+
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 344--345
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--347
+Underfull \hbox (badness 10000) in paragraph at lines 362--363
 
  []
 
-[13] [14]
+
+Underfull \hbox (badness 10000) in paragraph at lines 364--365
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 366--367
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 378--379
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 397--399
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--401
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 413--414
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 421--423
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 430--431
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 432--433
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 439--440
+
+ []
+
+[15] [16]
 (C:\Users\Ines\Documents\GitHub\1.Semester\Simulation_und_Modellierung\abstract
 .aux) ) 
 Here is how much of TeX's memory you used:
- 1534 strings out of 493921
- 16899 string characters out of 3148889
+ 1535 strings out of 493921
+ 16909 string characters out of 3148889
  72516 words of memory out of 3000000
- 4842 multiletter control sequences out of 15000+200000
+ 4843 multiletter control sequences out of 15000+200000
  11503 words of font info for 45 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,14n,26p,999b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,19n,26p,676b,208s stack positions out of 5000i,500n,10000p,200000b,50000s
 <D:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/P
 rogram Files/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Program Files
 /MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Program Files/MikTex/font
@@ -522,9 +592,9 @@ D:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Program F
 iles/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><D:/Program Files/MikTex/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb><D:/Program Files/MikTex/fonts/ty
 pe1/public/amsfonts/symbols/msbm7.pfb>
-Output written on abstract.pdf (14 pages, 220463 bytes).
+Output written on abstract.pdf (16 pages, 236877 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
+ 122 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

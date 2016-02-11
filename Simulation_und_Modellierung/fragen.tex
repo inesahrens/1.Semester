@@ -3,6 +3,8 @@
 \usepackage{german}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}
 
 %opening
 \title{Simulation und Modellierung - Fragen}
@@ -86,15 +88,172 @@ Eine Rangabbildung spiegelt die Meinung eines Wählers wieder. Eine Kandidatenme
 
 \subsection*{Begriffe, wie z.B. externer/ interner Diktator / Einstimmigkeit erklären können}
 
+\subsubsection*{externer Diktator}
+Ein Mensch, der kein Wähler ist, bestimmt den Ausgang der Wahl. Mathematisch hat die kollektive Auswahlfkt egal bei welcher Eingabe, die Ausgabe, die der Diktator möchte. $K(\rho_1, \cdots \rho_n)= \rho_E$
+
+\subsubsection*{interner Diktator}
+Hier bestimmt ein Wähler, welches Ergebnis bei der Wahl rauskommt. Also Der Ausgang ist immer durch den i-ten Wähler genau festgelegt, egal, was die anderen wählen.$K(\rho_1, \cdots \rho_n)= \rho_i$
+
+\subsubsection*{Einstimmigkeit}
+ Ein Kandiat x wird nur vor y gesetzt, falls alle Wähler x besser finden als y. d.h. $x \rho y : \Leftrightarrow \forall i \in \{1, \dots, n\}: x \rho_i y$
+ 
+ Dieses Verfahren ist kaum anwendbar, da sowas eig nie passiert. Außerdem muss das Einstimmigkeitsprinzip keine Relation liefern, da manche Kandidaten keinem Rang zugeordnet werden. 
+
 \subsection*{Was ist das Cordocct Verfahren? Am geg. Bsp erklären}
+ In diesem Verfahren vergleicht man immer zwei Kandidaten miteinander. Man nehme zwei Kandidaten und alle Präferenzrelationen der n Wähler und zählt die Vergleiche, die Kandidat A und die Kandidat B gewinnt. Gewinnt A mehr Vergleiche, so ist Kandidat A vor Kandidat B. Dies tut man nun für alle Kandidaten.
+ 
+ Die Formale Definition lautet: $x \rho y  \Leftrightarrow |\{i \in J| x \rho_i y \} | > | \{ i \in J| y \rho_i x \} | $
+ 
+ Das Problem bei dieser Wahl ist, das Zykel entstehen können. Es kann passieren, dass Kandidat A von B vor C vor A ist. Das wollen wir natürlich nicht.
+ 
+ Ein Beispiel ist die demokratische Familie. 
 
 \subsection*{Was ist die Paretobedingung? Unabhängig von irrelevanten Alternativen}
 
+
+\subsubsection*{Paretobedingung}
+Die Paretobedingung besagt, dass falls sich alle Wähler einig sind, jedes mögliche Wahlergebnis erreichbar sein muss.
+
+Formaler: Die kollektive Auswahlfkt $K:P_A^n \rightarrow P_A$ erfüllt die Paretobedingung, wenn für alle  $\rho_i \in P_A, i=1, \dots, n$ mit $\rho = K(\rho_1, \dots, \rho_n)$ und für alle $x,y \in A$ gilt:
+\begin{align*}
+\left( \forall i \in \{1, \dots, n \} : x \rho_i y \right) \Rightarrow x \rho y \label{Pareto-Bedingung}
+\end{align*} 
+
+\subsubsection*{Unabhängigkeit von irrelevanten Alternativen}
+ Die unabhängigkeit von irrelevanten Alternativen sagt, dass die Reihenfolge von zwei Kandidaten sollte nicht dadurch geändert werden können, dass Wähler ihre Präferenz bzgl eines dritten Kandidaten verändern. 
+ 
+ Formal:
+
+Eine kollektive Auswahlfunktion $K : P_A^n \to P_A$ erfüllt die \textbf{Unabhängigkeit von irrelevanten Alternativen}, wenn
+$\forall \rho_i \rho'_i \in P_A \quad i=1,...,n$ mit $\rho = K(\rho_1, \dots, \rho_n), \rho' = K(\rho'_1, \dots, \rho'_n)$ und für alle $x,y \in A$ gilt:
+\begin{equation*}
+\left( \forall i\in \{1, \dots, n\} x \rho_i y \right)
+\Rightarrow \left( x \rho y \Leftrightarrow x \rho' y \right)
+\end{equation*}
+
 \subsection*{Satz von Arrow (Satz III.4), Aussage + Beweis können, also auch Lemma III.5}
+
+\subsubsection*{Satz von Arrow}
+Es zeigt sich im Satz von Arrow, dass kein Verfahren, außer der Interne Diktator alle Bedingungen an ein Verfahren erfüllt.
+
+Formal: 
+
+Es sei $A$ mit $|A| > 2$ eine Kantenmenge und $K: P_A^n \to P_A$ eine kollektive Auswahlfunktion, die die Pareto-Bedingung sowie Unabhängigkeit von irrelevanten Alternativen erfüllt, dann gibt es immer einen (internen) Diktator, das heißt es existiert ein $d \in \{1, \dots, n\}$ sodass für alle $(\rho_1, \dots, \rho_n) \in P_A^n$ gilt
+\begin{equation*}
+\forall (x,y) \in A \times A : x \rho_d y \Rightarrow x \rho y \text{ mit } \rho = K(\rho_1, \dots, \rho_n)
+\end{equation*}
+
+\subsubsection*{Extremalllemma}
+Es gelten die Annahmen aus dem Satz von Arrow. Dann gilt für jede Alternative $y$:\\
+Wenn jeder Wähler die Alternative $y$ als beste (\textit{\glqq Top\grqq}) oder als letzte (\textit{\glqq Flop\grqq}) Alternative wählt, dann muss die kollektive Auswahlfunktion die Alternative $y$ ebenfalls \textit{\glqq Top\grqq} oder \textit{\glqq Flop\grqq} setzen. \\
+
+To do: beide Beweise ansehen
 
 \subsection*{Was ist eine strategische Manipulation, Top Menge, Diktator einer Entscheidungsfkt}
 
+Zunächst braucht man die Definition der sozialen Entscheidungsfkt:
+
+Die soziale Entscheidungsfkt bildet die Menge der Präferenzen von den Wählern auf die Menge der Kandidaten ab. Also wird jede Präferenz aller Wähler genau ein Kandidat zugeordnet. Dieser Kandidat ist der Sieger der Wahl. Formale Definition: 
+
+  Eine Funktion $ e : P_A^n \to A$  heißt \textbf{soziale Entscheidungsfunktion}
+
+
+\subsubsection*{Strategische Manipulation}
+ Die soziale Entscheidungsfkt heißt strategisch manipulierbar, falls ein Wähler der den Kandidaten B vor den Kandidaten A präferiert, statt seiner Präferenz eine andere angeben kann und damit den Kandidaten B erzwingen kann. 
+ 
+ Die soziale Entscheidungsfkt heißt Anreizkompatibel, falls sie nicht manipulierbar ist. 
+ 
+ Die fomale Definition von strategisch Manipulierbar lautet: 
+
+ Eine soziale Entscheidungsfunktion $e : P_A^n \to A$ kann durch den Wähler $i$ \textbf{strategisch manipuliert} werden, falls es Präferenzen $\rho_1, \dots, \rho_n, \rho'_i \in P_A$ gibt mit $\rho_i \neq \rho'_i$, sodass
+ \begin{align*}
+ b \rho_i a \text{ gilt für }  a = e(\rho_1, \dots, \rho_i, \dots \rho_n) \text{ und } b= e(\rho_1, \dots, \rho'_i, \dots, \rho_n)
+ \end{align*}
+ 
+\subsubsection*{Top Menge} 
+Eine Topmenge ist nicht, wie der Name scheint, durch eine Eigenschaft der Menge definiert, sondern durch die Relation, die auf einer Menge von Kandidaten gebildet wird. Die ursprüngliche Relation wird geändert, falls ein Element aus der Top-Menge ist und eines nicht: Dann gilt dass das Element aus der Topmenge immer in Relation zu dem aus der nicht Topmenge steht und nicht andersherum. 
+
+Formaler:
+
+Sei $S \subseteq A$ und $\rho \in P_A$. Wir führen eine weitere Präferenzrelation $\rho^S$ folgendermaßen ein:
+\begin{itemize}
+	\item für $a,b \in S$: $a \rho^S b \Leftrightarrow a \rho b$
+	\item für $a,b \notin S$: $a \rho^S b \Leftrightarrow a \rho b$
+	\item für $a \in S, b \notin S$: $a \rho^S b$
+\end{itemize}
+Man kann zeigen, dass $\rho^S$ dadurch eindeutig bestimmt ist.
+
+\subsubsection*{Diktator einer Entscheidungsfkt}
+Auch hier ist der Diktator, wie schon vorher definiert. Falls es einen Wähler gibt,dessen Wahl immer das Gesamtergebnis ist, dann ist dieser Wähler der Diktator.
+
+Formal:  
+
+Wähler $i$ heißt \textbf{Diktator in einer sozialen Entscheidungsfunktion}, falls für alle $\rho_1, \dots, \rho_n \in P_A$ gilt, dass
+\begin{equation*}
+e(\rho_1,\dots, \rho_n) = a
+\end{equation*}
+wobei $a$ der eindeutig bestimmte Kandidat $a \rho_i b$ für alle $b \neq a$ ist. Die Funktion $e$ heißt \textbf{diktatorisch}, falls $e$ einen Diktator besitzt.
+
 \subsection*{Satz III.8/ Satz III.10/ Satz III.12/ Satz III.13 und Satz III.14 erklären und beweisen können} 
+
+\begin{thm}
+		Eine soziale Entscheidungsfunktion ist genau dann monoton, wenn sie anreizkompatibel ist.
+\end{thm}
+\begin{proof}
+	Sei $e$ monoton. Wann immer $e(\rho_1, \dots, \rho_i, \dots, \rho_n) = a$ und $e(\rho_1, \dots, \rho'_i, \dots, \rho_n) = b$ gilt,
+	dann ist aufgrund der Monotonie $a \rho_i b $ und $ b \rho'_i a$. DAnn kann es aber auch keine $\rho_1, \dots, \rho_n, \rho'_i \in P_A$,
+	sodass $e(\rho_1, \dots, \rho_i, \dots, \rho_n) = a$ und $e(\rho_1, \dots, \rho'_i, \dots, \rho_n) = b$ und $b \rho_i a$ gilt. Also ist keine Manipulation durch $i$ möglich. \\
+	Umgekehrt kann man analog zeigen, dass jede Manipulationsmöglichkeit die Monotonie verletzt.
+\end{proof}
+
+\begin{thm}[Top-Präferenz] \label{Top_Praeferenz_Lemma}
+	Sei $e$ eine anreizkompatible und surjektive Entscheidungsfunktion. Dann gilt für alle $\rho_1, \dots, \rho_n \in P_A$ und für alle $\emptyset \neq S \subseteq A$:
+	\[ e(\rho_1^S, \dots, \rho^S_n) \in S \]
+\end{thm}
+\begin{proof}
+	Übung. %TODO: Beweis ergänzen (copy & paste ausm Internetz)
+\end{proof}
+
+\begin{thm}
+	Falls $e$ eine anreizkompatible und surjektive soziale Entscheidungsfunktion ist, dann ist ihre Erweiterung $\mathcal{E}$ eine kollektiven Auswahlfunktion.
+\end{thm}
+\begin{proof}
+	zu zeigen ist: $\rho \in P_A$ \\
+	\begin{itemize}
+		\item[\it Asymmetrie:] Wegen Lemma \ref{Top_Praeferenz_Lemma} gilt mit $e\left(\rho_1^{\{a, b \}}, \dots, \rho_n^{\{a, b \}} \right) \in \{a,b\}$ entweder $a \rho b$ oder $b \rho a$. 
+		\item[\it Transitivität:] Angenommen, $\rho$ wäre nicht transitiv, daas heißt es gelte $a \rho b$ und $b \rho c$ aber nicht $a \rho c$. 
+		Wegen der Asymmetrie gilt somit $c \rho a$.\\
+		Betrachte die Menge $S := \{a,b,c\}$. Dann sei o.b.d.A.:
+		\[ e\left(\rho_1^{\{a, b,c \}}, \dots, \rho_n^{\{a, b, c \}} \right) = c \]
+		Aufgrund der Monotonie gilt
+		\[  e\left(\rho_1^{\{b, c \}}, \dots, \rho_n^{\{b, c \}} \right) = c \]
+		durch schrittweise Änderung von $\rho_i^{\{a,b,c\}}$ auf $\rho_i^{\{b,c\}}$. \\
+		Also haben wir dann $c \rho b$ Widerspruch.
+	\end{itemize}
+\end{proof}
+
+\begin{thm}[Erweiterungslemma]
+	Falls $e$ eine anreizkompatible, surjektive und nicht-diktatorische Entscheidungsfunktion ist, so ist ihre Erweiterung $\mathcal{E}$ eine kollektive Auswahlfunktion, die Einstimmigkeit, Unabhängigkeit irrelevanter Alternativen und nicht-diktatorische Entscheidungen erfüllt.
+\end{thm}
+\begin{proof}~
+	\begin{itemize}
+		\item[\it Einstimmigkeit:] Sei $a \rho_i b$ für alle $i=1, \dots, n$. Dann ist wegen Lemma \ref{Top_Praeferenz_Lemma} 
+		\[e\left(\rho_1^{\{a, b \}}, \dots, \rho_n^{\{a, b \}} \right) = a\] 
+		und somit $a \rho b$.
+		\item[\it Unabhängigkeit irrelevanter Ereignisse:] Falls für alle $i = 1, \dots, n$ gilt
+		\[a \rho_i b \Leftrightarrow a \rho'_i b \]
+		dann muss
+		\[e\left(\rho_1^{\{a, b \}}, \dots, \rho_n^{\{a, b \}} \right) 
+		= 
+		e\left(\rho_1^{\prime \{a, b \}}, \dots, \rho_n^{\prime \{a, b \}} \right) \]
+		gelten, da sich das Ergebnis wegen der Monotonie von $e$ nicht ändert, wenn man $S_i^{\{a,b\}}$ schrittweise zu $S_i^{\{a,b\}}$ verändert.
+		\item[\it Diktator:] Übung.
+	\end{itemize}
+\end{proof}
+
+\begin{thm}[Satz von Gibbard-Satterthwaite]
+	Falls $e$ eine surjektive, anreizkompatible Entscheidungsfunktion ist, so dass drei oder mehr Alternativen wählbar sind, dann ist $e$ diktatorisch.
+\end{thm}
 
 \section{Informationssuche im Netz}
 

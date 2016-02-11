@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Spieltheorie}
-Hier widmen wir uns Spielen zwischen zwei Spielern. Um über Spiele mathematisch nachdenken zu können, führen wir Notationen ein. Dann teilen wir die Spiele in zwei Kategorien ein: Eine Kathegorie sind Spielen bei denen ein Spieler unabhängig vom anderen seine Entscheidung trifft (Glücksspiel etc). Die andere Kathegorie sind Spiele, bei denen sich ein beide Spieler Gedanken darüber machen, was der andere tut(z.b Schere Stein Papier). Dabei behandeln wir von beiden Spielarten die Strategien der Spieler. Am Ende gehen wir kurz auf Nash Gleichgewichte ein. 
+Hier widmen wir uns Spielen zwischen zwei Spielern. Um über Spiele mathematisch nachdenken zu können, führen wir Notationen ein. Dann teilen wir die Spiele in zwei Kategorien ein: Eine Kategorie sind Spielen bei denen ein Spieler unabhängig vom anderen seine Entscheidung trifft (Glücksspiel etc.). Die andere Kategorie sind Spiele, bei denen sich ein beide Spieler Gedanken darüber machen, was der andere tut(z.b Gefangenendilemma). Dabei behandeln wir von beiden Spielarten die Strategien der Spieler. Am Ende gehen wir kurz auf Nash Gleichgewichte ein. 
 
 \subsection{Spiele in strategischer Normalform}
 Wichtige Begriffe:
@@ -26,19 +26,19 @@ Wichtige Begriffe:
 \end{itemize}
 
 \subsection{Spiele ohne Annahmen über den Gegner}
-Hier trifft ein Spieler seine Entscheidung, ohne sich Gedanken über den anderen Spieler zu machen. Ein Beispiel ist das Glücksspiel bzw ob ein Spieler einen Regenschirm mitnimmt oder nicht. 
+Hier trifft ein Spieler seine Entscheidung, ohne sich Gedanken über den anderen Spieler zu machen. Ein Beispiel ist das Glücksspiel bzw. ob ein Spieler einen Regenschirm mitnimmt oder nicht. 
 
 \subsubsection{Spiel bei Gewissheit}
 Falls ein Spieler alle Strategien vom anderen Spieler kennt, kann er einfach seinen nutzen maximieren. 
 
 \subsubsection{Spiel bei Risiko}
-Hier hat der Spieler keine Information, wie der andere Spieler spielen wird. Er muss sich entscheiden, wie er sich verhält. Dabei gibt es den risikobereiten und den vorsichtigen Spieler. Der Risikobereite Spieler geht davon aus, dass der andere Spieler seinen Gewinn maximieren möchte und maximiert auf dieser Annahme seinen Gewinn. Der vorsichtige Spieler redoch versucht den garantierten Gewinn zu maximieren. 
+Hier hat der Spieler keine Information, wie der andere Spieler spielen wird. Er muss sich entscheiden, wie er sich verhält. Dabei gibt es den risikobereiten und den vorsichtigen Spieler. Der Risikobereite Spieler geht davon aus, dass der andere Spieler seinen Gewinn maximieren möchte und maximiert auf dieser Annahme seinen Gewinn. Der vorsichtige Spieler jedoch versucht den garantierten Gewinn zu maximieren. 
 \begin{align*}
 	U=\begin{pmatrix}
 	0 & 30 \\ 10 & 10
 	\end{pmatrix}
 \end{align*}
-bei diesem Beispiel würde der risiobereite Spieler die erste Zeile wählen und der vorsichtige die zweite Zeile. 
+bei diesem Beispiel würde der risikobereite Spieler die erste Zeile wählen und der vorsichtige die zweite Zeile. 
 
 \subsection{Reaktionsabbildungen}
 Nun widmen wir uns dem Spiel, bei dem beide Spieler ihren Gewinn maximieren wollen. Also muss jeder Spieler überlegen, was er tun würde, wenn der Gegner eine bestimmte Strategie wählt. Dazu ist die Reaktionsabbildung gut. Sie bildet jede Strategie vom Gegner auf die Strategie ab, die für ihn die  optimale Antwort auf die Strategie des Gegners ist. 
@@ -48,15 +48,15 @@ Die Gesamtreaktionsabbildung bildet jedes Strategiepaar auf die optimale Antwort
 \subsection{Dominante Strategien}
 Auch hier überlegen wieder beide Spieler gleichzeitig und beziehen die Überlegung des anderen mit ein.
 
-Falls ein Spieler eine Trategie besitzt, die auf alle Strategien vomn anderen Spieler die beste antwort ist, kann er sie ohne Bedenken spielen. Dies ist die dominante Strategie.Also wird eine Strategie gewählt. die den Spiele unabhängig vom Gegner macht. 
+Falls ein Spieler eine Strategie besitzt, die auf alle Strategien vom anderen Spieler die beste Antwort ist, kann er sie ohne Bedenken spielen. Dies ist die dominante Strategie.Also wird eine Strategie gewählt. die den Spiele unabhängig vom Gegner macht. 
 
-Eine Strategie nennen wir redundant, falls sie durch eine andere Strategie dominiert wird. Beei Schere- Stein-Papier-Brunnen ist der Stein redundat und kann von beiden Spieler weggelassen werden. 
+Eine Strategie nennen wir redundant, falls sie durch eine andere Strategie dominiert wird. Bei Schere- Stein-Papier-Brunnen ist der Stein redundant und kann von beiden Spieler weggelassen werden. 
 
 Leider ist nicht immer eine dominante Strategie verfügbar. 
 
 \subsection{Nash-Gleichgewicht}
 
-Ein Nash Gleichgewicht liegt vor, wenn Strategien a und b (von Spieler A bzw B) existieren, sodass die optimale Antwort von B auf a die Strategie b ist und die optimale Antwort von A auf Strategie b die Strategie a ist. Dabei ist ein Strategiepaar aus domianten Strategien immer ien Nsh Gleichgewicht. 
+Ein Nash Gleichgewicht liegt vor, wenn Strategien a und b (von Spieler A bzw. B) existieren, sodass die optimale Antwort von B auf a die Strategie b ist und die optimale Antwort von A auf Strategie b die Strategie a ist. Dabei ist ein Strategiepaar aus dominanten Strategien immer ein Nash Gleichgewicht. 
 
 Es wäre schön, wenn es immer nur einen Nash Gleichgewichtspunkt geben würde. Dem ist aber leider nicht so.
 
@@ -65,7 +65,7 @@ In diesem Kapitel betrachten wir nur Nullsummenspiele, also Spiele bei denen die
 
 Bei gemischten Strategien wählen beide Spieler ihre Strategien mit einer bestimmten Wkeit. Diese Wkeit nennt man gemischte Strategien. 
 
-Die Auszahlungsfkt lässt sich dabei berechnen als multiplikation von dem Wkeitsvektor der Strategie des einen Spielers mit der Nutzenmatrix mit dem Wkeitsvektor der Strategie des anderen Spielers. \\
+Die Auszahlungsfkt lässt sich dabei berechnen als Multiplikation von dem Wkeitsvektor der Strategie des einen Spielers mit der Nutzenmatrix mit dem Wkeitsvektor der Strategie des anderen Spielers. \\
 
 Frage: Warum lässt sich das so berechnen? \\ 
 
@@ -75,7 +75,7 @@ Es lässt sich beobachten, dass falls die Nutzenmatrix nicht invertierbar ist ei
 
 Mathematische Herleitung ist klar, aber leider nicht die Interpretation. 
   
-Ein Beispiel dafür ist die das Spiel Schere stein papier. Beide Spieler sollten Gleichverteilt spielen. 
+Ein Beispiel dafür ist die das Spiel Schere Stein Papier. Beide Spieler sollten Gleich verteilt spielen. 
 
 \subsection{Ausblick}
 Mathematisch lässt sich diese Modellierung sehr gut fassen und die meisten Spiele lassen sich mathematisch sehr viel einfacher durchdenken, als in Prosa Form. Das Problem (wie immer in der Modellierung) ist die Wahl der Auswertungsfunktion, also insbesondere die Werte in der Matrix und der Abschätzung was dem Spieler wichtiger ist. Z.b. könnte ihm der reine Gewinn wichtig sein oder das Ärgernis über entgangenen Gewinn.   
@@ -87,7 +87,7 @@ Wie der Titel andeutet haben wir in dieser Kategorie eine Menge von Wählern die
 
 Um Gruppenentscheidungen treffen zu können, benötigen wir eine Menge von Wählern und eine Menge von Kandidaten. Dabei soll jeder Wähler jedem Kandidaten einen Rang zuordnen, also eine natürliche Zahl. Je kleiner diese ist, desto lieber hat der Wähler den Kandidat. Dies macht die Rangabbildung. Sie ordnet jedem Kandidat eine natürliche Zahl zu. Sie muss surjektiv  sein. \\ 
 
-Frage: Warum surjektiv? Anwort: Falls ich genauso viele Ränge, wie Kandidaten habe, kann ich keinen zwei Kandidaten den gleichen Rang zuordnen. Falls ich weniger Ränge habe, dann bin ich gezwungen mehrere Kandidaten gleich hoch zu wählen. Ergibt diese Forderung wirklich sinn? Wobei wir im Folgenden auch mal damit arbeiten, dass wir zwei Kandidaten den gleichen Rang zuordnen... \\ 
+Frage: Warum surjektiv? Antwort: Falls ich genauso viele Ränge, wie Kandidaten habe, kann ich keinen zwei Kandidaten den gleichen Rang zuordnen. Falls ich weniger Ränge habe, dann bin ich gezwungen mehrere Kandidaten gleich hoch zu wählen. Ergibt diese Forderung wirklich Sinn? Wobei wir im Folgenden auch mal damit arbeiten, dass wir zwei Kandidaten den gleichen Rang zuordnen... \\ 
 
 Diese Abbildung definiert eine transitive und asymmetrische Präferenzrelation. Damit zwei Kandidaten in Relation zueinander stehen, muss der Wähler einen Kandidaten strikt besser finden, als den anderen. Sonst haben die Kandidaten keine Relation. 
 
@@ -107,19 +107,19 @@ Frage: Warum verlangen wir einen Eindeutigen Rang? Man könnte auch zwei gleich 
 
 \subsection{Beispiele für Entscheidungsverfahren}
 
-In diesem Kapitel werden ein paar Entscheidungsverfahren vorgestellt. Wie wollen probieren möglichst gerechte Verfahren zu konstruieren, wobei gerecht im Philosophischen bzw juristischen Sinn gemeint ist. 
+In diesem Kapitel werden ein paar Entscheidungsverfahren vorgestellt. Wie wollen probieren möglichst gerechte Verfahren zu konstruieren, wobei gerecht im Philosophischen bzw. juristischen Sinn gemeint ist. 
 
 \subsubsection*{Externer Diktator}
 
 Der Titel ist klar: Ein Mensch, der kein Wähler ist, bestimmt den Ausgang der Wahl. Mathematisch hat die kollektive Auswahlfkt egal bei welcher Eingabe, die Ausgabe, die der Diktator möchte. 
 
 \subsubsection*{Interner Diktator}
-Hier bestimmt ein Wähler, welches Ergebnis bei der Wahl rauskommt. Also Der Ausgang ist immer durch den i-ten Wähler genau festgelegt, egal, was die anderen wählen.
+Hier bestimmt ein Wähler, welches Ergebnis bei der Wahl raus kommt. Also Der Ausgang ist immer durch den i-ten Wähler genau festgelegt, egal, was die anderen wählen.
 
 \subsubsection*{Rangaddition}
 Die Präferenz der Wähler gibt eine Rangabbildung vor. \\
 
-Frage: Ist diese Rangabbildung eindeutig? Ja, weil wir surjektivität gefordert haben? \\
+Frage: Ist diese Rangabbildung eindeutig? Ja, weil wir Surjektivität gefordert haben? \\
 
 Bei der Rangaddition werden alle Ränge für jeden einzelnen Kandidaten addiert addiert. Nun wird wieder geschaut, in welcher Reihenfolge die Kandidaten sind. 
 
@@ -128,12 +128,12 @@ Das Problem hier ist, dass die aus der Rangaddition resultierende Rangabbildung 
 \subsubsection*{Cordoct-Verfahren}
  In diesem Verfahren vergleicht man immer zwei Kandidaten miteinander. Man nehme zwei Kandidaten und alle Präferenzrelationen der n Wähler und zählt die Vergleiche, die Kandidat A und die Kandidat B gewinnt. Gewinnt A mehr Vergleiche, so ist Kandidat A vor Kandidat B. Dies tut man nun für alle Kandidaten.
  
- Das Problem bei dieser Wahl ist, das Zykel entstehen können. Es kann passieren, dass Kandidat A von B vor C vor A ist. Das wollen wir natürlich nicht.
+ Das Problem bei dieser Wahl ist, das Zyklen entstehen können. Es kann passieren, dass Kandidat A von B vor C vor A ist. Das wollen wir natürlich nicht.
  
 \subsubsection*{Einstimmigkeit}
- Ein Kandiat x wird nur vor y gesetzt, falls alle Wähler x besser finden als y. 
+ Ein Kandidat x wird nur vor y gesetzt, falls alle Wähler x besser finden als y. 
  
- Dieses Verfahren ist kaum anwendbar, da sowas eig nie passiert. Außerdem muss das Einstimmigkeitsprinzip keine Relation liefern, da manche Kandidaten keinem Rang zugeordnet werden. 
+ Dieses Verfahren ist kaum anwendbar, da so was eig nie passiert. Außerdem muss das Einstimmigkeitsprinzip keine Relation liefern, da manche Kandidaten keinem Rang zugeordnet werden. 
  
 \subsubsection*{Borda-Wahl}
 Jeder Wähler gibt den k Kandidaten Punkte. Dabei bekommt der erste Wähler k Punkte, der zweite k-1 usw. Der Kandidat mit den meisten Pkt gewinnt die Wahl. \\
@@ -143,7 +143,7 @@ Antwort: Bei der Rangaddition ist am Anfang zugelassen, dass zwei Kandidaten die
 
 Hier gibt es aber auch ein Problem: Wir haben eine Wahl und Kandidat A ist auf letzter Stelle gekommen. Nehmen wir die gleichen Wahlergebnisse nochmal, nur dass A nicht antritt, kann es sein, dass ein anderer erster wird. \\
 
-Insgesamt zeigt sich, dass die Auswahl des Wahlverfahrens eine große Rolle dabei spielt, was für ein Ergebnis am ende rauskommt. 
+Insgesamt zeigt sich, dass die Auswahl des Wahlverfahrens eine große Rolle dabei spielt, was für ein Ergebnis am ende raus kommt. 
 
 \subsection{Bedingungen an die Auswahlfkt und Satz von Arrow}
 
@@ -151,7 +151,7 @@ Wir wollen nun genauer definieren, was ein gerechtes Verfahren ist.
 
 Um ein gerechtes Verfahren zu erhalten, muss die Pareto Bedingung erfüllt sein. Das heißt, dass falls sich alle Wähler einig sind, muss jedes mögliche Wahlergebnis erreichbar sein.
 
-Außerdem sollte die Unabhängigkeit von irrelevanten Ereignissen erfüllt sein. Die Reihenfolge von zwei Kandidaten sollte nicht dadurch geändert werden können, dass Wähler ihre Präferenz bzgl eines dritten Kandidaten verändern. 
+Außerdem sollte die Unabhängigkeit von irrelevanten Ereignissen erfüllt sein. Die Reihenfolge von zwei Kandidaten sollte nicht dadurch geändert werden können, dass Wähler ihre Präferenz bzgl. eines dritten Kandidaten verändern. 
 
 Es zeigt sich leider im Satz von Arrow, dass kein Verfahren, außer der Interne Diktator alle Bedingungen an ein Verfahren erfüllt. Anders formuliert: Es gibt keine kollektive Auswahlfkt, die alle fünf demokratischen Grundregeln erfüllt.
 
@@ -180,7 +180,7 @@ Nun stellt sich aber folgendes Problem dar: Sobalb eine Entscheidungsfunktion an
 \section{Informationssuche im Netz}
 Ziel dieses Kapitels ist es, eine Idee davon zu bekommen, wie Suchmaschinen die Ergebnisse von einer Suchanfrage ermittelt. Dabei wollen wir eine möglichst akzeptable Lösung der Problemstellung mit den gewünschten Eigenschaften bekommen. 
 
-Die Idee ist es, dass wir einen Index mit allenrelevanten Webseiten haben. Zu jeder Webseite listen wir alle möglichen Suchbegriffe auf. Dieses Verfahren ist die Suche im Index.
+Die Idee ist es, dass wir einen Index mit allen relevanten Webseiten haben. Zu jeder Webseite listen wir alle möglichen Suchbegriffe auf. Dieses Verfahren ist die Suche im Index.
 
 Die Suche im invertierten Index ist nun, dass zu jedem möglichen Suchbegriff alle relevanten Webseiten aufgelistet werden. Diese Webseiten müssen nun anhand einer Ratingfunktion gewichtet werden. Dabei sollte die Relevanz und Qualität einer Webseite eine Rolle spielen, ebenso wie die Sichtbarkeit des Suchbegriffes. 
 
@@ -321,51 +321,145 @@ Falls $\alpha$ nicht zu nahe bei 1 liegt, reagiert der Page Rank Vektor nicht al
 Betrachten wir nun ein Update der Google Matrix und den daraus resultierenden neuen Page Rank Vektor $\tilde{\pi}^T$. Dann gilt $\| \pi - \tilde{\pi}\|_1 \le \frac{2 \alpha}{1 - \alpha } \sum\limits_{i \in U} \pi_i$, wobei U die Menge aller Seiten ist, die aktualisiert wurden. Diese Abschätzung ist hilfreich, falls $\alpha$ klein ist und die Summe des Page Ranks ebenfalls.  
 
 \subsection*{Sensitivität bzgl $H$}
-
-
-
+Diese Sensitiviätsanalyse ist besonders wichtig, da sich das Internet ständig verändert. Man kann zeigen, dass $\frac{d \pi^T(h_{ij})}{d h_{ij}}= \alpha \pi_i (e_j^T-\nu^T)(I-\alpha U)^{-1}$ gilt. Der Term $\pi_i$ zeigt, dass Veränderungen auf wichtigen Seiten mehr Einfluss haben als Veränderungen auf unwichtigen. 
 
 \subsection*{Sensitivität bzgl $\nu^T$}
 
+Betrachten wir zunächst $\nu$ genauer. Jeder Nutzer von Google hat unterschiedliche Päferenzen, also personalisieren wir $\nu$, indem wir für $\nu$ unterschiedliche Kategorien einführen wie Kunst, Wirtschaft, Fernsehen etc. Der Pagerank Vektor hängt nun mit unterschiedlichen Gewichten von diesem Personalisierten Anfangswerten ab. Also $\pi^T = \beta_1 \pi^T(\nu_1^T) + \dots  + \beta_{16} \pi^T(\nu_{16}^T)$ mit $\sum_{i=1}^{16}\beta_i = 1$
+
+Betrachten wir nun die Sensitivität bzgl $\nu$. Man kann zeigen, dass $\frac{d \pi^T(\nu^T)}{d \nu^T}= \left( 1 - \alpha \sum_{i \in D} \pi_i \right) (I - \alpha U)^{-1}$ wobei D die Menge der hängenden Knoten ist. \\
+
+Frage: Bewertung der Formel? 
+ 
+
+\subsection{Page Rank Vektor Berechnung - andere Wege}
+
+Es gibt auch noch andere Wege, den Page Rank Vektor zu berechnen. Z.B. kann man das Gleichungssytem $x^T (I - \alpha U)= \nu^T$ nach $x$ auflösen um dann den Pagerankvektor $\pi^T= \frac{x^T}{x^T e}$ zu erhalten. 
+
+Für kleine Systeme ist das Lösen auf dieser Art besser und vor allem einfacher. Desweiteren ist die Potenzmethode hinsichtlich der Konvergenz empfindlicher für $\alpha \rightarrow 1$. Das LGS ist es ist. Aber auch hier ist der Page Rank Vektor empfindlich für $\alpha \rightarrow 1$. \\
+
+Eine andere Art ist es, die Google Matrix irreduzibel zu gestalten, indem ein Dummy Knoten eingebaut wird, sodass der Zufallssurfer von jeder Webseite aus mit einer Wkeit $(1-\alpha)$ zu diesem Dummy Knoten kommt und sich dann mit der Wkeit der Anfangsverteilung auf die anderen Webseiten bewegt. Diese Matrix sieht dann so aus: 
+\begin{align*}
+	\hat{U}= 
+	\begin{pmatrix}
+		\alpha U & (1-\alpha) e \\
+		\nu^T & 0 
+	\end{pmatrix}
+\end{align*}   
+
+Man kann weiterhin zeigen, dass das Spektrum vom Spektrum der Übergangsmatrix U abhängt: Das Spektrum von U sei gegeben durch $\{1, \lambda_1 ,\dots, \lambda_n \}$. Dann ist das Spektrum von $\hat{U}$ gegeben durch $\{1, \alpha \lambda_1, \dots , \alpha \lambda_n, \alpha -1\}$. 
 
 
 \section{Verkehrssimulation}
-Es gibt makroskopische Verkehrssimulation. Sie beschäftigt sich mit dem Verkehr im ganzen und lässt einzelne Fahrzeuge außer acht und die mikroskopische betrachtet die einzelnen Fahrzeuge. 
+Es gibt makroskopische und mikroskopische Verkehrssimulation. Die Makroskopische beschäftigt sich mit dem Verkehr im ganzen und lässt einzelne Fahrzeuge außer acht und die mikroskopische betrachtet die einzelnen Fahrzeuge. 
 
 \subsection{Makroskopische Verkehrssimulation}
-Zur Betrachtung des Verkehrs brauchen wir einige Größen: Die Verkehrsdichte beschreibt, wie dicht die Fahrzeuge auf der Straße stehen, also wie viele Fahrzeuge pro Km auf der Straße sind. Der Verkehrsfluss beschreibt, wie viele Fahrzeuge pro Zeiteinheit einen Kontrollpunkt passieren. 
 
-Wofür wollen wir ein Modell?  Was wollen wir damit aussagen über den Verkehr? 
+Beginnen wir mit der makroskopischen Verkehrssimulation. 
 
-Zunächst treffen wir Annahmen über den Verkehr. Einmal ist die Fahrzeugdichte begrenzt durch eine minimale Kapazität (0) und eine maximale Kapazität, also Stoßstange an Stoßstange. Außerdem dürfen die Fahrzeuge nicht rückwärts fahren (Also befinden wir uns auf einer Autobahn) und die Autos haben eine maximale Geschwindigkeit (wo wird die wichtig? Ist die max Geschwindigkeit, was die Autos dort können oder dürfen? kann man damit den Verkehr regulieren? Passen solche Ideen schon ins Modell? )
+Zur Betrachtung des Verkehrs brauchen wir einige Größen: Die Verkehrsdichte beschreibt, wie dicht die Fahrzeuge auf der Straße stehen, also wie viele Fahrzeuge pro Km auf der Straße sind. Der Verkehrsfluss beschreibt, wie viele Fahrzeuge pro Zeiteinheit einen Kontrollpunkt passieren. \\
 
-Desweiteren nehmen wir an, dass der Verkehrsfluss stetig differenzierbar ist (ergibt das Sinn? Wäre nicht eig ein Diskretes Modell hier besser geeignet?)
+Frage: Wofür wollen wir ein Modell?  Was wollen wir damit aussagen über den Verkehr? \\
 
-Verkehrsfluss, Dichte und Geschwindigkeit stehen im Zusammenhang. Dimensionsanalyse ergibt, dass Fluss = Dichte mal Geschwindigkeit gelten muss. Dies ergibt Sinn:  \\
+Zunächst treffen wir Annahmen über den Verkehr. Einmal ist die Fahrzeugdichte begrenzt durch eine minimale Kapazität 0 und eine maximale Kapazität, also Stoßstange an Stoßstange. Außerdem dürfen die Fahrzeuge nicht rückwärts fahren, wir befinden uns auf einer Autobahn, und die Autos haben eine maximale Geschwindigkeit \\
 
-Andere erklärung als im Script einfügen. \\
+Frage: wo wird die wichtig? \\
+
+Desweiteren nehmen wir an, dass der Verkehrsfluss stetig differenzierbar ist.
+
+Verkehrsfluss, Dichte und Geschwindigkeit stehen im Zusammenhang. Dimensionsanalyse ergibt, dass Fluss = Dichte mal Geschwindigkeit gelten muss. Dies ergibt Sinn: 
+
+Betrachten wir ein Auto auf einer Straße, bei der die Dichte $\rho_0$ konstant ist. Angenommen das Auto fährt T Stunden. Dann kann es mit konstanter Geschwindigkeit $v_0$ $T \cdot v_o$ Kilometer zurücklegen. Alle anderen Autos auf dieser Straße können dies ebenfalls. Also kommen an einem Kontrollpunkt in T Stunden $T \cdot v_o \cdot \rho_0$ Autos vorbei. Also ist der Verkehrsfluss $\rho_0 v_0$ Autos pro Stunde.  Da konstante Geschwindigkeit und konstante Verkehrsdichte nicht realistisch ist, betrachtet man nur ein sehr kleines Zeitintervall und kommt wieder auf die Formel $q= \rho \cdot v$ .   
 
 Betrachten wir eine unendlich lange Straße. Da die Anzahl der Autos auf der Straße sich nur durch das Verlassen/ Ankommen auf der Straße ändert, verändert sich die Anzahl der Autos auf dieser unendlich langen Straße nicht, bleibt also konstant. Dies ist der Integrale Erhaltungssatz. 
 
-Herleitung davon in Formeln im Script. 
+Die Herleitung findet sich in Formeln im Script. 
 
-Der differentiale Erhaltungssatz besagt, dass die Veränderung der Dichte in der Zeit das gleiche ist, wie die negative Veränderung des Flusses im Ort. Besagt also: Wenn sich die Dichte der Autos verändert, also mehr (weniger) Fahrzeuge im laufe der Zeit am gleichen Ort befinden, so wird der Fluss entsprechend niedriger (höher), also passieren weniger (mehr) Autos den Kontrollpunkt. 
+Der differentiale Erhaltungssatz besagt, dass die Veränderung der Dichte in der Zeit das Gleiche ist, wie die negative Veränderung des Flusses im Ort. Besagt also: Wenn sich die Dichte der Autos verändert, also mehr (weniger) Fahrzeuge im laufe der Zeit am gleichen Ort befinden, so wird der Fluss entsprechend niedriger (höher), also passieren weniger (mehr) Autos den Kontrollpunkt. \\
 
-Erklärung richtig? 
+Da sich der Fluss als Geschwindigkeit mal Dichte beschreiben lässt, wollen wir eine Formel für die Geschwindigkeit herleiten.
 
-Da sich der Fluss als Geschwindigkeit mal Dichte beschreiben lässt, wollen wir eine Formel für die Geschwindikeit. 
+Machen wir zunächst ein paar Annahmen über diese.  
 
 Die Geschwindigkeit hängt von der Dichte ab. Ist die Straße leer, so kann mit voller Geschwindigkeit gefahren werden. Ist die Straße befahren, so sollte langsamer gefahren werden, als wenn sie leer ist, also je voller die Straße desto langsamer fährt man. Ist die Straße komplett voll, so ist die Geschwindigkeit 0. 
 
 Dabei kommt der Verkehr zum erliegen, bevor die Fahrzeuge sich berühren, bzw wenn gar keine Autos auf der Straße sind. 
 
-Die Beschleunigung der Autos hängt von der eigenen Geschwindigkeit und der Geschwindigkeit des Vorgängers ab. Fährt der Vorgänger langsamer, so muss gebremst werden, fährt er schneller, kann das Auto selber beschleunigen. Da wir alle nur Menschen sind, haben wir eine Reaktionszeit und stören dadurch den Ablauf der Autos. Dies ist die Sensitivität (wirklich?) und muss dazu gerechnet werden. Aus der Beschleunigung kann dann die Geschwindigkeit des Autos berechnet werden. Diese Formel ist abhängig davon, wie weit die Autos auseinander sind. Dies nutzen wir als Maß für die Dichte und erhalten dann, dass die Geschwindigkeit das gleiche ist, wie die Sensitivität durch die Dichte + eine Konstante, die sich schreiben lässt als Sensitivität durch maximaler Dichte. (Warum ergibt diese Formel sinn?). Falls sehr wenig Autos auf der Straße sind, ändert sich jedoch die Geschwindigkeit nicht auf diese Weise, sondern bleibt bis zu einem kritischen Wert konstant. 
+Nun kann man mittels der der eigenen Beschleunigung, die von der Geschwindigkeit des Vorfahrers abhängt, die Geschwindigkeit ermitteln. Die Herleitung mit Formeln findet sich im Script. Wir erhalten: 
+\begin{align*}
+	v(x,t)= 
+	\begin{cases}
+		v_{max} & \rho \le \rho_{\text{crit}} \\
+		\lambda \left(  \frac{1}{\rho(x,t)} - \frac{1}{\rho_{\text{crit}}}\right) & \rho> \rho_{\text{crit}}
+	\end{cases}
+\end{align*}
 
-Bis jetzt haben wir angenommen, dass die Sensitivität konstant ist. Dies ist jedoch nicht der Fall. Sie ist davon abhängig, wie weit die Autos voneinander entfernt sind. Je weiter die Autos voneinander entfernt sind, desto kleiner ist die Sensitivität (Störungen?) und je dichter die Autos beieinander sind, desto größer ist sie. Damit ergibt sich eine andere Formel für die Geschwindigkeit. Falls die Kritische Dichte nicht erreicht ist, ist sie natürlcih immer noch die maximal erlaubt geschwindigkeit. Sonst ist sie das negative einer Konstante mal der logarithmus von der dichte durch die maximale Dichte.  (Warum ist dies Formel sinnvoll? beim letzten mal wurde für die Dichte eine andere Wahl getroffen). 
+Diese Formel bedeutet nun: Falls weniger Autos, als eine kritische Dichte auf der Straße sind, kann die maximal Geschwindigkeit gefahren werden. 
+Falls dem nicht so ist, gilt: Je mehr Autos auf der Straße sind, also je näher die momentane Dichte an die maximal Dichte herankommt, desto langsamer fahren die Autos. Dies muss aber noch mit der Sensitivität multipliziert werden. \\
 
-Nun können wir den Erhaltungssatz umschreiben (wozu wir die Geschwindigkeit überhaupt berechnet haben). Wir nehmen zunächst an, dass die Dichte linear ist und nur kleine Störungen auftreten. Dies führt dann zu der Erhaltungsformel: Die Zeitliche Veränderung der Störungen in der Dichte ist das gleiche wie das negative des Flusses, der von der ungestörten Dichte abhängt, mal der Veränderung der gestörten Dichte im Ort. 
+Frage: Warum? \\
 
-Bedeutung der Formel? 
+Bis jetzt haben wir angenommen, dass die Sensitivität konstant ist. Dies ist jedoch nicht der Fall. Sie ist davon abhängig, wie weit die Autos voneinander entfernt sind. Je weiter die Autos voneinander entfernt sind, desto kleiner ist die Sensitivität (Störungen?) und je dichter die Autos beieinander sind, desto größer ist sie. Damit ergibt sich eine andere Formel für die Geschwindigkeit. 
+\begin{align*}
+v(x,t)= 
+\begin{cases}
+v_{max} & \rho \le \rho_{\text{crit}} \\
+\-c \frac{\ln \rho(x,t)}{\rho_{\text{max}}} & \rho > \rho_{\text{crit}}
+\end{cases}
+\end{align*}
+
+Falls die kritische Dichte nicht erreicht ist, ist die Geschwindigkeit natürlich immer noch die maximal erlaubt Geschwindigkeit. \\
+
+ Frage: Warum ist dies Formel sinnvoll? beim letzten mal wurde für die Dichte eine andere Wahl getroffen. \\ 
+
+Nun können wir den differentiellen Erhaltungssatz umschreiben, weswegen wir die Geschwindigkeit überhaupt berechnet haben. 
+
+Wir nehmen zunächst an, dass die Dichte linear ist und nur kleine Störungen auftreten. Dies führt dann zu der Erhaltungsformel:
+\begin{align}
+\label{Stoerung}
+	\frac{\partial \rho_1}{\partial t} + q'(\rho_0) \frac{\partial \rho_1}{\partial x}=0
+\end{align}
+mit $\rho(x,t)= \rho_0 + \epsilon \rho_1(x,t)$ wobei $\epsilon$ die Störung ist. \\
+
+Frage: Bedeutung der Formel? 
+
+\subsubsection*{Lineare DGL - gleichförmiger Verkehr}
+
+Wir wollen nun herausfinden, wie die Schwankungen/ Störungen $\rho_1$ aussehen. Also wollen wir eine Lösung der pDGL \ref{Stoerung} finden. Dies können wir mithilfe der Methode der Charakteristik. Wir nehmen an, dass der Ort von der Zeit linear anhängt und wir wissen, dass gilt $x'(t)=c$. Also gilt: $x(t)=x_0+tc$. Diese Geraden nennen wir Charakteristiken. $\rho_1$ bewegt sich konstant entlang dieser Charakteristik. \\
+
+Frage: Warum? \\
+
+Falls wir nun eine Anfangsbedingung gegeben haben mit $\rho_0(x(0),0)= f(x_0)$, dann kann die Lsg von $\rho_1$ einfach berechnet werden: $\rho_1(x,t)= f(x-ct)$. \\
+
+Dies muss ich noch üben!
+
+\subsubsection*{Ausbreitung linearer Dichtewellen}  
+Bei leichtem Verkehr, also wenn die Dichte kleiner ist als die kritische Dichte, bewegen sich Störungen mit positiver Geschwindigkeit.
+ 
+Bei schwerem Verkehr jedoch, bewegen sich die Störungen mit negativer Geschwindigkeit, da die Autos, die in einer Region mit größerer Dichte sind, bremsen müssen. Das dahinter fahrende Fahrzeug ebenfalls. Diese Kettenreaktion wandert nun weiter. \\
+
+Frage: Habe ich das genau verstanden?
+
+\subsubsection*{Numerische Approximation}
+
+Nun wollen wir auch noch eine numerische Lsg der linearen DGL haben. Diese berechnen wir mittels Vorwärtsdifferenzenschema für $\frac{\partial \rho}{\partial t}$ und Rückwärtsdifferenenzenschema für $\frac{\partial \rho}{\partial x}$ auf einem äquidistanten Gitter. Dabei kommt eine Formel heraus, die nur vom vorherigen Orts- und Zeitschritt abhängt. 
+ 
+Nun wollen wir den Bestimmtheitsbereich dieser Approximation bestimmen, also den Bereich auf der x-Achte (Ortsabhängig), vom dem die DGL abhängt.
+ 
+Wenn der Bestimmtheitsbereich und der analytische Abhängigkeitsbereich, der Punkt auf der x-Achse, von dem der zu Approximierende Pkt via Charakteristik abhängt), nicht übereinstimmt, ist unsere Approximation bestimmt nicht korrekt, da der Punkt, von dem der zu approximierende Pkt wirklich abhängt, nicht in der Approximation betrachtet wurde. 
+  
+Also wollen wir, dass der analytische Abhängigkeitsbereich im Bestimmtheitsbereich liegt. Diese Bedingung nennt sich Courant-Friedrich Lewis Bedingung und lässt sich als eine Bedingung an der Zeitschrittweite formulieren: Diese muss kleiner sein als die Ortsschrittweite geteilt durch die Steigung der Charakteristik. 
+  
+\subsubsection*{Ungleichförmiger Verkehr}  
+  
+versteh ich noch gar nicht... wenn zeit in ruhe anschauen.
+
+  
+\subsubsection*{Anfahrvorgang an einer grünen Ampel}
+
+Was will ich hier modellieren? Was soll genau mein Ergebnis sein? Will ich die DGL lösen für dieses $\rho$ mit meiner Anfangsverteilung? Aber was ist dann das Ergebnis? 
+
+\subsubsection*{Unstetige Verkehrsdichte}
 
 
 
