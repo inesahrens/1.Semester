@@ -3,8 +3,37 @@
 \usepackage{german}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{xkeyval}
 \usepackage{amsthm}
 \newtheorem{thm}{Theorem}
+\newsavebox{\boiboite}
+\newcommand{\titre}{Titre}
+\newenvironment{boite}[2][]%
+{%
+	\renewcommand{\titre}{#2}
+	\couleurs[#1]
+	\begin{lrbox}{\boiboite}%
+		\begin{minipage}[!h]{\size}
+		}%
+		{%
+		\end{minipage}
+	\end{lrbox}
+	\begin{center}
+		\begin{tikzpicture}
+		\node [mybox] (box){\usebox{\boiboite}};
+		\node[fancytitle, right=10pt] at (box.north west) {\titre};
+		\end{tikzpicture}
+	\end{center}
+}
+
+\newcommand{\couleurs}[1][]{%
+	\setkeys{boxedtheorem}{#1}
+	\tikzstyle{fancytitle} =[draw=\titleboxcolor, rounded corners, fill=\titlebackground,
+	text= \titlecolor]
+	\tikzstyle{mybox} = [draw=\boxcolor, fill=\background, very thick,
+	rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+}
 
 %opening
 \title{Simulation und Modellierung - Fragen}
@@ -142,12 +171,32 @@ Es sei $A$ mit $|A| > 2$ eine Kantenmenge und $K: P_A^n \to P_A$ eine kollektive
 \begin{equation*}
 \forall (x,y) \in A \times A : x \rho_d y \Rightarrow x \rho y \text{ mit } \rho = K(\rho_1, \dots, \rho_n)
 \end{equation*}
+\begin{proof}
+	Der Beweis gliedert sich in drei Teile:
+	\begin{enumerate}
+		\item Extremallemma: Falls alle Wähler einen Kandidaten auf Top oder Flop setzen, so ist dieser in der kollektiven Auswahlfkt ebenfalls dort.
+		\item Identifikation eines potentiellen Diktators: Es gibt ein Individuum, das die Auswahlfkt kontrolliert
+		\item Dieses Individuum ist der Diktator
+	\end{enumerate}
+\end{proof}
 
 \subsubsection*{Extremalllemma}
 Es gelten die Annahmen aus dem Satz von Arrow. Dann gilt für jede Alternative $y$:\\
 Wenn jeder Wähler die Alternative $y$ als beste (\textit{\glqq Top\grqq}) oder als letzte (\textit{\glqq Flop\grqq}) Alternative wählt, dann muss die kollektive Auswahlfunktion die Alternative $y$ ebenfalls \textit{\glqq Top\grqq} oder \textit{\glqq Flop\grqq} setzen. \\
+\begin{proof}
+	Angenommen die Aussage sei falsch, dann würde die kollektive Auswahlfunktion $K$ die Alternative $y$ nicht an eine Extremalstelle setzen. Es gäbe dann also Alternativen $x,z$, sodass $x \rho y \rho z$. \\
+	
+	Für jedes individuelle Ranking bei dem $x$ vor $z$ ist, setze $z$ nach vorne. Also: 
+	
+	Bei jedem individuellen Ranking $\rho_i$ bei dem $y$ \glqq Top\grqq{} ist, setzen wir $z$ an zweite Stelle. 
+	
+	Bei jedem individuellen Ranking $\rho_i$ bei dem $y$ \glqq Flop\grqq{} ist, setzen wir $z$ auf \glqq Top\grqq{}. \\
+	
+	Aufgrund der Unabhängigkeit irrelevanter Alternativen gilt immer noch  $x \rho y \rho z$. \\
+	Es ist jedoch bei jeder individuellen Präferenz $i$ $z$ vor $x$. \\
+	Aufgrund der Pareto-Bedingung muss dann auch $z \rho x$ gelten. Dies führt dann jedoch zu $x \rho y \rho z \rho x$. Dies ist ein Widerspruch zur Transitivität von $\rho$ Widerspruch.
+\end{proof}
 
-To do: beide Beweise ansehen
 
 \subsection*{Was ist eine strategische Manipulation, Top Menge, Diktator einer Entscheidungsfkt}
 
@@ -211,7 +260,7 @@ wobei $a$ der eindeutig bestimmte Kandidat $a \rho_i b$ für alle $b \neq a$ ist
 	\[ e(\rho_1^S, \dots, \rho^S_n) \in S \]
 \end{thm}
 \begin{proof}
-	Übung. %TODO: Beweis ergänzen (copy & paste ausm Internetz)
+	Sei $a \in S$. Da e surjektiv ist, existieren $\rho_1', \dots \rho_n' \in P_A$, sodass $e(\rho_1', \dots \rho_n')=a$. Nun ändere Schrittweise für $i=1, \dots, n $ die Relation $\rho_i'$ zu $\rho_i^S$. Zu keinem Zeitpunkt kann dabei $b \notin S$ als Ergebnis von e entstehen, da e monoton ist.  
 \end{proof}
 
 \begin{thm}
@@ -258,17 +307,233 @@ wobei $a$ der eindeutig bestimmte Kandidat $a \rho_i b$ für alle $b \neq a$ ist
 \section{Informationssuche im Netz}
 
 \subsection*{Was ist ein Page Rank Vektor, ein Webgraph und eine Hyperlinkmatrix? (auch am geg. Bsp erklären können)}
+\subsubsection*{Page Rank Vektor}
+Der Page Rank Vektor soll die Wichtigkeit aller Webseiten bzgl. einer Suchanfrage beschreiben. Jeder Eintrag im Vektor gehört zu einer Webseite. Je höher der Wert, desto wichtiger die Seite. Er beschreibt also die Reihenfolge der Webseiten, wie sie ein Nutzer sieht, wenn er eine Suchanfrage stellt. 
+Man kann den Page Rank Vektor auf unterschiedliche Arten berechnen.
+Die Grundlegende Idee ist es, dass eine Webseite wichtiger ist, je mehr Links auf sie zeigen.  
+Wenn man den Page Rank aus einer anderen Perspektive betrachtet, gibt er die Wkeit an, mit der sich ein Nutzer auf einer Webseite befindet. 
+
+\subsubsection*{Webgraph}
+Ein Webgraph $G=(S,E)$ beschreibt, die Verlinkung unter allen Webseiten. Dabei ist $S$ die Knotenmenge, also die Menge der Webseiten und $E$ Kantenmenge, also die Menge aller Links. Dabei bedeutet $A \rightarrow B$, dass Webseite A einen Link hat, der auf die Webseite B verweist. 
+
+\subsubsection*{Hyperlinkmatrix}
+Die Hyperlinkmatrix beschreibt die Verlinkung der Webseiten untereinander. 
+\begin{equation*}
+H \in \mathbb{R}^{n \times m} \qquad h_{ij} = 
+\begin{cases}
+\frac{1}{|S_i|} & S_i \text{ besitzt einen Link auf }S_j \\
+0 & \text{sonst}
+\end{cases}
+\end{equation*}
+ $|S_i|$ ist die Anzahl der Hyperlinks, die von der Website $S_i$ auf andere Webseiten verweisen.
+ 
+ Am besten kann man dies an einem Bsp erklären: 
+
+Grafik aus dem Script.
+
+\begin{equation}
+H = 
+\begin{pmatrix}
+0 & \frac{1}{3} & \frac{1}{3} & \frac{1}{3} \\
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0 \\
+\frac{1}{2} & 0 & \frac{1}{2} & 0
+\end{pmatrix}
+\end{equation}
 
 \subsection*{Was ist ein Zufallssurfer? }
+Ein Zufallssurfer ist ein Websurfer, der zufällig auf eine Seite gelangt und sich von dort aus zufällig mit einem bestimmten Schema weiterbewegt z.b. könnte das Schema sein, dass er immer zufällig einen Link auf der Seite wählt. 
 
 \subsection*{Was ist eine Markovkette/ Markovprozess? }
+Markov Kette = Markov Prozess
+
+Wir gehen davon aus, dass wir zum k-ten Zeitpunkt einen bestimmten Zustand erreicht haben. Nun wollen wir die Wkeit für ein bestimmtes Ereignis zum nächsten Zeitpkt bestimmen. Falls diese Wkeit nicht davon abhängig ist, welche Ereignisse vor dem k-ten Zeitpunkt eingetreten sind, dann nennen wir den stochastischen Prozess einen Markowprozess.
+Formal: 
+Sei $t_1 < t_2 < \dots < t_{k+1} \in \mathcal{T}$ eine Folge von Zeitpunkten, dann ist X(t) ein Markovprozess, falls
+$ \mathbb{P}[X_{t_{k+1}} = x_{k+1} | X_{t_k} = x_{k}, \dots , X_{t_1} = x_{1} ] = \mathbb{P} [X_{t_{k+1}} = x_{t_{k+1}} | X_{t_k} = x_{t_k} ] $
+
+Wenn wir die Webseiten als Ereignisse und die diskreten Zeitpunkte betrachten ist das wechseln von einer Webseite zu einer anderen ein Markowprozess, da er nicht davon abhängt, welche Seiten der Nutzer vorher besucht hat. Die Links auf einer Seite verändern sich dadurch nicht
 
 \subsection*{Was ist eine Übergangsmatrix/ Markoveigenschaft?}
 
-\subsection*{Wie kann man eine Markowkette für das Google-Problem benutzen? }
+\subsubsection*{Übergangsmatrix}
+Die Übergangsmatrix beschreibt, ähnlich wie die Hyperlinkmatrix, die Verlinkung der Webseiten untereinander. Nur kommt hier ein Term hinzu, der in Kraft tritt, sobald eine Webseite überhaupt keinen Link hat. Dann springt der Zufallssurfer gleichverteilt auf eine beliebige Webseite.
+ 
+Formal:
+Sei
+$ \mathbb{P}[X_{k+1} = S_j | X_k = S_i ]$  die Wahrscheinlichkeit im $k$-ten Zeitschritt von einer Seite $S_i \in E$ auf $S_j \in E$ zu wechseln. Dieses ist, dadurch dass wir eine Markowkette haben, Unabhängig vom Zeitpunkt $k$. Definiere nun
+\begin{align*}
+ \mathbb{P} [X_1 = S_j | X_0 = S_i ] =
+\begin{cases}
+\frac{1}{|S_i|}		& S_i \text{ besitzt einen Link zu } S_j \\
+\frac{1}{n}			& S_i \text{ besitzt überhaupt keinen Link} \\
+0					& \text{sonst}
+\end{cases}
+\end{align*}
+Damit können wir die \textbf{Übergangsmatrix der Markov-Kette} aufstellen:
+
+\begin{equation*}
+U \in \mathbb{R}^{n,m} \qquad u_{ij} := \mathbb{P} [X_1 = S_j | X_0 = S_i ]
+\end{equation*}
+Die Matrix $U$ ist eine \textbf{stochastische Matrix}, das heißt
+\[ u_{ij} \geq 0 \text{ und } \sum_{j=1}^n u_{ij} =1 \]
+
+\subsubsection*{Markov Eigenschaft}
+Die Markov Eigenschaft, ist die Eigenschaft einer Markov Kette, dass 
+$ \mathbb{P}[X_{t_{k+1}} = x_{k+1} | X_{t_k} = x_{k}, \dots , X_{t_1} = x_{1} ] = \mathbb{P} [X_{t_{k+1}} = x_{t_{k+1}} | X_{t_k} = x_{t_k} ] $
+
+\subsection*{Wie kann man eine Markov Kette für das Google-Problem benutzen? }
+Markov Ketten kann man für das Google Problem nutzen, da die Modellierung mit der Übergangsmatrix die Markov Eigenschaft erfüllt. 
+
+Dabei ist nun $\pi_j^{(k)} = \mathbb{P} [X_k = S_j] $
+die Wahrscheinlichkeit, dass der Zufallssurfer im $k$-ten Schritt auf $S_j$ ist. 
+Mit der Morkov Eigenschaft gilt, dass $\mathbb{P}[X_n=j]= \sum\limits_{i \in I} \mathbb{P}[X_0 = i] \mathbb{P}[X_n=j|x_0=i]$.
+Dies kann man benutzen, um zu zeigen, dass  
+\begin{equation*}
+\left( \pi^{(k)} \right)^T
+= \left( \pi^{(k-1)} \right)^T U
+= \dotsc 
+= \left( \pi^{(0)} \right)^T U^k
+\end{equation*}
+gilt, wobei U wie vorhin die Übergangsmatrix ist. 
 
 \subsection*{Perron Frobenius Theorie erklären können und die entsprechenden Definitionen beherrschen, sowie Satz IV.1, Satz IV.2, Lemma IV.4, Satz IV.5 erklären und beweisen können}
+Die Perron Frobenius Theorie beschäftigt sich mit der Frage, ob $A^T x = x$ eine eindeutige Lösung besitzt. \\
 
+hie am besten erst später eine genaue erklärung einfügen. \\
+
+\subsubsection*{einfacher, strikt dominanter Eigenwert}
+$|\lambda_1|=1$ ist der betragsmäßig größte EW und ist eindeutig.
+
+\subsubsection*{Theorem IV.1}
+
+Sei $\lambda_1$ ein einfacher und strikt dominanter Eigenwert der Matrix $A \in \mathbb{C}^{n \times n}$ mit dem zugehörigen (Rechts-)Eigenvektor $v_1$ und Linkeigenvektor $w_1$ mit $w_1^T v_1 = 1$. Dann gilt für jede Lösung von \[ x^{k+1} = A x^k \qquad k=0,1,2,\dotsc \]
+dass
+\begin{equation*}
+\lim_{k \to \infty} \frac{x^k}{\lambda_1^k} = (w_1^T x^0 ) v_1
+\end{equation*}
+
+\begin{proof}
+	Wir führen den Beweis für diagonalisierbare Matrizen $A$ durch (der allgemeine Beweis ist möglich mit Hilfe der Jordan-Normalform). \\
+	Sei also $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dotsc, \lambda_n$ und $|\lambda_1| > |\lambda_i|$, $i=2, \dots, n$, dann folgt
+	\begin{equation*}
+	\lim_{k \to \infty} \frac{\lambda_i^k}{\lambda_1^k} = 0 \qquad i=2,3,4, \dotsc
+	\end{equation*}
+	Zusammen mit \eqref{loesung_x_k_eigenbasis} folgt also
+	\begin{equation*}
+	\lim_{k \to \infty} \frac{x^k}{\lambda_1^k} = \beta_1 v_1
+	\end{equation*}
+	Für die (Rechts-)Eigenvektoren $v_1, \dotsc, v_n$ von A gilt
+	\begin{equation*}
+	w_1^T A v_i = w_1^T \lambda_i v_i = \lambda_1 w_1^T v_i
+	\Rightarrow
+	(\lambda_i - \lambda_1) w_1^T v_i = 0
+	\end{equation*}
+	Wegen $\lambda_i - \lambda_1 \neq 0$ folgt $w_1^T v_2 = \dots = w_1^T v_n = 0$ und damit
+	\[ w_1^T x^0 = \beta_1 w_1^T v_1 = \beta_1 \]
+\end{proof}
+
+\subsubsection*{Positive Matrizen}
+Eine Matrix $A$ heißt \textbf{positiv}, falls alle Einträge in $A$ positiv sind. \\
+$\sigma(A) = \{ \lambda \in \mathbb{C} | Ker(A - \lambda I) \neq 0 \}$ heißt \textbf{Spektrum} der Matrix $A$. \\
+$\rho(A) = \max \{|\lambda| | \lambda \in \sigma(A) \}$ heißt \textbf{Spektralradius} von $A$.
+
+\subsubsection*{Satz von Perron (Satz IV.2)}
+Sei $A>0$ mit Spektralradius $\rho(A)=1$, dann gilt
+\begin{enumerate}
+	\item Der Spektralradius $\rho(A)=1$ ist Eigenwert
+	\item Der Eigenwert $\lambda = 1$ ist der einzige auf dem Einheitskreis
+	\item Zu $\lambda = 1$ exisiteren positive Rechts- und Linkseigenvektoren
+	\item Der Eigenwert $\lambda=1$ hat algebraische Vielfachheit 1
+	\item Außer dem Rechtseigenvektor $v_1$ gibt es keine weiteren nicht negativen Eigenvektoren von $A$ (bis auf skalare Vielfache)
+\end{enumerate}
+\begin{proof}~
+	\begin{enumerate}
+		\item Betrachte zunächst mögliche Eigenvektoren $x$ zum Eigenwert $\lambda$ auf dem Einheitskreis $|\lambda| = 1$. Für diese gilt
+		\begin{equation} \label{proof_perron1}
+		|x| = |\lambda| |x| = |\lambda x | = |Ax| \leq |A| |x| = A |x|
+		\end{equation} 
+		Falls solche Eigenvektoren $x \neq 0$ existieren, so gilt
+		\[ z := A |x| > 0 \]
+		Definiere $y:=z - |x|$, dann kann man \eqref{proof_perron1} zu
+		$y \geq 0$ umformulieren. \\
+		Nehmen wir nun an, dass $y \neq 0$ gelten würde, so folgt
+		\[ Ay > 0 \]
+		Dann existiert auch $\tau>0$, sodass $Ay > \tau z$ womit folgt
+		\begin{equation*}
+		Ay = Az - A|x| = Az - z > \tau z  \Leftrightarrow Az > (1+\tau) z
+		\end{equation*}
+		Setze $B := \frac{1}{1+\tau} A$, dann gilt
+		\[ Bz > z \]
+		Wiederholtes Anwenden ergibt schließlich
+		$B^k z > z$ und mit $\rho(B) = \frac{1}{1+\tau} < 1$ folgt
+		\[ \lim_{k \to \infty} B^k z = 0 > z \]
+		Dies steht im Widerspruch zu $z>0$ bzw. $y \neq 0$ \hfill. Widerspruch \\
+		Also ist 
+		\[y = A|x| - |x| = 0 \]
+		und damit existiert ein Eigenwert $\lambda = 1$
+	\item Die Widerspruchsannahme $y \neq 0$ ($A|x| - |x| \neq 0$) schloss $\lambda = 1$ mit ein. Somit ist $\lambda = 1 \in \mathbb{R}$  einziger Eigenwert auf dem Einheitskreis.
+	\item Wegen $|x| = A|x| > 0$ sind alle Komponenten positiv. Dies gilt auch für Links- Rechtseigenvektoren gleichermaßen, da auch $A^T$ positiv ist
+	\item \textit{Übung}
+	\item \textit{Übung}
+\end{enumerate}
+\end{proof}
+
+\subsubsection*{irreduzibel}
+Sei $A \in \mathbb{R}^{n \times n}$. \\
+Eine Matrix $P \in \mathbb{R}^{n \times n}$ heißt \textbf{Permutationsmatrix}, falls $p_{ij} \in \{0,1\}$ und jede Spalte und Zeile genau eine Eins enthält. \\
+$A$ heißt \textbf{reduzibel}, falls es eine Permutationsmatrix $P$ gibt, sodass
+\[ P^T A P = 
+\begin{pmatrix}
+C & D \\
+0 & F 
+\end{pmatrix}  \]
+wobei die Blockmatrizen $C$ und $F$ quadratisch sein müssen. \\
+Falls kein solcher \textit{Nullblock} existiert, so ist die Matrix \textbf{irreduzibel}.
+
+\subsubsection*{Charakterisierung der Irreduzibilität: Lemma IV.4}
+Falls $A \in \mathbb{R}^{n \times n}, A \geq 0$ irreduzibel ist, dann gilt
+\[ (I + A)^{n-1} > 0 \]
+\begin{proof}
+	Seien $A^k = (a_{ij}^{(k)} )_{i,j = 1, \dotsc, k}$ die Potenzen der nicht-negativen Matrix $A$. Elementweise gilt dann
+	\begin{equation*}
+	a_{ij}^{(k)} = \sum_{l_1, \dotsc, l_k} a_{i l_1} \cdot, a_{l_1 l_2} \dots a_{l_{k-1} j}
+	\end{equation*}
+	Diese Elemente verschwinden, falls mindestens einer der Faktoren verschwindet, also falls beim zugehörigen Graphen kein Pfad vom Knoten $i$ zu $j$ existiert. \\
+	Falls jedoch dieser Graph existiert, so ergibt es mindestens eine Indexfolge $a_{i l^*_1} >0, \dotsc, a_{l^*_{k-1} j} >0$. Bei einer irreduziblen Matrix tritt dieser Fall spätestens nach durchlaufen aller Knoten auf, also $n-1$:
+	\begin{equation*}
+	\left[ (I + A)^{n-1} \right]_{ij} = \left[ \sum_{k=0}^{n-1} \begin{pmatrix} n-1 \\ k \end{pmatrix} A^k \right]_{ij} = \sum_{k=0}^{n-1} \begin{pmatrix} n-1 \\ k \end{pmatrix} a_{ij}^{(k)} > 0
+	\end{equation*}
+	\end{proof}
+
+\subsubsection*{Satz von Perron Frobenius. Satz IV.5}	
+Es sei $A \geq 0$ eine irreduzible stochastische Matrix. Dann gilt:
+\begin{enumerate}
+	\item Der Perron-Eigenwert $\lambda = 1$ ist einfach
+	\item Zu $\lambda=1$ existiert ein Linkseigenvektor $\pi^T > 0$
+\end{enumerate}
+
+
+\begin{proof}
+	\begin{enumerate}
+		\item
+		Sei $A$ stochastisch, also $Ae = e$ mit $e^T = (1, \dotsc, 1)^T$ Rechtseigenvektor zum Eigenwert $\lambda = 1$ ist. Es gilt
+		\begin{equation*}
+		|\lambda(A)| \leq \rho(A) \leq \Vert A \Vert_\infty \leq 1
+		\end{equation*}
+		wobei $\Vert \cdot \Vert_\infty$ die Maximumsnorm ist. \\
+		Zeige nun: Der Eigenwert ist einfach. Betrachte dazu
+		\[ B := (I + A)^{n-1} > 0\]
+		Seien nun $\lambda$ die Eigenwerte von $A$, dann sind die Eigenwerte von $B$ gerade {\nolinebreak $(1+\lambda)^{n-1}$}. \\
+		\begin{equation} \label{proof_frobenius1}
+		\mu = \rho(B) = \max_{|\lambda| < 1} |1+ \lambda|^{n-1} = 2^{n-1}
+		\end{equation}
+		Dieser Eigenwert ist einfach und liegt auf dem Kreis mit Radius $\mu$. Das Maximum in \eqref{proof_frobenius1} wird für $\lambda = 1$ angenommen. Also sind Multiziplität des Eigenwertes $\mu$ von $B$ und des Eigenwertes $\lambda$ von $A$ gleich.	
+\item Jeder Eigenvektor zum Eigenwert $\lambda$ von $A$ ist auch zugleich Eigenvektor zum Eigenwert $(1 + \lambda)^{n-1}$ von $B$.\\
+Sei $x$ Eigenvektor zu $\mu$ von $B$ und zugleich $\lambda=1$ zu $A$, dann ist $x = |x| > 0$ (aufgrund des Satzes \ref{Perron}). 
+Durch Anwendung auf den Links-Eigenvektor erhält man mit Satz \ref{Perron}c) die Behauptung.
+\end{enumerate}
+\end{proof}
 \subsection*{Erklären können, wie der Page Rank Vektor mittels Vektoriteration berechnet wird}
 
 \subsection*{Konvergenzgeschwindigkeit/ Sensitivitätsanalyse (Satz IV.8 erklären und beweisen können), Satz IV.9/ satz IV.10 erklären und grobe Beweisskizze}
