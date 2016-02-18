@@ -182,7 +182,13 @@ Ziel dieses Kapitels ist es, eine Idee davon zu bekommen, wie Suchmaschinen die 
 
 Die Idee ist es, dass wir einen Index mit allen relevanten Webseiten haben. Zu jeder Webseite listen wir alle möglichen Suchbegriffe auf. Dieses Verfahren ist die Suche im Index.
 
-Die Suche im invertierten Index ist nun, dass zu jedem möglichen Suchbegriff alle relevanten Webseiten aufgelistet werden. Diese Webseiten müssen nun anhand einer Ratingfunktion gewichtet werden. Dabei sollte die Relevanz und Qualität einer Webseite eine Rolle spielen, ebenso wie die Sichtbarkeit des Suchbegriffes. 
+Die Suche im invertierten Index ist nun, dass zu jedem möglichen Suchbegriff alle relevanten Webseiten aufgelistet werden. Diese Webseiten müssen nun anhand einer Ratingfunktion gewichtet werden. Dabei sollte die Relevanz und Qualität einer Webseite eine Rolle spielen, ebenso wie die Sichtbarkeit des Suchbegriffes. \\ 
+
+Das Besondere in diesem Kapitel ist es, dass die Mathematik selber die Lösung für das Problem ist. 
+Der Begriff des Page Rank Vektors ist von zentraler Bedeutung. Er beschreibt die Wichtigkeit der einzelnen Seiten. 
+Zunächst erstellen wir ein Modell, bei dem ein websurfer von einer Seite zur nächsten springt, indem er einen Link auf einer Seite folgt. Hier ist das Problem, dass er nichts tun kann, wenn kein Link vorhanden ist. Also verhält sich im nächsten Modell der Websurfer so, dass er, falls kein Link da ist, gleichverteilt auf eine beliebige Seite springt. Hier ist das Problem, dass es Zykel geben kann, aus denen der Websufer nicht mehr herauskommt. Also kann er in jedem Schritt mit einer bestimmten Wkeit, auch wenn Links vorhanden sind, zu einer beliebigen Seite springen. Dieses letzte Modell ist das beste von allen, die wir kennenlernen. 
+Diese Modelle kann man als Eigenwert problem umschreiben. Die Existenz und Eindeutigkeit einer Lösung bestimmen wir mittels Markov Ketten und der Perron Frobenius Theorie. 
+Schließlich wollen wir auch noch die Lösung des Eigenwert Problems bestimmen. Dies können wir durch Vektoriteratiion Bzw. lösen eines Gleichungssystems.      
 
 \subsection{Page-Rank und Web-Graph}
 
@@ -205,7 +211,7 @@ To do: Beschreiben, wie es geht, falls zeit \\
 
 Betrachten wir nun die Hyperlinkmatrix von einem Web Graphen. Der $ij$-te Eintrag ist das Inverse der Anzahl der Links, die vom Graphen i ausgehen, falls die Webseite $S_i$ einen Link auf die Seite $S_j$ hat und 0 sonst. 
 
-Damit kann die Gleichung \ref{PRV} als Eigenwertproblem ausgedrückt werden: Der Pagerankvektor ist das gleiche wie die transponierte Hyperlinkmatrix mal dem Pagerankvektor. Also wird der Pagerankvektor, der der Eigenvektor zum Eigenwert 1 ist, gesucht. 
+Damit kann \eqref{PRV} als Eigenwertproblem ausgedrückt werden: Der Pagerankvektor ist das gleiche wie die transponierte Hyperlinkmatrix mal dem Pagerankvektor. Also wird der Pagerankvektor, der der Eigenvektor zum Eigenwert 1 ist, gesucht. 
 
 Dabei erhält man leider nicht zu jedem Webgraphen eine eindeutige Lösung. Dieses Problem entsteht, wenn eine Webseite existiert, die auf keine anderen Webseiten zeigt. 
 
@@ -241,7 +247,7 @@ Die Matrix U ist stochastisch, da die Summe der Einträge einer Zeile 1 ist und 
 
 Aus der Markoweigenschaft folgt nun, dass ${\pi^{(k)}}^T= {\pi^{(k-1)}}^T U = \dots {\pi^{(0)}}^T U^k$ gilt. \\
 
-Frage: Was ist die Markow eigenschaft und warum gilt das? \\
+Frage: Warum gilt das? \\
 
 Mit diesem Wissen wollen wir nun den Pagerank Vektor $\pi$ bestimmen, für den gelten soll, dass $\pi^T = \pi^T U$. Außerdem wollen wir, dass ein paar Eigenschaften für $\pi$ gelten. 
 
@@ -285,9 +291,7 @@ Frage: Später haben wir immer noch n. Warum ist es dann besser? \\
 
 Deshalb wenden wir ein iteratives Verfahren an: $\pi^{(k+1)} = G^T \pi^{(k)}$. Da G aber voll besetzt ist, ist der Rechenaufwand zu groß. Deshalb ersetzten wir wieder G durch seine Definition und haben dann das Verfahren $\pi^{(k+1)}=\alpha H^T \pi^{(k)} + \frac{e(\alpha a^T \pi^{(k)}) + 1 - \alpha}{n}$ 
 
-Bis jetzt haben wir nur als Anfangsverteilung die Gleichverteilung betrachtet ($e^T$ in der Google Matrix). Diese wollen wir nun durch eine beliebige Anfangsverteilung $\nu^T$ ersetzen. Daraus ergibt sich: $(I- \alpha U) \pi^T = (1-\alpha)\nu^T$ \\
-
-Frage: Wozu brauche ich diese neue Formel mit der Anfangsverteilung, warum nicht das gleiche iterative verfahren, wie vorher? 
+Bis jetzt haben wir nur als Anfangsverteilung die Gleichverteilung betrachtet ($e^T$ in der Google Matrix). Diese wollen wir nun durch eine beliebige Anfangsverteilung $\nu^T$ ersetzen. Daraus ergibt sich: $(I- \alpha U) \pi^T = (1-\alpha)\nu^T$ 
 
 \subsubsection*{Potenzmethode} 
 
@@ -305,25 +309,23 @@ Normalerweise ist $\lambda_2$ der Übergangsmatrix ungefähr 1. Dies führt dazu
 
 Die bisherigen Überlegungen in Bezug auf den Fehler bezogen sich nicht auf die Reihenfolge in $\pi$. Dies ist fragwürdig, da genau dies wichtig ist. Deshalb könnte man noch andere Fehlermaße betrachten.
 
-\subsubsection{Sensitivitätsanalyse}
+\subsection{Sensitivitätsanalyse}
 
 In diesem Kapitel gehen wir der Frage nach, wie empfindlich der Page Rank Vektor auf Änderungen von dem Parameter $\alpha, H $ und der Anfangsverteilung $\nu^T$ reagiert. 
 
-\subsection*{Sensitivität bzgl $\alpha$}
+\subsubsection*{Sensitivität bzgl $\alpha$}
 Um die Sensitivität, also Veränderungen bzgl $\alpha$ festzustellen, leiten wir den Pagerank Vektor nach $\alpha$ ab. Es ergibt sich, dass $\left| \frac{d \pi_j(\alpha)}{d \alpha}\right| \le \frac{1}{1 - \alpha} $ und deswegen $\left\| \frac{d \pi(\alpha)}{d \alpha} \right\| \le \frac{2}{1 - \alpha} $ \\
 
 Frage: Müsste statt der 2 da kein n stehen? \\
-
-Frage: Warum ist sensitivität bzgl $\alpha $ wichtig? \\
 
 Falls $\alpha$ nicht zu nahe bei 1 liegt, reagiert der Page Rank Vektor nicht all zu sensitiv auf Änderungen. Für $\alpha \rightarrow 1$ wird die Abschätzung unbrauchbar. Es zeigt sich sogar, dass der Pagerank Vektor immer empfindlicher auf Änderungen reagiert, je näher $\alpha$ bei 1 liegt. 
 
 Betrachten wir nun ein Update der Google Matrix und den daraus resultierenden neuen Page Rank Vektor $\tilde{\pi}^T$. Dann gilt $\| \pi - \tilde{\pi}\|_1 \le \frac{2 \alpha}{1 - \alpha } \sum\limits_{i \in U} \pi_i$, wobei U die Menge aller Seiten ist, die aktualisiert wurden. Diese Abschätzung ist hilfreich, falls $\alpha$ klein ist und die Summe des Page Ranks ebenfalls.  
 
-\subsection*{Sensitivität bzgl $H$}
+\subsubsection*{Sensitivität bzgl $H$}
 Diese Sensitiviätsanalyse ist besonders wichtig, da sich das Internet ständig verändert. Man kann zeigen, dass $\frac{d \pi^T(h_{ij})}{d h_{ij}}= \alpha \pi_i (e_j^T-\nu^T)(I-\alpha U)^{-1}$ gilt. Der Term $\pi_i$ zeigt, dass Veränderungen auf wichtigen Seiten mehr Einfluss haben als Veränderungen auf unwichtigen. 
 
-\subsection*{Sensitivität bzgl $\nu^T$}
+\subsubsection*{Sensitivität bzgl $\nu^T$}
 
 Betrachten wir zunächst $\nu$ genauer. Jeder Nutzer von Google hat unterschiedliche Päferenzen, also personalisieren wir $\nu$, indem wir für $\nu$ unterschiedliche Kategorien einführen wie Kunst, Wirtschaft, Fernsehen etc. Der Pagerank Vektor hängt nun mit unterschiedlichen Gewichten von diesem Personalisierten Anfangswerten ab. Also $\pi^T = \beta_1 \pi^T(\nu_1^T) + \dots  + \beta_{16} \pi^T(\nu_{16}^T)$ mit $\sum_{i=1}^{16}\beta_i = 1$
 
@@ -357,13 +359,9 @@ Es gibt makroskopische und mikroskopische Verkehrssimulation. Die Makroskopische
 
 Beginnen wir mit der makroskopischen Verkehrssimulation. 
 
-Zur Betrachtung des Verkehrs brauchen wir einige Größen: Die Verkehrsdichte beschreibt, wie dicht die Fahrzeuge auf der Straße stehen, also wie viele Fahrzeuge pro Km auf der Straße sind. Der Verkehrsfluss beschreibt, wie viele Fahrzeuge pro Zeiteinheit einen Kontrollpunkt passieren. \\
+Zur Betrachtung des Verkehrs brauchen wir einige Größen: Die Verkehrsdichte beschreibt, wie dicht die Fahrzeuge auf der Straße stehen, also wie viele Fahrzeuge pro Km auf der Straße sind. Der Verkehrsfluss beschreibt, wie viele Fahrzeuge pro Zeiteinheit einen Kontrollpunkt passieren.
 
-Frage: Wofür wollen wir ein Modell?  Was wollen wir damit aussagen über den Verkehr? \\
-
-Zunächst treffen wir Annahmen über den Verkehr. Einmal ist die Fahrzeugdichte begrenzt durch eine minimale Kapazität 0 und eine maximale Kapazität, also Stoßstange an Stoßstange. Außerdem dürfen die Fahrzeuge nicht rückwärts fahren, wir befinden uns auf einer Autobahn, und die Autos haben eine maximale Geschwindigkeit \\
-
-Frage: wo wird die wichtig? \\
+Zunächst treffen wir Annahmen über den Verkehr. Einmal ist die Fahrzeugdichte begrenzt durch eine minimale Kapazität 0 und eine maximale Kapazität, also Stoßstange an Stoßstange. Außerdem dürfen die Fahrzeuge nicht rückwärts fahren, wir befinden uns auf einer Autobahn, und die Autos haben eine maximale Geschwindigkeit.
 
 Desweiteren nehmen wir an, dass der Verkehrsfluss stetig differenzierbar ist.
 
@@ -395,9 +393,7 @@ Nun kann man mittels der der eigenen Beschleunigung, die von der Geschwindigkeit
 \end{align*}
 
 Diese Formel bedeutet nun: Falls weniger Autos, als eine kritische Dichte auf der Straße sind, kann die maximal Geschwindigkeit gefahren werden. 
-Falls dem nicht so ist, gilt: Je mehr Autos auf der Straße sind, also je näher die momentane Dichte an die maximal Dichte herankommt, desto langsamer fahren die Autos. Dies muss aber noch mit der Sensitivität multipliziert werden. \\
-
-Frage: Warum? \\
+Falls dem nicht so ist, gilt: Je mehr Autos auf der Straße sind, also je näher die momentane Dichte an die maximal Dichte herankommt, desto langsamer fahren die Autos. Dies muss aber noch mit der Sensitivität multipliziert werden.
 
 Bis jetzt haben wir angenommen, dass die Sensitivität konstant ist. Dies ist jedoch nicht der Fall. Sie ist davon abhängig, wie weit die Autos voneinander entfernt sind. Je weiter die Autos voneinander entfernt sind, desto kleiner ist die Sensitivität (Störungen?) und je dichter die Autos beieinander sind, desto größer ist sie. Damit ergibt sich eine andere Formel für die Geschwindigkeit. 
 \begin{align*}
@@ -408,9 +404,7 @@ v_{max} & \rho \le \rho_{\text{crit}} \\
 \end{cases}
 \end{align*}
 
-Falls die kritische Dichte nicht erreicht ist, ist die Geschwindigkeit natürlich immer noch die maximal erlaubt Geschwindigkeit. \\
-
- Frage: Warum ist dies Formel sinnvoll? beim letzten mal wurde für die Dichte eine andere Wahl getroffen. \\ 
+Falls die kritische Dichte nicht erreicht ist, ist die Geschwindigkeit natürlich immer noch die maximal erlaubt Geschwindigkeit. 
 
 Nun können wir den differentiellen Erhaltungssatz umschreiben, weswegen wir die Geschwindigkeit überhaupt berechnet haben. 
 
@@ -419,15 +413,11 @@ Wir nehmen zunächst an, dass die Dichte linear ist und nur kleine Störungen au
 \label{Stoerung}
 	\frac{\partial \rho_1}{\partial t} + q'(\rho_0) \frac{\partial \rho_1}{\partial x}=0
 \end{align}
-mit $\rho(x,t)= \rho_0 + \epsilon \rho_1(x,t)$ wobei $\epsilon$ die Störung ist. \\
-
-Frage: Bedeutung der Formel? 
+mit $\rho(x,t)= \rho_0 + \epsilon \rho_1(x,t)$ wobei $\epsilon$ die Störung ist.
 
 \subsubsection*{Lineare DGL - gleichförmiger Verkehr}
 
-Wir wollen nun herausfinden, wie die Schwankungen/ Störungen $\rho_1$ aussehen. Also wollen wir eine Lösung der pDGL \ref{Stoerung} finden. Dies können wir mithilfe der Methode der Charakteristik. Wir nehmen an, dass der Ort von der Zeit linear anhängt und wir wissen, dass gilt $x'(t)=c$. Also gilt: $x(t)=x_0+tc$. Diese Geraden nennen wir Charakteristiken. $\rho_1$ bewegt sich konstant entlang dieser Charakteristik. \\
-
-Frage: Warum? \\
+Wir wollen nun herausfinden, wie die Schwankungen/ Störungen $\rho_1$ aussehen. Also wollen wir eine Lösung der pDGL \ref{Stoerung} finden. Dies können wir mithilfe der Methode der Charakteristik. Wir nehmen an, dass der Ort von der Zeit linear anhängt und wir wissen, dass gilt $x'(t)=c$. Also gilt: $x(t)=x_0+tc$. Diese Geraden nennen wir Charakteristiken. $\rho_1$ bewegt sich konstant entlang dieser Charakteristik.
 
 Falls wir nun eine Anfangsbedingung gegeben haben mit $\rho_0(x(0),0)= f(x_0)$, dann kann die Lsg von $\rho_1$ einfach berechnet werden: $\rho_1(x,t)= f(x-ct)$. \\
 
@@ -436,9 +426,7 @@ Dies muss ich noch üben!
 \subsubsection*{Ausbreitung linearer Dichtewellen}  
 Bei leichtem Verkehr, also wenn die Dichte kleiner ist als die kritische Dichte, bewegen sich Störungen mit positiver Geschwindigkeit.
  
-Bei schwerem Verkehr jedoch, bewegen sich die Störungen mit negativer Geschwindigkeit, da die Autos, die in einer Region mit größerer Dichte sind, bremsen müssen. Das dahinter fahrende Fahrzeug ebenfalls. Diese Kettenreaktion wandert nun weiter. \\
-
-Frage: Habe ich das genau verstanden?
+Bei schwerem Verkehr jedoch, bewegen sich die Störungen mit negativer Geschwindigkeit, da die Autos, die in einer Region mit größerer Dichte sind, bremsen müssen. Das dahinter fahrende Fahrzeug ebenfalls. Diese Kettenreaktion wandert nun weiter. 
 
 \subsubsection*{Numerische Approximation}
 

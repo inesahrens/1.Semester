@@ -3,37 +3,9 @@
 \usepackage{german}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{tikz}
-\usepackage{xkeyval}
 \usepackage{amsthm}
 \newtheorem{thm}{Theorem}
-\newsavebox{\boiboite}
-\newcommand{\titre}{Titre}
-\newenvironment{boite}[2][]%
-{%
-	\renewcommand{\titre}{#2}
-	\couleurs[#1]
-	\begin{lrbox}{\boiboite}%
-		\begin{minipage}[!h]{\size}
-		}%
-		{%
-		\end{minipage}
-	\end{lrbox}
-	\begin{center}
-		\begin{tikzpicture}
-		\node [mybox] (box){\usebox{\boiboite}};
-		\node[fancytitle, right=10pt] at (box.north west) {\titre};
-		\end{tikzpicture}
-	\end{center}
-}
 
-\newcommand{\couleurs}[1][]{%
-	\setkeys{boxedtheorem}{#1}
-	\tikzstyle{fancytitle} =[draw=\titleboxcolor, rounded corners, fill=\titlebackground,
-	text= \titlecolor]
-	\tikzstyle{mybox} = [draw=\boxcolor, fill=\background, very thick,
-	rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
-}
 
 %opening
 \title{Simulation und Modellierung - Fragen}
@@ -405,6 +377,11 @@ hie am besten erst später eine genaue erklärung einfügen. \\
 \subsubsection*{einfacher, strikt dominanter Eigenwert}
 $|\lambda_1|=1$ ist der betragsmäßig größte EW und ist eindeutig.
 
+\subsubsection*{diagonalisierbar}
+Die MAtrix $A$ heißt diagonalisierbar, falls es eine invertierbare Matrix $S$ gibt, sodass $D=S^{-1}AS$ und D eine Diagonalmatrix ist. 
+
+Die Diagonaleinträge auf $D$ sind die Eigenwerte von $A$.  
+
 \subsubsection*{Theorem IV.1}
 
 Sei $\lambda_1$ ein einfacher und strikt dominanter Eigenwert der Matrix $A \in \mathbb{C}^{n \times n}$ mit dem zugehörigen (Rechts-)Eigenvektor $v_1$ und Linkeigenvektor $w_1$ mit $w_1^T v_1 = 1$. Dann gilt für jede Lösung von \[ x^{k+1} = A x^k \qquad k=0,1,2,\dotsc \]
@@ -415,21 +392,26 @@ dass
 
 \begin{proof}
 	Wir führen den Beweis für diagonalisierbare Matrizen $A$ durch (der allgemeine Beweis ist möglich mit Hilfe der Jordan-Normalform). \\
-	Sei also $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dotsc, \lambda_n$ und $|\lambda_1| > |\lambda_i|$, $i=2, \dots, n$, dann folgt
+	Sei also $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dotsc, \lambda_n$ und $|\lambda_1| > |\lambda_i|$, $i=2, \dots, n$.
+	
+	Sei nun A diagonalisierbar, dann existiert eine Basis aus Eigenvektoren $v_1, \dots, v_n$ mit zugehörigen EW $\lambda_1, \dots , \lambda_n$. Also lässt sich jeder beliebige Anfangszustand darstellen als $x_0 = \beta_1 v_1 + \dots \beta_n v_n $, $\beta_i \in \mathbb{C}$. Die Lösung ist dann gegeben durch
+	\begin{align*}
+		x^k= \lambda_1^k \beta_1 v_1 + \dots + \lambda_n^k \beta_n v_n
+	\end{align*} 	
+	
+	Setzen wir dies ein, erhalten wir: 
 	\begin{equation*}
-	\lim_{k \to \infty} \frac{\lambda_i^k}{\lambda_1^k} = 0 \qquad i=2,3,4, \dotsc
-	\end{equation*}
-	Zusammen mit \eqref{loesung_x_k_eigenbasis} folgt also
-	\begin{equation*}
-	\lim_{k \to \infty} \frac{x^k}{\lambda_1^k} = \beta_1 v_1
-	\end{equation*}
-	Für die (Rechts-)Eigenvektoren $v_1, \dotsc, v_n$ von A gilt
-	\begin{equation*}
-	w_1^T A v_i = w_1^T \lambda_i v_i = \lambda_1 w_1^T v_i
-	\Rightarrow
-	(\lambda_i - \lambda_1) w_1^T v_i = 0
-	\end{equation*}
-	Wegen $\lambda_i - \lambda_1 \neq 0$ folgt $w_1^T v_2 = \dots = w_1^T v_n = 0$ und damit
+	\lim_{k \to \infty} \frac{x^k}{\lambda_1^k} =  \lim_{k \to \infty} \frac{\lambda_1^k \beta_1 v_1 + \dots + \lambda_n^k \beta_n v_n}{\lambda_1^k} = \beta_1 v_1
+	\end{equation*}	
+	da $|\frac{\lambda_i}{\lambda_1}|<1$. 
+	
+	Wir wollen zeigen, dass $\beta_1=w_1^T x^0 $ gilt. 
+	Da $\beta_1 = w_1^T \beta_1  v_1$ muss nur noch gezeigt werden, dass $ w_1^T \beta_1  v_1 = w_1^T x^0$ gilt. Betrachten wir $w_1^T  A v_1$, so gilt: 
+	\begin{align*}
+		w_1^T \lambda_i v_i = w_1^T  A v_1 = \lambda_1 w_1^T v_i \Rightarrow
+		(\lambda_i - \lambda_1) w_1^T v_i = 0 \forall i
+	\end{align*}
+	Daraus folgt für  $\lambda_i - \lambda_1 \neq 0$, dass $w_1^T v_2 = \dots = w_1^T v_n = 0$ und damit
 	\[ w_1^T x^0 = \beta_1 w_1^T v_1 = \beta_1 \]
 \end{proof}
 
@@ -474,10 +456,13 @@ Sei $A>0$ mit Spektralradius $\rho(A)=1$, dann gilt
 		und damit existiert ein Eigenwert $\lambda = 1$
 	\item Die Widerspruchsannahme $y \neq 0$ ($A|x| - |x| \neq 0$) schloss $\lambda = 1$ mit ein. Somit ist $\lambda = 1 \in \mathbb{R}$  einziger Eigenwert auf dem Einheitskreis.
 	\item Wegen $|x| = A|x| > 0$ sind alle Komponenten positiv. Dies gilt auch für Links- Rechtseigenvektoren gleichermaßen, da auch $A^T$ positiv ist
-	\item \textit{Übung}
-	\item \textit{Übung}
+	\item zu lang
+	\item zu lang
 \end{enumerate}
 \end{proof}
+
+\subsubsection*{Perron-Eigenwert}
+Der EW $\lambda = \rho(A)$ wird Perron Eigenwert genannt
 
 \subsubsection*{irreduzibel}
 Sei $A \in \mathbb{R}^{n \times n}$. \\
@@ -490,6 +475,8 @@ C & D \\
 \end{pmatrix}  \]
 wobei die Blockmatrizen $C$ und $F$ quadratisch sein müssen. \\
 Falls kein solcher \textit{Nullblock} existiert, so ist die Matrix \textbf{irreduzibel}.
+
+Im gerichtete Graphen ist eine Permutation nur eine Umnummerierung der Kanten. Ein Graph ist irreduzibel (oder auch stark zusammenhängend), falls von jedem Knoten zu jedem anderen Knoten ein zusammenhängender Pfad existiert. 
 
 \subsubsection*{Charakterisierung der Irreduzibilität: Lemma IV.4}
 Falls $A \in \mathbb{R}^{n \times n}, A \geq 0$ irreduzibel ist, dann gilt
@@ -524,7 +511,7 @@ Es sei $A \geq 0$ eine irreduzible stochastische Matrix. Dann gilt:
 		wobei $\Vert \cdot \Vert_\infty$ die Maximumsnorm ist. \\
 		Zeige nun: Der Eigenwert ist einfach. Betrachte dazu
 		\[ B := (I + A)^{n-1} > 0\]
-		Seien nun $\lambda$ die Eigenwerte von $A$, dann sind die Eigenwerte von $B$ gerade {\nolinebreak $(1+\lambda)^{n-1}$}. \\
+		Seien nun $\lambda$ die Eigenwerte von $A$ zum EV $v$, dann sind die Eigenwerte von $B$ gerade {\nolinebreak $(1+\lambda)^{n-1}$} zum EV $v^{n-1}$\\
 		\begin{equation} \label{proof_frobenius1}
 		\mu = \rho(B) = \max_{|\lambda| < 1} |1+ \lambda|^{n-1} = 2^{n-1}
 		\end{equation}
@@ -534,35 +521,830 @@ Sei $x$ Eigenvektor zu $\mu$ von $B$ und zugleich $\lambda=1$ zu $A$, dann ist $
 Durch Anwendung auf den Links-Eigenvektor erhält man mit Satz \ref{Perron}c) die Behauptung.
 \end{enumerate}
 \end{proof}
+
+
 \subsection*{Erklären können, wie der Page Rank Vektor mittels Vektoriteration berechnet wird}
+Wir haben das Problem gegeben: Finde eine Lösung des Eigenwert Problems $G^T \pi = \pi$ mit $\pi^T e = 1$, Wobei G die Google Matrix mit $G=\alpha(H+ \frac{1}{n}a e^T) + (1- \alpha) \frac{1}{n} e e^T$ ist. 
+
+Bei der Vektoriteration berechnen wir eine Lösung, indem wir $\pi^{(k+1)}=G^T \pi^{(k)}$ berechnen. Da G aber voll besetzt und sehr groß ist, berechnen wir lieber 
+$\pi^{(k+1)} = \alpha H^T \pi^{(k)} + \frac{e (\alpha a^T \pi^{(k)} + (1- \alpha)}{n} $ 
+
+\begin{itemize}
+	\item $H$ - Hyperlink Matrix - dünn besetzt
+	\item $U$ - Übergangsmatrix - dünn besetzt, stochastisch
+	\item $G$ - Google Matrix - voll besetzt, primitiv, stochastisch
+	\item $E = \frac{1}{n} e e^T$ - Teleportationsmatrix
+	\item $n$ - Anzahl der Webseiten
+	\item $\alpha$ Skalierungsparameter
+	\item $\pi^T$ - stationäre Verteiltung als Zeilenvektor
+	\item $a$ - binäre hängende Knoten Vektor
+\end{itemize}
 
 \subsection*{Konvergenzgeschwindigkeit/ Sensitivitätsanalyse (Satz IV.8 erklären und beweisen können), Satz IV.9/ satz IV.10 erklären und grobe Beweisskizze}
 
+\subsubsection*{Theorem IV.8}
+Sei das Spektrum der stochastischen Matrix $U$ gegeben durch $\{1, \lambda_2, \dotsc, \lambda_n \}$. Dann ist zu beliebigem Wahrscheinlichkeitsvektor $\nu$ das Spektrum der Google Matrix $G = \alpha U + (1- \alpha) e \nu^T$ gegeben durch
+\[ \{1, \alpha \lambda_2, \dotsc, \alpha \lambda_n \} \]
+
+\begin{proof}
+	Da $U$ stochastisch ist, ist $(1, e)$ ein Eigenpaar von $U$ (d.h. $Ue = e$).
+	Sei 
+	\[ Q = (e, X) \]
+	eine nicht-singuläre Matrix, die den Eigenvektor $e$ in der ersten Spalte hat. Des weiteren
+	\[ Q^{-1} = \begin{pmatrix} y^T \\ Y^T \end{pmatrix} \]
+	Dann ist
+	\begin{equation*}
+	Q^-1 \cdot Q =
+	\begin{pmatrix}
+	y^T e & y^T X \\
+	Y^T e & Y^T X
+	\end{pmatrix} =
+	\begin{pmatrix}
+	1 & 0 \\
+	0^T & I 
+	\end{pmatrix}
+	\end{equation*}
+	Die gibt uns die Identitäten $y^T e = 1, Ye = 0$. Somit gilt für die Ähnlichkeitstransformation 
+	\begin{equation*}
+	Q^{-1} U Q =
+	\begin{pmatrix}
+	y^T e & y^T U X \\
+	Y^T e & Y^T U X
+	\end{pmatrix} =
+	\begin{pmatrix}
+	1 & y^T U X \\
+	0^T & Y^T U X 
+	\end{pmatrix}
+	\end{equation*}
+	Somit enthält $Y^T U X$ die übrigen Eigenwerte $\lambda_2, \dotsc, \lambda_n$ von $U$. \\
+	Wenden wir nun diese Ähnlichkeitstransformation auch auf $G$ an, so erhalten wir
+	\begin{align*}
+	Q^{-1} \left( \alpha U + (1- \alpha) e \nu^T \right) Q  
+	&= \alpha Q^{-1} U Q + (1- \alpha) Q^{-1} e \nu^T Q \\
+	&=
+	\begin{pmatrix}
+	\alpha & \alpha y^T U X \\
+	0 & \alpha Y^T U X
+	\end{pmatrix}
+	+ (1-\alpha) \begin{pmatrix} y^T e \\ Y^T e \end{pmatrix} \begin{pmatrix} \nu^T e & \nu ^T X \end{pmatrix} \\
+	&=
+	\begin{pmatrix}
+	\alpha & \alpha y^T U X \\
+	0 & \alpha Y^T U X
+	\end{pmatrix} 
+	+
+	\begin{pmatrix}
+	1-\alpha & (1- \alpha) \nu^T X \\
+	0 & 0
+	\end{pmatrix}\\
+	&=
+	\begin{pmatrix}
+	1 & \alpha y^T U X + (1- \alpha)\nu^T X \\
+	0 & \alpha Y^T U X
+	\end{pmatrix}
+	\end{align*}
+	Da $Y^T U X$ die übrigen Eigenwerte von $U$ enthält sind die Eigenwerte von $G$ gegeben durch $\{1, \alpha \lambda_2, \dotsc, \alpha \lambda_n \}$.
+\end{proof}
+
+\subsubsection*{Theorem IV.9}
+Sei $\pi^T(\alpha)$ der Page Rank Vektor der Google-Matrix. Dann gilt
+\begin{enumerate}
+	\item $\left\vert \frac{d \pi_j(\alpha)}{d \alpha} \right\vert \leq \frac{1}{1- \alpha}$ für jedes $j = 1, \dotsc, n$
+	\item $\left\Vert \frac{d \pi^T(\alpha)}{d \alpha} \right\Vert_1 \leq \frac{2}{1-\alpha}$
+\end{enumerate}
+\begin{proof}
+	\begin{enumerate}
+		\item Leite $\pi^T(\alpha) = \pi^T(\alpha) \left(\alpha U + (1- \alpha) e \nu^T \right)$ ab mit dem wissen, dass  $\frac{d \pi^T(\alpha)}{d \alpha} e = 0$ (da $\pi^T e = 1$)
+		\item Es gilt: $\frac{d \pi^T(\alpha)}{d \alpha} = \pi^T(\alpha) (U - e \nu^T) (I - \alpha U)^{-1}$
+		\item schätze nun die einzelnen Terme von $\frac{d \pi_j^T(\alpha)}{d \alpha}$ ab. 
+		\item es ergibt sich: $\left\vert \frac{d \pi_j(\alpha)}{d \alpha} \right\vert \leq 
+		\left\Vert \pi^T(\alpha) (U - e \nu^T ) \right\Vert \left( \frac{y_{\max} - y_{\min}}{2} \right) $ mit  $ y = (I-\alpha U)^{-1} e_j$
+		\item dabei gilt: $\Vert \pi^T(\alpha) (U - e \nu^T ) \Vert_1 \leq 2$
+		\item außerdem gilt: $y_{\text{min}}\le 0$ und $y_{\text{max}} \le \frac{1}{1 - \alpha}$
+	\end{enumerate}
+\end{proof}
+
+\subsubsection*{Satz IV.10}
+Es sei $G = \alpha U + (1- \alpha) e \nu^T$ die Google Matrix mit Page-Rank-Vektor $\pi^T$ und $\tilde{G} = \alpha \tilde{U} + (1- \alpha) e \nu^T$ ein Update der Google-Matrix mit Page-Rank Vektor $\tilde{\pi}^T$. Dann gilt
+\begin{equation}
+\| \pi - \tilde{\pi}\|_1 \leq \frac{2 \alpha}{1- \alpha} \sum_{i \in U} \pi_i
+\end{equation}
+wobei $U$ die Menge aller Seiten ist, die aktualisiert wurden.
+
+\begin{proof}
+	\begin{enumerate}
+		\item Da $G^T \pi = \pi$, gilt $\pi^T - \tilde{\pi}^T = \alpha \pi^T F + \alpha(\pi^T - \tilde{\pi}^T) \tilde{U}$ mit $F= U - \tilde{U}$
+		\item Umstellen ergibt $\pi^T - \tilde{\pi}^T = \alpha \pi^T F (I - \alpha \tilde{U})^{-1}$
+		\item Anwendung der 1-Norm ergibt $\pi^T - \tilde{\pi}^T \|_1 \leq \frac{\alpha}{1- \alpha} \|\pi^T F\|_1$
+		\item 	Nun ordnen wir $F$ (und $\pi^T$) so, dass die Webseiten mit einem Update in den obersten Zeilen sind, also $\pi^T F = \begin{pmatrix} \pi^T_1 & \pi^T_2 \end{pmatrix} \begin{pmatrix} F_1 \\ 0 \end{pmatrix} = \pi^T_1 F_1$
+		\item somit gilt: $\|\pi^T F\|_1 = \|\pi^T_1 F_1\|_1 \leq \|\pi^T\|_1 \|F_1\|_{\infty}$
+		\item Berechnungen ergeben: $\|F_1\|_1 \leq 2$ 
+		\item also gilt: $	\|\pi^T F\|_1 \leq 2 \sum_{i \in U} \pi_i \Rightarrow \|\pi^T - \tilde{\pi}^T\|_1 \leq \frac{2\alpha}{1-\alpha} \sum_{i \in U} \pi_i$
+	\end{enumerate}
+\end{proof}
+
+
+
 \subsection*{Satz IV.11 und Satz IV.12 erklären und beweisen können}
+
+\subsubsection*{Satz IV.11}
+Auflösen des linearen Gleichungssystems
+\begin{equation}
+	x^T (I- \alpha H) = \nu^T  \label{google_gleichungssystem}
+\end{equation}
+ergibt $\pi^T = \frac{x^T}{x^T e}$, wobei $\pi^T$ der Page Rank Vektor ist.
+\begin{proof}
+	$\pi^T$ ist Page Rank Vektor und erfüllt $\pi^T G = \pi^T$ und $\pi^T e = 1$. Somit gilt
+	\[ \pi^T G = \pi^T \Leftrightarrow \pi^T ( I - G) = 0 \]
+	und damit
+	\begin{align*}
+		x^T (I - G) &= x^T (I - \alpha H - \alpha \nu^T - (1-\alpha) e \nu^T) \\
+		&= x^T (I- \alpha H) - x^T(\alpha a + (1 - \alpha e)\nu^T \\
+		&= \nu^T - \nu^T = 0
+	\end{align*}
+	wobei wir verwendet haben, dass $ x^T (\alpha a + (1-\alpha) e)  = 1$
+	ist, denn
+	\begin{align*}
+		1 = \nu^T e  &=x^T( I - \alpha H) e \\
+		&= x^T e - \alpha x^T H e \\
+		&\stackrel{(\star)}{=} x^T e - \alpha x^T (e-a) \\
+		&= (1- \alpha) x^T + \alpha x^T a
+	\end{align*}
+	Dabei wurde im Schritt ($\star$) verwendet, dass hängende Knoten Nullzeilen in H sind.
+\end{proof}
+
+
+\subsubsection*{Satz IV.12}
+Gegeben sei die stochastische Matrix $U$ mit dem Spektrum $\{1, \lambda_2, \lambda_3, \dotsc, \lambda_n \}$, dann ist das  Spektrum von 
+\begin{equation*}
+	\hat{U} = 
+	\begin{pmatrix}
+	\alpha U & (1-\alpha) e \\
+	\nu^T & 0
+	\end{pmatrix}
+	\in \mathbb{R}^{(n+1) \times (n+1)}
+\end{equation*}
+gegeben durch $\{1, \alpha \lambda_2, \dotsc, \alpha\lambda_n, \alpha -1 \}$.
+
+\begin{proof}
+	Sei $Q = \begin{pmatrix} I & e \\ 0 & 1 \end{pmatrix}, Q^{-1} = \begin{pmatrix} I & -e \\ 0 & 1 \end{pmatrix}$. \\
+	Eine Ähnlichkeitstransformation bringt uns
+	\begin{equation*}
+		Q^{-1} \hat{U} Q =
+		\begin{pmatrix} 
+		\alpha U - e \nu^T & 0 \\
+		\nu^T & 1 
+		\end{pmatrix}
+	\end{equation*}
+	und somit ist das  Spektrum $\sigma(Q^{-1} \hat{U} Q) = \{1\} \cup \sigma (\alpha U - e\nu^T) = \{ 1, \alpha-1, \alpha\lambda_2, \dotsc, \alpha \lambda_n\}$.
+	Für das Spektrum $\sigma (\alpha U - e\nu^T)$ verwendet man den gleichen Trick wie in Satz IV.8
+\end{proof}
 
 \section{Verkehrssimulation}
 
 \subsection*{Grundidee der makroskopischen Verkehrssimulation}
+Die Grundidee der makroskopischen Verkehrsmodellierung ist es, dass nicht einzelne Fahrzeuge, sondern der Fluss bzw die Dichte betrachtet wird. Wir modellieren hier wie das Verhalten von Gas oder einer Flüssigkeit. Dies ist sinnvoll, falls eine mikroskopische Modellierung zu schwer wäre oder mikroskopische Größen irrelevant sind. 
 
-\subsection*{Begriffe: Fluss, dichte und Fundermentaldiagramm erklären können}
+\subsection*{Begriffe: Fluss, Dichte und Fundamentaldiagramm erklären können}
+
+\subsubsection*{Fluss, Dichte und deren Zusammenhang. }
+Der Fluss $q$ ist die Anzahl der Autos pro Stunde an einem festen Ort. 
+Die Dichte  $\rho$ ist die Anzahl der Autos pro Kilometer. 
+Um den Zusammenhang zu erklären, nehmen wir an, dass die Fahrzeuge mit konstanter Geschwindigkeit fahren und die Dichte konstant ist. 
+
+Der Fluss muss von der Dichte abhängen, da es einen unterschied bei Fluss macht, ob sich viele Fahrzeuge auf der Strecke befinden, oder wenig. Allerdings kann ein kleiner Fluss bedeuten, dass sehr viele Autos auf der Strecke sind (Stau) oder sehr wenig (kein Auto). Deshalb spielt die Geschwindigkeit der Fahrzeuge noch eine große Rolle. Nun kann man sagen, dass wenn eine große Dichte da ist und die Autos eine hohe Geschwindigkeit haben, auch ein großer Fluss vorhanden sein muss. 
+
+\subsubsection*{Fundamentaldiagramm}
+Das Fundamentaldiagramm stellt diesen Zusammenhang zwischen Fluss und Dichte dar. Genauer: Es stellt die Abhängigkeit vom Fluss von der Dichte dar. 
+
+Diagramm auf Karte malen. 
 
 \subsection*{Erhaltungssätze herleiten können(Anzahl der Autos)}
 
+\subsubsection*{Herleitung Integraler Erhaltungssatz}
+\begin{enumerate}
+	\item Die Anzahl der Autos zwischen zwei Orten a und b ist: $N(t) = \int_a^b \rho(x,t) dx$
+	\item Die Anzahl der Autos auf dieser Strecke verändert sich nur über den Rand: $\frac{dN(t)}{dt} := q(a,t) - q(b,t)$
+	\item zusammen ergibt das: $\frac{d}{dt} \int_a^b \rho(x,t) dx = q(a,t) - q(b,t)$
+\end{enumerate}
+
+
+\subsubsection*{Herleitung des differentiellen Erhaltungssatzes}
+\begin{enumerate}
+	\item Mit anderen Integrationsgrenzen folgt aus dem Integralen Erhaltungssatz: $- \int_x^{x+\Delta x} \frac{\partial }{\partial t}\rho (\xi, t) d \xi = q(x + \Delta x, t) - q(x,t)$
+	\item Division mit $\Delta x$ und $\Delta x \rightarrow 0$ ergibt: $\lim\limits_{\Delta x \to 0} - \frac{1}{\Delta x} \int\limits_x^{x+\Delta x} \frac{\partial }{\partial t} \rho (\xi, t) d \xi = \lim\limits_{\Delta x \to 0} \frac{q(x + \Delta x, t) - q(x,t)}{\Delta x}$
+	\item es gilt:$\int_x^{x+\Delta x} \frac{\partial }{\partial t} \rho (\xi, t) d \xi \approx \frac{\partial}{\partial t} \rho(x,t) \Delta x$ 
+	\item daraus folgt: $\frac{\partial}{\partial t} \rho(x,t) + \frac{\partial}{\partial t} q(x,t) = 0$
+\end{enumerate}
+
+
 \subsection*{Modellierung der Geschwindigkeit (über Relativgeschwindigkeit)}
+\begin{enumerate}
+	\item Wir stellen uns zwei Fahrzeuge vor die hintereinander Fahren. Dabei ist $A_n$ das hintere und $A_{n-1}$ das vordere Fahrzeug. Die Beschleunigung vom hinteren Fahrzeug hängt von dem Unterschied der Geschwindigkeiten zwischen den beiden Fahrzeugen ab. Färt so $A_{n-1}$ schneller, so kann $A_n$ beschleunigen. Fährt $A_{n-1}$ langsamer, so muss $A_n$ bremsen. Sies lässt sich in Formeln ausdrücken: $\frac{d^2 x_n(t)}{d^2 t} = - \lambda \left( \frac{d x_n (t)}{dt} - \frac{d x_{n-1} (t)}{dt} \right)$, wobei $\lambda>0$ die Sensitivität ist, also die Reaktionszeit/ Bereitschaft sich dem anderen Fahrzeug anzupassen. Fürs erste nehmen wir an, dass $\lambda$ konstant ist. 
+	\item Integration liefert $\frac{d x_n(t)}{d t} = - \lambda \left( x_n (t) - x_{n-1} (t) \right) + d_n$ mit Integrationskonstante $d_n$
+	\item bestimmung der Werte 
+	\begin{enumerate}
+		\item Die Verkehrsdichte braucht ein Maß. Hier nehmen wir den Kehrwert von $(x_{n-1} (t) - x_{n} (t))$. 
+		\item wir wissen, dass die Geschwindigkeit die Veränderung des Ortes in der Zeit ist, also $v(x,t)=\frac{d x_n (t)}{dt} $
+		\item Bestimmen der Integrationskonstante: Für $v=0$ gilt $\rho = \rho_{\text{max}}$, also $d_n = -\frac{\lambda}{\rho_{\max}}$		
+	\end{enumerate}
+	\item es ergibt sich insgesamt: $v(x,t) = \lambda \left( \frac{1}{\rho(x,t)} - \frac{1}{\rho_{\max}} \right)$
+	\item Da bis zu einer kritischen Dichte immer die maximale Geschwindigkeit gefahren werden kann, gilt: 
+	$v(t,x) =
+	\begin{cases}
+	v_{\max} & \rho \leq \rho_{crit} \\
+	\lambda \left( \frac{1}{\rho(x,t)} - \frac{1}{\rho_{\max}} \right) & \rho > \rho_{crit}
+	\end{cases}$
+\end{enumerate}
 
 \subsection*{lineare DGL erklären (Gleichung für Störung)}
+\begin{enumerate}
+	\item wir können durch die Rechnung gerade annehmen, dass $v=v(\rho)$ gilt
+	\item Daraus ergibt sich der Erhaltungssatz $ \frac{\partial \rho}{\partial t} + \frac{\partial}{\partial x} q( \rho ) = 0 $
+	\item Kettenregel führt zu: $\frac{\partial \rho}{\partial t} + q'(\rho) \cdot \frac{\partial \rho}{\partial x} = 0$
+	\item betrachten wir eine Konstante Dichte $\rho_0$, die nur von kleinen Störungen überlagert wird, also $\rho(x,t) = \rho_0 + \epsilon \rho_1(x,t)$ mit $ \epsilon > 0$. 
+	\item Einsetzen in 3. und Division durch $\epsilon$ ergibt: $\frac{\partial \rho_1}{\partial t} + q' \left( \rho_0 + \epsilon \rho_1(x,t) \right) \cdot \frac{\partial \rho_1}{\partial x} = 0$
+	\item Taylorn von $q'$ in $\rho_0$ bis zur 1. Ordnung liefert: $\frac{\partial \rho_1}{\partial t} + q'(\rho_0) \cdot \frac{\partial \rho_1}{\partial x} = 0$. Dieses ist eine lineare DGL, da $q'(\rho_0)$ konstant ist. 
+\end{enumerate}
 
-\subsection*{Charakteristik erklären können und an einem gege Bsp berechnen und skizzieren können}
+\subsection*{Charakteristik erklären können und an einem geg. Bsp berechnen und skizzieren können}
+Mithilfe von Charakteristiken können lineare DGL gelöst werden. Charakteristiken sind die Kurven, an denen die Lösung der DGL konstant ist. Charakteristiken kann man leicht berechnen und anhand dieser eine Lsg der DGL bestimmen. 
+
+Kochrezept zum berechnen der Charakteristiken. Sei das Problem gegeben durch $u_t + c u_x = 0$ mit $u(x(0),0)= f(x)$ mit $x(0)=x_0$
+\begin{enumerate}
+	\item Bestimme die charakteristische Kurve: $x(t)=x_0 + ct$
+	\item Da die Lsg $u$ entlang der charakteristischen kurve konstant ist, gilt: $u(x,t)=u(x_0,0)=f(x_0)=f(x-ct)$
+\end{enumerate}
 
 \subsection*{Numerische Approximation und CFL Bedingung erklären können}
+\subsubsection*{Numerische Berechnung der DGL}
+Hier ist das Ziel die DGL $\frac{\partial \rho}{\partial t} + c\frac{\partial \rho}{\partial x}=0$ numerisch zu lösen. Dies kann mit Vorwärtsdifferenzenquotient für $\frac{\partial \rho}{\partial t}$ und Rückwärts Differenzenquotient für $\frac{\partial \rho}{\partial x}$ getan werden. Wir setzen ein und lösen das nach $R_{i,j+1}=\rho(x,t+k)$ auf, wobei k die Zeitschrittweite ist und erhalten:$R_{i,j+1} = \left( 1 - \frac{c \cdot k}{h} \right) R_{i,j} + \frac{c \cdot k}{h} R_{i-1,j}$ 
+
+\subsubsection*{CFL Bedingung}
+Der Bereich in der $(x,t)$ Ebene, der durch die Anfangswertfkt auf I bestimmt wird, nennt man (numerischen) Bestimmtheitsbereich. 
+
+Der Wert von $\rho$ bei einem Punkt ist über die charakteristik bestimmt. Der Fußpunkt dieser Charakteristik ist der (analytischer) Abhängigkeitsbereich. 
+
+Wenn der Bestimmtheitsbereich und der analytische Abhängigkeitsbereich nicht übereinstimmt, ist unsere Approximation bestimmt nicht korrekt, da der Punkt, von dem der zu approximierende Pkt wirklich abhängt, nicht in der Approximation betrachtet wurde.
+
+
+Also wollen wir, dass der analytische Abhängigkeitsbereich im Bestimmtheitsbereich liegt. Diese Bedingung nennt sich Courant-Friedrich Lewis Bedingung und lässt sich als eine Bedingung an der Zeitschrittweite formulieren: $k \le \frac{h}{c}$, wobei k die Zeitschrittweite, h die Raumschrittweite und c die Steigung der Charakteristik ist.  
 
 \subsection*{Ungleichförmiger Verkehr/Anfahrvorgang an grüner Ampel/ Anhalten an roter Ampel und unstetige Verkehrsdichte erklären}
 
+\subsubsection*{ungleichförmiger Verkehr}
+Bei ungleichförmigen Verkehr haben wir keine konstante Dichte mehr, sondern die Dichte kann sich ändern. 
+Modellieren wir dieses Konzept. 
+In Formeln: Betrachten wir die PDE $\frac{\partial \rho}{\partial t} + \frac{d q(\rho)}{d \rho} \cdot \frac{\partial \rho}{\partial x} = 0$ 
+und einen mitfahrenden Beobachter, der sich entlang der Charakteristik bewegt, so gilt: $\frac{d}{dt} \rho(x(t), t) = \frac{\partial \rho}{\partial t} + \frac{dx}{dt} \cdot \frac{\partial \rho}{\partial x}$
+
+also ist die Verkehrsdichte für den Beobachter konstant, falls $\frac{d}{dt} \rho(x(t), t) = 0 \text{ oder } \frac{dx}{dt} = \frac{dq(s)}{d \rho} =: q'(\rho)$
+ gilt. 
+
+Daraus können wir schlussfolgern, dass die Dichte entlang der Charakteristik konstant die Anfangsdichte ist. 
+Außerdem ist $q'(\rho)$ eine monoton fallende Funktion. Also: Je dichter der Verkehr ist, desto kleiner wird die Wellengeschwindigkeit. 
+
+Desweiteren gilt, dass $q'(\rho)=\rho v'(\rho) + v(\rho)$
+
+Da Autos langsamer werden, wenn die Dichte wächst, gilt $v'(\rho) \le 0$, also gilt, dass $q'(\rho) \leq v $. D.h. Dichtewellen bewegen sich langsamer als die Fahrzeuge. 
+
+
+\subsubsection*{Anfahrvorgang an einer grünen Ampel}
+Die Ampel steht bei $x=0$ auf \glqq rot\grqq{} und springt zur Zeit $t=0$ auf \glqq grün\grqq{}:
+\begin{equation}
+\rho(x,0) =
+\begin{cases}
+\rho_{\max} & x \leq 0 \\
+0 & x > 0
+\end{cases}
+\end{equation}
+Wir suchen Lösungen von $\frac{\partial \rho}{\partial t} + q'(\rho) \cdot \frac{\partial \rho}{\partial x} = 0$.
+
+Wir wissen, dass $\frac{d x}{d t} = q'(\rho) = \rho \cdot v'(\rho) + v$
+
+Für $x > 0$ und $x < 0$ sind die Dichten konstant und somit haben die Charakteristiken die Gestalt $ x = q'(\rho) \cdot t + k $
+\begin{center}
+	\begin{minipage}{5cm}
+		\textit{Fall $x > 0$}  ($\rho(x,0) = 0$)
+		\begin{equation*}
+		\frac{d x}{d t} = q'(0) = v = v_{\max} \geq 0
+		\end{equation*} 
+	\end{minipage}
+	\hspace{1cm}
+	\begin{minipage}{5cm}
+		\textit{Fall $x < 0$} ($\rho(x,0) = \rho_{\text{max}}$)
+		\begin{equation*}
+		\frac{d x}{d t} = q'(\rho_{\max}) = \rho_{\max} \cdot v'(\rho_{\max})\leq 0 \text{ (da } v'(\rho_{\max})\le 0)
+		\end{equation*}
+	\end{minipage}
+\end{center}
+Was passiert bei $x=0$? Betrachte:
+
+Es gilt für die Charakteristiken 
+\[ \frac{d x}{d t} = \frac{d q}{d \rho} \text{ mit } x = \frac{d q}{d \rho} \cdot t + k = \frac{d q}{d \rho} \cdot t + x_0 \]
+wobei der Punkt $x_0$ auf der $x-Achse$ nahe bei 0 ist. Wenn nun $\Delta x \to 0$ läuft, dann
+\begin{equation*}
+x = \frac{d q}{d \rho} \cdot t \Leftrightarrow \frac{d q}{d \rho} = \frac{x}{t}
+\end{equation*}
+\textit{Also:} Sogar unstetige Anfangsdaten produzieren produzieren glatte Lösungen.
+
+\subsubsection*{unstetige Verkehrsdichte }
+Herleitung der Rankine-Hugoniot Bedingung, falls zeit. Sie Besagt: Falls wir eine Verkehrsdichte haben, bei der eine Unstetigkeitsstelle ist und diese sich bewegt, dann kann die Geschwindigkeit des Stoßes berechnet werden durch: $\frac{d x_s}{d t} = \frac{q(x_s^-, t) - q(x_s^+, t)}{\rho(x_s^-, t) - \rho(x_s^+,t)} = \frac{\rho_2 v(\rho_2) - \rho_1 v(\rho_1)}{\rho_2 - \rho_1} =: \frac{[q]}{[\rho]}$
+
+Herleitung mit integralem Erhaltungssatz. 
+
+Bedeutung im Straßenverkehr: Betrachten wir leichten Verkehr, der auf schwerem Verkehr trifft. Dann ist die Änderung der Anzahl der Autos genau die Sprunghöhe mal der unterschied der Dichten auf beiden Seiten, also $N(\Delta t+ t) - N(t) = -\Delta x_s (\rho_2 - \rho_1)$
+Die Anzahl der Autos auf dem betrachteten Intervall ändert sich nur über die Anzahl der Autos, die im betrachteten Zeitintervall hereinfahren und die die herausfahren. Daher gilt: $ \Delta t q_1 - \Delta t q_2 = - \Delta x_s (\rho_2 - \rho_1)$. Also haben wir die Sprungbedingung wieder erfüllt. 
+
+\subsubsection*{Anhalten an einer roten Ampel}
+Betrachte den gleichförmigen Verkehr $\rho = \rho_0 < \rho_{\max}$, der vor einer roten Ampel bei $x=0$ zur Zeit $t=0$ angehalten wird. Der Stopp soll verzögerungsfrei und uns interessiert der Verkehr \textit{vor} der Ampel. \\
+\textbf{rote Ampel:} Randbedingung bei $x=0$, also $\rho = \rho_{\max}$ bei $x=0$ für alle $t>0$. \\
+Dann haben wir
+\begin{center}
+	\begin{minipage}{6cm}
+		\begin{center}
+			\textit{schwerer Verkehr}\\
+			%TODO: Zeichnung
+			\[q'(\rho_0) < 0 \quad q'(\rho_{\max}) < q'(\rho_0)\]
+			Steigung der Charakteristik:
+			\[ \frac{1}{q'(\rho_{\max})} > \frac{1}{q'(\rho_0)} \]
+		\end{center}
+	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}{6cm}
+		\begin{center}
+			\textit{leichter Verkehr} \\
+			%TODO: Zeichnung
+			\[q'(\rho_0) > 0 \quad q'(\rho_{\max}) < q'(\rho_0)\]
+			Steigung der Charakteristik:
+			\[ \frac{1}{q'(\rho_{\max})} < \frac{1}{q'(\rho_0)} \]
+		\end{center}
+	\end{minipage}
+\end{center}
+In beiden Fällen überschneiden sich die Charakteristiken:\\
+%TODO: Zeichnung
+Um mehrdeutige Lösungen zu verhindern fügen wir eine Sprungstetigkeit ein:
+\[ \frac{d x_s}{d t} = \frac{[q]}{[\rho]} = \frac{\rho_{\max} v(\rho_{\max}) - \rho_0 v(\rho_0)}{\rho_{\max} - \rho_0} \]
+Da $v(\rho_{\max}) = 0$ ist, gilt
+\begin{equation}
+\frac{d x_s}{d t} = - \frac{\rho_0 v(\rho_0)}{\rho_{\max} - \rho_0} < 0 \label{VL20_1}
+\end{equation}
+Die Steigung des Stoßes ist konstant. Damit ist der Stoß eine Gerade mit der negativen Steigung $ - \frac{\rho_0 v(\rho_0)}{\rho_{\max} - \rho_0}$. Integrieren wir nun \eqref{VL20_1}, so erhalten wir 
+\[ x_s(t) = - \frac{\rho_0 v(\rho_0)}{\rho_{\max} - \rho_0} \cdot t + c  \]
+Da der Stoß zur Zeit $t=0$ durch $x=0$ geht, gilt $c=0$. Somit
+\[ x_s(t) = - \frac{\rho_0 v(\rho_0)}{\rho_{\max} - \rho_0} \cdot t \]
+
 \subsection*{Grundidee Godunov Methode}
+Mit der Gundovmethode wollen wir den ungleichförmigen Verkehr numerisch approximieren. 
+Dazu betrachten wir nun den Ort und die Zeit in Zellen auf und approximieren die Dichte/ den Fluss in diesen Zellen. Durch viel rumgerechne kommt man auf eine numerische Formel, die den ungleichförmigen Verkehr approximiert. Hier muss aber noch das integral in einer Zelle von dem Fluss berechnet werden. Dazu nehmen wir an, dass in einer Zelle die Dichte konstant ist. Dann müssen wir irgendwie den mittleren Fluss als AWP betrachten und können ihn dadurch berechnen.   
 
 \subsection*{Grundidee der Mikroskopischen Modellierung mittels Zellulärer Automaten}
+Wir betrachten nun nicht mehr den gesamten Verkehr, sondern einzelne Fahrzeuge. Die Idee ist es, dass wir nun nur noch ganzzahlige Variablen haben. Jedes Auto befindet sich in einer Zelle und diese kann nun besetzt ($\rho_i(t)=1$) oder leer ($\rho_i(t)=0$) sein. Diese Zelle ist nun die Ortsschrittweite und die Zeitschrittweite ist $\Delta t$. Auch die Geschwindigkeit kann so modelliert werden. Die Geschwindigkeit wird einer Zelle zugeordnet. Bsp: Falls ein Auto $50 km/h$ fährt, diskretisieren wir die Geschwindigkeit mit $10 km/h$ Schritten. Also kann ein Auto 5 Zellen pro Schrittweite passieren.
+Wir nehmen für dieses Modell an, dass Kollisionsfreiheit herrscht, also in jeder Zelle nur ein Auto ist (problem: wie lang ist die Zelle?) und die Erhaltung der Fahrzeuge muss gelten.    
+Probleme tauchen später im Detail bei z.b. der Wahl der Diskretisierung auf.
 
-\subsection{Stochastische Verkehrssimulation: Wartesystem, exponentielle Verteilung, Poisson Prozess, Ausfallrate erklären und Satz V.1 beweisen können}
+\subsection*{Stochastische Verkehrssimulation: Wartesystem, exponentielle Verteilung, Poisson Prozess, Ausfallrate erklären und Satz V.1 beweisen können}
+\subsubsection*{Wartesysteme}
+Typische Wartesysteme haben einen Eingang, ein oder mehrere Schlangen und Schalter. Dabei kommen Aufträge zum Zeitpunkt $t_i$ an. $T_i$ sind die Zwischenankunftszeiten, also die Zeit, die verstreicht, bis der nächste Auftrag ankommt. Da die $T_i$ nicht gleichlang, aber einer bestimmten W'keits verteilung gehorchen, kann man sie als Zufallsvariable interpretieren. 
+
+\subsubsection*{Ausfallrate}
+Die Ausfallrate beschreibt die momentane Rate, mit der zu einem Zeitpunkt t ein Ereignis eintritt, wenn dieses bis zum Zeitpkt t noch nicht der Fall war.
+
+Sie wird berechnet durch $h_T(t)= \frac{f_T(t)}{1-F_T(t)}$ 
+
+\subsubsection*{exponentielle Verteilung}
+Falls das Ereignisrisiko immer gleich hoch ist, also unabhängig davon, wie lange wir schon warten, dann ist die Ausfallrate konstant und deswegen die Zufallsvariable exponentialverteilt: 
+\begin{equation*}
+f_T(t) =
+\begin{cases}
+\lambda e^{-\lambda t} & t \geq 0 \\
+0 & t < 0
+\end{cases}
+\qquad
+F_T(t) = 
+\begin{cases}
+q - e^{- \lambda t} & t \geq 0 \\
+0 & t < 0
+\end{cases}
+\end{equation*}
+Dann ist der Erwartunswert $\mathbb{E}[T]=\frac{1}{\lambda}$ wobei $\lambda $ die Ausfallrate ist. 
+Außerdem ist die Exponentialverteilung gedächnislos. 
+
+\subsubsection*{Satz V.1 Beweisen können}
+Eine (positive) kontinuierliche Zufallsvariable $T$ mit Wertebereich $\mathbb{R}^+$ ist genau dann exponentialverteilt, wenn für alle $s,t > 0$ gilt
+\begin{equation}
+\mathbb{P}[T > t+s | T > s] = \mathbb{P}[T > t] \label{VL24_1}
+\end{equation}
+
+\begin{proof}~\\
+$\Rightarrow$: Übung. \\
+$\Leftarrow$: 
+Sei $T$ eine kontinuierliche Zufallsvariable, die die Gleichung \eqref{VL24_1} erfüllt. Wir definieren $g(t) = \mathbb{P}[T > t]$ für $s,t > 0$ gilt dann:
+\begin{align*}
+g(t+s) = \mathbb{P}[T > t+s] &= \mathbb{P}[T > s+t | T>s] \cdot P[T > s] \\
+&\stackrel{\eqref{VL24_1}}{=} \mathbb{P}[T > t] \cdot \mathbb{P}[T > s] = g(t) \cdot g(s)
+\end{align*} 
+Durch wiederholtes Anwenden erhalten wir
+\begin{equation*}
+g(1) = g\left(\frac{1}{n} + \dots + \frac{1}{n}\right) = \left( g\left( \frac{1}{n} \right) \right)^n \qquad \forall n \in \mathbb{N}
+\end{equation*}
+und somit insbesondere $g \left( \frac{1}{n} \right) = (g(1))^{\frac{1}{n}}$. \\
+Da $T$ nur positive Werte annimmt, muss es ein $n \in \mathbb{N}$ geben mit $g\left( \frac{1}{n} \right) > 0$. Wegen $0 < g(1) \leq 1$ muss es ein $\lambda > 0$ geben, mit $g(1) = e^{-\lambda}$. \\
+Nun gilt für beliebige $p, q \in \mathbb{N}, q \neq 0$
+\[ g \left( \frac{p}{q} \right) = g\left( \frac{1}{q} \right)^p = g(1)^{\frac{p}{q}} \]
+und somit gilt: $g(r) = e^{- \lambda r}$ für $r \in \mathbb{Q}^+$. \\
+Aufgrund der Stetigkeit folgt 
+\[g(x) = e^{-\lambda x} \qquad \forall x \in \mathbb{R} \]
+\end{proof}
+
+\subsubsection*{Poisson Prozess}
+Seien die Zwischenankunftszeiten unabhängig exponentialverteilt mit Parameter $\lambda$. Dann ist die Anzahl der Ankünft im Intervall $[0,t] $ poissonverteilt mit Parameter $\vartheta = \lambda t$.
+
+Eine Zufallsvariable $N$ heißt \textbf{poissonverteilt} mit Parameter $\vartheta = \lambda t$, falls gilt
+\[ \mathbb{P}[ N(t) = i ] = \frac{e^{-\vartheta} \vartheta^i}{i !} \]
+Der Erwartungswert ist $\vartheta$
+
+\section{Molekulare Simulation}
+
+\subsection*{Reduktion Schrödingergleichung auf klassische Moleküldynamik skizzieren können}
+Als Ausgangspunkt für die Modellierung von Molekülen dient uns die aus der Quantenphysik bekannte \textbf{zeitabhängige Schrödingergleichung}:
+\begin{equation}
+i \hbar \frac{\partial }{\partial t} \psi = H \psi \label{Schroedinger_Gleichung}
+\end{equation}
+Die Gleichung beschreibt die Dynamik des quantenmechanischen Zustands eines Systems, solange an diesem keine Messung vorgenommen wird \cite{wikSchroedGl}. Dabei ist
+\begin{itemize}
+	\item $i$ die imaginäre Einheit
+	\item $\hbar$ eine Konstante, das reduzierte Plancksche Wirkungsquantum\footnote{Es gilt: $\hbar = \frac{h}{2 \pi}$, wobei $h$ das Planksche Wirkungsquantum ist mit $h \approx  	6{,}626\,070\,040 \cdot 10^{-34} \mathrm{J \cdot s}$}
+	\item $H$ der sogenannte Hamilton-Operator, der die Dynamik des Systems beschreibt und grundsätzlich die Summe aus kinetischer und potentieller Energie ist
+	\item $\psi$ die gesuchte Lösung: eine komplexwertige Wellenfunktion (abhängig von der Zeit $t$), die dem Zustand des Systems entspricht
+\end{itemize}
+Gleichung \eqref{Schroedinger_Gleichung} besagt also, dass die Veränderung des Systems über die Zeit bestimmt ist durch den Hamilton-Operator angewandt auf den aktuellen Zustand.
+
+Ist der Hamilton-Operator zeitunabhängig, so gibt es stationäre Zustände des Systems, nämlich gerade die Eigenzustände des Operators $H$, also alle $\psi$ mit
+\begin{equation}
+H \psi = E \psi \label{Schroedinger_Gleichung_zeitunab}
+\end{equation}
+Diese Gleichung heißt auch \textbf{zeitunabhängige Schrödingergleichung}.
+Dabei können wir den Eigenwert $E$ als Energie des Systems im stationären Zustand $\psi$ interpretieren.
+
+\subsubsection*{Born Oppenheimer Approximation (Molekulare Reduktion der Schrödingergleichung)}
+Da die Größe und Masseverhältnis zwischen Elektron und Kern so unterschiedlich sind, kann der Hamildonoperator aufgeteilt werden: $H = K_N(R) + K_e(r) + V_{eN} (r,R) + V_{NN}(R) + V_{ee} (r)$ wobei K die Kinetische Energie und V die potentielle Energie, die durch Abstoßung/ Anziehung der Kerne/Elektronen entsteht ist. e steht für Elektronen, N für Kerne. 
+
+Der Zustand des Kernes, den wir mit $\chi(R)$ beschreiben ist aufgrund der großen Trägheit gegenüber den Elektronen, von diesen unabhängig. Der Zustand der Elektronen $\phi(r,R)$ist weiterhin von Kern und Elektronen abhängig.
+Der Gesamtzustand lässt sich nun als Produkt dieser Zustände beschreiben $\psi(r,R)= \chi(R) \phi(r,R)$ 
+
+Aus sicht der Elektronen kann die Kernposition als Konstant angesehen werden, also vereinfacht sich die zeitunabhängige Schrödingergleichung zu:
+\begin{equation*}
+	\underbrace{K_N(R) + V_{NN}(R)}_{=:E_N(R)} + K_e(r) + V_{eN} (r,R) +  V_{ee} (r) ] \phi(r, R) = E \phi(r, R) 
+\end{equation*}
+Sei $E_{\text{el}}(R) := E - E_N(R)$. Dann ist die Schrödingergleichung für die Elektronen gegeben durch: 
+\begin{equation*}
+	 K_e(r) + V_{eN} (r, R) + V_{ee} (r) ] \phi(r, R) =
+	 E_{\text{el}} (R) \phi( r, R )
+\end{equation*}
+Außerdem kann man die Schrödingergleichung für die Kerne herleiten: 
+\begin{equation*}
+[ K_N (R) + \underbrace{V_{NN} (R) + E_{\text{el}} (R)}_{=:U^{\text{BO}}} ] \chi(R) = E_{\chi} \chi(R)
+\end{equation*}
+$U^{\text{BO}}$ heißt Born-Oppenheimer Potential. 
+
+\subsection*{Potential/ Kraftfeld: gebundene Wechselwirkungen (Bindungslängen, - Winkel, Torsionswinkel)}
+Wir wollen die Potentielle Energie $U^{BO}$ als Summe aus einigen Termen darstellen. Welche Terme sind vorhanden? Die Bindungslänge, der Bindungswinkel, die Verdrillung der Bindung, und Wechselwirkungen zwischen nicht miteinander verbundenen Teilchen des Systems spielen eine Rolle.
+
+\subsubsection*{Bindungslänge}
+Wie weit sind die Atomkerne voneinander entfernt?  
+\[ E_{\text{bind}} = \sum_{\text{Bindungen}} \frac{k_{l,i}}{2} \left( l_i - l_{i,\text{eq}} \right)^2 \]
+Dabei ist $k_{l,i}$ die Federkonstante und $l_i-l_{i,eq}$ der Abstand von der momentanen Länge in der Bindung und der Ruhelage. 
+
+\subsubsection*{Bindungswinkel}
+Für den Winkel $\vartheta_{ABC}$ gilt
+\begin{equation*}
+\vartheta_{ABC} = \arccos \left( \frac{(q_A - q_B) (q_B - q_C)}{r_{AB} r_{BC}} \right)
+\end{equation*}
+wobei $r_{AB} = |q_A - q_B|$.
+\begin{equation*}
+E_{\text{bwink}} = \sum_{\text{Winkel}} \frac{k_{w,i}}{2} \left( \vartheta_i - \vartheta_{i, \text{eq}} \right)^2
+\end{equation*}
+
+\subsubsection*{Torsionswinkel}
+\[ \cos \alpha = \frac{\langle n_{E_{ABC}}, n_{E_{BCD}}\rangle}{\Vert n_{E_{ABC}} \Vert \cdot \Vert n_{E_{BCD}} \Vert} \]
+\begin{equation*}
+E_{\text{tor}} = \sum_{\text{Torsionswinkel}} \frac{V_n}{2} \left( 1+ \cos(n \alpha - \alpha_{\text{eq}}) \right)
+\end{equation*}
+wobei üblicherweise $n=4$ oder $n=5$
+
+\subsection*{Coulombpotential und Lennard Jones Potential beschreiben können}
+\begin{equation*}
+U_{\text{LJ}} (r_{ij}) = 4 \epsilon  \left( \left( \frac{\sigma}{r_{ij}} \right)^{12} - \left( \frac{\sigma}{r_{ij}} \right)^6 \right)
+\end{equation*}
+Das Lennard Jones Potential beschreibt die anziehende bzw abstoßende Kraft zwischen Atomen, die mindestens durch drei Bindungen getrennt sind. Die Anziehende Kraft kommt daher, dass die Elektronenwolken um ein Atom nicht immer gleichmäßig verteilt sind. Dadurch liegt der Kern frei und zieht die Elektronen von einem anderen Atom an. (zweiter Term). Der erste Term beschreibt abstoßende Kräfte. Diese werden umso größer, je näher die Atome beieinander sind. Dann überlappen sich die Elektronenwolken und stoßen sich ab. 
+
+Das Coulomb Potenzial beschreibt, dass Elektrische Ladungen zu anziehenden (ungleichnamig) und abstoßenden Kräften (gleichnahmig) führen. Die Dabei entstehende Kraft wird elektormagnetische bzw. elekrostatische Kraft genannt.
+
+ 
+Die Ableitung des Potentials ist die Kraft
+
+\subsection*{Abschneidemethoden und periodische Randbedingungen}
+Das Ziel ist es, die Rechenzeit bei der Berechnung von dem Born Oppenheimer Potential zu verkürzen. Dazu kann man Abschneidemethoden nehmen: Da die Summanden gegen 0 streben, kann man die Funktion einfach nur bis zu einem gewissen Term berechnen. Das Problem dabei ist, dass die Energie nicht erhalten bleibt. Eine mögliche idee ist es, eine Übergangszone zu schaffen, damit die Unstetigkeitsstelle herausgenommen wird. Diese wird durch ein Polynom geschaffen. Eine andere idee ist es, die gesamte Funktion zu Shiften, also das gesamte Potential vor der Stelle, die abgeschnitten wird, zu modifizieren. 
+
+Bei den periodischen Nebenbedingungen betrachtet man das System als eine Einheitszelle mit unendlich vielen Spiegeln drumherum. Dann kann man das Potential umschreiben und mittels einer Taylorreihe entwickeln.
+
+\subsection*{Linked Cell Methode erklären und Aufwand O(N)}
+Wir nehmen an, dass die Partikel gleichverteilt sind. Dann können wir jedem Partikel eine Zelle der Länge $r_cut$ zuordnen. Dadurch gibt es nur wechselwirkungen in den 26 Nachbarzellen. Dadurch lässt sich der Aufwand von eigentlich $O(N^2)$, da es bei N Partikeln $N $ über $2$ mögliche Kombinationen gibt, auf $=(N)$ verkleinern. 
+Denn: Haben wir n Partikel in einer Zelle. Dann müssen wir $n(26n+n-1)=n(27n-1)$ vergleiche pro Zelle machen. Da wir $N/n $ Zellen haben, müssen wir $\frac{N}{n}n(27n-1)= N(27n-1)$ vergleiche machen, was ein Aufwand von $O(N)$ ist, da n sehr klein ist. 
+ 
+\subsection*{Hamiltonsche DGL: Lagrange Fkt, Satz VI.1 mit Beweis}
+\subsubsection*{Lagrangefunktion}
+Definition der Lagrangefunktion:  
+\begin{equation*}
+L(q, \dot{q}) = K(q, \dot{q}) - U(q)
+\end{equation*}
+wobei $q(t)$ eine Kurve ist und
+\begin{itemize}
+	\item[$q$] die Konfiguration
+	\item[$\dot{q}$] die Geschwindigkeit des Systems
+	\item[$K(q, \dot{q})$] die Kinetische Energie
+	\item[$U(\dot{q})$] die potentielle Energie
+\end{itemize}
+beschreibt. \\
+
+\subsubsection*{Wirkung}
+Wir definieren die \textbf{Wirkung} durch
+\begin{equation*}
+S[q] = \int_{t_0}^{t_1} L(q(t), \dot{q}(t) ) dt
+\end{equation*}
+zu einer Bewegungskurve $q : [t_0, t_1] \to Q \subseteq \mathbb{R}^3$. 
+
+\subsubsection*{Theorem Euler Lagrange Gleichung}
+Es sei $L : \mathbb{R}^d \times \mathbb{R}^d \to \mathbb{R}$ zweimal stetig differenzierbar. Eine Kurve $q$ erfüllt genau dann die Gleichung 
+\begin{equation*}
+	\left. \frac{d}{d\epsilon} S[q + \epsilon \Delta q] \right\vert_{\epsilon=0} = 0 
+\end{equation*}
+
+für alle Kurven $\Delta q \in C^2 \left( [t_0, t_1], Q \right)$ mit $\Delta q(t_0) = \Delta q(t_1) = 0$, wenn
+\begin{equation}
+	\frac{d}{dt} \frac{d}{d\dot{q}} L(q, \dot{q}) - \frac{\partial L}{\partial q} (q, \dot{q}) = 0 \label{VL28_3}
+\end{equation}
+\begin{proof}
+	Setze $q_\epsilon = q + \epsilon \Delta q$. Es ist
+	\begin{align*}
+		\frac{d}{d \epsilon} S[q_\epsilon ]
+		&= \frac{d}{d \epsilon} \int_{t_0}^{t_1} L (q_\epsilon(t), \dot{q}_\epsilon(t) ) dt \\
+		&= \int_{t_0}^{t_1} \frac{\partial}{\partial q} L (q_\epsilon(t), \dot{q}_\epsilon(t) ) \cdot \Delta q dt + \frac{\partial}{\partial \dot{q}} L (q_\epsilon(t), \dot{q}_\epsilon(t) ) \cdot \Delta \dot{q} dt
+	\end{align*}
+	nach Kettenregel. Mit partieller Integration erhalten wir für den zweiten Summanden
+	\begin{align*}
+		\int_{t_0}^{t_1} \frac{\partial}{\partial \dot{q}} L (q_\epsilon(t), \dot{q}_\epsilon(t) ) \cdot \Delta \dot{q} dt 
+		=
+		-\int_{t_0}^{t_1} \frac{d}{dt}\frac{\partial}{\partial \dot{q}} L (q_\epsilon(t), \dot{q}_\epsilon(t) ) \cdot \Delta q dt
+	\end{align*}
+	 Insgesamt erhalten wir
+	\begin{align*}
+		\left. \frac{d}{d \epsilon} S[q_\epsilon ] \right\vert_{\epsilon=0}
+		= 
+		\int_{t_0}^{t_1} \left( \frac{\partial}{\partial q} L (q_\epsilon(t), \dot{q}_\epsilon(t) )  -\frac{d}{dt}\frac{\partial}{\partial \dot{q}} L (q_\epsilon(t), \dot{q}_\epsilon(t) ) \right) \cdot \Delta q dt
+	\end{align*}
+	Da $L \in C^2$, gilt
+	\begin{equation*}
+		\left. \frac{d}{d \epsilon} S [q + \epsilon \Delta q] \right\vert_{\epsilon = 0} = 0
+	\end{equation*}
+	für alle Kurven $\Delta q \in C^2([t_0, t_1], Q)$ mit $\Delta q(t_0)= \Delta q(t_1) = 0$ genau dann, wenn \eqref{VL28_3} gilt.
+\end{proof}
+
+\subsection*{Hamiltonsche Bewegungsgleichungen herleiten können}
+Betrachte die verallgemeinerten oder konjugierten Impulse
+\begin{equation*}
+p_i = \frac{\partial L (q, \dot{q})}{\partial \dot{q}_i}, i=1, \dotsc, d \text{ zu } q = (q_1, \dotsc, q_d) \in Q \subseteq \mathbb{R}^d
+\end{equation*}
+Wir nehmen an, dass die durch $q$ definierte Abbildung $q \mapsto p$ (Legendre-Transformation) für jedes $q$ invertierbar ist.
+
+Wir definieren nun die \textbf{Hamiltionfunktion}
+\begin{equation}
+H(p,q) = p^T \dot{q} - L(q, \dot{q}) \text{ wobei } \dot{q} = \dot{q}(p,q)
+\label{Hamiltonoperator}
+\end{equation}
+dann gilt
+\begin{align}
+\begin{split}
+\frac{\partial H}{\partial p} &= \dot{q} + p^T \cdot \frac{\partial q}{\partial p} - \frac{\partial L}{\partial \dot{q}} \cdot \frac{\partial q}{ \partial p} \stackrel{(*)}{=} \dot{q} \\
+\frac{\partial H}{\partial q} &= p \frac{\partial \dot{q}}{\partial q} - \frac{\partial L}{\partial q} - \frac{\partial L}{\partial \dot{q}} \frac{\partial \dot{q}}{\partial q} = - \frac{\partial L}{\partial \dot{q}} = - \dot{p}
+\end{split}
+\end{align}
+Wobei in $(*)$ benutzt wurde, dass $\frac{\partial L}{\partial \dot{q}} = p^T$. Also haben wir insgesamt mit
+\begin{align*}
+\frac{\partial H}{\partial p} &= \dot{q} \\
+\frac{\partial H}{\partial q} &= - \dot{p}
+\end{align*} 
+die Hamiltonischen Bewegungsgleichung.
+
+\subsection*{Begriffe: Zeitreversibilität, Volumenerhalt, Symplektizität erklären können}
+
+\subsubsection*{Volumenerhalt}
+Betrachte eine Menge von Punkten $S(t)$ im Phasenraum mit Fluss $\varphi^t$, das heißt
+\begin{equation*}
+\varphi^t(S(0)) = S(t)
+\end{equation*}
+zu der gewöhnlichen Differentialgleichung $\dot{z} = f(z)$. 
+Das Theorem von Lionville besagt nun, dass das Volumen eines solchen Systems konstant bleibt, falls $ \mathrm{div} f = 0 $ ist. Man kann zeigen, dass dies für die Hamilton-Bewegungsgleichungen gilt.
+
+\subsubsection*{Zeitreversibilität}
+
+
+\subsubsection*{Symplektizität}
+
+Eine lineare Abbildung $A : \mathbb{R}^{2d} \to \mathbb{R}^{2d}$ heißt \textbf{symplektisch}, falls
+\begin{equation*}
+J A J = A
+\end{equation*}
+
+Eine nichtlineare, differenzierbare Abbildung $g : U \to \mathbb{R}^{2d}, U \subseteq \mathbb{R}^{2d}$ heißt \textbf{symplektisch}, falls $D g(x)$ symplektisch für alle $x \in U$ ist.
+
+
+
+\subsection*{Satz VI.4 beweisen können}
+$\varphi(y_0)^t:=\begin{pmatrix} p \\ q \end{pmatrix}$ und es gilt: $\frac{\partial }{\partial t} \varphi^t(y_0)= J^{-1} \nabla H(p,q)$
+
+ Sei $H : \mathbb{R}^{2d} \to \mathbb{R}$ eine zweimal stetig differenzierbare Hamiltonfunktion. Dann ist der Fluss des zugehörigen Hamiltonoperators
+ \begin{equation*}
+ 	H(p,q) = p^T \dot{q} - L(q, \dot{q}) \text{ wobei } \dot{q} = \dot{q}(p,q)
+ \end{equation*}
+symplektisch für alle $t$.
+ 
+\begin{proof}
+	Wir haben 
+	\[
+	\dot{x} = J^{-1} \nabla H(x)
+	\]
+	mit $x = (p, q)$, $\nabla H = \begin{pmatrix}\frac{\partial H}{\partial p} & \frac{\partial H}{\partial q}\end{pmatrix}^T$. Die Abbildung $D \varphi^t$ ist dann die Lösung von
+	\begin{equation*}
+	\dot{A} = J^{-1} \nabla^2 H (\varphi^t(x)) A
+	\end{equation*}
+	wobei $\nabla^2 H$ die Hessematrix ist. Dann haben wir
+	\begin{align*}
+	\frac{d}{dt} \left( (D \varphi^t)^T J D \varphi^t \right)
+	&= \left( \frac{d}{dt} D \varphi^t \right)^T \cdot J D \varphi^t + (D \varphi^t)^T J \left( \frac{d}{dt} D \varphi^t \right) \\
+	&= (D \varphi^t)^T \nabla^2 H \underbrace{(-J)^T J}_{=-J} D \varphi^t + (D \varphi^t)^T \underbrace{J J^{-1}}_{=J} \nabla^2 H D \varphi^t \\
+	&= 0
+	\end{align*}
+	Also ist $D \varphi^t$ symplektisch und somit nach Definition die Flussabbildung $\varphi^t$ ebenfalls.
+\end{proof}
+
+\subsection*{Herleitung: Verlet/ Leap-Frog/ Geschwindigkeits Verlet}
+Ziel ist  es, die Newtonsche Bewegungsgleichung  $m_i \ddot{q}_i = F_i$ numerisch zu approximieren. Dazu gibt es unterschiedliche Verfahren: 
+
+\subsubsection*{Störmer- Verlet}
+Zunächst taylorn wir: 
+Mit einer Taylorapproximation für $q$ erhalten wir zunächst
+\begin{align}
+q(t + \Delta t) &= q(t) + \Delta t \cdot \dot{q}(t)
++ \frac{1}{2} (\Delta t)^2 \ddot{q}(t)
++ \frac{1}{3!} (\Delta t)^3 \frac{\partial q(t)}{\partial t^3}
++ \mathcal{O}((\Delta t)^4) \label{VL29_1}\\ 
+q(t - \Delta t) &= q(t) - \Delta t \cdot \dot{q}(t)
++ \frac{1}{2} (\Delta t)^2 \ddot{q}(t)
+- \frac{1}{3!} (\Delta t)^3 \frac{\partial q(t)}{\partial t^3}
++ \mathcal{O}((\Delta t)^4) \label{VL29_2}
+\end{align}
+Durch Differenz- beziehungsweise Summenbildung von \eqref{VL29_1} und \eqref{VL29_2} ergibt sich
+\begin{align*}
+\dot{q}(t) &= 
+\frac{q(t + \Delta t) - q(t- \Delta t)}{2 \Delta t} \\
+\ddot{q}(t) &=
+\frac{q(t + \Delta t) - 2 q(t) + q(t - \Delta t)}{(\Delta t)^2} + \mathcal{O}((\Delta t)^2)
+\end{align*}
+Ersetze nun die zweite Ableitung gemäß der Newtonschen Bewegungsgleichung. Dann erhalten wir
+\begin{equation*}
+q_i (t + \Delta t) = - q_i(t - \Delta t) + 2 q_i (t) + \frac{(\Delta t)^2}{m_i} F_i(t) + \mathcal{O}((\Delta t)^4)
+\end{equation*}
+Man kann zeigen, dass $q_i$ zeitreversibel ist (Delambre 1791, Verlet um 1960). 
+
+Analog kann man dies für die Geschwindigkeiten $v_i$ zeigen:
+\begin{equation*}
+v_{i} (t) = \dot{q}_i (t) \approx \frac{q_i(t+ \Delta t) - q_i (t - \Delta t)}{2 \Delta t}
+\end{equation*}
+
+Wozu braucht man die Geschwindigkeit? Wie berechnet man F? 
+
+\subsubsection*{Leap Frog}
+Da $v_i(t)=\dot{q}_i(t)$ gilt: 
+\begin{equation*}
+v_i \left(t + \frac{\Delta t}{2} \right) = v_i \left(t - \frac{\Delta t}{2} \right) + \frac{\Delta t}{m_i} F_i (t)
+\end{equation*}
+außerdem gilt: 
+\begin{equation}
+q_i(t + \Delta t) = q_i(t) + \Delta t \cdot v_i \left(t+ \frac{\Delta t}{2} \right)
+\end{equation}
+Diese Berechnung ist das Leap Frog Verfahren. 
+
+\subsubsection*{Geschwindigkeitsverlet}
+Durch Mittelwertbildung: 
+\begin{equation*}
+v_i(t) = \frac{v_i \left(t - \frac{\Delta t}{2} \right) + v_i \left(t+ \frac{\Delta t}{2} \right)}{2}
+\end{equation*}
+Löse die Gleichung $v_{i} (t) =  \frac{q_i(t+ \Delta t) - q_i (t - \Delta t)}{2 \Delta t}$ nach $-q_0(t-\Delta t)$ auf: 
+\begin{equation*}
+- q_i(t - \Delta t) = 2 \Delta t v_i(t) - q_i (t + \Delta t)
+\end{equation*}
+setze dies in $q_i (t + \Delta t) = - q_i(t - \Delta t) + 2 q_i (t) + \frac{(\Delta t)^2}{m_i} F_i(t)$ ein:
+\begin{equation}
+q_i (t + \Delta t) = \Delta t v_i (t) + q_i(t) + \frac{\Delta t^2}{2 m_i} F_i(t) \label{VL30_1}
+\end{equation}
+
+Für die Geschwindigkeiten ergibt sich analog
+\begin{align}
+v_i(t) &= \frac{q_i(t + \Delta t) - q_i(t - \Delta t)}{2 \Delta t} = \dots = \frac{q_i(t)}{\Delta t} - \frac{q_i(t - \Delta t)}{\Delta t} + \frac{F_i(t)}{2 m_i} \Delta t \notag \\
+v_i(t + \Delta t) &= \frac{q_i(t + \Delta t)}{\Delta t} - \frac{q_i(t)}{\Delta t} + \frac{F_i(t + \Delta t)}{2 m_i} \Delta t \notag \\
+v_i(t) + v_i(t+ \Delta t) &= \frac{q_i(t + \Delta t) - q_i(t - \Delta t)}{\Delta t} + \frac{F_i(t) + F_i(t + \Delta t)}{2} \notag \\
+v_i(t+\Delta t) &= v_i(t) + \frac{F_i(t) + F_i(t + \Delta t)}{2 m_i} \label{VL30_2}
+\end{align}
+
+Dieses Verfahren nennt sich Geschwindigkeitsstörmer Verlet. 
+
+\subsection*{Thermostat und Äquipartitionstheorem}
+Grundsätzlich gibt es drei Arten von thermodynamischen Konzepten
+\begin{enumerate}
+	\item \textbf{offenes System}\\
+	System, welches mit dem Umfeld Energie und Partikel austauscht. \\
+	\textit{Beispiel: Tasse mit heißem Tee (Energie = Wärme, Partikel = Dampf)}
+	\item \textbf{abgeschlossenes System}\\
+	System tauscht weder Energie noch Partikel mit der Umgebung aus. \\
+	\textit{Beispiel: Perfekt funktionierende Thermosflasche}
+	\item \textbf{geschlossenes System}\\
+	System tauscht mit der Umgebung nur Energie und keine Masse aus. \\
+	\textit{Beispiel: geschlossene Wasserflasche in der Sonne}
+\end{enumerate}
+\textbf{Wärmebad mikroskopisch:}\\
+Wärmeaustausch durch Kollisionen an der Trennwand zwischen $S_W$ und $S_B$. Im Schnitt ändert sich die kinetische Energie dieser Partikel ,die mit der Trennwand kollidieren. Dies wirkt sich auf die kinetische Energie von $S_B$ aus. \\
+Das \textit{Äquipartitionstheorem} sagt
+\begin{equation*}
+K(q) = \frac{3 N}{2} k_B T
+\end{equation*}
+Dabei ist
+\begin{itemize}
+	\item[$N$] die Anzahl der Partikel
+	\item[$T$] die Temperatur
+	\item[$k_B$] die sogenannte Boltzmannkonstante
+\end{itemize}
+Also ist 
+\begin{equation*}
+T = \frac{2}{3 N k_B} \cdot K(q) = \frac{2}{3 N k_B} \cdot \sum_i \frac{m_i}{2} v_i^2
+\end{equation*}
+Es gibt also einen direkten Zusammenhang zwischen Temperatur und den Geschwindigkeiten.
+
+\subsection*{Unterschied mikrokanonisches Ensemble und kanonisches Ensemble erklären können}
+Wir betrachten ein Dynamisches System in einem Phasenraum. Ein Phasenraum ist ein Raum, der alle Möglichen Zustände des Dynamischen Systems beschreibt. Eine Tranjetorie ist die Zeitliche Veränderung eines Zustandes (betrachte ein Pendel und alle möglichen Zustände in einem Energieniveau nachdem wir es ausgelenkt haben). Dieses Sind die NVE Trajetorien bzw ein mikrokanonisches Ensemble. Ein NVT ensemble kann jedoch diese Energieniveaus durch äußere Einflüsse verlassen z.B. durch Energiezufuhr in einem Wärmebad. 
+
+\subsection*{Boltzman Verteilung herleiten können (Lagrange Multiplikator)}
+Die Wahrscheinlichkeit einen Zustand $i$ zu finden ist nach Ludwig Boltzmann
+\begin{equation*}
+P_i \sim \exp \left( \frac{-E_i}{k_B T} \right)
+\end{equation*}
+Dabei ist 
+\begin{itemize}
+	\item[$E_i$] die Energie des Zustands $i$
+	\item[$k_B$] die Boltzmannkonstante
+	\item[$T$] die Temperatur
+\end{itemize}
+Dieser Zusammenhang soll nun hergeleitet werden.
+
+Die Grundlage dafür bildet die \textbf{Shannon-Entropie}
+\begin{equation*}
+S = - \sum_{i=1}^N P_i \ln P_i
+\end{equation*}
+Dabei sei $P_i$ Wahrscheinlichkeit für Zustand $i$. Die Entropie misst die Unsicherheit . Die Shannon Entropie wird Maximal falls $P_i = \frac{1}{N}$.
+
+Betrachte zunächst die Energie. Diese ist nicht konstant in allen Bereichen, sondern unterschiedlich in verschiedenen Untersystemen. Also kann nur ein Mittelwert $\bar{E}$ bilden. Die Energie $\bar{E}$ kann man auf unterschiedliche Arten verteilen. Es soll gelten
+\begin{equation}
+\sum_{i=1}^N E_i P_i = \bar{E} \text{ und } \sum_{i=1}^N P_i = 1 \label{VL31_1}
+\end{equation}
+Zur Maximierung der Entropie unter den Nebenbedingungen \eqref{VL31_1} stellen wir die Lagrange-Funktion
+\begin{equation*}
+\frac{S}{k_B} = - \sum_{i=1}^N P_i \ln P_i + \lambda \left( \sum_{i=1}^N P_i - 1 \right) + \beta \left( \bar{E} - \sum_{i=1}^N E_i P_i \right)
+\end{equation*}
+auf. Aus den Lagrange-Multiplikatoren erhalten wir aus den partiellen Ableitungen nach $\lambda$ bzw. $\beta$ direkt die Nebenbedingungen. Die partielle Ableitung nach $P_i$ bringt
+\begin{align}
+&&\frac{\partial}{\partial P_i} S = - \ln P_i - 1 + \lambda - \beta E_i &= 0 \notag \\
+&\Leftrightarrow
+&- \ln P_i + (\lambda -1) - \beta E_i &= 0 \notag \\
+&\Leftrightarrow
+&P_i &= e^{\lambda - 1} e^{-\beta E_i} = \frac{e^{-\beta E_i}}{Z} \label{VL31_2}
+\end{align}
+wobei $Z = \sum_{i=1}^N e^{-\beta E_i}$. \\
+Einsetzen von $P_i$ bringt dann
+\begin{equation*}
+\frac{S}{k_B} = - \sum_{i=1}^N P_i \left( -\beta E_i - \ln Z \right) = \beta \bar{E} + \ln Z
+\end{equation*}
+Daraus erhalten wir 
+\begin{equation*}
+\underbrace{- \frac{1}{\beta} \ln Z}_{=:F} = \bar{E} - \frac{1}{k_B \beta} \cdot S
+\end{equation*}
+Mit $\beta = \frac{1}{k_B T}$ erhalten wir schließlich
+\begin{equation*}
+F = \bar{E} - T S
+\end{equation*}
+Wir nennen $F$ die \textbf{freie Energie}.
+
+Nähert sich die Energie dem absoluten Nullpunkt an, verschwindet der  Term $T S$, also ist tatsächlich nur der Energieterm interessant. Bei normalen Temperaturen ($\approx 300 K$), dann sind die temperaturbedingten Einflüsse wesentlich.
 
 
 \end{document}
