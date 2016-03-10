@@ -12,46 +12,43 @@
 
 \maketitle
 
-\section{Spieltheorie}
-
-
-\section{Kapitel}
+\section{Einführung}
 Das Ziel von MOR ist es, Systeme großer Ordnung zu reduzieren. Wir wollen zum Originalsystem ähnliche Systeme finden, die fast die gleichen Eigenschaften haben, wie das Originalsystem. Das neue System soll von niedriger Ordnung sein und ist deshalb einfacher zu berechnen. Auch die Lösung, also die Zustandsfunktion und der gesuchte Output, sollen sehr ähnlich sein. 
 
-Dazu betrachten wir zunächst die explizite Lösung des Originalsystems. Sowohl die Zustandsfunktion als auch der Output enthalten Matrixexponentiale. Diese brauchen grade bei großer Ordnung sehr lange in der Berechung. Nun probieren wir das System anders darzustellen, damit wir kein Matrixexponential mehr berechnen müssen. 
+Dazu betrachten wir zunächst die explizite Lösung des Originalsystems. Sowohl die Zustandsfunktion als auch der Output enthalten Matrixexponentiale. Diese brauchen grade bei großer Ordnung sehr lange in der Berechnung. Nun probieren wir das System anders darzustellen, damit wir kein Matrixexponential mehr berechnen müssen. 
 
 \subsection{Impulse Response}
-In diesem Kapitel betrachten wir als Input die Dirac Delta Funktion und fordern eine 0 Anfangsbedingung. Dabei finden wir heraus, dass die explizite Lösung für den Output sehr viel einfacher ist und nun kein Integral mehr enthält. Außerdem finden wir heraus, dass die Lösung dieses Systems mit Lösungen beliebiger Input funktionen zusammenhängt: Die Faltung von \glqq Impulseresponse\grqq mit dem auf 0 fortgesetzten Input ergibt die Lösung für das LTI System mit beliebigen Input.  
+In diesem Kapitel betrachten wir als Input die Dirac Delta Funktion und fordern eine 0 Anfangsbedingung. Dabei finden wir heraus, dass die explizite Lösung für den Output sehr viel einfacher ist und nun kein Integral mehr enthält. Außerdem finden wir heraus, dass die Lösung dieses Systems mit Lösungen beliebiger Input Funktionen zusammenhängt: Die Faltung von \glqq Impulseresponse\grqq mit dem auf 0 fortgesetzten Input ergibt die Lösung für das LTI System mit beliebigen Input.  
 
 \subsection{Frequency domain}
-Wir wenden auf das LTI System die Laplace Transformation an und erhalten eine andere explizite Lösung, die nun ohne Matrixexponential ist. Im Output ist die transfer function enthalten. (...) Wenn man auf die Impulse response die Laplace transformation anwendet, erhält man die transfer function. Für ein bestimmtes u und $x_0$ ist der output gleich der transfer function (abhängig von \(jw \) (was auch immer jw ist)) mal dem Input. Allgemeiner gilt, dass die Laplace transformation des Outputs gleich der transfer function mal der Laplace transformation der input funktion ist.   
+Wir wenden auf das LTI System die Laplace Transformation an und erhalten eine andere explizite Lösung, die nun ohne Matrixexponential auskommt. Da wir von jetzt an nur Systeme mit 0 Anfangsdaten betrachten, ist der Laplace transformierte Output die sogenannte Transfer Funktion mit dem laplace transformierten Input. Um nachher zu überprüfen, ob unser neues reduziertes System gut ist, müssen wir daher ab jetzt immer die Transfer Funktion betrachten. Aus dem Laplace transformierten System können wir den Output des original Systems ablesen. Dieses ist einfach die Transfer Funktion mal dem Input. 
 
 \subsection{realization}
-Dieses Kapitel setzt sich mit der Transfer Function auseinander. Wozu wir die Eigenschaften der transfer function brauchen, ist mir hier noch nicht ganz klar. Die Eigenschaften: 
+Dieses Kapitel setzt sich mit der Transfer Funktion und deren Realisierung auseinander. Realisierungen sind unterschiedliche Darstellungen von einer Transfer Funktion. Falls zwei Realisierungen gleich sind, haben sie die gleiche Transfer Funktion.  
+ Die Eigenschaften einer Transfer Funktion sind: 
 \begin{itemize}
-	\item die transfer function ist proper d.h. der limes gegen unendlich existiert
-	\item jeder Pol der Transfer function ist ein eigenwert von der Matrix A
-	\item äquivalente realizations haben die selbe transfer function
-	\item jede proper rationale matrix function hat eine realisierung. 
+	\item die Transfer Funktion ist proper d.h. der Limes gegen unendlich existiert
+	\item jeder Pol der Transfer Funktion ist ein Eigenwert von der Matrix A
+	\item äquivalente Realisierungen haben die selbe Transfer Funktion
+	\item jede rationale Matrix Funktion, die proper ist, hat eine Realisierung. 
 \end{itemize}
 
 \subsection{Controlability and observability}
-Zunächst wird der Begriff controlable eingeführt. Dieser besagt, dass für jeden Anfangs- und Endzustand eine Input function gefunden werden kann, die das LTI System erfüllt. Diese Eigenschaft ist sehr nützlich. Warum? Controlability hängt nur von den Matrizen A und B der transfer function ab. 
+Zunächst wird der Begriff controlable eingeführt. Dieser besagt, dass für jeden Anfangs- und Endzustand eine Input Funktion gefunden werden kann, die das LTI System erfüllt. Controlability hängt nur von den Matrizen A und B der Transfer Funktion ab. 
 
-Nun wollen wir herausfinden, ob das gegebene System controlable ist. Dazu gibt es viele unterschiedliche Methoden u.a. den Hautustest oder das Kalman criteria. 
+Nun wollen wir herausfinden, ob das gegebene System controlable ist. Dazu gibt es viele unterschiedliche Methoden u.a. den Hautustest oder das Kalman Kriteria. 
 
+Eine andere Eigenschaft von einem LTI System ist es, observable zu sein. Dieses mal haben wir den Input festgelegt und betrachten das System mit unterschiedlichen State, Output und Anfangszuständen. Oberservable besagt nun, dass wenn beide System den gleichen Output liefern, muss auch schon der Anfangszustand gleich gewesen sein. Obserbility hängt nur von den Matrizen A und C ab. 
 
-Eine andere Eigenschaft von einem LTI System ist es, observable zu sein. Diesesmal haben wir den Input festgelegt und betrachten das System mit unterschiedlichen State, output und Anfangszuständen. Oberservable besagt nun, dass wenn beide System den gleichen Output liefern, muss auch schon der Anfangszustand gleich gewesen sein. Obserbility hängt nur von den Matrizen A und C ab. 
-
-Wir stellen fest, dass Obserbility und Controlability sehr eng verwandt sind. Die Kriterien sind die gleichen, nur mit anderen Matrizen. 
+Diese beiden Eigenschaften sind später sehr wichtig, wenn wir ein System reduzieren wollen. Das grundlegende Verfahren wird es sein, nicht controlable/ observable states zu streichen und später sogar welche, die nur schwer zu observable oder reachable sind. 
 
 \subsection{Uniqueness of realizations and the relation between controlability, observability and minimal realizations}
 
 Zunächst stellen wir fest, dass die Realisierung eines Systems minimal ist, gdw es observable und controlable ist. 
 
-Da wir ein Minimales System erhalten wollen (wir wollen es ja in der Ordnung reduzieren) und observable und controlable sehr gute eigenschaften für unser System sind, wollen wir das System in unterschiedliche Teile (die observable/ controlable bzw dies nicht sind) trennen. 
+Da wir ein Minimales System erhalten wollen (wir wollen es ja in der Ordnung reduzieren) und observable und controlable sehr gute Eigenschaften für unser System sind, wollen wir das System in unterschiedliche Teile (die observable/ controlable bzw. dies nicht sind) trennen. 
 
-Die Kalman controlable composition besagt, dass wir das System in einem controlable und nicht controlable teil aufspalten können, indem wir die Matrizen des LTI Systems mit einer orthogonalen Matrix multiplizieren. A wird eine untere Dreiecksmatrix und B hat unten eine 0 Matrix. Nun hat die Matrix A einen controlable Teil und einen nicht controlable Teil
+Die Kalman controlable Komposition besagt, dass wir das System in einem controlable und nicht controlable teil aufspalten können, indem wir die Matrizen des LTI Systems mit einer orthogonalen Matrix multiplizieren. A wird eine untere Dreiecksmatrix und B hat unten eine 0 Matrix. Nun hat die Matrix A einen controlable Teil und einen nicht controlable Teil
 
 Durch das Gleiche Vorgehen erhalten wir auch einen observable und nicht observablen Teil. Hier wird natürlich nicht B sondern C verändert. 
 
@@ -69,38 +66,38 @@ Die letzte Eigenschaft ist, dass zwei minimale Realisierungen äquivalent sind.
  
  Wir wollen, dass Systeme stabil sind. Um herauszufinden, ob sie es sind, gibt es ein Eigenwert Kriterium. Da früher (heute nicht mehr) es sehr schwierig war, Eigenwerte zu berechnen, wollte man ein anderes Kriterium haben.
  
- Dazu ist die Lyapunov equation sehr nützlich. Sie lautet: $A^T X + XA = -W$. Die Matrix A ist a-stabil gdw ein W, spd, exisitert, sodass doe Lyapunov equation eine spd Lösung hat. Also kann man durch lösen der Lyapunow equation herausfinden, ob ein System A stabil ist.
+ Dazu ist die Lyapunov Gleichung sehr nützlich. Sie lautet: $A^T X + XA = -W$. Die Matrix A ist a-stabil gdw ein spd W existiert, sodass die Lyapunov Gleichung eine spd Lösung hat. Also kann man durch lösen der Lyapunow Gleichung herausfinden, ob ein System A stabil ist.
  
- Betrachten wir nun eine besondere Lyapunov equation. Statt W setzen wir $C^T C$ ein. Falls es so ein C gibt, sodass das System eine Spd Lösung hat, ist A L-Stabil. In diesem Fall ist A sogar a-stbil gdw (A,C) controlable ist. 
+ Betrachten wir nun eine besondere Lyapunov Gleichung. Statt W setzen wir $C^T C$ ein. Falls es so ein C gibt, sodass das System eine Spd Lösung hat, ist A L-Stabil. In diesem Fall ist A sogar a-stabil gdw (A,C) controlable ist. 
  
  \subsection{Norms}
- Wir wollen die $H_{\infty}$ Norm von der transfer function herausfinden. Warum? Damit wir das reduzierte System mit dem nicht reduzierten System vergleichen können. Warum $H_{\infty}$ Norm? Dieses lässt sich darstellen mit dem State und dem Input., bzw mit der observability Grammian und B oder mit der controlability Grammian Q und C. Eine abschätzung für die Norm liefert die Norm von der Matrix D. 
+ Wir wollen die $H_{\infty}$ Norm von der Transfer Funktion herausfinden. Warum? Damit wir das reduzierte System mit dem nicht reduzierten System vergleichen können. Warum $H_{\infty}$ Norm? Dieses lässt sich darstellen mit dem State und dem Input., bzw mit der observability Grammian und B oder mit der controlability Grammian Q und C. Eine Abschätzung für die Norm liefert die Norm von der Matrix D. 
  
  \section{Modal truncation}
- Wir suchen eine Modal truncation. Dazu müssen wir die Matrix A diagonalisieren und können dann mittels eines äquivalenten Systems das reduzierte System finden. Dieses hat die gleichen Eigenschaften bzg stabilität, observability und controlability. 
+ Wir suchen eine Modal truncation. Dazu müssen wir die Matrix A diagonalisieren und können dann mittels eines äquivalenten Systems das reduzierte System finden. Dieses hat die gleichen Eigenschaften bzg Stabilität, observability und controlability. 
  
-Nun ist wichtig, wie gut diese reduktion ist. Der Abstand beider systeme hängt von dem realteil der Eigenwerte und den reduzierten Matrixen B und C ab. 
+Nun ist wichtig, wie gut diese Reduktion ist. Der Abstand beider Systeme hängt von dem Realteil der Eigenwerte und den reduzierten Matrizen B und C ab. 
 
-Leider gibt es bei diesem Vorgehen ein paar Probleme: Das System könnte komplex werden, was nicht gewünscht ist. Außerdem  kann es gut sein, dass dsa neue System nicht viel kleiner ist, als das ursprüngliche, falls nur ein kleiner Fehlerterm gewünscht ist. 
+Leider gibt es bei diesem Vorgehen ein paar Probleme: Das System könnte komplex werden, was nicht gewünscht ist. Außerdem  kann es gut sein, dass das neue System nicht viel kleiner ist, als das ursprüngliche, falls nur ein kleiner Fehlerterm gewünscht ist. 
 
 \section{Balancing}
 
 \subsection{Energy considerations}
-Also brauchen wir eine neue Idee: Es werden nicht die states weggeworfen, die nicht observable/ controlable sind, sondern solche, die nur schwer controlable / observable sind. Dazu definieren wir uns die Input/ Output energy: 
+Also brauchen wir eine neue Idee: Es werden nicht die states weggeworfen, die nicht observable/ controlable sind, sondern solche, die nur schwer controlable / observable sind. Dazu definieren wir uns die Input/ Output Energie: 
 
-Die input energie beschreibt die minimale Energie, die benötigt wird, um das LTI System vom Status 0 (bei $- \infty$) auf dem Status $x_0$ (bei 0) zu bringen. 
+Die Input Energie beschreibt die minimale Energie, die benötigt wird, um das LTI System vom Status 0 (bei $- \infty$) auf dem Status $x_0$ (bei 0) zu bringen. 
 
-Die output energy beschreibt, wie viel Output über der gesamten Zeit bei einem Input von 0 herauskommt.  
+Die Output Energie beschreibt, wie viel Output über der gesamten Zeit bei einem Input von 0 herauskommt.  
  
-Damit wir die input energie besser berechnen können, suchen wir eine neue Darstellung. Dieses lässt sich durch den Anfangszustand und der controlability grammian beschreiben. Für den Output das gleiche, nur mit obserbility grammian. 
+Damit wir die Input Energie besser berechnen können, suchen wir eine neue Darstellung. Dieses lässt sich durch den Anfangszustand und der controlability grammian beschreiben. Für den Output das gleiche, nur mit obserbility grammian. 
 
-Durch diese Beschreibung finden wir heraus, dass der Vektor, der easyest to reach ist, der eigenvektor von P zum größten Eigenwert ist. Genau das gleiche für easyest to observe. 
+Durch diese Beschreibung finden wir heraus, dass der Vektor, der am einfachsten to reach ist, der Eigenvektor von P zum größten Eigenwert ist. Genau das gleiche für einfach zu observe. 
 
-Die Idee für die truncation ist es nun, den Stat in der eigenvektorbasis vom controlability grammian P darzustellen und dann die hard to reach states wegzuwerfen. Das gleiche für hard to observe. 
+Die Idee für die truncation ist es nun, den Stat in der Eigenvektorbasis vom controlability grammian P darzustellen und dann die schwierig reach states wegzuwerfen. Das gleiche für schwer zu observe. 
 
 Das Problem ist, dass teilweise Gegensätzliche Ergebnisse dabei herauskommen. Das ganze wäre einfacher, falls P=Q gelten würde. Dazu betrachten wir Balanced Systems.
 
 \subsection{Balanced Systems}
-Bei einem balanced System sind controlability und oservability grammian identisch und diagonal. Jedes System, das a-stabil, observable und controlable ist, ist äquivalent zu einem balanced system. 
+Bei einem balanced System sind controlability und oservability grammian identisch und diagonal. Jedes System, das a-stabil, observable und controlable ist, ist äquivalent zu einem balanced System. 
  
 \end{document}
