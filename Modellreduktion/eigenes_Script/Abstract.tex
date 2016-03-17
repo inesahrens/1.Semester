@@ -6,7 +6,6 @@
 
 %opening
 \title{MOR - Verständniszusammenfassung}
-\author{}
 
 \begin{document}
 
@@ -15,10 +14,10 @@
 \section{Einführung}
 Das Ziel von MOR ist es, Systeme großer Ordnung zu reduzieren. Wir wollen zum Originalsystem ähnliche Systeme finden, die fast die gleichen Eigenschaften haben, wie das Originalsystem. Das neue System soll von niedriger Ordnung sein und ist deshalb einfacher zu berechnen. Auch die Lösung, also die Zustandsfunktion und der gesuchte Output, sollen sehr ähnlich sein. 
 
-Dazu betrachten wir zunächst die explizite Lösung des Originalsystems. Sowohl die Zustandsfunktion als auch der Output enthalten Matrixexponentiale. Diese brauchen grade bei großer Ordnung sehr lange in der Berechnung. Nun probieren wir das System anders darzustellen, damit wir kein Matrixexponential mehr berechnen müssen. 
+Dazu betrachten wir zunächst die explizite Lösung des Originalsystems. Sowohl die Zustandsfunktion als auch der Output enthalten Matrixexponentiale. Diese brauchen grade bei großer Ordnung sehr lange in der Berechnung. Nun probieren wir das System anders darzustellen, damit wir kein Matrixexponential mehr berechnen müssen und damit wir herausfinden können, wo wir ansetzen müssen, damit das System reduziert werden kann.  
 
 \subsection{Impulse Response}
-In diesem Kapitel betrachten wir als Input die Dirac Delta Funktion und fordern eine 0 Anfangsbedingung. Dabei finden wir heraus, dass die explizite Lösung für den Output sehr viel einfacher ist und nun kein Integral mehr enthält. Außerdem finden wir heraus, dass die Lösung dieses Systems mit Lösungen beliebiger Input Funktionen zusammenhängt: Die Faltung von \glqq Impulseresponse\grqq mit dem auf 0 fortgesetzten Input ergibt die Lösung für das LTI System mit beliebigen Input.  
+In diesem Kapitel betrachten wir als Input die Dirac Delta Funktion und fordern eine 0 Anfangsbedingung. Dabei finden wir heraus, dass die explizite Lösung für den Output sehr viel einfacher ist und nun kein Integral mehr enthält. Außerdem finden wir heraus, dass die Lösung dieses Systems mit Lösungen beliebiger Input Funktionen zusammenhängt: Die Faltung von \glqq Impulseresponse\grqq mit dem auf 0 fortgesetzten dirac Input ergibt die Lösung für das LTI System mit beliebigen Input.  
 
 \subsection{Frequency domain}
 Wir wenden auf das LTI System die Laplace Transformation an und erhalten eine andere explizite Lösung, die nun ohne Matrixexponential auskommt. Da wir von jetzt an nur Systeme mit 0 Anfangsdaten betrachten, ist der Laplace transformierte Output die sogenannte Transfer Funktion mit dem laplace transformierten Input. Um nachher zu überprüfen, ob unser neues reduziertes System gut ist, müssen wir daher ab jetzt immer die Transfer Funktion betrachten. Aus dem Laplace transformierten System können wir den Output des original Systems ablesen. Dieses ist einfach die Transfer Funktion mal dem Input. 
@@ -34,35 +33,35 @@ Dieses Kapitel setzt sich mit der Transfer Funktion und deren Realisierung ausei
 \end{itemize}
 
 \subsection{Controlability and observability}
-Zunächst wird der Begriff controlable eingeführt. Dieser besagt, dass für jeden Anfangs- und Endzustand eine Input Funktion gefunden werden kann, die das LTI System erfüllt. Controlability hängt nur von den Matrizen A und B der Transfer Funktion ab. 
+Zunächst wird der Begriff controlable eingeführt. Dieser besagt, dass für jeden Anfangs- und Endzustand eine Input Funktion gefunden werden kann. Das die Statefunction zu dieser Input Funktion erfüllt die Anfangs- und Endbedingung. Controlability hängt nur von den Matrizen A und B der Transfer Funktion ab, da die explizite Lösung der state Funktion nur von den Matrixen A und B abhängt. 
 
 Nun wollen wir herausfinden, ob das gegebene System controlable ist. Dazu gibt es viele unterschiedliche Methoden u.a. den Hautustest oder das Kalman Kriteria. 
 
-Eine andere Eigenschaft von einem LTI System ist es, observable zu sein. Dieses mal haben wir den Input festgelegt und betrachten das System mit unterschiedlichen State, Output und Anfangszuständen. Oberservable besagt nun, dass wenn beide System den gleichen Output liefern, muss auch schon der Anfangszustand gleich gewesen sein. Obserbility hängt nur von den Matrizen A und C ab. 
+Eine andere Eigenschaft von einem LTI System ist es, observable zu sein. Dieses mal haben wir den Input festgelegt und betrachten das System mit unterschiedlichen State, Output und Anfangszuständen. Oberservable besagt nun, dass wenn beide System den gleichen Output liefern, muss auch schon der Anfangszustand gleich gewesen sein. Obserbility hängt nur von den Matrizen A und C ab, da der Teil der expliziten Darstellung von der Output Funktion, der von dem Anfangszustand abhängt nur von den Matrizen A und C abhängt. 
 
-Diese beiden Eigenschaften sind später sehr wichtig, wenn wir ein System reduzieren wollen. Das grundlegende Verfahren wird es sein, nicht controlable/ observable states zu streichen und später sogar welche, die nur schwer zu observable oder reachable sind. 
+Diese beiden Eigenschaften sind später sehr wichtig, wenn wir ein System reduzieren wollen. Das grundlegende Verfahren wird es sein, nicht controlable/ observable states zu streichen und später auch welche, die nur schwer zu observable oder reachable sind. 
 
 \subsection{Uniqueness of realizations and the relation between controlability, observability and minimal realizations}
 
 Zunächst stellen wir fest, dass die Realisierung eines Systems minimal ist, gdw es observable und controlable ist. 
 
-Da wir ein Minimales System erhalten wollen (wir wollen es ja in der Ordnung reduzieren) und observable und controlable sehr gute Eigenschaften für unser System sind, wollen wir das System in unterschiedliche Teile (die observable/ controlable bzw. dies nicht sind) trennen. 
+Da wir ein minimales System erhalten wollen (wir wollen es ja in der Ordnung reduzieren) und observable und controlable sehr gute Eigenschaften für unser System sind, wollen wir das System in unterschiedliche Teile (die observable/ controlable bzw. dies nicht sind) trennen. 
 
 Die Kalman controlable Komposition besagt, dass wir das System in einem controlable und nicht controlable teil aufspalten können, indem wir die Matrizen des LTI Systems mit einer orthogonalen Matrix multiplizieren. A wird eine untere Dreiecksmatrix und B hat unten eine 0 Matrix. Nun hat die Matrix A einen controlable Teil und einen nicht controlable Teil
 
-Durch das Gleiche Vorgehen erhalten wir auch einen observable und nicht observablen Teil. Hier wird natürlich nicht B sondern C verändert. 
+Durch das gleiche Vorgehen erhalten wir auch einen observable und nicht observablen Teil. Hier wird natürlich nicht B sondern C verändert. 
 
 Vereinigt man beide compositions, kommt man zur Kalman decomposition. Dadurch können wir explizit in der Matirx A aufteilen, welcher Teil (nicht) controlable bzw (nicht) observable ist. 
 
-Als letzten Schritt wollen wir die nicht observable und nicht controlablen Teile des Systems loswerden. Dies passiert später. 
+Als letzten Schritt wollen wir die nicht observable und nicht controlablen Teile des Systems loswerden. 
 
 Die letzte Eigenschaft ist, dass zwei minimale Realisierungen äquivalent sind. 
 
 \subsection{Stability}
- Der Begriff Lyapunov stabil besagt, dass falls von einem System die Anfangswerte nicht zu weit voneinander entfernt sind, auch für jeden weiteren Zeitpunkt die Werte nicht stark voneinander abweichen. 
+ Der Begriff Lyapunov stabil besagt, dass falls von einem System die Anfangswerte nicht zu weit voneinander entfernt sind, auch für jeden weiteren Zeitpunkt die Werte der state Funktion nicht stark voneinander abweichen. 
  
  Asymptotisch stabil heißt, dass das System Lyapunov stabil ist und zusätzlich für $ t \rightarrow \infty$
- die Systeme gleich werden. 
+ die State Funktion des Systems gleich werden. 
  
  Wir wollen, dass Systeme stabil sind. Um herauszufinden, ob sie es sind, gibt es ein Eigenwert Kriterium. Da früher (heute nicht mehr) es sehr schwierig war, Eigenwerte zu berechnen, wollte man ein anderes Kriterium haben.
  
@@ -70,34 +69,174 @@ Die letzte Eigenschaft ist, dass zwei minimale Realisierungen äquivalent sind.
  
  Betrachten wir nun eine besondere Lyapunov Gleichung. Statt W setzen wir $C^T C$ ein. Falls es so ein C gibt, sodass das System eine Spd Lösung hat, ist A L-Stabil. In diesem Fall ist A sogar a-stabil gdw (A,C) controlable ist. 
  
- \subsection{Norms}
- Wir wollen die $H_{\infty}$ Norm von der Transfer Funktion herausfinden. Warum? Damit wir das reduzierte System mit dem nicht reduzierten System vergleichen können. Warum $H_{\infty}$ Norm? Dieses lässt sich darstellen mit dem State und dem Input., bzw mit der observability Grammian und B oder mit der controlability Grammian Q und C. Eine Abschätzung für die Norm liefert die Norm von der Matrix D. 
+ Außerdem können wir mit Lyapunov Gleichungen die obserbility und controlability Grammians berechnen. Diese sind wichtig um entscheiden zu können, ob ein System observable und/oder controlable ist. Später werden die obserbility und controlability Grammians sehr wichtig
+ %todo aufpassen wann genau
  
+ \subsection{Norms}
+ 
+ Wir brauchen später abschätzungen, wie gut unser reduziertes System ist. Dazu führen wir den Hardy Raum und die Normen darauf ein. Die $H_{\infty}$  Norm ist eine Abschätzung des größten Singulärwertes der Funktion, die wir abschätzen. Dies Norm brauchen wir später bei der Model balancing, da wir hier die größten Sigularwerte des reduzierten Systems  mit denen des Originalsystems übereinstimmen, aber die kleineren nicht mehr. 
+ 
+ Die $H_2$ Norm trifft eine Aussage über die Summe aller Singulärwerte der Funktion. Diese werden noch über alle möglichen Eingaben der Funktion integriert.
+ %todo genaue bedeutung? Später bei moment matching ansehen
+ 
+ Da wir immer die Norm der Transfer Funktion bestimmen, können wir uns dies hier auch schon genauer ansehen. Wir wissen bereits, dass die Transfer Funktion proper ist. Falls sie auch noch nur Pole in $\mathbb{C}^-$ hat, ist sie in Hardy Space $H_2$. Falls nun auch noch $D=0$ gilt, ist sie in $H_{\infty}$.    
+  
+ Nun können wir von der transfer Funktion die $H_{\infty}$  Norm abschätzen. Sie ist das Supremum der $L_2$ Norm der Output Funktion durch die $L_2$ Norm der Input Funktion. Durch diese Abschätzung können wir die $L_2$ Norm der Output Funktion abschätzen. 
+ 
+ Ein weiteres Resultat dieses Kapitels ist es, dass wir die $H_2$ Norm der transfer Funktion mit dem Controlability oder obserbility Grammian abschätzen können. 
+ 
+ Die $H_{\infty}$  Norm abzuschätzen von der Transfer Funktion ist nicht so einfach. Die Abschätzung ist kompliziert.  
+  
  \section{Modal truncation}
- Wir suchen eine Modal truncation. Dazu müssen wir die Matrix A diagonalisieren und können dann mittels eines äquivalenten Systems das reduzierte System finden. Dieses hat die gleichen Eigenschaften bzg Stabilität, observability und controlability. 
+ Wir suchen eine Modal truncation. Dazu müssen wir die Matrix A diagonalisieren und können dann mittels eines äquivalenten Systems das reduzierte System finden. Bei diesem System soll A eine Diagonalmatrix sein. Das neue System hat die gleichen Eigenschaften bzg Stabilität, observability und controlability wie das original System.  
  
 Nun ist wichtig, wie gut diese Reduktion ist. Der Abstand beider Systeme hängt von dem Realteil der Eigenwerte und den reduzierten Matrizen B und C ab. 
 
-Leider gibt es bei diesem Vorgehen ein paar Probleme: Das System könnte komplex werden, was nicht gewünscht ist. Außerdem  kann es gut sein, dass das neue System nicht viel kleiner ist, als das ursprüngliche, falls nur ein kleiner Fehlerterm gewünscht ist. 
+Leider gibt es bei diesem Vorgehen ein paar Probleme: Das System könnte komplex werden, was nicht gewünscht ist. Außerdem  kann es gut sein, dass das neue System nicht viel kleiner ist, als das ursprüngliche, falls nur ein kleiner Fehlerterm gewünscht ist. Dieses Vorgehen ist gut, falls die Eigenwerte erhalten bleiben sollen, weil diese eine physikalische Bedeutung haben. 
 
 \section{Balancing}
 
 \subsection{Energy considerations}
-Also brauchen wir eine neue Idee: Es werden nicht die states weggeworfen, die nicht observable/ controlable sind, sondern solche, die nur schwer controlable / observable sind. Dazu definieren wir uns die Input/ Output Energie: 
+Da wir bis jetzt nur sehr wenige Dimensionen reduzieren konnten. Brauchen wir eine neue Idee: Es werden nicht die states weggeworfen, die nicht observable/ controlable sind, sondern solche, die nur schwer controlable / observable sind. Dazu definieren wir uns die Input/ Output Energie: 
 
 Die Input Energie beschreibt die minimale Energie, die benötigt wird, um das LTI System vom Status 0 (bei $- \infty$) auf dem Status $x_0$ (bei 0) zu bringen. 
 
 Die Output Energie beschreibt, wie viel Output über der gesamten Zeit bei einem Input von 0 herauskommt.  
  
+Nun können wir die Begriffe hard/easy to observe/ reach beschreiben. 
+
+Falls die Input Energie für einen bestimmten Anfangszustand klein/groß ist, ist dieser Anfangszustand leicht/schwer zu erreichen. Falls die Input Energie unendlich ist, ist der Anfangszustand nicht zu erreichen. Hier kann eine Verbindung zu controlability gezogen werden. 
+
+Die Begriffe leicht/ schwer zu beobachten (observe) können mit obserbility verglichen werden.  Falls die Outputenergie groß/kein ist, ist der Anfangszustand einfach/schwer zu beobachten. 
+ 
 Damit wir die Input Energie besser berechnen können, suchen wir eine neue Darstellung. Dieses lässt sich durch den Anfangszustand und der controlability grammian beschreiben. Für den Output das gleiche, nur mit obserbility grammian. 
 
 Durch diese Beschreibung finden wir heraus, dass der Vektor, der am einfachsten to reach ist, der Eigenvektor von P zum größten Eigenwert ist. Genau das gleiche für einfach zu observe. 
 
-Die Idee für die truncation ist es nun, den Stat in der Eigenvektorbasis vom controlability grammian P darzustellen und dann die schwierig reach states wegzuwerfen. Das gleiche für schwer zu observe. 
+Die Idee für die truncation ist es nun, den State in der Eigenvektorbasis vom controlability grammian P darzustellen und dann die schwierig reach states wegzuwerfen. Das gleiche für schwer zu observe. 
 
-Das Problem ist, dass teilweise Gegensätzliche Ergebnisse dabei herauskommen. Das ganze wäre einfacher, falls P=Q gelten würde. Dazu betrachten wir Balanced Systems.
+Das Problem ist, dass teilweise Gegensätzliche Ergebnisse dabei herauskommen. Also sollte man darauf achten, dass man nur states wegwirft, die gleichzeitig hard to reach und observe sind. Das ganze wäre einfacher, falls P=Q gelten würde. Dazu betrachten wir Balanced Systems.
 
 \subsection{Balanced Systems}
-Bei einem balanced System sind controlability und oservability grammian identisch und diagonal. Jedes System, das a-stabil, observable und controlable ist, ist äquivalent zu einem balanced System. 
+Bei einem balanced System sind controlability und oservability grammian identisch und diagonal. Jedes System, das a-stabil, observable und controlable ist, ist äquivalent zu einem balanced System. Der Beweis dazu ist konstruktiv und gibt direkt das Balancierte System an. 
  
+\subsection{Hankel singular values}
+%todo: wozu sind hankel sigular values wichtig? 
+
+In diesem Kapitel beschäftigen wir uns mit dem Hankel Operator. Dieser ist ein Operator, der den Input von einem LTI System auf dessen Output abbildet. Die Sigulärwerte von dem Hankel Operator werden Hankel Sigulärwerte genannt. Dies werden später bei der balanced truncation wichtig und müssen dort berechnet werden. Da wir den Hankel Operator nicht und dessen singulärwerte nicht explizit berechnen wollen, suchen wir einen anderen Weg. Dafür brauchen wir eine Zerlegung vom Controlablity Grammian und obserbility Grammian, also $P=RR^T, P=LL^T$. Nun ist ein Hankel Singular Value das gleiche wie ein Singulärwert der Matrix $L^TR$. 
+Außerdem wissen wir, dass sich Hankel Sigulärwerte nicht unter äquivalenter Transformation ändern. 
+
+\subsection{Balanced truncation} 
+Nun können wir alles was wir in diesem Kapitel kennengelernt haben, anwenden, damit wir eine Methode finden, mit der wir unser System reduzieren können. 
+
+Bei dieser Methode gehen wir immer davon aus, dass wir ein balanciertes, a-stabiles System haben. Von balanciertheit können wir ausgehen, da wir durch die Kalman decomposition alle nicht observable und controlable states weggeworfen haben und jedes observable und controlable ein äquivalentes balanciertes System hat. 
+
+Die Grundidee ist es, das System, in zwei Teile, wie bei der Model truncation aufteilen. Diese zwei Teile hängen von den Hankelsigular values ab. Die Controlablitiy und observability Grammians haben die HSV auf ihren Diagonalen geordnet nach deren Größe. Dabei gibt es normalerweise HSV, die deutlich größer sind als die anderen. Nun können wir die Matrizen A,B,C in Teile genau dieser Größe aufteilen. Diese bilden das reduzierte System. 
+
+Das reduzierte System hat nun sogar die Eigenschaft, dass es observable und controlable ist, was nicht weiter verwunderlich ist, da die schwer zu observ/ reach Teile weggeworfen wurden. 
+
+Nun stellt sich noch die Frage, wie gut dieses System ist. Für die Abschätzung betrachten wir $\|G-G_r\|_{H_{\infty}}$, wie schon bei im Kapitel Normen erklärt. G ist die transfer Funktion und $G_r$ die transfer Funktion des reduzierten Systems, wobei r unterschiedliche Singulärwerte behalten wurden. Die Norm lässt sich nun abschätzen durch 2 mal die Summe aller Singulärwerte, die weggeworfen wurden.        
+ 
+\section{Numerical solutions of Lyapunov equations}
+Die Lyapunov und Sylvester equation haben wir schon im Kapitel stability kennengelernt. Die Gleichungen lauten: $BX+XA=W$ bzw $A^TX+XA=W$. Diese zu lösen ist sehr wichtig. Zum einen können wir dadurch feststellen, ob ein System stabil ist, zum anderen können wir dadurch die Controlability und Obserbility Grammians berechnen. Diese wurden bei bis jetzt allen Methoden benötigt und werden auch noch später benötigt werden.   
+
+\subsection{Kroneker Product method}
+Der erste Ansatz ist die Lösung der Gleichung über das Kroneker Produkt. Diese Idee ist für kleine Systeme sehr gut, da sie einfach ist. Aber die Komplexität ist so hoch ($O(n^6)$), dass sie in der Realität nicht benutzt werden kann. 
+
+Ein wichtiges Resultat dieses Kapitels ist eine Bedingung, wann die Laypunov/ Sylvester equation eine eindeutige Lösung hat: Sie hat genau dann eine eindeutige Lsg, falls die eigenwerte von A geschnitten mit den negativen Eigenwerten von B (bzw A) die leere Menge sind. 
+
+\subsection{Hammerlings Algorithm}
+Eine bessere Alternative Lyapunov Gleichungen zu lösen, ist der Hammerlings Algorithmus. Dieser beruht darauf, dass wir die gesuchte Matrix in ihre Cholesky Zerlegung, also $X=LL^T$ wobei $L$ eine untere Dreiecksmatrix ist, zerlegen können. Daraus kann dann ein Algorithmus erstellt werden. 
+
+Die gesamte Herleitung des Algorithmus ist sehr Technik lastig und eine genaue Beschreibung ist an dieser Stelle nicht sinnvoll. 
+
+\subsection{ADI Method}
+Die ADI (alternating direction implizit) Methode, ist eine weitere Methode um Lyapunov equation zu lösen. Diese Methode wird angewendet, wenn wir Systeme der Form $(A+B)x=b$ haben und A und B einfach zu invertieren sind, aber nicht $A+B$. 
+
+Wie bekommen wir überhaupt ein System dieser Form? Wir können die Lyapunov Gleichung $ A^TQ+QA=-C^TC$ umschreiben zu 
+\begin{equation*}
+	(A^T+ \tau I)Q=-C^TC - Q(A-\tau I) \\
+	Q(A+\tau I) = C^TC-(A^T-\tau I)Q
+\end{equation*}
+wobei $\tau \in C$ gilt.
+Diese System kann man nun iterativ nach dem ersten $Q$ in der ersten Gleichung und dann nach dem ersten $Q$ in der zweiten Gleichung lösen. Dabei ist $\tau I$ natürlich sehr leicht zu invertieren. 
+
+Bei einer anderen ADI Methode berechnen wir das Q, indem wir eine Cholesky Zerlegung machen. Q wird wieder iterativ bestimmt durch $Q_i=Q_{i-1} + V_i V_i^H$ wobei $V_i$ eine merkwürdige komplizierte Form hat, \\
+
+ deren Herkunft ich nicht verstehe. \\
+ 
+ Daraus folgt nun, dass $Q_i=L_i L_i^H$ gilt, wobei $L_i=[V_1, \dots, V_i ]$ gilt. Wir finden auch eine iterative Darstellung für $V_i$.  
+Diese Erkenntnisse können nun zu einem iterativen Algorithmus zusammengefasst werden. 
+
+Für den Algorithmus gibt es unterschiedliche Abbruch Kriteria. Zum einen kann eine maximale iterationszahl angesetzt werden, oder geschaut werden, ob Die Norm der Lyapunov Gleichung umgestellt nach 0 eine bestimmte Toleranz unterschreitet. Ein noch anderes Kriterium ist es, dass die Norm vom $V_i$ durch die Norm von $L_i$ unter einer gewissen Toleranz sein soll. \\
+
+Warum dieses Kriterium sinnvoll ist, ist mir nicht klar. \\
+
+Jetzt ist noch die Wahl der $\tau_i$ interessant, die bei beiden ADI Methoden gebraucht werden. Es kann gezeigt werden, dass falls die $\tau_i \in \mathbb{C}_-$ zyklisch gewählt werden, dass dann die letztere ADI Methode gegen die Lösung der Lyapunov Gleichung konvergiert.\\
+
+Im Beweis davon war mir nicht klar, warum dies so ist. Das Lemma 4.2 das genutzt wurde, gilt nur für ein ganz spezielles $\tau_i$, nicht für allgemein zyklische $\tau_i$ 
+
+Durch den Beweis wird klar, dass der Spektralradius von $\tau_q$ einen drastischen Effekt auf die Konvergenzgeschwindigkeit hat. Nun ist ein neues Problem, die $\tau_i$ so zu wählen, dass der Spektralradium möglichst klein wird.   
+
+\subsection{Overview}
+Wir haben einige direkte Methoden kennengelernt, um Lyapunov Gleichungen zu lösen:
+\begin{itemize}
+	\item Kroneker Produkt $O(n^6)$
+	\item Bartels Steward (Übung) $O(n^3)$
+	\item Hammerlings Method $O(n^3)$
+\end{itemize}
+iterative Methoden: 
+\begin{itemize}
+	\item sign fct method (nicht hier) 
+	\item ADI method
+	\item Krylor subspace Method
+	\item Multigrid
+\end{itemize}
+Es gibt auch noch Integrationsmethoden. Hier wird die Quadratur auf Q angewendet.
+ 
+\section{MOR by moment matching}
+in diesem Kapitel widmen wir uns wieder der Lösung von LTI Systemen. Hier betrachten wir aber nur SISO Systeme, also System mit Single Input und Single Output. Das heißt, dass B und C Vektoren sind und D ein Skalar ist.
+
+Die Grundsätzliche Idee ist es, die Transfer Funktion als Potenzreihe darzustellen. Dann kann das reduzierte System die ersten Terme der Potenzreihe übernehmen, die sogenannten Momente. 
+
+\subsection{Moments}
+Da wir schon wissen, dass die Transfer Funktion proper ist und nur Pole in den Eigenwerten von A vorkommen, ist sie analytisch außer in den Eigenwerten. Deshalb kann eine Darstellung als Potenzreihe gefunden werden, die lautet $G(s)=\sum\limits_{k=0}^{\infty}(s-s_o)^k M_k(s_0)$. Dabei ist $s_0$ nicht aus den Eigenwerten von A, kann aber unendlich sein. In diesem Fall gilt: $G(s)=\sum\limits_{k=0}^{\infty}s^{-k} M_k(\infty)$.
+
+Diese Momente kann man auch explizit darstellen.
+
+Unser Ziel ist es nun ein ROM zu finden, bei dem die ersten Momente des ROMs mit denen des Originalsystems übereinstimmen. 
+
+\subsection{One sided moment matching for SISO systems}
+Für das einseitige Moment matching haben wir zwei möglichkeiten. Eine Möglichkeit besteht für ein observable und eine andere für ein controlable System. 
+
+Falls wir ein controlable SISO LTI System gegeben haben, können wir ein fast äquivalentes System der Ordnung l finden, sodass die ersten l Momente die des original Systems sind. Dabei können wir das reduzierte A und B ohne weitere Kosten direkt erhalten. Das Gleiche Resultat gilt auch für ein observable LTI SISO System. 
+
+\subsection{Two sided moment matching: Pade-via-Lenezos}
+Nun wollen wir ein System finden, bei der bei einer Ordnung von l sogar 2l Momente übereinstimmen. Dies ist möglich, falls $H=O_l(s_0) S_l(s_0)$ invertierbar ist. Dann gilt nämlich außerdem, dass wir Matrizen $T_1, W_1$ finden mit $W_1T_1=I$, $im(T_1)=im(S_l(s_0))$ und $im(W_1^T)=im(O_l^T(s_0))$ wobei $S_l$ bzw $O_l$ die generalisierten controbability/ obserbility Matrizen sind.
+
+Durch den Pade-via Lanczos Algorithmus finden wir dieses $T_1, W_1$. \\
+
+Diesen Algorithmus versteh ich nicht, da die ganzen Wahlen von Variablen unverständlich bleiben. 
+
+\subsection{optimal expansion point/ optimal $H_2$  model reduction}
+
+Wir probieren hier eine neue Reduzierungsidee zu finden, mit der wir  $\max |y(t)-\tilde{y}(t)| \frac{1}{\|u\|_{L_2}}$ minimieren. Man kann zeigen, dass es reicht  $\|G - \tilde{G}\|_{H_2}$ zu minimieren. 
+ 
+ Wir finden heraus, dass falls es ein $\tilde{G}$ gibt, sodass die Norm minimiert wird, dann $\tilde{G}(- \mu_k)=G(- \mu_k)$ gilt, wobei die $\mu_k$ die Pole der Transfer Funktion sind.  Um dieses Ergebnis zu erhalten brauche wir das Residuum. 
+ 
+ Also wollen wir mit unserem neuen ROM erreichen, dass $\tilde{G}(- \mu_k)=G(- \mu_k)$ für alle k gilt.   
+ 
+ Außerdem finden wir heraus, dass $\tilde{G}'(- \mu_k)=G'(- \mu_k)$ gilt, falls $\tilde{G}$ ein lokaler Minimierer ist. 
+ 
+ Da $G$ der erste Moment und $G'$ der zweite Moment ist, interpoliert $\tilde{G}$ die ersten zwei Momente von G an den Spiegelpunkten der Pole der Transfer Funktion. 
+ 
+ Wir suchen also expansion Punkte, sodass die ersten zwei Momente von diesen expansion Punkten übereinstimmen. Wir wissen, dass die Pole der Transfer Funktion des ROM die Eigenwerte von $\tilde{A}$ sind. Wir suche also expansion Punkte, sodass diese das negative der Eigenwerte von $\tilde{A}$ sind. Also können wir uns eine Funktion basteln, die die expansion Punkte auf die Eigenwerte Abbildet. Wir sichen dann den Fixpunkt, also $s=-g(s)$. Dieses lässt sich mittels Fixpunkt iteration lösen.
+ 
+ Der daraus resultierende Algorithmus ist der IRKA (iterative rational Krylor algorithm). Hier berechnen wir das ROM, indem wir $T_1, W_1$ mit Pade-via-Lanczos
+ berechnen.  
+ 
+  
+  
+  
+  
 \end{document}
