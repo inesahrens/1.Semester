@@ -119,7 +119,7 @@ Wichtiges  mathematisches Verfahren zur Variablentransformation. $f \in C^1(\mat
 \subsection{chemisches Potential}
 Referenz: Wiki
 
-Das chemische Potential oder chemische Potenzial \mu ist eine intensive thermodynamische Zustandsgröße, die Möglichkeiten eines Stoffes charakterisiert,
+Das chemische Potential oder chemische Potenzial $\mu$ ist eine intensive thermodynamische Zustandsgröße, die Möglichkeiten eines Stoffes charakterisiert,
 \begin{itemize}
  \item mit anderen Stoffen zu reagieren (chemische Reaktion);
  \item in eine andere Zustandsform überzugehen (Phasenübergang);
@@ -201,21 +201,149 @@ Allgemein ist ein Gleichgewicht die Ausgeglichenheit aller Potentiale und Flüss
  
 Ein System ist im thermodynamischen Gleichgewicht, wenn es in einem stationären Zustand ist, in dem alle makroskopischen Flüsse verschwinden. Dann gilt grundsätzlich das Kräftegleichgewicht aus Gibbs freier Enthalpie. Das heißt, dass die Thermodynamischen Potenziale kein Gefälle haben, die eine Änderung der Potentialgrößen des Systems antreiben.
 
+\subsection{Kraftfeld}
+Referenz: Wiki: Kraftfeld(Computerphysik)
+
+In der Computerphysik und verwandten Disziplinen ist ein Kraftfeld (englisch: force field) eine Parametrisierung der potentiellen Energie. Wenn auf ein bestimmtes Kraftfeld verwiesen wird, so wird sowohl auf die funktionelle Form des Kraftfeldes, als auch auf einen speziellen (festgelegten) Parameterset verwiesen.
+
+Häufig enthalten Kraftfelder Terme für Beiträge zur potentiellen Energie, die durch chemische Bindungen vermittelt werden sowie Terme für Wechselwirkungen, die nicht durch chemische Bindungen vermittelt werden:
+
+$E=E_\text{bonded}+E_\text{nonbonded}$.
+
+Der Beitrag $E_\text{nonbonded}$ enthält häufig ein Lennard-Jones-Potential-Term und einen Coulomb-Potential-Term. Der Beitrag $E_\text{bonded}$ enthält häufig Terme, welche die Torsion von Bindungen, Bindungswinkel und Bindungslängen beschreiben.
+
+Der Term der die Bindungslänge zwischen Atomtypen der Sorte A und B beschreibt, kann z.B. die Form $E_{AB} = k_{AB} (r_{AB}^0 - r)^2$ annehmen, wobei die Federkonstante $k_{AB}$ sowie der Gleichgewichtsabstand $r_{AB}^0$ Parameter sind. Da beispielsweise Kohlenstoffatome je nach dem ob eine Doppel- oder Einfachbindung vorliegt andere Gleichgewichtsabstände und Federkonstanten haben, verwendet man zur Charakterisierung der anzuwendenden Parameter nicht lediglich Elementsymbole, sondern Atomtypen. Bei der (alleinigen) Wahl der obigen funktionellen Form zur Beschreibung der Bindungslänge wäre das Brechen von Bindungen nicht möglich. Es gibt jedoch reaktive Kraftfelder (wie beispielsweise ReaxFF), die das Brechen von Bindungen beschreiben können.
+
+Die Wahl der Parameter eines Kraftfeldes erfolgt so, dass es in Computersimulationen bestimmte Aspekte möglichst exakt wiedergeben kann.
 
 \subsection{Ensemble}
 Referenz: Wiki: Ensemble(Physik) 
 
 Ein Ensemble oder eine Gesamtheit ist in der statistischen Physik eine Menge gleichartig präparierter Systeme von Teilchen im thermodynamischen Gleichgewicht. 
 
-\subsection{kanonisches Ensemble}
-Referenz: Wiki: kanonisches Ensemble
+\subsection{kanonisches Ensemble(NVT)}
+Referenz: Wiki: kanonisches Ensemble,  Molekülardynamik Simulation $->$ NVT Ensemble
 
 Das kanonische Ensemble (auch NVT-Ensemble oder Gibbs-Ensemble ) ist in der statistischen Physik ein System mit festgelegter Teilchenzahl in einem konstanten Volumen, das Energie mit einem Reservoir austauschen kann und mit diesem im thermischen Gleichgewicht ist. Dies entspricht einem System mit vorgegebener Temperatur, wie ein geschlossenes System (kein Teilchenaustausch) in einem Wärmebad (makroskopisches System, das sehr viel größer ist als das betrachtete System).
 
-\subsection{mikrokanonisches ensemble}
-Referenz: Wiki: mikrokanonisches Ensemble
+Um das NVT Ensemble zu realisieren, wird zusätzlich ein Thermostat benötigt. 
 
-Das mikrokanonische Ensemble beschreibt in der statistischen Physik ein System mit festgelegter Gesamtenergie im thermodynamischen Gleichgewicht. Es unterscheidet sich damit z. B. vom kanonischen Ensemble, in dem ein thermischer Kontakt mit der Umgebung besteht, der bei festgelegter Temperatur eine fluktuierende Gesamtenergie erlaubt.
+\subsection{mikrokanonisches ensemble (NVE)}
+Referenz: Wiki: Molekülardynamik Simulation $->$ NVE Ensemble
 
+Das mikrokanonisches Ensemble beschreibt ein System, das isoliert ist und keine Partikel (N), Volumen (V) oder Energie (E) mit der Umgebung austauscht.
+
+Für ein System mit N Partikeln, zugehörigen Koordinaten X und Geschwindigkeiten V kann man folgendes Paar gewöhnlicher Differentialgleichungen aufstellen:
+
+\begin{align} F(X) = - \nabla U(X) = M \dot{V}(t) &\\ V(t) & = \dot{X}(t). \end{align}
+
+Dabei beschreibt F die Kraft M die Masse
+t die Zeit. Die potenzielle Energie U(X) beschreibt die Wechselwirkung der Atome und Moleküle. U(X) wird auch Kraftfeld genannt. Es wird durch zwei Teile definiert:
+Erstens die mathematische Form (d.h. der funktionale Ansatz für die einzelnen Wechselwirkungsarten, meist der klassischen Mechanik entlehnt) und zweitens die atomspezifischen Parameter. Letztere erhält man aus spektroskopischen Experimenten, Beugungsexperimenten (Röntgenbeugung) und/oder quantenmechanischen Berechnungen (Quantenchemie) sowie in manchen Kraftfeldern auch aus makroskopischen Messwerten (experimentell), die durch die Parametrierung erfüllt werden sollen. Daher kann es für einen Kraftfeldansatz verschiedene Parametersätze geben.
+
+Die Parametrisierung eines Kraftfeldes mit einem großen Anwendungsbereich ist eine große Herausforderung. Bei der Durchführung von MD-Simulationen ist die Wahl des richtigen Kraftfeldes eine wichtige Entscheidung. Generell sind Kraftfelder immer nur auf solche Systeme anwendbar, für die sie parametrisiert sind (z. B. Proteine oder Silikate).
+
+\subsection{Isotherm-isobares Ensemble(NPT)}
+Referenz: Wiki: Molekülardynamik Simulation $->$ NPT Ensemble
+
+Um das NPT-Ensemble zu realisieren benötigt man neben einem Thermostat zusätzlich ein Barostat. 
+
+\subsection{Moleküldynamik}
+Referenz: Wiki Moleküldynamik-Simulation
+
+Moleküldynamik oder Molekulardynamik (MD) bezeichnet Computersimulationen in der molekularen Modellierung, bei denen Wechselwirkungen zwischen Atomen und Molekülen und deren sich daraus ergebende räumliche Bewegungen iterativ berechnet und dargestellt werden. Bei der Modellierung von komplexen Systemen mit einer Vielzahl an beteiligten Atomen werden hauptsächlich Kraftfelder oder semiempirische Methoden verwendet, da der Rechenaufwand zur Anwendung von quantenmechanischen Verfahren (ab-initio-Methoden) hierbei zu groß wäre.
+
+Die MD-Methode spielt eine große Rolle in der Simulation von Flüssigkeiten, wie z. B. Wasser oder wässrigen Lösungen, wo strukturelle und dynamische Eigenschaften in experimentell schwer zugänglichen Bereichen (z. B. von Druck und Temperatur) berechnet werden können.
+
+Aus Sicht der statistischen Physik erzeugt eine MD-Simulation Konfigurationen, die bestimmten thermodynamischen Ensembles entsprechen.  Monte-Carlo-Simulationen erzeugen vergleichbare Konfigurationen unter Verwendung der Zustandssumme dieser Ensembles.
+
+Das simulierte Volumenelement wird am Anfang mit den zu untersuchenden Teilchen gefüllt. Anschließend folgt die Equilibrierung: es werden für jedes Teilchen die Kräfte berechnet, die auf es aufgrund seiner Nachbarn wirken, und die Teilchen entsprechend dieser Kräfte in sehr kleinen Zeitschritten bewegt. Nach einigen Schritten (bei einem guten, passenden Kraftmodell) gelangt das Probevolumen in ein thermisches Gleichgewicht, und die Teilchen fangen an, sich "sinnvoll" zu bewegen. Nun können aus den Kräften und Bewegungen der Teilchen Druck und Temperatur berechnet und schrittweise verändert werden.
+
+MD-Simulationen finden meist unter periodischen Randbedingungen statt: jedes Teilchen, das das simulierte Volumen auf einer Seite verlässt, taucht auf der gegenüberliegenden wieder auf, alle Wechselwirkungen finden auch über diese Grenzen hinweg direkt statt. Dazu werden identische Kopien des simulierten Volumens nebeneinandergesetzt, so dass der dreidimensionale Raum die Oberfläche eines flachen, vierdimensionalen Torus bildet. Da dabei zu jedem Teilchen in den benachbarten Zellen (3x3x3-1=) 26 Kopien entstehen, werden kurzreichweitige Wechselwirkungen nur zu dem einen, nächstliegenden dieser identischen Bildteilchen berechnet .
+
+\subsection{Nuclear Magnetic Resonance}
+Referenz: Wiki: Kerspinresonanz
+
+Kernspinresonanz, auch magnetische Kernresonanz oder kernmagnetische Resonanz, ist ein (kern)physikalischer Effekt, bei dem Atomkerne einer Materialprobe in einem konstanten Magnetfeld elektromagnetische Wechselfelder absorbieren und emittieren.  Die Kernspinresonanz ist die Grundlage der Kernspinresonanzspektroskopie (NMR-Spektroskopie), eine der Standardmethoden bei der Untersuchung von Atomen, Molekülen, Flüssigkeiten und Festkörpern. 
+
+\subsection{Enthalpie}
+Referenz: Wiki: Enthalpie
+
+Die Enthalpie H  ist eine Energie, die sich aus innerer Energie U, Druck p und Volumen V zusammensetzt:
+$H = U + pV$
+
+Die Enthalpie H ist ebenso wie die Variablen U, p und V eine Zustandsgröße. Die natürlichen Variablen der Enthalpie sind die Entropie und der Druck.
+
+Die Enthalpie beschreibt in der Physik  den Energieaufwand von Phasenumwandlungen und den Energiegehalt von Stoffen, sie beschreibt in der Chemie den Energieumsatz chemischer Reaktionen.
+
+Die innere Energie besteht aus der thermischen Energie – beruhend auf der ungerichteten Bewegung der Moleküle (Kinetische Energie, Rotationsenergie, Schwingungsenergie) –, der chemischen Bindungsenergie und der potentiellen Energie der Atomkerne. Hinzu kommen Wechselwirkungen mit elektrischen und magnetischen Dipolen. Sie nimmt ungefähr proportional zur Temperatur des Systems zu und ist am absoluten Nullpunkt gleich der Nullpunktenergie.
+
+Die Volumenänderungsarbeit$ \int{p \mathrm dV}$ ist in diesem Fall anschaulich die Arbeit, die bei konstantem Druck gegen den Druck p verrichtet werden muss, um das Volumen V zu erzeugen, das vom System im betrachteten Zustand eingenommen wird. Sofern der Druck nicht zwangsläufig konstant sein muss, spricht man jedoch von der Verschiebearbeit pV.
+
+Differenziell ausgedrückt wird aus H = U + pV
+
+$\mathrm dH = \mathrm dU + \mathrm d(pV) = T \mathrm dS - p \mathrm dV + V \mathrm dp + p \mathrm dV = T\mathrm dS + V \mathrm dp. $
+
+Die Enthalpie H enthält zusätzlich zur inneren Energie U das Produkt p·V. Dieser Term ist die Energie, die als Arbeit erforderlich war oder gewesen wäre, um dem System in seiner Umgebung Platz zu verschaffen.
+
+Beispiel: Welche Arbeit müssen Sie aufbringen, um eine Wassermenge von einem Kubikmeter in ein Becken zu drücken, dessen Wasserspiegel 100 m höher liegt?
+
+\subsection{Andersen Thermostat}
+Referenz: Wiki: Andersen Thermostat
+
+The Andersen thermostat is a proposal in molecular dynamics simulation for maintaining constant temperature conditions.It is based on the reassignment of a chosen atom or molecule's velocity. The new velocity is given by Maxwell–Boltzmann statistics for the given temperature.
+
+\subsection{Berendsen thermostat}
+Referenz: Wiki: Berendsen Thermostat
+
+The Berendsen thermostat is an algorithm to re-scale the velocities of particles in molecular dynamics simulations to control the simulation temperature.
+
+In this scheme, the system is weakly coupled to a heat bath with some temperature. The thermostat suppresses fluctuations of the kinetic energy of the system and therefore cannot produce trajectories consistent with the canonical ensemble. The temperature of the system is corrected such that the deviation exponentially decays with some time constant $\tau$ .
+
+$\frac{dT}{dt}=\frac{T_0-T}{\tau}$
+
+Though the thermostat does not generate a correct canonical ensemble (especially for small systems), for large systems on the order of hundreds or thousands of atoms/molecules, the approximation yields roughly correct results for most calculated properties. The scheme is widely used due to the efficiency with which it relaxes a system to some target (bath) temperature. In many instances, systems are initially equilibrated using the Berendsen scheme, while properties are calculated using the widely known Nosé-Hoover thermostat, which correctly generates trajectories consistent with a canonical ensemble.
+
+\subsection{Nose-Hoover Thermostat}
+Referenz: Wiki: Nose-Hoover Thermostat
+
+The Nosé–Hoover thermostat is a deterministic algorithm for constant-temperature molecular dynamics simulations.
+Although the heat bath of Nosé–Hoover thermostat consists of only one imaginary particle, simulation systems achieve realistic constant-temperature condition (canonical ensemble). Therefore, the Nosé–Hoover thermostat has been commonly used as one of the most accurate and efficient methods for constant-temperature molecular dynamics simulations.
+
+In classic molecular dynamics, simulations are done in the microcanonical ensemble; a number of particles, volume, and energy have a constant value. In experiments, however, the temperature is generally controlled instead of the energy. The ensemble of this experimental condition is called a canonical ensemble. Importantly, the canonical ensemble is perfectly different from microcanonical ensemble from the viewpoint of statistical mechanics. Several methods have been introduced to keep the temperature constant while using the microcanonical ensemble. Popular techniques to control temperature include velocity rescaling, the Andersen thermostat, the Nosé–Hoover thermostat, Nosé–Hoover chains, the Berendsen thermostat and Langevin dynamics.
+
+The central idea is to simulate in such a way that we obtain a canonical distribution: this means fixing the average temperature of the system under simulation, but at the same time allowing for a fluctuation of the temperature with a distribution typical for a canonical distribution.
+
+In the approach of Nosé, a Hamiltonian with an extra degree of freedom for heat bath, s, is introduced;
+
+\begin{align*}
+	\mathcal{H} (P,R,p_s,s) = \sum_i\frac{\mathbf{p}_i^2}{2ms^2} + \frac12 \sum_{ij,i\not= j} U \left( \mathbf{r_i} - \mathbf{r_j}\right) + \frac{p_s^2}{2Q} + gkT\ln\left( s\right)
+\end{align*}  ,
+
+where g is the number of independent momentum degrees of freedom of the system, R and P represent all coordinates $\mathbf{r_i}$ and $\mathbf{p_i}$ and Q is an imaginary mass which should be chosen carefully along with systems. The coordinates R, P and t in this Hamiltonian are virtual. They are related to the real coordinates as follows:
+
+$R'=R,~ P'=\frac{P}{s} ~\text{and}~t'=\int^t \frac{\mathrm{d}\tau}{s}$,
+
+where the coordinates with an accent are the real coordinates. It should be noted that the ensemble average of the above Hamiltonian at g=3N is equal to the microcanonical ensemble average.
+
+Hoover (1985) built on the Nosé method to establish what is now known as the Nosé–Hoover thermostat, which does not require the scaling of the time (or, in effect, of the momentum) by s.
+
+\subsection{Solvatisierung}
+Referenz: Wiki: Solvatisierung
+
+Solvatisierung oder auch Solvatation findet in, meist flüssigen, Lösungen statt. Sie basiert auf einer Attraktion oder Assoziation von Molekülen des Lösungsmittels mit Molekülen oder Ionen des gelösten Stoffes. Eine Wechselwirkung der gelösten Teilchen mit dem Lösungsmittel führt zur Stabilisation der gelösten Teilchen in der Lösung. Diese Wechselwirkungskräfte führen auch zu einer geordneten Struktur der Lösungsmittelmoleküle um das Gelöste und man spricht auch von einer Solvathülle um die gelösten Teilchen.
+
+Solvatation kann prinzipiell durch verschiedene Arten von intermolekularen (bei Ionen auch interatomaren) Wechselwirkungen erfolgen, wie Ion-Dipol-, Dipol-Dipol-, Wasserstoff-Brücken- und Van-der-Waals-Kräfte. Ion-Ion-Wechselwirkungen können in ionischen Lösungsmitteln auftreten.
+
+Besonders gute Lösungsmittel sind polare Lösungsmittel, die aufgrund ihrer molekularen Struktur einen elektrischen Dipol besitzen. Wenn sich z.B. Ionen in einem polaren Lösungsmittel befinden, üben sie aufgrund ihrer elektrischen Ladung Kräfte auf die Lösungsmitteldipole aus. In der Nähe von positiven Ionen (Kationen) richten sich dann in der Regel die Dipole des Lösungsmittels so aus, dass ihr negativer Pol zum Kation hin und ihr positiver Pol vom Kation weg gerichtet ist. In der Nähe von negativen Ionen (Anionen) ist der positive Pol zum Anion hin und der negative Pol vom Anion weg gerichtet. Im Spezialfall von Wasser bezeichnet man die Solvatation als Hydratation und die Solvathülle als Hydrathülle. Da die Wasserstruktur durch Wasserstoffbrücken dominiert wird, sind die Strukturen der Hydrathüllen um gelöste Ionen oft komplexer als man nach der einfachen Ion-Dipol-Wechselwirkung, wie oben beschrieben und in der Abbildung gezeigt, erwarten würde.
+
+Eine wichtige Informationsquelle bei der experimentellen Untersuchung der Ionen-Solvatation ist die kernmagnetische Relaxation, insbesondere die Relaxation von Atomkernen innerhalb der interessierenden Ionen.
+
+\subsection{Assoziation}
+Referenz: Wiki:  Assoziation(Chemie)
+
+Als Assoziation bezeichnet man in der Chemie die Zusammenlagerung zweier oder mehrerer gleichartiger Moleküle zu größeren Molekülverbänden, den Assoziaten, die früher auch Übermolekel genannt wurden. Die Assoziation wird durch zwischenmolekulare Kräfte bewirkt. Assoziate können im gasförmigen oder flüssigen Aggregatzustand, aber auch in Lösungen vorliegen.
+
+Die Assoziation ist ein Sonderfall der Aggregation. Bestehen die Übermolekeln aus verschieden Molekülen, spricht man von Aggregaten. Die Wechselwirkung eines Moleküls mit Lösungsmittelmolekülen fällt nicht unter den Begriff Assoziation, sondern wird Solvatation genannt. Assoziation und Solvatation können jedoch miteinander konkurrieren.
 
 \end{document}
