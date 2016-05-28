@@ -1,0 +1,63 @@
+\documentclass[]{article}
+
+%opening
+\title{Thermostat Algorithm}
+\author{Ines Ahrens}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{first understanding}
+
+Im Paper geht es darum, dass die bisherigen beschreibungen eines molekularen Systems nicht gut sind, da in experimenten angenommen wird, dass die Temperatur konstant ist. Dieses ist in den simulationen nicht der Fall. Diese Annahme wollen wir durch das setzten von bestimmten bedingungen erreichen. 
+
+Wir haben ein System mit vielen stabilen Fixpunkten. Da man von einem FP nicht zum anderen kommt, fügen wir dem System energie zu. Dieses wird in diesen molekularen Systemen beschrieben. 
+
+\subsection{Introduction}
+\begin{itemize}
+	\item randbedingungen sind wichtig und müssen beschrieben werden
+	\item es gibt harte und weiche Randbedingungen:
+	\begin{itemize}
+		\item harte RB: gelten für jeden Zeit/ Ortspunkt im System
+		\item weiche RB: müssen im durchschnitt erfüllt sein. 
+	\end{itemize}
+	\item unterschiedliche Arten von RB
+	\begin{itemize}
+		\item räumliche RB: form und umgebung des Systems. Dabei gibt es vakuum RB, "fixed" RB (nt verstandnen) und periodische RB. Hat iwas mit Hamiltonian zu tun und noch mehr was ich nicht verstehe. 
+		\item Thermodynamische RB: verstehe ich gar nicht
+		\item experimentel bestimmte RB: übereinstimmung zwischen wirklichkeit und simulation. weiche RB. genaue erklärung unverständlich
+		\item geometrische RB: Unterschied zu räumliche RB? bsp ist Bindungslänge. was ist geometrische RB genau?  
+	\end{itemize}
+	\item wir werden genauer die Thermodynamischen RB untersuchen. Genauer, wenn eine konstante Temperatur gefordert ist. Wir betrachten nur vaccum oder periodische RB. 
+\end{itemize}
+
+\subsection{Ensembles}
+\begin{itemize}
+	\item Was sind intensive und extensive variables? 
+	\item unterschied zwischen intensive und extensive variables ist "erklärt"
+	\item welche verändern sich während der simulation, andere nicht. 
+	\item unterschied zwischen direkt beobachtbaren und durchschnittlichen variablen. 
+	\item standart MD passt nicht zu experimenten, also andere variablen:
+	\begin{itemize}
+		\item canonical ensemble: temperatur hat festgelegten durchschnittswert, Totale Energie des Systems kann schwanken. 
+		\item isothermal -isobaric ensemble: fester durchschnittlicher Druck, Volumen kann schwanken
+		\item grabd canonical ensemble: konstantes Volumen und Temperatur, aber Partikel können sich mit denen des Wärmebades austauschen. Das chemische Potential hat festen durchschnittswert, aber die Anzahl der Partikel kann schwanken. 
+		\item gibt noch unwichtige andere
+	\end{itemize}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+\end{document}
