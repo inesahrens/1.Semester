@@ -1,0 +1,308 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%opening
+\title{Fragen zum Paper}
+\author{Ines Ahrens}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+
+\section{Abbreviations}
+
+\subsection[NMR]{Nuclear magnetic resonance}
+Referenz: Wiki: Kerspinresonanz
+
+Kernspinresonanz, auch magnetische Kernresonanz oder kernmagnetische Resonanz, ist ein (kern)physikalischer Effekt, bei dem Atomkerne einer Materialprobe in einem konstanten Magnetfeld elektromagnetische Wechselfelder absorbieren und emittieren. Die Kernspinresonanz ist die Grundlage der Kernspinresonanzspektroskopie (NMR-Spektroskopie), eine der Standardmethoden bei der Untersuchung von Atomen, Molekülen, Flüssigkeiten und Festkörpern. 
+
+\subsection*{Stochastic Dynamics}
+Referenz: %http://www.scholarpedia.org/article/Stochastic_dynamical_systems
+
+A stochastic dynamical system is a dynamical system subjected to the effects of noise. Such effects of fluctuations have been of interest for over a century since the seminal work of Einstein (1905). Fluctuations are classically referred to as \glqq noisy \grqq or \glqq stochastic\grqq  when their suspected origin implicates the action of a very large number of variables or \glqq degrees of freedom\grqq. For example, the action of many water molecules on the motion of a large protein can be seen as noise. In principle the equations of motion for such high-dimensional dynamics can be written and studied analytically and numerically. However, it is possible to study a system subjected to the action of the large number of variables by coupling its deterministic equations of motion to a \glqq noise\grqq  that simple mimics the perpetual action of many variables. 
+
+\subsection*{enthalpy}
+Referenz: Wiki: Enthalpie
+
+Die Enthalpie H  ist eine Energie, die sich aus innerer Energie U, Druck p und Volumen V zusammensetzt:
+$H = U + pV$
+
+Die Enthalpie H ist ebenso wie die Variablen U, p und V eine Zustandsgröße. Die natürlichen Variablen der Enthalpie sind die Entropie und der Druck.
+
+Die Enthalpie beschreibt in der Physik  den Energieaufwand von Phasenumwandlungen und den Energiegehalt von Stoffen, sie beschreibt in der Chemie den Energieumsatz chemischer Reaktionen.
+
+Die innere Energie besteht aus der thermischen Energie – beruhend auf der ungerichteten Bewegung der Moleküle (Kinetische Energie, Rotationsenergie, Schwingungsenergie) –, der chemischen Bindungsenergie und der potentiellen Energie der Atomkerne. Hinzu kommen Wechselwirkungen mit elektrischen und magnetischen Dipolen. Sie nimmt ungefähr proportional zur Temperatur des Systems zu und ist am absoluten Nullpunkt gleich der Nullpunktenergie.
+
+Die Volumenänderungsarbeit$ \int{p \mathrm dV}$ ist in diesem Fall anschaulich die Arbeit, die bei konstantem Druck gegen den Druck p verrichtet werden muss, um das Volumen V zu erzeugen, das vom System im betrachteten Zustand eingenommen wird. Sofern der Druck nicht zwangsläufig konstant sein muss, spricht man jedoch von der Verschiebearbeit pV.
+
+Differenziell ausgedrückt wird aus H = U + pV
+
+$\mathrm dH = \mathrm dU + \mathrm d(pV) = T \mathrm dS - p \mathrm dV + V \mathrm dp + p \mathrm dV = T\mathrm dS + V \mathrm dp. $
+
+Die Enthalpie H enthält zusätzlich zur inneren Energie U das Produkt p·V. Dieser Term ist die Energie, die als Arbeit erforderlich war oder gewesen wäre, um dem System in seiner Umgebung Platz zu verschaffen.
+
+Beispiel: Welche Arbeit müssen Sie aufbringen, um eine Wassermenge von einem Kubikmeter in ein Becken zu drücken, dessen Wasserspiegel 100 m höher liegt?
+
+\subsection*{Was ist box linear Momentum?}
+
+\subsection*{Was ist box angular Momentum?}
+
+\subsection{Was ist der unterschied zwischen innerem und äußerem Freiheitsgrad?}
+
+\subsection{Andersen Thermostat}
+Referenz: Wiki: Andersen Thermostat
+
+The Andersen thermostat is a proposal in molecular dynamics simulation for maintaining constant temperature conditions. It is based on the reassignment of a chosen atom or molecule's velocity. The new velocity is given by Maxwell–Boltzmann statistics for the given temperature.
+
+\subsection{Berendsen thermostat}
+Referenz: Wiki: Berendsen Thermostat
+
+The Berendsen thermostat is an algorithm to re-scale the velocities of particles in molecular dynamics simulations to control the simulation temperature.
+
+In this scheme, the system is weakly coupled to a heat bath with some temperature. The thermostat suppresses fluctuations of the kinetic energy of the system and therefore cannot produce trajectories consistent with the canonical ensemble. The temperature of the system is corrected such that the deviation exponentially decays with some time constant $\tau$ .
+
+$\frac{dT}{dt}=\frac{T_0-T}{\tau}$
+
+Though the thermostat does not generate a correct canonical ensemble (especially for small systems), for large systems on the order of hundreds or thousands of atoms/molecules, the approximation yields roughly correct results for most calculated properties. The scheme is widely used due to the efficiency with which it relaxes a system to some target (bath) temperature. In many instances, systems are initially equilibrated using the Berendsen scheme, while properties are calculated using the widely known Nosé-Hoover thermostat, which correctly generates trajectories consistent with a canonical ensemble.
+
+\subsection{Nose-Hoover Thermostat}
+Referenz: Wiki: Nose-Hoover Thermostat
+
+The Nosé–Hoover thermostat is a deterministic algorithm for constant-temperature molecular dynamics simulations.
+Although the heat bath of Nosé–Hoover thermostat consists of only one imaginary particle, simulation systems achieve realistic constant-temperature condition (canonical ensemble). Therefore, the Nosé–Hoover thermostat has been commonly used as one of the most accurate and efficient methods for constant-temperature molecular dynamics simulations.
+
+In classic molecular dynamics, simulations are done in the microcanonical ensemble; a number of particles, volume, and energy have a constant value. In experiments, however, the temperature is generally controlled instead of the energy. The ensemble of this experimental condition is called a canonical ensemble. Importantly, the canonical ensemble is perfectly different from microcanonical ensemble from the viewpoint of statistical mechanics. Several methods have been introduced to keep the temperature constant while using the microcanonical ensemble. Popular techniques to control temperature include velocity rescaling, the Andersen thermostat, the Nosé–Hoover thermostat, Nosé–Hoover chains, the Berendsen thermostat and Langevin dynamics.
+
+The central idea is to simulate in such a way that we obtain a canonical distribution: this means fixing the average temperature of the system under simulation, but at the same time allowing for a fluctuation of the temperature with a distribution typical for a canonical distribution.
+
+In the approach of Nosé, a Hamiltonian with an extra degree of freedom for heat bath, s, is introduced;
+
+\begin{align*}
+\mathcal{H} (P,R,p_s,s) = \sum_i\frac{\mathbf{p}_i^2}{2ms^2} + \frac12 \sum_{ij,i\not= j} U \left( \mathbf{r_i} - \mathbf{r_j}\right) + \frac{p_s^2}{2Q} + gkT\ln\left( s\right)
+\end{align*}  ,
+
+where g is the number of independent momentum degrees of freedom of the system, R and P represent all coordinates $\mathbf{r_i}$ and $\mathbf{p_i}$ and Q is an imaginary mass which should be chosen carefully along with systems. The coordinates R, P and t in this Hamiltonian are virtual. They are related to the real coordinates as follows:
+
+$R'=R,~ P'=\frac{P}{s} ~\text{and}~t'=\int^t \frac{\mathrm{d}\tau}{s}$,
+
+where the coordinates with an accent are the real coordinates. It should be noted that the ensemble average of the above Hamiltonian at g=3N is equal to the microcanonical ensemble average.
+
+Hoover (1985) built on the Nosé method to establish what is now known as the Nosé–Hoover thermostat, which does not require the scaling of the time (or, in effect, of the momentum) by s.
+
+\section{Introduction}
+
+\subsection{Was sind Polymer}
+Referenz 1 nachlesen
+
+\subsection{Was sind (bio)molecular Systems?}
+Referenz 2-7 nachlesen
+
+\subsection{Was ist der Unterschied zwischen solute molecule und solute-solvent System?}
+
+\subsection{Solvation forces}
+\subsection{Solvatisierung}
+Referenz: Wiki: Solvatisierung
+
+Solvatisierung oder auch Solvatation findet in, meist flüssigen, Lösungen statt. Sie basiert auf einer Attraktion oder Assoziation von Molekülen des Lösungsmittels mit Molekülen oder Ionen des gelösten Stoffes. Eine Wechselwirkung der gelösten Teilchen mit dem Lösungsmittel führt zur Stabilisation der gelösten Teilchen in der Lösung. Diese Wechselwirkungskräfte führen auch zu einer geordneten Struktur der Lösungsmittelmoleküle um das Gelöste und man spricht auch von einer Solvathülle um die gelösten Teilchen.
+
+Solvatation kann prinzipiell durch verschiedene Arten von intermolekularen (bei Ionen auch interatomaren) Wechselwirkungen erfolgen, wie Ion-Dipol-, Dipol-Dipol-, Wasserstoff-Brücken- und Van-der-Waals-Kräfte. Ion-Ion-Wechselwirkungen können in ionischen Lösungsmitteln auftreten.
+
+Besonders gute Lösungsmittel sind polare Lösungsmittel, die aufgrund ihrer molekularen Struktur einen elektrischen Dipol besitzen. Wenn sich z.B. Ionen in einem polaren Lösungsmittel befinden, üben sie aufgrund ihrer elektrischen Ladung Kräfte auf die Lösungsmitteldipole aus. In der Nähe von positiven Ionen (Kationen) richten sich dann in der Regel die Dipole des Lösungsmittels so aus, dass ihr negativer Pol zum Kation hin und ihr positiver Pol vom Kation weg gerichtet ist. In der Nähe von negativen Ionen (Anionen) ist der positive Pol zum Anion hin und der negative Pol vom Anion weg gerichtet. Im Spezialfall von Wasser bezeichnet man die Solvatation als Hydratation und die Solvathülle als Hydrathülle. Da die Wasserstruktur durch Wasserstoffbrücken dominiert wird, sind die Strukturen der Hydrathüllen um gelöste Ionen oft komplexer als man nach der einfachen Ion-Dipol-Wechselwirkung, wie oben beschrieben und in der Abbildung gezeigt, erwarten würde.
+
+Eine wichtige Informationsquelle bei der experimentellen Untersuchung der Ionen-Solvatation ist die kernmagnetische Relaxation, insbesondere die Relaxation von Atomkernen innerhalb der interessierenden Ionen.
+
+\subsubsection{Assoziation}
+Referenz: Wiki:  Assoziation(Chemie)
+
+Als Assoziation bezeichnet man in der Chemie die Zusammenlagerung zweier oder mehrerer gleichartiger Moleküle zu größeren Molekülverbänden, den Assoziaten, die früher auch Übermolekel genannt wurden. Die Assoziation wird durch zwischenmolekulare Kräfte bewirkt. Assoziate können im gasförmigen oder flüssigen Aggregatzustand, aber auch in Lösungen vorliegen.
+
+Die Assoziation ist ein Sonderfall der Aggregation. Bestehen die Übermolekeln aus verschieden Molekülen, spricht man von Aggregaten. Die Wechselwirkung eines Moleküls mit Lösungsmittelmolekülen fällt nicht unter den Begriff Assoziation, sondern wird Solvatation genannt. Assoziation und Solvatation können jedoch miteinander konkurrieren.
+
+\subsection{Was sind stochastic forces? Bsp?}
+
+\subsection{Was ist ein System solvent interface?}
+
+\subsection{Was ist ein monoplastic system?}
+
+\subsection{Bei 2. Thermodynamical boundary conditions: den ersten Satz versteht ich nicht.}
+
+\subsection{intensive und extensive Größe}
+Refernz: Wiki: Intensive Größe
+
+Eine intensive Größe ist eine Zustandsgröße, die sich bei unterschiedlicher Größe des betrachteten Systems nicht ändert.
+
+Eine extensive Größe ist eine Zustandsgröße, die sich mit der Größe des betrachteten Systems ändert. Beispiele hierfür sind Masse, Stoffmenge, Volumen, Entropie sowie die thermodynamischen Potentiale (innere Energie, freie Energie, Enthalpie und freie Enthalpie). 
+
+\subsection{chemisches Potential}
+Referenz: Wiki
+
+Das chemische Potential oder chemische Potenzial $\mu$ ist eine intensive thermodynamische Zustandsgröße, die Möglichkeiten eines Stoffes charakterisiert,
+\begin{itemize}
+	\item mit anderen Stoffen zu reagieren (chemische Reaktion);
+	\item in eine andere Zustandsform überzugehen (Phasenübergang);
+	\item sich im Raum umzuverteilen (Diffusion).
+	\end{itemize}
+	
+	Es ist damit geeignet zur Beschreibung aller Arten von stofflichen Umsetzungen, auch von Reaktionen, an denen Photonen, Phononen, Elektronen oder Defektelektronen beteiligt sind.
+	
+	Eine Reaktion, Umwandlung oder Umverteilung kann nur dann freiwillig stattfinden, wenn das chemische Potential im Endzustand kleiner ist als im Ausgangszustand:
+	
+	Das chemische Potential ist definiert durch die Gibbssche Fundamentalgleichung der inneren Energie U:
+	
+	$ \mathrm{d}U = T\, \mathrm{d}S - p\, \mathrm {d}V + \Sigma\mu_i\, \mathrm{d}n_i \!\quad$
+	
+	Dabei ist
+	\begin{itemize}
+		\item T die absolute Temperatur,
+		\item S die Entropie,
+		\item p der Druck,
+		\item V das Volumen und
+		\item $n_i$ die Stoffmenge der Systemkomponente i.
+	\end{itemize}
+	Daraus folgt, dass das chemische Potential aus der Funktion $U(S, V, n_i)$ berechnet werden kann:
+	
+	$ \Rightarrow \mu_i := \left( \frac{\partial U(S,V,n_j)}{\partial {n_i}} \right)_{S,V,n_{j\ne i}}$
+	
+	Der Index gibt die konstant zu haltenden Größen an. Die $n_j$ sind die Stoffmengen aller Systemkomponenten außer $n_i$.
+
+\subsubsection{Fundermentalgleichung}
+Referenz: Wiki: Fundermentalgleichung
+
+Die Fundamentalgleichung der Thermodynamik (auch Fundamentalrelation oder Gibbssche Fundamentalgleichung nach Josiah Willard Gibbs) ist Ausgangspunkt der formalen Thermodynamik. Sie ist die wichtigste charakteristische Funktion und beschreibt die Menge aller Gleichgewichtspunkte eines thermodynamischen Systems als Funktion der Zustandsgröße innere Energie U von allen extensiven Größen $X_i$: $ U = U(X_i)$. In nichtmagnetischen Einstoffsystemen vereinfachen sich die natürlichen Variablen zu Entropie S, Volumen V und Stoffmenge n:$U = U(S,V,n)$
+
+Analog gilt dies auch für nichtmagnetische Mehrstoffsysteme mit k verschiedenen Stoffen: $U = U(S, V, n_1, \dots, n_k)$ Äquivalent kann die Funktion auch angegeben werden in der Form $\Leftrightarrow S = S(U, V, n_1, \dots, n_k)$
+
+Beide Funktionen beinhalten jeweils die gesamte thermodynamische Information des betrachteten Systems. Die mathematische Struktur der Thermodynamik ist damit festgelegt. Weitere, vor allem physikalische, Inhalte werden durch den Anschluss an die Hauptsätze gefunden.
+
+Häufig wird auch eine differentielle Schreibweise verwendet:
+
+$ \mathrm{d} U = \left( \frac {\partial U}{\partial S} \right)_{V, n_i} \cdot \mathrm{d}S + \left( \frac {\partial U}{\partial V} \right)_{S, n_i} \cdot \mathrm{d}V + \sum_{i = 1}^k \left( \frac {\partial U}{\partial n_i} \right)_{V, S} \cdot \mathrm{d}n_i$
+
+Mit den Definitionen für die Temperatur T, den Druck p und das chemische Potential $\mu$ folgt:
+
+$\mathrm{d}U = T \cdot \mathrm{d}S - p \cdot \mathrm{d}V + \mu \cdot \mathrm{d}n$
+
+Unter der Voraussetzung einer konstanten Stoffmenge $(\mathrm{d}n = 0)$ vereinfacht sich dies weiter zu:
+
+$ \mathrm{d}U = T \cdot \mathrm{d}S - p \cdot \mathrm{d}V$
+
+Hieraus geht hervor, dass die Zustandsgleichungen im Prinzip die ersten Ableitungen der Fundamentalgleichung sind.
+
+Die Legendre-Transformation der Fundamentalrelation führt auf die thermodynamischen Potentiale: freie Energie, Enthalpie und Gibbs-Energie.
+		
+\subsubsection{Gibbs-Energie}
+Referenz: Wiki: Gibbs-Energie
+
+Die Gibbs-Energie, auch Freie Entalphie oder gibbsche freie Energie oder Gibbs Potential G ist ein thermodynamisches Potential mit den natürlichen unabhängigen Variablen Temperatur T, Druck p und Teilchenzahl N.  Die Gibbs-Energie ist eine extensive Zustandsgröße.
+
+Die Gibbs-Energie ist das angepasste chemische Potential für das NPT-Ensemble (isotherm-isobares Ensemble).
+
+Die Änderung $\Delta G$ der Gibbs-Energie während einer chemischen Reaktion unter isothermen und isobaren Bedingungen ist das entscheidende Kriterium dafür, ob, unter welchen Bedingungen und in welchem Umfang eine Umsetzung der beteiligten Stoffe tatsächlich abläuft:
+
+$\Delta G<0$: exergone Reaktion, die unter den gegebenen Bedingungen (Konzentrationen) freiwillig abläuft;
+$\Delta G=0$: Gleichgewichtssituation, Hin- und Rückreaktion laufen in gleichem Maße ab.
+$\Delta G>0$: endergone Reaktion, deren Ablauf in der angegebenen Richtung Energiezufuhr erfordern würde.	
+
+\subsection{thermodynamisches Potential}
+referenz: Wiki: Thermodynamisches Potential
+
+Thermodynamische Potentiale sind in der Thermodynamik Größen, die von ihrem Informationsgehalt her das Verhalten eines thermodynamischen Systems im Gleichgewicht vollständig beschreiben. Sie entsprechen vom Informationsgehalt der inneren Energie U, deren natürliche Variablen S (Entropie),V (Volumen),N (Teilchenanzahl), die alle extensiv sind (Fundamentalgleichung).
+
+Thermodynamische Potentiale, die Energien sind, lassen sich durch Legendre-Transformation aus der inneren Energie U(S,V,N) herleiten, haben jedoch anders als diese eine oder mehrere intensive Größen als natürliche Variablen (T, p, $\mu$) (Temperatur, Druck, chemisches potential). Die intensiven Größen entstehen bei der Koordinatentransformation als Ableitungen der inneren Energie nach ihren extensiven Variablen.
+
+Daneben gibt es weitere thermodynamische Potentiale, die keine Energien sind, beispielsweise die Entropie S(U,V,N).
+
+Ein Extremwert (auch max) eines thermodynamischen Potentials zeigt das thermodynamische Gleichgewicht an.
+
+So hat sich nach dem Anschluss eines abgeschlossenen Systems an ein anderes ein thermodynamisches Gleichgewicht eingestellt, sobald die Entropie des Gesamtsystems maximal ist. In diesem Fall sind auch alle intensiven Parameter der beiden Systeme jeweils gleich. 
+
+Außerdem fassen thermodynamische Potentiale die Zustandsgleichungen des Systems zusammen, da diese durch Differenzieren eines thermodynamischen Potentiales nach seinen abhängigen Variablen zugänglich sind. 
+
+\subsubsection{innere energie}
+Referenz: Wiki: Innere Energie
+
+Die innere Energie U ist die gesamte für thermodynamische Umwandlungsprozesse zur Verfügung stehende Energie eines physikalischen Systems, das sich in Ruhe und im thermodynamischen Gleichgewicht befindet. Die innere Energie setzt sich aus einer Vielzahl anderer Energieformen zusammen, sie ist nach dem ersten Hauptsatz der Thermodynamik in einem abgeschlossenen System konstant.	
+
+
+
+\subsubsection{Entropie}
+Referenz: Wiki: Entropie
+
+Die Entropie ist eine fundamentale thermodynamische Zustandsgröße mit der SI-Einheit Joule pro Kelvin, also J/K.
+
+Die in einem System vorhandene Entropie ändert sich bei Aufnahme oder Abgabe von Wärme. In einem abgeschlossenen System, bei dem es keinen Wärme- oder Materieaustausch mit der Umgebung gibt, kann die Entropie nach dem zweiten Hauptsatz der Thermodynamik nicht abnehmen. Mit anderen Worten: Entropie kann nicht vernichtet werden. Es kann im System jedoch Entropie entstehen. Prozesse, bei denen dies geschieht, werden als irreversibel bezeichnet. Entropie entsteht z. B. dadurch, dass mechanische Energie durch Reibung in thermische Energie umgewandelt wird. Da die Umkehrung dieses Prozesses nicht möglich ist, spricht man auch von einer „Energieentwertung“.
+
+In der statistischen Mechanik stellt die Entropie eines Makrozustands ein Maß für die Zahl der zugänglichen, energetisch gleichwertigen Mikrozustände dar. Makrozustände höherer Entropie haben mehr Mikrozustände und sind daher statistisch wahrscheinlicher als Zustände niedrigerer Entropie. Folglich bewirken die inneren Vorgänge in einem sich selbst überlassenen System im statistischen Mittel eine Annäherung an den Makrozustand, der bei gleicher Energie die höchstmögliche Entropie hat. Da in einem anfänglich gut geordneten System durch innere Prozesse die Ordnung nur abnehmen kann, wird diese Interpretation des Entropiebegriffs umgangssprachlich häufig dadurch umschrieben, dass Entropie ein „Maß für Unordnung“ sei. Allerdings ist Unordnung kein physikalischer Begriff und hat daher auch kein physikalisches Maß. Besser ist es, die Entropie als ein „Maß für die Unkenntnis des atomaren Zustands“ zu begreifen, obwohl auch Unkenntnis kein physikalisch definierter Begriff ist
+
+\subsubsection{Legendre Transformation}
+Referenz: Wiki: Legendre Transformation
+
+Wichtiges  mathematisches Verfahren zur Variablentransformation. $f \in C^1(\mathbb{R})$. Die Legendre-Transformation überführt nun diese Funktion f(x) in eine Funktion g(u) mit der unabhängigen Variable u, die die Ableitung der Funktion f(x) nach x ist. Eine entsprechende Rücktransformation ist auch möglich.
+
+Die Kurve (rot) kann, statt die Punktmenge anzugeben, aus der sie besteht, auch durch die Menge aller Tangenten charakterisiert werden, die sie einhüllen. Genau das passiert bei der Legendre-Transformation. Die Transformierte, g(u), ordnet der Steigung u einer jeden Tangente deren Y-Achsenabschnitt zu. Es ist also eine Beschreibung derselben Kurve – nur über einen anderen Parameter, nämlich u statt x.
+
+
+
+\subsection{Ensemble}
+Referenz: Wiki: Ensemble(Physik) 
+
+Ein Ensemble oder eine Gesamtheit ist in der statistischen Physik eine Menge gleichartig präparierter Systeme von Teilchen im thermodynamischen Gleichgewicht. 
+
+\subsection{kanonisches Ensemble(NVT)}
+Referenz: Wiki: kanonisches Ensemble,  Molekülardynamik Simulation $->$ NVT Ensemble
+
+Das kanonische Ensemble (auch NVT-Ensemble oder Gibbs-Ensemble ) ist in der statistischen Physik ein System mit festgelegter Teilchenzahl in einem konstanten Volumen, das Energie mit einem Reservoir austauschen kann und mit diesem im thermischen Gleichgewicht ist. Dies entspricht einem System mit vorgegebener Temperatur, wie ein geschlossenes System (kein Teilchenaustausch) in einem Wärmebad (makroskopisches System, das sehr viel größer ist als das betrachtete System).
+
+Um das NVT Ensemble zu realisieren, wird zusätzlich ein Thermostat benötigt. 
+
+\subsection{mikrokanonisches ensemble (NVE)}
+Referenz: Wiki: Molekülardynamik Simulation $->$ NVE Ensemble
+
+Das mikrokanonisches Ensemble beschreibt ein System, das isoliert ist und keine Partikel (N), Volumen (V) oder Energie (E) mit der Umgebung austauscht.
+
+Für ein System mit N Partikeln, zugehörigen Koordinaten X und Geschwindigkeiten V kann man folgendes Paar gewöhnlicher Differentialgleichungen aufstellen:
+
+\begin{align} F(X) = - \nabla U(X) = M \dot{V}(t) &\\ V(t) & = \dot{X}(t). \end{align}
+
+Dabei beschreibt F die Kraft M die Masse
+t die Zeit. Die potenzielle Energie U(X) beschreibt die Wechselwirkung der Atome und Moleküle. U(X) wird auch Kraftfeld genannt. Es wird durch zwei Teile definiert:
+Erstens die mathematische Form (d.h. der funktionale Ansatz für die einzelnen Wechselwirkungsarten, meist der klassischen Mechanik entlehnt) und zweitens die atomspezifischen Parameter. Letztere erhält man aus spektroskopischen Experimenten, Beugungsexperimenten (Röntgenbeugung) und/oder quantenmechanischen Berechnungen (Quantenchemie) sowie in manchen Kraftfeldern auch aus makroskopischen Messwerten (experimentell), die durch die Parametrierung erfüllt werden sollen. Daher kann es für einen Kraftfeldansatz verschiedene Parametersätze geben.
+
+Die Parametrisierung eines Kraftfeldes mit einem großen Anwendungsbereich ist eine große Herausforderung. Bei der Durchführung von MD-Simulationen ist die Wahl des richtigen Kraftfeldes eine wichtige Entscheidung. Generell sind Kraftfelder immer nur auf solche Systeme anwendbar, für die sie parametrisiert sind (z. B. Proteine oder Silikate).
+
+\subsection{Isotherm-isobares Ensemble(NPT)}
+Referenz: Wiki: Molekülardynamik Simulation $->$ NPT Ensemble
+
+Um das NPT-Ensemble zu realisieren benötigt man neben einem Thermostat zusätzlich ein Barostat.
+
+\subsection{Der letzte Satz aus 2. Thermodynamical boundary contitions, besagt, dass die extensiven als harte und die intensiven Größen als weiche Randbedingungen behandelt werden sollten. Warum?}
+
+\subsection{Beispiele aus 3. Experimentally derived boundary conditions nicht verstanden}
+
+\subsection{bei 4. geometrical constraints: Was ist \glqq the classical treatment \grqq}
+Referenz 40 ansehen
+
+\subsection{Hamilton operator}
+Referenz: Wiki: Hamiltonian (quantum mechanics) 
+
+In quantum mechanics, the Hamiltonian is the operator corresponding to the total energy of the system in most of the cases. It is usually denoted by H. Its spectrum is the set of possible outcomes when one measures the total energy of a system. Because of its close relation to the time-evolution of a system, it is of fundamental importance in most formulations of quantum theory.
+
+The Hamiltonian is the sum of the kinetic energies of all the particles, plus the potential energy of the particles associated with the system. For different situations or number of particles, the Hamiltonian is different since it includes the sum of kinetic energies of the particles, and the potential energy function corresponding to the situation.
+
+\subsection{was ist ein imlicit solvation term?}
+
+\subsection{Table 1: Wovon sind die variablen abhängig/ unabhängig}
+Wenn das System gestartet wird, sind die unabhängigen Variablen frei wählbar und bleiben die ganze Zeit konstant. 
+
+\section{Ensembles}
+
+
+
+
+\end{document}
