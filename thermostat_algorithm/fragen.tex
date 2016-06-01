@@ -13,8 +13,6 @@
 
 \maketitle
 
-\section{Abstract}
-
 \section{Abbreviations}
 
 \subsection[NMR]{Nuclear magnetic resonance}
@@ -26,6 +24,12 @@ Kernspinresonanz, auch magnetische Kernresonanz oder kernmagnetische Resonanz, i
 Referenz: %http://www.scholarpedia.org/article/Stochastic_dynamical_systems
 
 A stochastic dynamical system is a dynamical system subjected to the effects of noise. Such effects of fluctuations have been of interest for over a century since the seminal work of Einstein (1905). Fluctuations are classically referred to as \glqq noisy \grqq or \glqq stochastic\grqq  when their suspected origin implicates the action of a very large number of variables or \glqq degrees of freedom\grqq. For example, the action of many water molecules on the motion of a large protein can be seen as noise. In principle the equations of motion for such high-dimensional dynamics can be written and studied analytically and numerically. However, it is possible to study a system subjected to the action of the large number of variables by coupling its deterministic equations of motion to a \glqq noise\grqq  that simple mimics the perpetual action of many variables. 
+
+\subsection{Boltzmann Konstante}
+Referenz: Wiki: Boltzmann Konstante
+
+Die Boltzmann-Konstante (Formelzeichen ${\displaystyle k_{\mathrm {B} }\,} $) ist eine Naturkonstante, die in den Grundgleichungen der statistischen Mechanik eine zentrale Rolle spielt.Sie hat die Dimension Energie/Temperatur.
+
 
 \subsection*{enthalpy}
 Referenz: Wiki: Enthalpie
@@ -295,12 +299,126 @@ In quantum mechanics, the Hamiltonian is the operator corresponding to the total
 
 The Hamiltonian is the sum of the kinetic energies of all the particles, plus the potential energy of the particles associated with the system. For different situations or number of particles, the Hamiltonian is different since it includes the sum of kinetic energies of the particles, and the potential energy function corresponding to the situation.
 
-\subsection{was ist ein imlicit solvation term?}
+\subsection{was ist ein implicit solvation term?}
 
 \subsection{Table 1: Wovon sind die variablen abhängig/ unabhängig}
 Wenn das System gestartet wird, sind die unabhängigen Variablen frei wählbar und bleiben die ganze Zeit konstant. 
 
 \section{Ensembles}
+
+\subsection{equation of motion}
+Referenz: Wiki: Equations of motion
+
+In mathematical physics, equations of motion are equations that describe the behaviour of a physical system in terms of its motion as a function of time.[1] More specifically, the equations of motion describe the behaviour of a physical system as a set of mathematical functions in terms of dynamic variables: normally spatial coordinates and time are used, but others are also possible, such as momentum components and time.
+
+There are two main descriptions of motion: dynamics and kinematics. Dynamics is general, since momenta, forces and energy of the particles are taken into account. In this instance, sometimes the term refers to the differential equations that the system satisfies (e.g., Newton's second law or Euler–Lagrange equations), and sometimes to the solutions to those equations.
+However, kinematics is simpler as it concerns only variables derived from the positions of objects, and time. 
+
+\subsection{Warum fuehrt die Integration der Bewegungsgleichung zu einem NVE ensemble?}
+
+\subsection{Begruendung, warum , wenn wir den Impuls der Box erhalten, dann der Drehimpuls der Box nicht erhalten bleibt, nicht verstanden(S.11 oben)}
+
+\subsection{Was ist eine \glqq viral energy \grqq? (S110 mitte)}
+
+\subsection{root-mean-square fluctuation}
+Referenz: %http://www.cfd-online.com/Forums/main/4005-what-rms-fluctuation-velocity.html
+
+the \glqq rms-fluctuation velocity \grqq is defined as : $u'=\sqrt{ M(u^2) - {M(u)}^2 }$, where M is an average operator (time averaging, and space averaging if there are homogeneous flow directions). From a statistical point of view, this is the standard deviation of the random variable u. From a physical point of view, this may be related to the intensity of the turbulence. For example, the turbulent kinetic energy is classically defined as : $k=.5(u'^2+v'^2+w'^2)$
+
+\subsection{Isochor (S111 1.stichpkt.)}
+Referenz: Wiki: Isochoric process
+
+An isochoric process, also called a constant-volume process, an isovolumetric process, or an isometric process, is a thermodynamic process during which the volume of the closed system undergoing such a process remains constant. An isochoric process is exemplified by the heating or the cooling of the contents of a sealed, inelastic container: The thermodynamic process is the addition or removal of heat; the isolation of the contents of the container establishes the closed system; and the inability of the container to deform imposes the constant-volume condition. The isochoric process here should be a quasi-static process.
+
+
+\subsection{zur formel 1 S111}
+$\mathcal{H}$ ist der fluktuierende Hamilton operator, waehrend $<\mathcal{H}> $ der durchschnittliche Hamiltonoperator ist. (genauere Definition von den Klammern habe ich nicht gefunden) 
+
+
+\subsection{Freiheitsgrad}
+Referenz: Wiki: Freiheitsgrad
+
+Als Freiheitsgrad F bzw. f wird die Zahl der voneinander unabhängigen (und in diesem Sinne „frei wählbaren“) Bewegungsmöglichkeiten eines Systems bezeichnet. Die einzelnen Bewegungsmöglichkeiten werden auch Freiheiten genannt. Ein starrer Körper im Raum hat demnach den Freiheitsgrad f = 6, denn man kann den Körper in drei voneinander unabhängige Richtungen bewegen (Translation) und um drei voneinander unabhängige Achsen drehen (Rotation).
+
+Jedes Molekül mit n Atomen hat allgemein $f = 3n$ Freiheitsgrade, weil man für jedes Atom drei Koordinaten braucht, um seine Position zu definieren. Diese kann man formal in Translations-, Rotations- und innere Schwingungsfreiheitsgrade einteilen:
+
+\begin{align} f & = f_\mathrm{trans} + f_\mathrm{rot} + f_\mathrm{vib}\\ 
+\Rightarrow f_\mathrm{vib} & = 3n - f_\mathrm{trans} - f_\mathrm{rot} 
+\end{align}
+
+Komplexe Moleküle mit vielen Atomen haben daher viele Schwingungsfreiheitsgrade (siehe Molekülschwingung) und liefern somit einen hohen Beitrag zur Entropie.
+
+
+\subsection{zur formel 2 S111}
+je  mehr Freiheitsgrade mein Atom hat, desto weniger schwingt es? Das verstehe ich nciht. 
+
+\subsection{Isobar}
+Referenz: Wiki: Isobar(Kernphysik)
+
+Isobare sind Nuklide zweier unterschiedlicher chemischer Elemente, also von unterschiedlicher Kernladungszahl, deren Atomkerne die gleiche Anzahl von Nukleonen (gleiche Massenzahl) haben. Das bedeutet, sie haben unterschiedlich viele Protonen und entsprechend auch unterschiedlich viele Neutronen. 
+
+\subsubsection*{Nuklid}
+Referenz: Wiki: Nuklid
+
+Als Nuklid oder Atomsorte werden Atome bezeichnet, deren Atomkerne die gleiche Zusammensetzung aus Protonen und Neutronen zeigen.
+
+
+\subsection{Was ist \glqq isobaric heat capacity \grqq }
+
+\subsection{warum ist hoehenenergie das gleiche wie $H-\nu N$?}
+
+
+
+\section{Thermostat Algorithms}
+
+\subsection{Was ist ein \glqq Newtonian MD scheme \grqq}
+
+
+\subsection{conformational}
+Referenz: Wiki: Konformation
+
+Die Konformation eines organischen Moleküls beschreibt die räumliche Anordnung dessen drehbarer Bindungen an den Kohlenstoff­atomen. Durch sie sind die dreidimensionalen Raumkoordinaten aller Atome des Moleküls vollständig beschrieben.
+
+\subsection{dissipative}
+Referenz: Wiki: Dissipation
+
+Dissipation (lat. für „Zerstreuung“) bezeichnet in der Physik den Vorgang in einem dynamischen System, bei dem z. B. durch Reibung die Energie einer makroskopisch gerichteten Bewegung, die in andere Energieformen umwandelbar ist, in thermische Energie übergeht, d. h. in Energie einer ungeordneten Bewegung der Moleküle, die dann nur noch teilweise umwandelbar ist. Ein solches System heißt dissipativ. Dieser Begriff kommt in den physikalischen Gebieten der Thermodynamik und der Akustik oder allgemein in der Wellenlehre vor. Ein Beispiel für ein dissipatives System ist die gedämpfte Schwingung.
+
+\subsection{Aequipartitionstheorem}
+Das Äquipartitionstheorem (auch Gleichverteilungssatz genannt) besagt, dass im thermischen Gleichgewicht bei der Temperatur T im Mittel jeder Freiheitsgrad die gleiche mittlere Energie $\langle E\rangle $ besitzt:
+\begin{equation}
+    E =\frac{1}{2} k_{B}T 
+\end{equation}
+Dabei ist$ k_{B} $die Boltzmann-Konstante.Also gilt für Teilchen mit $f$ Freiheitsgraden:
+\begin{equation}
+E =\frac{f}{2} k_{B}T
+\end{equation}
+   
+Der Gleichverteilungssatz gilt nur für Freiheitsgrade, deren Variable im Ausdruck für die Energie, das heißt in der Hamilton-Funktion, als Quadrat vorkommen. Des Weiteren dürfen diese Freiheitsgrade nicht \glqq eingefroren \grqq sein, das heißt, dieser Freiheitsgrad muss tatsächlich angeregt werden. Beispielsweise werden Molekülschwingungen „kleiner Moleküle“ wie H2 oder O2 bei Raumtemperatur nicht angeregt, weil die für den Übergang auf den niedrigsten angeregten Zustand nötige Energie nicht erreicht wird.
+
+Freiheitsgrade, deren Variable nicht in der Hamilton-Funktion vorkommen, führen auch nicht zu einem Beitrag zur Energie; für Freiheitsgrade, die anders als in rein quadratischer Form vorkommen, lässt sich die mittlere Energie nicht so einfach berechnen.
+
+\subsection{was sind interne und externe Freiheitsgrade (S.113 mitte)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
