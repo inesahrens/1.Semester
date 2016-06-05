@@ -13,6 +13,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \section{Abbreviations}
 
 \subsection[NMR]{Nuclear magnetic resonance}
@@ -328,7 +330,7 @@ the \glqq rms-fluctuation velocity \grqq is defined as : $u'=\sqrt{ M(u^2) - {M(
 \subsection{Isochor (S111 1.stichpkt.)}
 Referenz: Wiki: Isochoric process
 
-An isochoric process, also called a constant-volume process, an isovolumetric process, or an isometric process, is a thermodynamic process during which the volume of the closed system undergoing such a process remains constant. An isochoric process is exemplified by the heating or the cooling of the contents of a sealed, inelastic container: The thermodynamic process is the addition or removal of heat; the isolation of the contents of the container establishes the closed system; and the inability of the container to deform imposes the constant-volume condition. The isochoric process here should be a quasi-static process.
+An isochoric process, also called a constant-volume process, is a thermodynamic process during which the volume of the closed system undergoing such a process remains constant. An isochoric process is exemplified by the heating or the cooling of the contents of a sealed, inelastic container: The thermodynamic process is the addition or removal of heat; the isolation of the contents of the container establishes the closed system; and the inability of the container to deform imposes the constant-volume condition. The isochoric process here should be a quasi-static process.
 
 
 \subsection{zur formel 1 S111}
@@ -377,19 +379,22 @@ Als Nuklid oder Atomsorte werden Atome bezeichnet, deren Atomkerne die gleiche Z
 \subsection{conformational}
 Referenz: Wiki: Konformation
 
-Die Konformation eines organischen Moleküls beschreibt die räumliche Anordnung dessen drehbarer Bindungen an den Kohlenstoff­atomen. Durch sie sind die dreidimensionalen Raumkoordinaten aller Atome des Moleküls vollständig beschrieben.
+Die Konformation eines organischen Moleküls beschreibt die räumliche Anordnung dessen drehbarer Bindungen an den Kohlenstoffatomen. Durch sie sind die dreidimensionalen Raumkoordinaten aller Atome des Moleküls vollständig beschrieben.
 
 \subsection{dissipative}
 Referenz: Wiki: Dissipation
 
 Dissipation (lat. für „Zerstreuung“) bezeichnet in der Physik den Vorgang in einem dynamischen System, bei dem z. B. durch Reibung die Energie einer makroskopisch gerichteten Bewegung, die in andere Energieformen umwandelbar ist, in thermische Energie übergeht, d. h. in Energie einer ungeordneten Bewegung der Moleküle, die dann nur noch teilweise umwandelbar ist. Ein solches System heißt dissipativ. Dieser Begriff kommt in den physikalischen Gebieten der Thermodynamik und der Akustik oder allgemein in der Wellenlehre vor. Ein Beispiel für ein dissipatives System ist die gedämpfte Schwingung.
 
+\subsection{Was ist konformational search?}
+selbst überlegte anwort (richtig?) es gibt mehrere mögliche Konformationen von einem Molekül. Die konformative Suche probiert die jetzt passende Konformation eines Moleküls zu finden. 
+
 \subsection{Aequipartitionstheorem}
-Das Äquipartitionstheorem (auch Gleichverteilungssatz genannt) besagt, dass im thermischen Gleichgewicht bei der Temperatur T im Mittel jeder Freiheitsgrad die gleiche mittlere Energie $\langle E\rangle $ besitzt:
+Das Äquipartitionstheorem besagt, dass im thermischen Gleichgewicht bei der Temperatur T im Mittel jeder Freiheitsgrad die gleiche mittlere Energie $\langle E\rangle $ besitzt:
 \begin{equation}
     E =\frac{1}{2} k_{B}T 
 \end{equation}
-Dabei ist$ k_{B} $die Boltzmann-Konstante.Also gilt für Teilchen mit $f$ Freiheitsgraden:
+Dabei ist$ k_{B} $die Boltzmann-Konstante. Also gilt für Teilchen mit $f$ Freiheitsgraden:
 \begin{equation}
 E =\frac{f}{2} k_{B}T
 \end{equation}
@@ -400,16 +405,87 @@ Freiheitsgrade, deren Variable nicht in der Hamilton-Funktion vorkommen, führen
 
 \subsection{was sind interne und externe Freiheitsgrade (S.113 mitte)}
 
+\subsection{Warum muss ich $3N$ bei Formel 9 s.113 nehmen?}
+versuchte erklärung: jedes atom hat 3 räumliche Freiheitsgrade. 
+
+\subsection{Formel 11 S114 nochmal genauer durchgehen}
+
+\subsection{Formel 14: was ist das x?}
+
+\subsection{Was ist die Definition von $r_{CM}^0$}
+
+\subsection{Herleitung formel 14 nicht klar}
+
+\subsection{Newtons Zweites Gesetz}
+Referenz: Wiki: Newtonsche Gesetze
+
+Das zweite newtonsche Gesetz ist die Grundlage für viele Bewegungsgleichungen der Mechanik:
+
+\glqq Die Änderung der Bewegung ist der Einwirkung der bewegenden Kraft proportional und geschieht nach der Richtung derjenigen geraden Linie, nach welcher jene Kraft wirkt. \grqq
+
+Oder: $F=ma$, $F=p'$
+
+\subsection{Langevin Gleichung}
+Referenz: Wiki: Langevin-Gleichung
+
+Eine Langevin-Gleichung (nach Paul Langevin) ist eine stochastische Differentialgleichung, welche die Dynamik einer Teilmenge der Freiheitsgrade eines physikalischen Systems beschreibt. 
+
+\subsection{Stochastic force}
+die stochastische kraft ist eine fluktuierende Kraft, typischerweise ein Gauß'sches weißes Rauschen. 
+
+\subsection{Wenn man statt der internal velocity die real velocity in Formel 18, S115 einsetzen würde, warum würde dann impuls und drehimpuls nicht erhalten bleiben?}
+
+\subsection{leap-frog verfahren}
+Referenz: Wiki: Leap-Frog verfahren
+
+Das Leapfrog-Verfahren ist eine einfache Methode zur numerischen Integration einer gewöhnlichen Differentialgleichung vom Typ
+
+$ {\ddot {x}={\dot {v}}=a(x)}$ . 
+
+Die Leapfrog-Integration ist eine Methode zweiter Ordnung und liefert deshalb im Allgemeinen genauere Ergebnisse als zum Beispiel das eulersche Polygonzugverfahren, das nur von erster Ordnung ist. Außerdem ist es invariant unter Zeitumkehr und erhält in physikalischen Problemstellungen Größen wie den Impuls und Drehimpuls, die auch Erhaltungsgrößen des Originalsystems sind, exakt. Des Weiteren wird eine gestörte Energiefunktion in Ordnung 3 erhalten, während das Verfahren die globale Konvergenzordnung 2 hat.
+
+Die Leapfrog-Integration berechnet abwechselnd die Positionen xund die Geschwindigkeiten v  zu unterschiedlichen Zeitpunkten.
+
+Die Schritt-Gleichungen für das Verfahren lauten:
+
+$
+ \begin{aligned}
+ 	x_{i+1}&=x_{i}+v_{i+1/2}\,\Delta t\\ v_{i+3/2}&=v_{i+1/2}+a(x_{i+1}),\Delta t
+ \end{aligned} ,
+$
+
+mit den Startwerten $x_{0}$ und  $v_{1/2}$ .
+
+\subsection{Wie kommt man auf die Gleichung 20 S.116?}
+
+\subsection{Wie kommt man auf die Gleichung 21 S.116, erster teil?}
 
 
+\subsection{Ergodizität}
+Ergodizität ist eine Eigenschaft dynamischer Systeme.
 
+Die Ergodizität bezieht sich auf das mittlere Verhalten eines Systems. Ein solches System wird durch eine Musterfunktion beschrieben, die die zeitliche Entwicklung des Systems abhängig von seinem aktuellen Zustand bestimmt. Man kann nun auf zweierlei Arten mitteln:
 
+man kann die Entwicklung über einen langen Zeitraum verfolgen und über diese Zeit mitteln, also den Zeitmittelwert bilden, oder
+man kann alle möglichen Zustände betrachten und über diese mitteln, also das sogenannte Scharmittel (Ensemble-Mittel) bilden.
 
+Streng ergodisch wird ein System dann genannt, wenn die Zeitmittel und Scharmittel mit der Wahrscheinlichkeit eins zum gleichen Ergebnis führen. Anschaulich bedeutet das, dass während der Entwicklung des Systems alle möglichen Zustände erreicht werden, der Zustandsraum also mit der Zeit vollständig ausgefüllt wird. Das bedeutet insbesondere, dass bei solchen Systemen der Erwartungswert nicht vom Anfangszustand abhängig ist.
 
+\subsection{Formel 23 S.117?}
 
+\subsection{Formel 24 S117?, was ist i,$\mu$?}
 
+\subsection{Was ist ein semi-macroscopical approach S118 bei 55.}
 
+\section{Temperature in the Monte Carlo Algorithm}
 
+\subsection{Was wird zufällig generiert bei MC?}
+
+\subsection{Warum die Wkeit S119 Formel 31?}
+
+\section{Temperature Relaxation by stochastic Dynamics}
+
+\subsection{Begründung der Eigenschaften der Stochastic Forces?}
 
 
 
