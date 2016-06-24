@@ -1,0 +1,89 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\title{Thermostat Algorithmen}
+\author{Franziska Engbers, Ines Ahrens}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%todo: alle ue, .. ersetzen
+
+\section{Temperatur Relaxation mit stochastischer Dynamik}
+%todo: bessere ueberestzung
+
+%todo: in welcher umgebung befinden wir uns? Waermebad, abgeschlossenes, offenes System? 
+%uebergang: herleitung stochastische Dynamik
+Die klassische Moekulare Dynamik loest die Newtonsche Bewegungsgleichung
+\begin{align*}
+	\dot{x}_i(t) = v_i(t) \\
+	m_i(t) v_i(t) = F_i(\{ x_i(t)\}) 
+\end{align*}
+
+wobei $x_i$ die ite Koordinate eines Partikels ist, $v_i$ die zugehoerige Geschwindigkeit und $m_i$ die Masse. Die systematische Kraft $F_i$ kann durch das Konservative Kraftfeld $V(\{x_i(t)\})$ berechnet werden. Dabei beschreibt $V$ die Interaktion zwischen den Partikeln.   
+%todo :was ist genau partikel? 
+
+Wenn nun ein Hochdimensionales System direkt simuliert wird, werden alle Bewegungen und Koordinaten aller Partikel Beruecksichtigt. Dies erfordert eine hohe Rechenleistung. 
+Die Stochastische Dynamik umgeht dieses Problem. Nicht bei allen Partikel im System sind die Bewegungsdetails wichtig. Diese Partikel muessen nicht exakt simuliert werden. Sie werden durch eine stochastische Kraft beschrieben, die sich auf die anderen Partikel auswirkt. 
+
+Diese stochastische Kraft wirkt sich auf die Newtonsche Bewegungsgleichung aus und veraendert sie wie folgt:
+\begin{align*}
+	\dot{v}_i(t)  = m_i^{-1} F_i(\{x_i(t)\}) - \gamma_i v_i(t) + m_i^{-1} R_i(t)
+\end{align*}
+Der Reibungskoeffizient $\gamma_i$ haengt von der Geschwindigkeit ab. $R_i$ bezeichnet die stochastische Kraft.
+
+Die oben genannte Langevin Bewegungsgleichung gibt die Dynamik des Systems gut wieder, wenn Vakuum Randbedingungen gewaehlt werden, der Reibungskoeffizient die Viskositaet des Loesungsmittels gut repreasentiert und das umgebende Loesungsmittel in der systematischen Kraft eingebunden wird. 
+
+Die Langevin Bewegungsgleichung hat  die Eigenschaft, dass die Trajektorie verfuegbar und stetig ist, die Trajektorie nicht deterministisch ist und die Bewegungsgleichung nicht Zeitreversibel ist. 
+
+
+Betrachten wir die Komponenten der Gleichung genauer.
+$R_i$ und hat folgende Eigenschaften: 
+\begin{itemize}
+	\item Sie ist eine stationaere Gaussche Zufallsvariable %todo was ist das? 
+	\item ihr Zeit Mittelwert ist Null %todo warum
+	\item Sie hat keine Korrelation zu vorherigen Geschwindigkeiten oder der systematischen Kraft. 
+	\item der quadratische Mittelwert von $R_i$ berechnet sich zu $2 m_i \gamma_i k_B T_0$
+	\item die $R_{i \mu}$ sind zueinander unabhaengig, wobei $\mu$ die Koordinatenachse ist %todo vll zu ungenau?  
+\end{itemize}
+Die letzten beiden Bedingungen koennen zusammengefasst werden: 
+\begin{align*}
+	\langle R_{i \mu} R_{j \nu } \rangle = 2 m_i \gamma_i k_B T_0 \delta_{ij} \delta_{\mu \nu} \delta(t' - t)
+\end{align*}
+
+Bei der Wahl des Reibungskoeffizienten $\gamma_i$ muss einiges beachtet werden. Der Reibungskoeffizient darf nicht ueberall verschwinden. Sonst haben wir nur wieder eine MS und dadurch ein mikrokanonisches Ensemble. Waehlen wir $\gamma_i$ zu klein, kann die Temperatur nicht gut geregelt werden und das kanonische Ensemble (konstante Temperatur), wird erst nach sehr langer Zeit erreicht. Falls die Reibungskoeffizienten zu gross gewaehlt werden, wird die Dynamik des Systems gestoerrt. 
+
+Ein Ansatz ist es, den Reibungskoeffizienten fuer alle Partikel gleich $\gamma$ zu setzten. Das Ziel ist es nun, einen Wert fuer den Reibungskoeffizienten festzusetzen. Die Herleitung wird nur in groben Zuegen wiedergegeben. 
+
+Zunaechst geht man davon aus, dass $\gamma$ im Vergleich zu der Beschleunigung $\dot{v}_i$ gross ist. Dadurch wird die Langevin Gleichung vereinfacht zu 
+\begin{align*}
+	v_i(t) = \gamma^{-1} m_i^{-1} (F_i(t) + R_i(t)
+\end{align*}
+Mithilfe der Langevin Gleichung, der Eigenschaften von $R_i(t)$, der Definition der Temperatur und der kinetischen Energie kann berechnet werden, dass 
+\begin{align*}
+	\frac{\Delta \mathcal{T}}{\Delta \tau} = \frac{2}{k_B N_{df}} \sum\limits_{i=i}^N \overline{F_i \dot{r}_i} + 2 \gamma (T_0 - \overline{\mathcal{T}})  
+\end{align*} 
+gilt. $\Delta \tau$ ist ein Zeitintervall, in der die Veraenderung der Temperatur beobachtet wird. $\overline{F_i \dot{r}_i} $ und $\overline{\mathcal{T}})$ sind die Durchschnitte ueber das Zeitintervall $\Delta \tau$. Da der erste Term die Veraenderung der Temperatur, die von der systematischen Kraft ausgeloest wird beschreibt, muss der zweite Term die Veraenderung aufgrund des Waermebades beschreiben. 
+Das heisst, dass die mittlere Temperaturveraenderung durch das Waerebad beschrieben werden kann durch
+\begin{align*}
+	\dot{ \overline{\mathcal{T}} } = 2 \gamma [T_0 - \overline{\mathcal{T}}(t)]  
+\end{align*}
+Vergleiche mit dieser Gleichung und 
+\begin{align*}
+ \dot{ \overline{\mathcal{T}} } = \zeta_T^{-1} [T_0 - \overline{\mathcal{T}}(t)] 
+\end{align*}
+fuehren zu dem Ergebnis, dass $\gamma = 1/2 \zeta^{-1}$ eine gute Wahl ist. 
+
+%todo kurze zusammenfassung
+
+\section{Temperatur Relaxation mit stochastischer Verknuepfung}
+%todo: bessere uebersetzung
+
+\end{document}

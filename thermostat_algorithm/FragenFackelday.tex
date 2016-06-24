@@ -13,33 +13,41 @@
 
 \section{Temperature Relaxation by Stochastic Dynamics}
 
+\subsection{Mean square components}
+Im Paper auf S. 120. letzte Zeile steht, dass das quadratische Mittel sich zu $2 m_i \gamma_i k_B T_0$ auswertet, wobei $m_i$ die Masse, $\gamma_i$ der Reibungskoeffizient des i-ten Atoms und $T_0$ die Referenztemperatur des Waermebades ist. Wie komme ich auf die Formel?   
+
 \subsection{NVT ensemble}
-Auf S.121 nach Formel 32 steht, dass die Tranjetorie, die durch die Integration der Langevin Bewegungsgleichung erzeugt wird, zu einer kanonischen Verteilung der Mikrozustände führt. Was ist die kanonische Verteilung der Mikrozustände? Ein kanonisches Ensemble? Warum führt die Integration der Langevin Bewegungsgleichung zu einer kanonischen Verteilung der Mikrozustände?
+Auf S.121 nach Formel 32 steht, dass die Trajektorie, die durch die Integration der Langevin Bewegungsgleichung erzeugt wird, zu einer kanonischen Verteilung der Mikrozustände führt. Was ist die kanonische Verteilung der Mikrozustände? Ein kanonisches Ensemble? Warum führt die Integration der Langevin Bewegungsgleichung zu einer kanonischen Verteilung der Mikrozustände?
+
+\subsection{Properties of Langevin Equation}
+Auf S.121, zweiter Absatz steht, dass die Geschwindigkeitstrajektorie der Langevin Gleichung verfuegbar und stetig ist. Wie sieht die Geschwindigkeitstrajektorie aus und warum hat sie diese Eigenschaften?
+
+Ausserdem soll die Trajektorie nicht deterministisch sein. Warum?  
 
 \subsection{stochastic boundary conditions}
-Auf S 121 wird von stochastischen Randbedingungen gesprochen. Was sind das? Ich habe leider auch keine gute Erklärung gefunden.
+Auf S 121 wird von stochastischen Randbedingungen gesprochen. Was sind das? Ich habe leider keine gute Erklärung gefunden.
 
 \subsection{setting friction coefficients to zero}
 Auf S. 121 wird geschrieben, dass, falls man alle Reibungskoeffizienten auf Null setzt, auch die stochastische Kraft auf Null gesetzt wird. Ich verstehe nicht, warum. 
 
 \subsection{choise of $\gamma_i$}
-Im Text auf S 121 wird gesagt, dass, falls man den Reibungskoeefizienten proportional zur Masse setzt, die Störung des dynamischen Systems durch die stochastischen Kräfte am geringsten wird. Warum ist dies so?  
+Im Text auf S 121 wird gesagt, dass, falls man den Reibungskoeffizienten proportional zur Masse setzt, die Störung des dynamischen Systems durch die stochastischen Kräfte am geringsten wird. Warum ist dies so?  
+
+\subsection{Umformung der Formeln}
+Ich verstehe auf S. 122 die Umformung der meisten Formeln nicht. 
+
 
 \section{Temperature Relaxation by Stochastic Coupling}
 
-Kurze Einfuehrung: Wir wollen kollisisionen von Atomen mit einem Waermebad simulieren.
-Dazu waehlen wir nach einer bestimmten Verteilung Atome aus, deren Geschwindigkeit dann nach der Maxwell-Boltzmann Verteilung neu gesetzt wird. 
+Kurze Einfuehrung: Wir wollen Kollisionen von Atomen mit einem Waermebad simulieren.
+Dazu waehlen wir nach einer bestimmten Verteilung Atome aus, deren Geschwindigkeit nach der Maxwell-Boltzmann Verteilung neu gesetzt wird. 
 
 \subsection{Waehlen wann ein Atom eine neue Geschwindigkeit bekommt}
-Wir muessen bestimmen wann die Atome eine neue Temperatur bekommen sollen. Dazu gibt es zwei wege. Der erste ist nach einer bestimmten Wkeit, die $p(\tau)= \alpha \exp{- \alpha \tau}$ ist. Der zweite Weg soll einfacher sein. Ich verstehe nicht, warum dieser Weg einfacher sein soll. 
+Wir muessen bestimmen wann die Atome eine neue Temperatur bekommen sollen. Dazu gibt es zwei Wege. Der erste ist nach einer bestimmten Wkeit, die $p(\tau)= \alpha \exp{- \alpha \tau}$ ist. Der zweite Weg soll einfacher sein. Ich verstehe nicht, warum dieser Weg einfacher sein soll. 
 
 Bei Formel 39 wird die Wkeitsverteilung angegeben, wann ein Atom eine neue Geschwindigkeit bekommt. Die Herleitung der Wkeitsverteilung ist leider nicht angegeben. Wie komme ich auf diese Formel? 
 
 Auch von Formel 41 gibt es keine Herleitung. Intuitiv sind mir einige Terme der Formel klar, jedoch nicht die genaue Zusammensetzung. Koennten Sie mir die Formel genauer erklaeren? 
-
-\subsection{Mikrokaninisches vs kanonisches Ensemble}
-so wie ich das Kapitel bis jetzt verstanden habe, wollen wir ein kanonisches Ensemble generieren, also eins, wo die Temperatur konstant ist. 
-
 
 \subsection{Begriff: interne/externe Freiheitsgrade}
 u.a. auf S.124 oben (und an anderen Stellen) tauchen die Begriffe interne und externe Freiheitsgrade auf. Was sind interne/ externe Freiheitsgrade? Haben Sie ein Beispiel?  
@@ -48,6 +56,6 @@ u.a. auf S.124 oben (und an anderen Stellen) tauchen die Begriffe interne und ex
 Im Text wird gesagt, dass jede Kollision die kinetische Energie des Systems um $\frac{3}{2} k_B (T_0-\mathcal{T})$ veraendert. Wie kommt man auf diesen Wert? 
 
 \subsection{Formelzeichen}
-Bei Formel 42 wird das Formelzeichen $c_{nu}$ benutzt. Wofuer steht $c_{nu}$ ?
+Bei Formel 42 wird das Formelzeichen $c_{\nu}$ benutzt. Wofuer steht $c_{\nu}$ ?
 
 \end{document}
