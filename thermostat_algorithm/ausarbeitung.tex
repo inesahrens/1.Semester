@@ -11,58 +11,56 @@
 \begin{document}
 
 \maketitle
-\tableofcontents
-\newpage
 
 %todo: alle ue, .. ersetzen
 
 \section{Temperatur Relaxation mit stochastischer Dynamik}
-%todo: bessere ueberestzung
+%todo: bessere überestzung
 
-%todo: in welcher umgebung befinden wir uns? Waermebad, abgeschlossenes, offenes System? 
-%uebergang: herleitung stochastische Dynamik
-Die klassische Moekulare Dynamik loest die Newtonsche Bewegungsgleichung
+%todo: in welcher umgebung befinden wir uns? Wärmebad, abgeschlossenes, offenes System? 
+%übergang: herleitung stochastische Dynamik
+Die klassische Mökulare Dynamik löst die Newtonsche Bewegungsgleichung
 \begin{align*}
 	\dot{x}_i(t) = v_i(t) \\
 	m_i(t) v_i(t) = F_i(\{ x_i(t)\}) 
 \end{align*}
 
-wobei $x_i$ die ite Koordinate eines Partikels ist, $v_i$ die zugehoerige Geschwindigkeit und $m_i$ die Masse. Die systematische Kraft $F_i$ kann durch das Konservative Kraftfeld $V(\{x_i(t)\})$ berechnet werden. Dabei beschreibt $V$ die Interaktion zwischen den Partikeln.   
+wobei $x_i$ die ite Koordinate eines Partikels ist, $v_i$ die zugehörige Geschwindigkeit und $m_i$ die Masse. Die systematische Kraft $F_i$ kann durch das Konservative Kraftfeld $V(\{x_i(t)\})$ berechnet werden. Dabei beschreibt $V$ die Interaktion zwischen den Partikeln.   
 %todo :was ist genau partikel? 
 
-Wenn nun ein Hochdimensionales System direkt simuliert wird, werden alle Bewegungen und Koordinaten aller Partikel Beruecksichtigt. Dies erfordert eine hohe Rechenleistung. 
-Die Stochastische Dynamik umgeht dieses Problem. Nicht bei allen Partikel im System sind die Bewegungsdetails wichtig. Diese Partikel muessen nicht exakt simuliert werden. Sie werden durch eine stochastische Kraft beschrieben, die sich auf die anderen Partikel auswirkt. 
+Wenn nun ein hochdimensionales System direkt simuliert wird, werden alle Bewegungen und Koordinaten aller Partikel berücksichtigt. Dies erfordert eine hohe Rechenleistung. 
+Die Stochastische Dynamik umgeht dieses Problem. Nicht bei allen Partikel im System sind die Bewegungsdetails wichtig. Diese Partikel müssen nicht exakt simuliert werden. Sie werden durch eine stochastische Kraft beschrieben, die sich auf die anderen Partikel auswirkt. 
 
-Diese stochastische Kraft wirkt sich auf die Newtonsche Bewegungsgleichung aus und veraendert sie wie folgt:
+Diese stochastische Kraft wirkt sich auf die Newtonsche Bewegungsgleichung aus und verändert sie wie folgt:
 \begin{align*}
 	\dot{v}_i(t)  = m_i^{-1} F_i(\{x_i(t)\}) - \gamma_i v_i(t) + m_i^{-1} R_i(t)
 \end{align*}
-Der Reibungskoeffizient $\gamma_i$ haengt von der Geschwindigkeit ab. $R_i$ bezeichnet die stochastische Kraft.
+Der Reibungsköffizient $\gamma_i$ hängt von der Geschwindigkeit ab. $R_i$ bezeichnet die stochastische Kraft.
 
-Die oben genannte Langevin Bewegungsgleichung gibt die Dynamik des Systems gut wieder, wenn Vakuum Randbedingungen gewaehlt werden, der Reibungskoeffizient die Viskositaet des Loesungsmittels gut repreasentiert und das umgebende Loesungsmittel in der systematischen Kraft eingebunden wird. 
+Die oben genannte Langevin Bewegungsgleichung gibt die Dynamik des Systems gut wieder, wenn Vakuum Randbedingungen gewählt werden, der Reibungsköffizient die Viskosität des Lösungsmittels gut repreasentiert und das umgebende Lösungsmittel in der systematischen Kraft eingebunden wird. 
 
-Die Langevin Bewegungsgleichung hat  die Eigenschaft, dass die Trajektorie verfuegbar und stetig ist, die Trajektorie nicht deterministisch ist und die Bewegungsgleichung nicht Zeitreversibel ist. 
+Die Langevin Bewegungsgleichung hat  die Eigenschaft, dass die Trajektorie verfügbar und stetig ist, die Trajektorie nicht deterministisch ist und die Bewegungsgleichung nicht Zeitreversibel ist. 
 
 
-Betrachten wir die Komponenten der Gleichung genauer.
+Betrachten wir die Komponenten der Gleichung genaür.
 $R_i$ und hat folgende Eigenschaften: 
 \begin{itemize}
-	\item Sie ist eine stationaere Gaussche Zufallsvariable %todo was ist das? 
+	\item Sie ist eine stationäre Gaussche Zufallsvariable %todo was ist das? 
 	\item ihr Zeit Mittelwert ist Null %todo warum
 	\item Sie hat keine Korrelation zu vorherigen Geschwindigkeiten oder der systematischen Kraft. 
 	\item der quadratische Mittelwert von $R_i$ berechnet sich zu $2 m_i \gamma_i k_B T_0$
-	\item die $R_{i \mu}$ sind zueinander unabhaengig, wobei $\mu$ die Koordinatenachse ist %todo vll zu ungenau?  
+	\item die $R_{i \mu}$ sind zueinander unabhängig, wobei $\mu$ die Koordinatenachse ist %todo vll zu ungenau?  
 \end{itemize}
-Die letzten beiden Bedingungen koennen zusammengefasst werden: 
+Die letzten beiden Bedingungen können zusammengefasst werden: 
 \begin{align*}
 	\langle R_{i \mu} R_{j \nu } \rangle = 2 m_i \gamma_i k_B T_0 \delta_{ij} \delta_{\mu \nu} \delta(t' - t)
 \end{align*}
 
-Bei der Wahl des Reibungskoeffizienten $\gamma_i$ muss einiges beachtet werden. Der Reibungskoeffizient darf nicht ueberall verschwinden. Sonst haben wir nur wieder eine MS und dadurch ein mikrokanonisches Ensemble. Waehlen wir $\gamma_i$ zu klein, kann die Temperatur nicht gut geregelt werden und das kanonische Ensemble (konstante Temperatur), wird erst nach sehr langer Zeit erreicht. Falls die Reibungskoeffizienten zu gross gewaehlt werden, wird die Dynamik des Systems gestoerrt. 
+Bei der Wahl des Reibungskoeffizienten $\gamma_i$ muss einiges beachtet werden. Der Reibungskoeffizient darf nicht überall verschwinden. Sonst haben wir nur wieder eine MS und dadurch ein mikrokanonisches Ensemble. Wählen wir $\gamma_i$ zu klein, kann die Temperatur nicht gut geregelt werden und das kanonische Ensemble (konstante Temperatur), wird erst nach sehr langer Zeit erreicht. Falls die Reibungskoeffizienten zu gross gewählt werden, wird die Dynamik des Systems gestört. 
 
-Ein Ansatz ist es, den Reibungskoeffizienten fuer alle Partikel gleich $\gamma$ zu setzten. Das Ziel ist es nun, einen Wert fuer den Reibungskoeffizienten festzusetzen. Die Herleitung wird nur in groben Zuegen wiedergegeben. 
+Ein Ansatz ist es, den Reibungskoeffizienten für alle Partikel gleich $\gamma$ zu setzten. Das Ziel ist es nun, einen Wert für den Reibungskoeffizienten festzusetzen. Die Herleitung wird nur in groben Zügen wiedergegeben. 
 
-Zunaechst geht man davon aus, dass $\gamma$ im Vergleich zu der Beschleunigung $\dot{v}_i$ gross ist. Dadurch wird die Langevin Gleichung vereinfacht zu 
+Zunächst geht man davon aus, dass $\gamma$ im Vergleich zu der Beschleunigung $\dot{v}_i$ gross ist. Dadurch wird die Langevin Gleichung vereinfacht zu 
 \begin{align*}
 	v_i(t) = \gamma^{-1} m_i^{-1} (F_i(t) + R_i(t)
 \end{align*}
@@ -70,8 +68,8 @@ Mithilfe der Langevin Gleichung, der Eigenschaften von $R_i(t)$, der Definition 
 \begin{align*}
 	\frac{\Delta \mathcal{T}}{\Delta \tau} = \frac{2}{k_B N_{df}} \sum\limits_{i=i}^N \overline{F_i \dot{r}_i} + 2 \gamma (T_0 - \overline{\mathcal{T}})  
 \end{align*} 
-gilt. $\Delta \tau$ ist ein Zeitintervall, in der die Veraenderung der Temperatur beobachtet wird. $\overline{F_i \dot{r}_i} $ und $\overline{\mathcal{T}})$ sind die Durchschnitte ueber das Zeitintervall $\Delta \tau$. Da der erste Term die Veraenderung der Temperatur, die von der systematischen Kraft ausgeloest wird beschreibt, muss der zweite Term die Veraenderung aufgrund des Waermebades beschreiben. 
-Das heisst, dass die mittlere Temperaturveraenderung durch das Waerebad beschrieben werden kann durch
+gilt. $\Delta \tau$ ist ein Zeitintervall, in der die Veränderung der Temperatur beobachtet wird. $\overline{F_i \dot{r}_i} $ und $\overline{\mathcal{T}})$ sind die Durchschnitte über das Zeitintervall $\Delta \tau$. Da der erste Term die Veränderung der Temperatur, die von der systematischen Kraft ausgeloest wird beschreibt, muss der zweite Term die Veränderung aufgrund des Wärmebades beschreiben. 
+Das heisst, dass die mittlere Temperaturveränderung durch das Wärebad beschrieben werden kann durch
 \begin{align*}
 	\dot{ \overline{\mathcal{T}} } = 2 \gamma [T_0 - \overline{\mathcal{T}}(t)]  
 \end{align*}
@@ -79,11 +77,41 @@ Vergleiche mit dieser Gleichung und
 \begin{align*}
  \dot{ \overline{\mathcal{T}} } = \zeta_T^{-1} [T_0 - \overline{\mathcal{T}}(t)] 
 \end{align*}
-fuehren zu dem Ergebnis, dass $\gamma = 1/2 \zeta^{-1}$ eine gute Wahl ist. 
+führen zu dem Ergebnis, dass $\gamma = 1/2 \zeta^{-1}$ eine gute Wahl ist. 
 
 %todo kurze zusammenfassung
 
-\section{Temperatur Relaxation mit stochastischer Verknuepfung}
-%todo: bessere uebersetzung
+\section{Temperatur Relaxation mit stochastischer Verknüpfung}
+%todo: bessere übersetzung
+
+% anschauliche idee
+Die Methode der Stochastischen Verknüpfung, stellt wie die Methode der Stochastischen Dynamik ein System im Wärmebad da, bei dem die Partikelanzahl, das Volumen des Systems und die Temperatur gleich bleibt. Die Partikel des Systems kollidieren mit denen des Wärmebades. Die Kollisionen werden durch eine zufällige Stochastische Kraft simuliert, die auf die Partikel wirkt. Dadurch werden den Partikeln neue Geschwindigkeiten zugeteilt und die kinetische Energie verändert sich. 
+
+Diese Methode wurde von Andersen vorgeschlagen und heißt deswegen auch Andersen Thermostat. 
+
+Die Umsetzung dieser Idee, beruht, wie schon bei der Stochastischen Dynamik auf der Zeitintegration der Newtonschen Bewegungsgleichung. Diese wird bei jedem Zeitschritt, bei dem ein Partikel eine stochastische Kollision widerfährt,  gestört. Es stellt sich die Frage, welche Atome zu welchen Zeitpunkt kollidieren und wie die neue Geschwindigkeit der Partikel berechnet wird.  
+
+Zunächst wird untersucht, zu welchem Zeitpunkt die Partikel kollidieren und damit neue Geschwindigkeiten zugewiesen bekommen. Betrachten wir ein Partikel i. Das Zeitintervall $\tau$ zwischen zwei aufeinanderfolgenden Kollisionen ist durch die Wahrscheinlichkeitsverteilung $p(\tau)= \alpha e^{- \alpha \tau}$ gegeben, wobei $\alpha$ eine konstante Neuzuordnungsfrequenz ist.
+Bevor die Simulation gestartet wird, wird für jedes Partikel eine zufällige Folge von Zeitintervallen für die Geschwindigkeitsneuzuordnung festgelegt. 
+
+Die Geschwindigkeit des Partikels ändert sich in jeder Koordinate gemäß einer Maxwell-Boltzmann Verteilung $p(\dot{r}_{i \mu}) = {\frac{\beta m_i}{2 \pi}}^{1/2} e^{-1/2 \beta m_i \dot{r}}_{i \mu}$ mit $\beta = (k_B T_0)^{-1}$
+  
+Aus diesen Überlegungen ergibt sich die Newtonsche Bewegungsgleichung für das Anderson Thermostat
+\begin{align*}
+	\ddot{r}_i(t) = m_i^{-1} F_i(t) + \sum\limits_{n=1}^{\infty} \delta \left(  t - \sum\limits_{m=1}^n \tau_{i,m}\right) \left( \dot{r}_{i,n}(t) - \dot{r}_i(t) \right)
+\end{align*}  
+wobei $\{\tau_{i,n}| n=1,2, \dots\}$ die Folge der Neuzuweisung der Geschwindigkeiten für das i-te Partikel ist und $\dot{r}_{i,n}(t)$ die neue Geschwindigkeit nach dem $n-ten$ Intervall.
+ 
+Falls $\alpha $ nicht Null ist, führt das Anderson Thermostat zu einer kanonischen Verteilung von Mikrozuständen. 
+
+Die Trajektorie des Anderson Thermostats ist nicht deterministisch, dafür aber verfügbar und stetig. Die Bewegungsgleichung ist nicht zeitreversibel.
+
+Zuletzt muss noch die Kollisionsfrequenz $\alpha$ bestimmt werden. Hier ist es so ähnlich, wie bei der stochastischen Dynamik. Wählt man sie zu klein, wird das kanonische Ensemble erst sehr spät erreicht und Numerische Fehler treten auf. Wählt man $\alpha$ zu groß, wird die Dynamik des Systems gestört.
+
+Es kann gezeigt werden, dass eine enge Verbindung zwischen der Temperatur Relaxationszeit $ \zeta_T$ und $\alpha$ besteht und diese durch $\alpha = 2/3 (N k_B)^{-1} c_{\nu} \zeta_T^{-1}$ gegeben ist. 
+
+Daraus folgt, dass Kollisionsfrequenz für jeden Partikel mit $N^{-2/3}$ skaliert und deswegen die Kollisionen pro Partikel weniger werden, je größer das System ist. 
+
+%todo kurze Zusammenfassung?     
 
 \end{document}
