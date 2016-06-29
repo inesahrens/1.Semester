@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.24)  25 JUN 2016 15:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.24)  29 JUN 2016 19:47
 entering extended mode
 **ausarbeitung.tex
 
@@ -356,35 +356,33 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 13.
 
 ("D:\Program Files\MikTex\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Overfull \hbox (2.80298pt too wide) in paragraph at lines 17--17
-[]\OT1/cmr/bx/n/14.4 Temperatur Re-la-xa-ti-on mit sto-cha-sti-scher Dy-
- []
+) [1
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
+
 ("D:\Program Files\MikTex\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
- [1
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (6.72798pt too wide) in paragraph at lines 84--84
-[]\OT1/cmr/bx/n/14.4 Temperatur Re-la-xa-ti-on mit sto-cha-sti-scher Ver-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
+ [2]
+Overfull \hbox (9.60698pt too wide) in paragraph at lines 86--86
+[]\OT1/cmr/bx/n/12 Temperatur Re-la-xa-ti-on mit sto-cha-sti-scher Ver-kn[]upfu
+ng 
  []
 
-[2] [3] [4]
+[3] [4]
 (C:\Users\Ines\Documents\GitHub\1.Semester\thermostat_algorithm\ausarbeitung.au
 x) ) 
 Here is how much of TeX's memory you used:
- 1599 strings out of 493921
- 17671 string characters out of 3148889
+ 1600 strings out of 493921
+ 17686 string characters out of 3148889
  72585 words of memory out of 3000000
- 4904 multiletter control sequences out of 15000+200000
- 10888 words of font info for 43 fonts, out of 3000000 for 9000
+ 4905 multiletter control sequences out of 15000+200000
+ 11195 words of font info for 44 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,11n,26p,510b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,11n,26p,513b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
 <D:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Prog
 ram Files/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Program Files/Mi
 kTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Program Files/MikTex/fonts/t
@@ -395,7 +393,7 @@ rogram Files/MikTex/fonts/type1/public/amsfonts/cm/cmr17.pfb><D:/Program Files/
 MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Program Files/MikTex/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb><D:/Program Files/MikTex/fonts/type1/public/
 amsfonts/cm/cmsy7.pfb>
-Output written on ausarbeitung.pdf (4 pages, 136459 bytes).
+Output written on ausarbeitung.pdf (4 pages, 138831 bytes).
 PDF statistics:
  59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

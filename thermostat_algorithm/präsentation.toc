@@ -1,3 +1,3 @@
 \beamer@endinputifotherversion {3.36pt}
 \beamer@sectionintoc {1}{Temperatur Relaxation mit stochastischer Dynamik}{3}{0}{1}
-\beamer@sectionintoc {2}{Temperatur Relaxation mit stochastischer Verknüpfung}{4}{0}{2}
+\beamer@sectionintoc {2}{Temperatur Relaxation mit stochastischer Verkn\IeC {\"u}pfung}{13}{0}{2}
