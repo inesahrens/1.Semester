@@ -19,8 +19,8 @@
 \begin{frame}
 	\frametitle{Das System}
 	\begin{itemize}
-		\item Wärmebad
-		\item gelöste Moleküle betrachten?
+		\item betrachte Molekuele in einer Loesung
+		\item Vakuum Randbedingungen
 		\item konstantes Volumen
 		\item konstante Anzahl an Partikeln
 		\item Ziel: System bei konstanter Temperatur modellieren		
@@ -29,22 +29,34 @@
 \end{frame}
 
 \begin{frame} 
-  \frametitle{Langevin Gleichung}
+  \frametitle{klassische Molekueldynamik}
   \begin{block}{Newtonsche Bewegungsgleichung} 
 	\begin{align*}
 	\dot{x}_i(t) = v_i(t) \\
 	m_i(t) \dot{v}_i(t) = F_i(\{ x_i(t)\}) 
 	\end{align*}
   \end{block}
+  \begin{itemize}
+  	\item jedes Molekuel wird simuliert
+  	\item nur Troepfchengroesse kann simuliert werden 
+  	\item unerwuenschte Randeffekte
+  \end{itemize}
+  \end{frame}
+  
+  \begin{frame}
+  \frametitle{Langevin Gleichung}
 %todo kein space freilassen vor formel!
-  \begin{block}<2>{Langevin Gleichung} %%Definition
+  \begin{block}{Langevin Gleichung} %%Definition
 	\begin{align*}
 	\dot{v}_i(t)  = m_i^{-1} F_i(\{x_i(t)\}) - \gamma_i v_i(t) + m_i^{-1} R_i(t)
 	\end{align*}
   \end{block}  
-  \visible<2>{  $\gamma_i$: Reibungskoeffizient \\
-  	$R_i(t)$: stochastische Kraft}
-
+  \begin{itemize}
+  	\item Reibungskoeffizient $\gamma_i$ abhaengig von der Viskositaet des Loesungsmittels
+  	\item Die stochastische Kraft $R_i(t)$ beschreibt kollisionen mit Partikeln des Loesungsmittels
+  	\item umgebendes Loesungsmittel ist in systematischer Kraft $F_i$ eingebunden
+  \end{itemize}
+  
 \end{frame}
 
 \begin{frame}
@@ -71,7 +83,7 @@
 	\frametitle{Reibungskoeefizient $\gamma_i$}
 	\begin{description}
 		\item[$\gamma_i=0 \forall i$:] Molekulare Simulation
-		\item[$\gamma_i$ zu klein:] keine Temperaturkontrolle
+		\item[$\gamma_i$ zu klein:] kaum Temperaturkontrolle
 		\item[$\gamma_i$ zu groß:] Dynamik des Systems gestört 
 	\end{description}
 \end{frame}
@@ -96,7 +108,7 @@
 \begin{frame}
 	\frametitle{Reibungskoeefizient $R_i$: Herleitung}
 	\begin{align*}
-		\frac{\Delta \mathcal{T}}{\Delta \tau} = \frac{2}{k_B N_{df}} \sum\limits_{i=i}^N  \underbrace{\overline{F_i \dot{r}_i} }_ {\substack{\text{ Veränderung der Temperatur} \\ \text{ durch systematische Kraft}} }+\underbrace{ 2 \gamma (T_0 - \overline{\mathcal{T}})  }_{\substack{\text{Veränderung der Temperatur} \\ \text{ durch Wärmebad}}}
+		\frac{\Delta \mathcal{T}}{\Delta \tau} = \frac{2}{k_B N_{df}} \sum\limits_{i=1}^N  \underbrace{\overline{F_i \dot{r}_i} }_ {\substack{\text{ Veränderung der Temperatur} \\ \text{ durch systematische Kraft}} }+\underbrace{ 2 \gamma (T_0 - \overline{\mathcal{T}})  }_{\substack{\text{Veränderung der Temperatur} \\ \text{ durch Wärmebad}}}
 	\end{align*} 	
 	
 	$\overline{\mathcal{T}}$ : Durchschnitt der Temperatur über das Zeitintervall $\Delta \tau$\\
