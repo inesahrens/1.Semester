@@ -1,0 +1,251 @@
+\documentclass{beamer}
+\usetheme{Warsaw}  %% Themenwahl
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\title{Thermostat Algorithmen}
+\author{Franziska Engbers, Ines Ahrens}
+\date{\today}
+
+\begin{document}
+\maketitle
+\frame{\tableofcontents[currentsection]}
+
+\section{Temperatur Relaxatierung mit stochastischer Dynamik}
+
+\begin{frame}
+	\frametitle{Das System}
+	\begin{itemize}
+		\item konstantes Volumen
+		\item konstante Anzahl an Partikeln	
+		\item betrachte Molekuele in einer Loesung
+		\item Vakuum Randbedingungen
+		\item Ziel: System bei konstanter Temperatur modellieren		
+	\end{itemize}
+	skizze?
+\end{frame}
+
+\begin{frame} 
+  \frametitle{klassische Molekueldynamik}
+  \begin{block}{Newtonsche Bewegungsgleichung} 
+	\begin{align*}
+	\dot{x}_i(t) = v_i(t) \\
+	m_i(t) \dot{v}_i(t) = F_i(\{ x_i(t)\}) 
+	\end{align*}
+  \end{block}
+  \begin{itemize}
+  	\item jedes Molekuel wird simuliert
+  	\item nur Troepfchengroesse kann simuliert werden 
+  	\item unerwuenschte Randeffekte
+  \end{itemize}
+  \end{frame}
+  
+  \begin{frame}
+  \frametitle{Langevin Gleichung}
+%todo kein space freilassen vor formel!
+  \begin{block}{Langevin Gleichung} %%Definition
+	\begin{align*}
+	\dot{v}_i(t)  = m_i^{-1} F_i(\{x_i(t)\}) - \gamma_i v_i(t) + m_i^{-1} R_i(t)
+	\end{align*}
+  \end{block}  
+  \begin{itemize}
+  	\item $\gamma_i$: Reibungskoeffizient 
+  	\item $R_i(t)$: stochastische Kraft  
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Stochastische Kraft $R_i$}
+  \begin{block}{Eigenschaften der stochastischen Kraft} 
+  	\begin{enumerate}
+  		\item stationäre Gausssche Zufallsvariable
+  		\item Null Zeitmittelwert %todo warum
+  		\item keine Korrelation zu vorherigen Geschwindigkeiten oder der systematischen Kraft. 
+  		\item quadratischer Mittelwert: $2 m_i \gamma_i k_B T_0$
+  		\item die $R_{i \mu}$ sind zueinander unabhängig
+  	\end{enumerate}
+  \end{block}	
+  
+    \visible<2>{  4 und 5 lassen sich zusammenfassen:
+    	\begin{align*}
+	    	\langle R_{i \mu} R_{j \nu } \rangle = 2 m_i \gamma_i k_B T_0 \delta_{ij} \delta_{\mu \nu} \delta(t' - t)
+    	\end{align*}}
+  
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Reibungskoeefizient $\gamma_i$}
+	Wiederholung: Langevin Gleichung:
+	\begin{align*}
+		\dot{v}_i(t)  = m_i^{-1} F_i(\{x_i(t)\}) - \gamma_i v_i(t) + m_i^{-1} R_i(t)
+	\end{align*}
+	\hspace{2em}
+	
+	\begin{description}
+		\item[$\gamma_i=0 \forall i$:] Molekulare Simulation
+		\item[$\gamma_i$ zu klein:] kaum Temperaturkontrolle
+		\item[$\gamma_i$ zu groß:] Dynamik des Systems gestört 
+	\end{description}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Reibungskoeefizient $\gamma_i$: Herleitung}
+	\begin{itemize}
+	    \item Ansatz: $\gamma_i$ konstant $\gamma$ für alle Partikel
+	    \item $\gamma$ groß im Vergleich zur Beschleunigung
+	    \item Langevin Gleichung vereinfacht sich zu:
+	    \begin{align*}
+	    v_i(t) = \gamma^{-1} m_i^{-1} (F_i(t) + R_i(t) )
+	    \end{align*}
+	    \item durch Definition der Temperatur, der kinetischen Energie und der Eigenschaften der stochastischen Kraft ergibt sich: 
+	     
+	\end{itemize}
+    	
+\end{frame}
+
+%todo erst später unter der Klammer sichtbar? 
+\begin{frame}
+	\frametitle{Reibungskoeefizient $\gamma_i$: Herleitung}
+	\begin{align*}
+		\frac{\Delta \mathcal{T}}{\Delta \tau} = \frac{2}{k_B N_{df}} \sum\limits_{i=1}^N  \underbrace{\overline{F_i \dot{r}_i} }_ {\substack{\text{ Veränderung der Temperatur} \\ \text{ durch systematische Kraft}} }+\underbrace{ 2 \gamma (T_0 - \overline{\mathcal{T}})  }_{\substack{\text{Veränderung der Temperatur} \\ \text{ durch Wärmebad}}}
+	\end{align*} 	
+	
+	$\overline{\mathcal{T}}$ : Durchschnitt der Temperatur über das Zeitintervall $\Delta \tau$\\
+	Dies führt zu...
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Reibungskoeefizient $\gamma_i$: Herleitung} 
+	
+	Dies führt zu...
+	\begin{align*}
+		\dot{ \overline{\mathcal{T}} } = 2 \gamma [T_0 - \overline{\mathcal{T}}(t)]  .
+	\end{align*}
+	Vergleiche diese Formel mit 
+	\begin{align*}
+	\dot{ \overline{\mathcal{T}} } = \zeta_T^{-1} [T_0 - \overline{\mathcal{T}}(t)] 
+	\end{align*}
+	Also gilt:
+	\begin{block}{Wahl von $\gamma$}
+		Der Reibungskoefizient $\gamma$ kann für alle Partikel gewählt werden als 
+		\begin{align*}
+			\gamma = \frac{1}{2 \zeta_T}
+		\end{align*}
+	\end{block}
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Eigenschaften der stochastischen Dynamik} 
+	\begin{block}{Eigenschaften des SD Algorithmus}
+		\begin{itemize}
+			\item Trajektorie ist verfügbar und stetig
+			\item  Trajektorie ist nicht deterministisch
+			\item Bewegungsgleichung ist nicht Zeitreversibel
+		\end{itemize}
+	\end{block}
+\end{frame}
+	
+
+
+\section{Temperatur Relaxatierung mit stochastischer Verknüpfung}
+\begin{frame}
+	\frametitle{Das System}
+	\begin{itemize}
+		\item Wärmebad
+		\item konstantes Volumen
+		\item konstante Anzahl an Partikeln
+		\item Ziel: System bei konstanter Temperatur modellieren 
+	\end{itemize}
+	skizze?
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Idee des Anderson Thermostats} 
+	\begin{itemize}
+		\item Idee von Anderson
+		\item Partikel des Systems kollidieren
+		\item Kollisionen durch neue Geschwindigkeiten der Partikel modelliert
+		\item kinetische Energie ändert sich
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Umsetzung des Anderson Thermostats}
+	\begin{itemize}
+		\item Modifizierung der Newtonschen Bewegungsgleichung, durch Störung  in jedem Zeitschritt, in dem eine Kollision stattfindet
+		\item Wahl des Zeitpunkts der Kollision
+		\item Wahl der neuen Geschwindigkeit
+	\end{itemize} 
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Zeitpunkt der Kollision}
+	\begin{itemize}
+		\item betrachte einzelnen Partikel $i$
+		\item $\tau$: Zeitintervall zwischen zwei aufeinanderfolgenden Kollisionen
+		\item $\tau$ ist gegeben durch Wahrscheinlichkeitsverteilung
+		\begin{align*}
+		p(\tau)= \alpha e^{- \alpha \tau}
+		\end{align*}
+		\item vor Simulation Festlegung der Folge der Zeitintervalle $\tau$ für jeden Partikel
+	\end{itemize} 
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Wahl der neuen Geschwindigkeit}
+	 Wahl der Geschwindigkeit mittels Maxwell-Boltzmann Verteilung
+	\begin{align*}
+		p(\dot{r}_{i \mu}) = {\frac{\beta m_i}{2 \pi}}^{1/2} e^{-1/2 \beta m_i \dot{r}}_{i \mu}
+	\end{align*}
+	$\beta = (k_B T_0)^{-1}$
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Newtonsche Bewegungsgleichung für das Anderson Thermostat}
+	\begin{align*}
+	\ddot{r}_i(t) = m_i^{-1} F_i(t) + \sum\limits_{n=1}^{\infty} \delta \left(  t - \sum\limits_{m=1}^n \tau_{i,m}\right) \left( \dot{r}_{i,n}(t) - \dot{r}_i(t) \right)
+	\end{align*}
+	 $\{\tau_{i,n}| n=1,2, \dots\}$:  Folge der Neuzuweisung der Geschwindigkeiten für i-tes Partikel \\
+	 $\dot{r}_{i,n}(t)$: neue Geschwindigkeit nach dem n-ten Intervall
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Wahl der Kollisionsfrequenz $\alpha$}
+	siehe stochastische Dynamik
+	\begin{description}
+		\item[$\alpha_i=0 \forall i$:] Molekulare Simulation
+		\item[$\alpha_i$ zu klein:] keine Temperaturkontrolle
+		\item[$\alpha_i$ zu groß:] Dynamik des Systems gestört 
+	\end{description}
+	\begin{block}{Wahl von $\alpha$}
+		Die Kollisionsfrequenz $\alpha$ kann gewählt werden als
+		\begin{align*}
+			\alpha = 2/3 (N k_B)^{-1} c_{\nu} \zeta_T^{-1}
+		\end{align*}
+	\end{block}	
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Eigenschaften der stochastischen Verknüpfung} 
+	\begin{block}{Eigenschaften des SV Algorithmus}
+		\begin{itemize}
+			\item Trajektorie ist verfügbar und stetig
+			\item  Trajektorie ist nicht deterministisch
+			\item Bewegungsgleichung ist nicht Zeitreversibel
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\end{document}
