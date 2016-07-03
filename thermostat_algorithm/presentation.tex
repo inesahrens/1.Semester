@@ -20,7 +20,7 @@
 	\frametitle{Das System}
 	\begin{itemize}
 		\item konstantes Volumen
-		\item konstante Anzahl an Partikeln	
+		\item konstante Anzahl an Teilchen
 		\item betrachte Molekuele in einer Loesung
 		\item Vakuum Randbedingungen
 		\item Ziel: System bei konstanter Temperatur modellieren		
@@ -97,7 +97,7 @@
 \begin{frame}
 	\frametitle{Reibungskoeefizient $\gamma_i$: Herleitung}
 	\begin{itemize}
-	    \item Ansatz: $\gamma_i$ konstant $\gamma$ für alle Partikel
+	    \item Ansatz: $\gamma_i$ konstant $\gamma$ für alle Teilchen
 	    \item $\gamma$ groß im Vergleich zur Beschleunigung
 	    \item Langevin Gleichung vereinfacht sich zu:
 	    \begin{align*}
@@ -133,7 +133,7 @@
 	\end{align*}
 	Also gilt:
 	\begin{block}{Wahl von $\gamma$}
-		Der Reibungskoefizient $\gamma$ kann für alle Partikel gewählt werden als 
+		Der Reibungskoefizient $\gamma$ kann für alle Teilchen gewählt werden als 
 		\begin{align*}
 			\gamma = \frac{1}{2 \zeta_T}
 		\end{align*}
@@ -158,44 +158,36 @@
 \begin{frame}
 	\frametitle{Das System}
 	\begin{itemize}
-		\item Wärmebad
+		\item geschlossenes System
 		\item konstantes Volumen
-		\item konstante Anzahl an Partikeln
-		\item Ziel: System bei konstanter Temperatur modellieren 
+		\item konstante Anzahl an Teilchen	
+		\item Wärmebad
+		\item Ziel: System bei konstanter Temperatur simulieren
 	\end{itemize}
-	skizze?
 \end{frame}
 
 \begin{frame} 
 	\frametitle{Idee des Anderson Thermostats} 
 	\begin{itemize}
-		\item Idee von Anderson
-		\item Partikel des Systems kollidieren
-		\item Kollisionen durch neue Geschwindigkeiten der Partikel modelliert
+		\item Teilchen des Systems kollidieren
+		\item Kollisionen durch neue Geschwindigkeiten der Teilchen modelliert
 		\item kinetische Energie ändert sich
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame} 
-	\frametitle{Umsetzung des Anderson Thermostats}
-	\begin{itemize}
 		\item Modifizierung der Newtonschen Bewegungsgleichung, durch Störung  in jedem Zeitschritt, in dem eine Kollision stattfindet
 		\item Wahl des Zeitpunkts der Kollision
 		\item Wahl der neuen Geschwindigkeit
-	\end{itemize} 
+	\end{itemize}
 \end{frame}
 
 \begin{frame} 
 	\frametitle{Zeitpunkt der Kollision}
 	\begin{itemize}
-		\item betrachte einzelnen Partikel $i$
+		\item betrachte einzelnen Teilchen $i$
 		\item $\tau$: Zeitintervall zwischen zwei aufeinanderfolgenden Kollisionen
 		\item $\tau$ ist gegeben durch Wahrscheinlichkeitsverteilung
 		\begin{align*}
 		p(\tau)= \alpha e^{- \alpha \tau}
 		\end{align*}
-		\item vor Simulation Festlegung der Folge der Zeitintervalle $\tau$ für jeden Partikel
+		\item vor Simulation Festlegung der Folge der Zeitintervalle $\tau$ für jeden Teilchen
 	\end{itemize} 
 \end{frame}
 
@@ -203,7 +195,7 @@
 	\frametitle{Wahl der neuen Geschwindigkeit}
 	 Wahl der Geschwindigkeit mittels Maxwell-Boltzmann Verteilung
 	\begin{align*}
-		p(\dot{r}_{i \mu}) = {\frac{\beta m_i}{2 \pi}}^{1/2} e^{-1/2 \beta m_i \dot{r}}_{i \mu}
+		p(\dot{r}_{i \mu}) = {\frac{\beta m_i}{2 \pi}}^{1/2} e^{-1/2 \beta m_i \dot{r}_{i \mu}}
 	\end{align*}
 	$\beta = (k_B T_0)^{-1}$
 \end{frame}
@@ -214,7 +206,7 @@
 	\begin{align*}
 	\ddot{r}_i(t) = m_i^{-1} F_i(t) + \sum\limits_{n=1}^{\infty} \delta \left(  t - \sum\limits_{m=1}^n \tau_{i,m}\right) \left( \dot{r}_{i,n}(t) - \dot{r}_i(t) \right)
 	\end{align*}
-	 $\{\tau_{i,n}| n=1,2, \dots\}$:  Folge der Neuzuweisung der Geschwindigkeiten für i-tes Partikel \\
+	 $\{\tau_{i,n}| n=1,2, \dots\}$:  Folge der Neuzuweisung der Geschwindigkeiten für i-tes Teilchen \\
 	 $\dot{r}_{i,n}(t)$: neue Geschwindigkeit nach dem n-ten Intervall
 \end{frame}
 

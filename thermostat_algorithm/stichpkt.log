@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.10.19)  3 JUL 2016 15:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.10.19)  3 JUL 2016 17:31
 entering extended mode
-**ausarbeitung.tex
-(ausarbeitung.tex
+**stichpkt.tex
+(stichpkt.tex
 LaTeX2e <2015/01/01> patch level 2
 Babel <3.9m> and hyphenation patterns for 69 languages loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -322,74 +322,88 @@ Package: amsthm 2015/03/04 v2.20.2
 \thm@postskip=\skip47
 \thm@headsep=\skip48
 \dth@everypar=\toks26
-) (ausarbeitung.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Try loading font information for U+msa on input line 13.
+) (stichpkt.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]\OT1/cmr/bx/n/14.4 Temperatur Re-la-xa-tie-rung
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 19.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 19.
+LaTeX Font Info:    Try loading font information for U+msa on input line 36.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 13.
+LaTeX Font Info:    Try loading font information for U+msb on input line 36.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/Ines/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
- [2]
-Overfull \hbox (9.60698pt too wide) in paragraph at lines 86--86
-[]\OT1/cmr/bx/n/12 Temperatur Re-la-xa-ti-on mit sto-cha-sti-scher Ver-kn[]upfu
-ng 
+Underfull \hbox (badness 8038) in paragraph at lines 113--114
+[]\OT1/cmr/m/n/10 Deterministisch: durch Vor-be-din-gun-gen
  []
 
 
-Overfull \hbox (6.6037pt too wide) in paragraph at lines 99--100
-\OT1/cmr/m/n/10 ner Maxwell-Boltzmann Ver-tei-lung $\OML/cmm/m/it/10 p\OT1/cmr/
-m/n/10 ([]) = [][]\OML/cmm/m/it/10 e[]$ \OT1/cmr/m/n/10 mit $\OML/cmm/m/it/10 
- \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 k[]T[]\OT1/cmr/m/n/10 )[]$ 
+Underfull \hbox (badness 1242) in paragraph at lines 113--114
+\OT1/cmr/m/n/10 ein-deu-tig fest-ge-legt. hier nicht, da sto-
  []
 
-[3] [4] (ausarbeitung.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
+[]\OT1/cmr/bx/n/14.4 Temperatur Re-la-xa-tie-rung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
+\OT1/cmr/bx/n/14.4 mit sto-cha-sti-scher Ver-
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 152--153
+\OT1/cmr/m/n/10 Zei-t-in-ter-val-len f[]ur Ge-schwin-dig-keits-neu-zu-ord-
+ []
+
+[2] [3] (stichpkt.aux) ) 
 Here is how much of TeX's memory you used:
- 1599 strings out of 493673
- 17454 string characters out of 3143962
- 76273 words of memory out of 3000000
- 4959 multiletter control sequences out of 15000+200000
- 11195 words of font info for 44 fonts, out of 3000000 for 9000
+ 1601 strings out of 493673
+ 17427 string characters out of 3143962
+ 79276 words of memory out of 3000000
+ 4961 multiletter control sequences out of 15000+200000
+ 11204 words of font info for 44 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,11n,26p,513b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb>
-Output written on ausarbeitung.pdf (4 pages, 139566 bytes).
+ 27i,4n,26p,241b,181s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
+x12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy7.pfb>
+Output written on stichpkt.pdf (3 pages, 121472 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
+ 52 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
