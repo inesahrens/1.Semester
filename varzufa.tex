@@ -1,0 +1,324 @@
+\documentclass[pdftex,a4paper,oneside]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%opening
+\title{Variationsrechnung und Optimale Steuerung - Verst"andniszusammenfassung}
+\author{Ines Ahrens}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Variationsrechnung}
+
+\section{Einleitung}
+In der Variationsrechnung besch"aftigen wir uns damit Optimierungsaufgaben der folgenden Gestalt zu l"osen:
+\begin{align*}
+	\inf J(x(\cdot)) := \int\limits_a^b f(t,x(t),\dot{x}(t))\\
+	x(a)= x_a \: x(b)=x_b \: x(\cdot) \in Z  
+\end{align*}
+Dabei $Z$ die Menge aller zul"assigen Funktionen ist. 
+
+Die Existenz einer L"osung ist nicht immer gegeben und wir werden uns in dieser Vorlesung damit nicht befassen. 
+
+Die L"osung der Variationsaufgabe kann ein starkes oder schwaches Minimum sein. Der Unterschied liegt in der Menge der zugelassenen Funktionen f"ur das Variationsproblem. Ein schwaches lokales Minima liegt vor, wenn das gesuchte Minimum an der Stelle $x*$ minimal bzgl allen Funktionen und deren Ableitungen ist, die in einer $\epsilon$ Umgebung des Minimums liegen. Bei einem starken lokalen Minimum werden als zul"assige Funktionen alle betrachtet, die "ahliche Funktionswerte wie das Minimum $x*$ besitzen. Die Ableitung spielt hier keine Rolle. 
+
+Sp"ater werden wir auch andere Variationsaufgaben zulassen, wie zum Beispiel mit einem Variablen Endpunkt oder nicht vorgegebener Zeit. 
+
+\section{Optimalit"atsbedingungen erster Ordnung}
+
+Wenn ein Minimum vorliegt, muss bei differenzierbaren Funktionen die erste Ableitung Null sein. Hier ist dies "ahnlich. Wir betrachten dazu das Zielfunktional der Variationsaufgabe in einer Umgebung von dem Minimum $x_0$, also an der Stelle $x_0 + \epsilon y(\cdot)$. Offensichtlich liegt bei $\epsilon = 0$ ein Minimum vor. Es muss gelten 
+\begin{align*}
+	F'(0)= \partial J(x_0, y) = 0,
+\end{align*}
+wobei $F(\epsilon)= J(x_0+ \epsilon y(\cdot))$ gilt. Dies nennen wir die erste Variation. 
+
+Die Eulersche Differentialgleichung folgt nach Rechnerei aus der ersten Variation. Diese lautet
+\begin{align*}
+	f_{\dot{x}}(t) = \int\lim\limits_{a}^t f_x(s) \mathrm{d} s + c
+\end{align*} 
+und muss, falls $x_0$ die L"osung des Variationsproblems ist, in jedem Stetigkeitsintervall von $\dot{x}_0$ erf"ullt sein. 
+
+Im weiteren werden durch eine Variablensubstitution von $t:=u(s)$ die eulersche Integrodifferentialgleichung und die Integrodiffgleichung hergeleitet. Dieses sind weitere notwendige Bedingungen f"ur ein Minimum. 
+
+Falls die optimale L"osung ecken hat, so muss der rechtseitige und linkseitige Limes an diesen Stellen von der Funktion $f$ "ubereinstimmen. 
+Ausserdem gilt noch die Weierstrass-erdmannsche Eckbedingung. 
+
+\section{Die Bedingung von Weierstrass}
+
+Die Weierstrasssche Exess funktion muss f"ur die L"osung des Variationsproblems immer gr"osser gleich 0 sein.
+Diese Bedingung besagt, dass die Funktion $y(u) = f(t,x_0(t), u)$ konvex ist f"ur alle $t$. %todo genauer? 
+%todo was bedeutet das nun? 
+
+	
+	\section{Bedingungen zweiter Ordnung - Legendrische und Jacobische Bedingung}
+	
+	Sehen wir uns wie bei der ersten Variation Optimalitätsbedingungen an. Damit ein Minimum bei einer Funktion vorliegt, muss die zweite Ableitung größer gleich Null sein. Dies gilt auch hier und nennt sich zweite Variation. Es gilt $F''(0) \ge 0$. Durch diese Erkenntnis lässt sich die Legendrische Bedingung
+	\begin{align*}
+	f_{\dot{x} \dot{x} }(t,x_0(t), \dot{x}_0(t )) \ge 0   
+	\end{align*}
+	gelten. 
+	
+	Betrachten wir die Regularität der Extremalen genauer. Falls $f \in C^m$ ist, dann ist jede nicht singuläre Lösung zwischen ihren Ecken auch in $C^m$. Falls wir nun auch noch gegeben haben, dass $f_{\dot{x} \dot{x}}$ im gesamten Definitionsbereich positiv ist, dann hat die Lösung keine Ecken. 
+	
+	Durch die eulersche Differentialgleichung auf die zweite Variation (ausgerechnet) angewendet, kommen wir auf die sogenannte Jacobische DGL. Betrachten wir nun eine Lösung $y$ der Jacobischen DGL mit den Anfangsbedingungen $y(a)=0 \: \dot{y}(a)=1$ und eine nicht singuläre Lösung des Variationsproblems $x_0 \in C^2$. Dann hat $y$ im Intervall $(a,b)$ keine Nullstelle.   
+	
+	
+	\section{Erweiterung des einfachen Variationsproblems}
+	In diesem Kapitel modifizieren wir das einfache Variationsproblem und lösen diese Variationen. 
+	
+	\subsection{Variable Endpunkte}
+	hier ist $x(b)$ nicht mehr vorgegeben, sondern frei. Man sieht leicht, dass eine Lösung dieser Aufgabe alle vorher genannten notwendigen Optimalitätsbedingungen erfüllen. Aber für die Eulersche Gleichung fehlt noch die rechte Randbedingung. Diese ist gegeben durch
+	\begin{align*}
+	f_{\dot{x}}(b,x_0(b),\dot{x}_0(b) ) = 0
+	\end{align*} 
+	
+	\subsection{Endpunkte auf einer gegebenen glatten Kurve}
+	Im diesem Kapitel betrachten wir nur noch glatte Extremale. Es sind keine Ecken zugelassen. 
+	
+	Hier verändert sich die Variationsaufgabe zu 
+	\begin{align*}
+	\min \int\limits_{a}^{\tau} f(t, x(t9, \dot{x}(t))) \\
+	s.t. \: x(a)=x_a \: x(\tau) = z(\tau) \: \tau \in (a_1,b_1) \text{variabel} 
+	\end{align*}
+	
+	Bei dieser Aufgabe gibt es eine zusätzliche Bedingung für die Lösung der veränderten Variationsaufgabe, die sogenannte Transversalitätsbedingung. Diese besagt, dass, falls es eine Lösung $x_0$ gibt mit der Optimalzeit $\tau = \tau_0$, dann gilt
+	\begin{align*}
+	f(\tau_0, x_0(\tau_0), \dot{x}(\tau_0)) + \left( \dot{z}(\tau_0) - \dot{x}(\tau_0) \right) f_{\dot{x}}(\tau_0,x_0(\tau_0), \dot{x}_0(\tau_0))
+	\end{align*}
+	
+	\subsection{Isoperimetrische Probleme}
+	Hier betrachten wir die einfache Variationsaufgabe mit zusätzlichen Nebenbedingungen 
+	\begin{align*}
+	J_i(x ) = \int\limits_a^b f_i(t,x(t), \dot{x}(t)) \mathrm{d}x = l_i \: i=1, \dots n 
+	\end{align*}
+	
+	Isoperimetrische Probleme löst man mit der Lagrangegleichung. 
+	Damit wir eine notwendige Bedingung aufstellen können, brauchen wir, dass die Lösung des Problems normal ist, also die Ableitung von
+	\begin{align*}
+	I(x) = \sum\limits_{i=1}^n \lambda_i J_i(x)
+	\end{align*}
+	ungleich 0 ist für alle $\lambda_ \neq 0$. Falls dies zutrifft, und $x_0$ eine Lösung des Isoperimetrsichen Problems ist, dann existiert genau ein $\lambda$, sodass
+	\begin{align*}
+	\partial_x \mathcal{L}(x_0, \lambda, y)= 0 \: \forall y \in Z_0 
+	\end{align*}
+	gilt.
+	
+	Eine andere notwendige Bedingung ist es, dass 
+	\begin{align*}
+	\phi(t,x,\dot{x}) = f(t,x,\dot{x}) + \sum\limits_{i=1}^n \lambda_i f_i(t,x,\dot{x})
+	\end{align*}
+	an der Stelle $x_0$ die eulersche DGL erfüllt. 
+	
+
+
+\chapter{optimale Steuerung}
+
+	\section{Einführung und Motivation}
+	Bei der Optimalsteuerung geht es darum, zu einem gegebenen System eine Steuerung zu finden, sodass das System von einem vorgegebenen Start in einem Endzustand gebracht wird. Dabei wollen wir eine optimale Steuerung finden. Oft ist dies zeitoptimal, aber in anderen Fällen soll ein Zielfunktional minimiert werden. 
+	
+	Mathematisch betrachten wir dabei ein System, das durch eine ODE gegeben ist, die sogenannte Zustandsgleichung. Diese ist abhängig von dem Zustand $x$, der Steuerung $u$ und der Zeit $t$. Die Zustandsgleichung muss nach dem Zustand diffbar sein, da diese in der ODE gebraucht wird. Der Anfangszustand der Zustandsgleichung ist durch $x_0$ gegeben. Zunächst betrachten wir nur beschränkte Steuerungen, die messbar sein sollen. Es wird explizit keine Stetigkeit verlangt. Die Zielmenge beschreibt alle zugelassenen Endzustände, in die wir das System steuern wollen. In den meisten Fällen wollen wir das System in die Null steuern. 
+	
+	Fall die Steuerung stetig wäre, hätten wir die lokale Existenz einer Lösung des Steuerproblems nach dem Satz von Picard-Lindelöf. Dieses ist hier leider nicht gegeben. 
+	Desweiteren betrachten wir nur lokale Lösungen des Steuerproblems, da die globale Existenz einer Lösung nicht gegeben sein muss. Dies ist bei linearen Systemen anders. Hier ist die Existenz einer globalen Steuerung immer gegeben. 
+	
+	Das Steuerproblem besteht nun darin, Anfangszustände und zugehörige Steuerungen zu finden, sodass das System eine Lösung $x$ hat, die das System in die vorgegebene Zielmenge steuert. 
+	
+	Die Menge der Anfangszustände, die in endlicher Zeit in die Zielmenge gesteuert werden können, nennt sich Menge der Steuerbarkeit $C$. Bei der Untersuchung der Steuerbarkeit geht es unter anderem um die Form von $C$ und deren Abhängigkeit von der Menge der zulässigen Steuerungen. 
+	
+	In dieser Vorlesung interessieren wir uns vor allen für Bang-Bang Steuerungen. Dieses sind Steuerungen, die nur die Werte $\pm 1$ annehmen, also nur maximale Werte haben. 
+	
+	Des weiteren betrachten wir die Erreichbarkeitsmenge, also die Menge der Zustände, die das Steuerproblem zu einer gegebenen Zeit mit einem gegebenem Anfangszustand erfüllen.
+	Der Erreichbarkeitskegel sind nun alle Erreichbarkeitsmengen zu jedem Zeitpunkt zu einem bestimmten Anfangszustand. Dieses ist kein Kegel im Sinne der konvexen Analysis. %todo stimmt das auch bei Linearen Problemen?
+	
+	Kommen wir nun zur optimalen Steuerung zurück. Hier betrachten wir ein Steuerungsproblem, bei dem wir eine optimale Steuerung finden wollen. Diese hat folgende Form:
+	\begin{align*}
+	\min F(u(\cdot) ) & := \int\limits_0^{t_1} f^0(t,x(t),\dot{x}(t)) \mathrm{d}x \\
+	\dot{x}(t) &= f(t,x(t), \dot{x}(t)) \text{ f.f.a } t \in [0,t_1] \\
+	x(0) & = x_0 \\
+	x(t_1) & \in \mathcal{T}(t_1) \\
+	u(\cdot) & \in \mathcal{U}_m	
+	\end{align*}
+	Bei dem Zeitoptimalen Steuerungsproblem gilt $f^0 \equiv 1$.Es stellen sich Fragen nach der Existenz und nach notwendigen Optimalitätsbedingungen.
+	
+	Die Aufgabe kann man als Optimierungsaufgabe im Banachraum umformulieren, wobei man alle Eigenschaften in einem Raum zusammenfasst. Diese Formulierung werden wir jedoch nicht nutzen. 
+	
+	In der Kontrolltheorie unterscheidet man offene und geschlossene Regelkreise. Bei dem offenen Regelkreis wird die Steuerung vor Beginn des Prozesses festgelegt und dann angewendet. Falls Abweichungen im Prozess auftreten, können diese nicht korrigiert werden. Bei dem geschlossenen Regelkreis wird der Zustand zu einem bestimmten Zeitpunkt gemessen, dann die zugehörige Steuerung berechnet. Dies geschieht im Verlauf der Zeit immer wieder, sodass auf Abweichungen eingegangen werden kann. Dieses nennt sich auch das Synthesenproblem.
+	
+	\section{Steuerbarkeit}
+	Hier betrachten wir nur Autonome Systeme, genauer gesagt
+	\begin{align*}
+	\text{(NLA)}& \dot{x}(t) = f(x(t), u(t)) \\
+	\text{(LA)} & \dot{x}(t) = A x(t) + B u(t)
+	\end{align*}
+	Durch die Autonomie können wir immer $t_0=0$ annehmen. Der Einfachheit halber setzten wir die Zielmenge $ \mathcal{T} = \{0 \}$ fest. 
+	
+	Es kann gezeigt werden, dass falls wir einen Anfangszustand haben, der das System in einer bestimmten Zeit $t_1$ in die Null steuert, dass dann der gleiche Zustand für Zeiten $0<t<t_1$ in der Menge der Steuerbarkeit liegt. D.h. dieser Zustand kann auch mit der Zeit $t$ in die Null gesteuert werden. 
+	
+	Das Rückwärtsproblem
+	\begin{align*}
+	\dot{z} = - f(z,\widetilde{u}), \: z(0)=x_1, \: z(t_1)= x_0
+	\end{align*}
+	wird durch 
+	\begin{align*}
+	z(t)= x(t_1 - t), \: \widetilde{u}(t) = u(t_1-t)
+	\end{align*}
+	gelöst. Also ist die Menge der Steuerbarkeit aller Anfangszustände $x_1$ für das Vorwärtsproblem das gleiche, wie die Erreichbarkeitsmenge für das Rückwärtsproblem. Dadurch trifft jede Aussage über die Menge der Steuerbarkeit, die für alle Systeme des Typs (NLA) gelten, auch für die Erreichbarkeitsmenge zu.
+	
+	Betrachten wir nun den Fall, dass $f(0,0)=0$ gilt. Dann ist $0$ in der Menge der Steuerbarkeit. Außerdem ist die Menge der Steuerbarkeit für (NLA) bogenweise zusammenhängend. $C$ ist offen gdw $0 \in \text{int} C$. 
+	
+	\subsection{Steuerbarkeit für lineare Systeme}
+	Hier betrachten wir nur lineare Systeme. diese haben eine explizite Lösung, die sogenannte Cauchysche Formel. Aus dieser Formel kann hergeleitet werden, dass die Menge der Steuerbarkeit konvex und symmetrische bzgl des Nullpunktes ist. Dieser Satz gilt auch für alle Mengen von Steuerungen, die konvex und symmetrisch sind, jedoch nicht für $U_{BB}$, da $U_{BB}$ nicht konvex ist. 
+	
+	Die Kalman Bedingung gilt gdw $0 \int C$. Außerdem gilt die Kalman Bedingung genau dann, wenn (LA) eigentlich ist, also $b^T e^{-At} B \neq 0 \: \forall b \neq 0 $
+	
+	Wir wollen Systeme, die vollständig nullsteuerbar sind, also Systeme, bei denen die Menge der Steuerbarkeit der gesamte $\mathbb{R}^n$ ist. Dies ist der Fall, wenn die Kalman Bedinung erfüllt ist und die Realteile der Eigenwerte der Matrix A nicht positiv sind. 
+	
+	Vollständige Steuerbarkeit bedeutet, dass jeder Anfangzustand durch eine zulässige Steuerung in jeden beliebigen Enzustand überführt werden kann. Falls die Menge aller zulässigen Steuerungen der gesamte $\mathbb{R}^m$ ist, ist dies äquivalent zur Kalmanbedingung. 
+	
+	Stellt sich noch die Frage, wie einschneidend die Kalman Bedingung ist. Wie sich herausstellt erfüllen die meisten Systeme diese Bedingung, denn die Menge der Systeme, die diese Bedingung erfüllen liegt ist offen und liegt dicht im Raum aller (LA) Systeme. 
+	
+	\subsection{Steuerbereiche für autonome Systeme}
+	wir betrachten hier (NLA), wobei $f(0,0)=0$ gilt. Also verharrt unser System in Ruhelage ohne Kraftanwendung. 
+	Die Idee ist es nun, das System zu linearisieren und dann mithilfe des Linearisierten Systems die Steuerbarkeitsmatrix aufzustellen. Falls diese die Kalmann Bediung erfüllt, dann ist $0 \in \text{int}C$
+	
+	\subsection{Spezielle Klassen von Steuerfunktionen}
+	
+	Stellen wir uns die Frage, ob die vorherigen Resultate auch für $C_{SS}$ (Menge der Steuerbarkeit für stückweise stetige Steuerungen) bzw $U_{BB}$ gelten.
+	
+	Auch $C_{SS}$ ist konvex und symmetrisch bzgl. des Nullpunktes. 
+	
+	Für die Klasse der Bang Bang Steuerungen gilt nicht der Satz über $0 \in \text{int} C $ für (NLA).
+	
+	Dafür gilt fast alles mit $C_{SS}$, denn aus $0 \text{int} C_{SS}$ folgt schon, dass $C = C_{SS}$
+	
+	Wichtig ist das Bang-Bang Prinzip. Bei einem Linear Autonomen System gilt, dass $C_{BB}(t_1) = C(t_1) \: \forall t_1>0$ Dadurch ist die Menge konvex und kompakt. Sie hängt stetig von $t_1$ ab. Da die Aussage $C_{BB}(t_1) = C(t_1) $ für alle (LA) gilt, gilt auch $E(t,x_0) = E_{BB}(t,x_0)  \forall x_0, \, t>0$ 
+	
+	Wenn wir jetzt den Einheitswürfel $\Omega$ durch eine kompakte Menge $\Omega ' \subset \mathbb{R}^m$ ersetzen, dann gilt
+	\begin{align*}
+	E_{\Omega'}(t,x_0) = E_{co(\Omega')} (t,x_0)
+	\end{align*} 
+
+\section{Linear autonome zeitoptimale Steuerprobleme}
+
+Wir betrachten hier die Aufgabe
+\begin{align*}
+	\min t_1 \\
+	\dot{x}(t) & = A x(t) + B u(t) \\
+	x(0) & = x_0 \\
+	x(t_1) & = 0\\
+	u & \in \mathcal{U}_m \\
+	\mathcal{T}(t) & = \{ 0\}
+\end{align*}
+und suchen dazu eine Zeitoptimale Steuerung. Es gilt, dass die Erreichbarkeitsmenge in $x_0$ zum Zeitpunkt $t$ immer konvex und kompakt ist. F"ur $x_0=0$ ist sie ausserdem symmetrisch bzgl der Null. Die Abbildung, die jeden Zeitpunkt auf die Erreichbarkeitsmenge von $x_0$ abbildet, ist stetig. Diese Abbildung beschreibt den Erreichbarkeitskegel, den wir gleich gebrauchen werden.  
+%todo warum brauche ich das? 
+%todo was heisst stetig in der Hausddorffmetrik des klinsten $E(t,x_0)$ enthaltenden linearen Vektorraum? 
+
+
+Wann existiert nun eine zeitoptimale Steuerung? Falls es eine Steuerung gibt, die den Anfangszustand in die Null "uberf"uhrt, dann gibt es auch eine zeitoptimale Steuerung. Daraus folgt direkt, dass es dann auch eine zeitoptimale Bang-Bang Steuerung gibt. 
+
+
+Jede zeitoptimale Steuerung liegt auf dem Rand des Erreichbarkeitskegels. 
+%todo begruendung verstehen, beim beweis
+Dies f"uhrt uns zu dem Maximumsprinzip. Falls nun ein Zustand f"ur alle Zeiten auf dem Rand des Erreichbarkeitskegels liegt, dann liegt auch die zugeh"orige Steuerung auf dem Rand der Steuerungsmenge. Das Maximumsprinzip sagt nun, dass eine Steuerung genau dann extremal ist, wenn die Maximumsbedingung erf"ullt ist. Da aus zeitoptimal extremal folgt, erf"ullte jede zeitoptimale Steuerung die Maximumsbedingung. 
+
+Die Maximumsbedingung kann in eine konkrete Formel f"ur $u$ umformuliert werden:
+\begin{align*}
+	u^i(t) = \text{sgn} (B^T (e^{-At})^T h)^i
+\end{align*}
+%todo wegen $e^{At}$ berechnen aufschreiben
+Falls nun ein Komponente von  $u^i$ verschwindet, haben wir keine Aussage "uber $u^i$. Deshalb ist die Steuerung hier nicht eindeutig bestimmt und es kann unendlich viele optimale Steuerungen geben. Um das zu vermeiden, definieren wir den Begriff Normalit"at. Fals wir nun Normalit"at und die Existenz einer Steuerung voraussetzen, finden wir genau eine zeitoptimale Steuerung. Diese ist Bang-Bang und st"uckweise konstant, hat also nur endlich viele Umschaltpunkte. 
+
+Ob ein System normal ist, wollen wir nicht direkt berechnen, da wir ein Matrixexponential berechnen m"ussten. Also suchen wir Bedingungen f"ur Normalit"at. Zun"achst findet man, dass ein System genau dann normal ist, wenn die Erreichbarkeitsmenge streng konvex ist. Dieses Kriterium ist schwer zu "uberpr"ufen. Ein einfacheres Kriterium ist es, dass das System genau dann normal ist, wenn f"ur jede Spalte $\{b_j\} \in B$ das System $ \{b_j, A b_j, \dots, A^{n-1} b_j$ linear unabh"angig ist.  
+Eine weitere sch"one Eigenschaft ist es, dass jedes normale System die Kalman Bedingung erf"ullt. 
+Also gilt f"ur jedes normale System, dass es eine Umgebung um der Null gibt, sodass jeder Anfangszustand in dieser Umgebung durch genau eine zeitoptimale Steuerung in die Null gesteuert werden kann. Falls nun die Realteile der Eigenwerte von $A$ nicht negativ sind, kann jeder Anfangszustand in die Null gesteuert werden. 
+
+Falls alle Eigenwerte bei normalen Systemen reell sind, hat jede Komponente einer beliebigen zeitoptimalen Steuerung h"ochstens $n-1$ Umschaltpunkte. 
+
+\subsection{Anwendungsbeispiele}
+Falls wir nun ein konkretes lineares System untersuchen, gehen wir folgende Schritte durch
+\begin{enumerate}
+	\item "Uberpr"ufung auf Normalit"at durch berechnung der Systeme $ \{b_j, A b_j, \dots, A^{n-1} b_j$ f"ur alle $j$. 
+	\item Eigenwerte der Matrix $A$ berechnen. 
+	\begin{itemize}
+		\item reell ? falls ja, max n-1 Umschaltpunkte
+		\item Realteile nicht negativ? falls ja, kann jeder Anfangszustand zeitoptimal in die Null gesteuert werden
+	\end{itemize}
+	\item L"osung des Systems, abh"angigkeiten von den Kompontenten des Zustandes finden, ohne Abh"angigkeit der Steuerung. 
+	\item finde eine Steuerregel in abh"angigkeit der vorher gefundenen Formel
+\end{enumerate}
+%todo besser, genauer, ein paar aufgaben l"osen
+
+\subsection{Maximumsprinzip als hinreichende Bedingung}
+
+Wenn die Kalman Bedingung erf"ullt ist und eine Steuerung $u$, die einen Anfangszustand in einer bestimmten Zeit $t*$ in die Null "uberf"uhrt, die Maximumsbedingung erf"ullt, so ist diese Steuerung zeitoptimal auf $[0,t*]$. 
+
+\section{Notwendige Optimalit"atsbedingungen - Pontrjaginsches Maximumsprinzip} 
+
+In diesem Kapitel betrachten wir das System
+\begin{align*}
+	F(u(\dot)) & = \int\limits_{t_0}^{t_1} f^0 (x(t), u(t)) \mathrm{d}t = \inf \\
+	\dot{x} & = f(x,u) \\
+	x(t_0) & = x_0, \: x(t_1) = x_1 \\
+	x(t_0) & \in \Psi \subset \mathbb{R}^m \: \forall t \in [t_0, t_1(u)], \: \text{u messbar}  
+\end{align*}
+Dabei ist 
+\begin{itemize}
+	\item $t_1$ frei, $t_0 \in \mathbb{R}$, $x_0, x_1 \in \mathbb{R}^n$ fest 
+	\item $\Psi \subset \mathbb{R}^n$ eine beschr"ankte Menge
+	\item $f, f^0$ stetig in $(x,u)$, stetig partiel diffbar in $x$
+\end{itemize}
+
+Das System wird nun umgestellt und wir betrachten folgendes:
+\begin{align*}
+	\min x^0 (t_1) \\
+	\dot{\hat{x}}(t) = \hat{f} (\hat{x}(t), u(t ) \text{ f.ü. auf } [t_0, t_1] \\
+	\hat{x}(t_0)  = \begin{pmatrix} 0 \\ x_0 \end{pmatrix}, \: \hat{x}(t_1) = \begin{pmatrix} x^0(t_1) \\ x_1 \end{pmatrix} \\
+	u(\cdot) \in \mathcal{V}_m:= \{u(\cdot) | \text{u ist messbar}, u \in \Psi \text{f.f.a. } 0 \le t \le t_1  \} 
+\end{align*}
+wobei
+\begin{align*}
+	\hat{x}(t) = \begin{pmatrix} x^0(t) \\ x(t)\end{pmatrix} \: \hat{f}(t,\hat{x}) = \begin{pmatrix} f^0 \\ f \end{pmatrix} \\
+	x^0(t) = \int\limits_{t_0}^t f^0(x(s),u(s) ) \mathrm{d}s
+\end{align*}
+
+Erinneren wir uns an den adjungierten Operator und das adjungierte Gleichungssyste, für (LA). Auch bei dem nichtlinearen System können wir einen adjungierten Operator sinnvoll definieren. Dazu betrachten wir das selbe Gleichungssystem wir vorher, nur mit der negativen und transponierten Jacobimatrix. 
+Mithilfe des daraus resultierenden Adjungierten Zustandes, der Hamiltonfunktion und der Maximumsfunktion können wir das Pontrjaginsches Maximumsprinzip formulieren. Diese besagt, dass der Hamiltonoperator von der optimalen Steuerung das gleich ist, wie die Maximumsfunktion und diese 0 auf $[t_0, t_1]$ ist. Außerdem kann der erweiterte adjungierte nicht Null werden und $w^0(t)$ ist konstant nicht positiv.  Außerdem gilt die Maximumsbedingung nicht nur fast überall, sondern in jedem Stetigkeitspunkt t von u.  
+
+Das PMP ist nur ein notwendiges Kriterium. Auch wenn es eine Steuerung gibt, die das PMP erfüllt, heißt dies nicht, dass sie optimal ist, oder dass es ein Optimum gibt.  
+
+\subsection{Das PMP für allgemeinere Aufgaben}
+
+\subsubsection*{Anfangs und Endpunkt liegen auf vorgegebenen Mannigfaltigkeiten}
+Hier gilt das normale PMP. Zusätzlich muss noch die Transversalitätsbedingung erfüllt sein. Das bedeutet, dass der adjungierte Zustandsvektor so gewählt werden kann, dass $w(t_0) \perp T_0$ und $w(t_1 ) \perp T_1$ wobei $T_0, T_1$ Tangentialmannigfaltigkeiten an den dem Anfangs/ Endpunkt den vorgegebenen Mannigfaltigkeiten sind.  
+
+\subsubsection*{PMP für nicht autonome Systeme}
+Die Idee ist es, dass für die Zeit eine neue Koordinate des Zustands eingeführt wird und wir somit einen erweiterten Zustand betrachten. Damit kann das PMP angewendet werden, mit der Veränderung, dass der Hamiltonoperator und die Maximumsfunktion jetzt auch von der Zeit abhängen und die Maximumsfunktion einen gewissen Wert (nicht unbedingt Null) annimmt. 
+
+Falls nun auch $x_1$ nicht fest, sondern auf einer Mannigfaltigkeit ist, so ist die neue Mannigfaltigkeit gegeben durch $S_1' = \{(x,x^{n+1}) |  x \in S_1 \text{, } x^{n+1} \text{ frei}$. Für die Transversalitätsbedingung muss noch der erweiterte adjungierte Zustand um $w^{n+1} $ erweitert werden. Es gilt offenbar $w^{n+1}(t_1) = 0$ und $w(t_1) = 0$.Da $\hat{w} < 0$ gelten muss, gilt  obda $w^0 = -1$.  
+
+\subsubsection*{PMP für nicht autonome Systeme mit fester Endzeit}
+Hie gilt das PMP für nicht autonome Systeme, wobei der Wert der Maximumsfunktion nicht konkret berechnet werden kann. 
+
+\subsubsection*{PMP für Probleme mit erweiterten Kostenfunktional}
+Wir betrachten $g(x(t_1)) + \int\limits_{t_0}^{t_1} f^0(t,x(t), u(t) \mathrm{d}t$
+Durch das umschreiben des erweiterten Kostenfunktionals, kann man auf eine integral Formulierung gelangen. Auf dieser Formulierung kann das PMP angewendet werden. Dabei hängt der Hamiltonoperator nicht von $g$ ab, der Wert der Maximumsfunktion schon. 
+%todo hier fehlt etwas, was ich nicht verstanden habe
+
+\subsection{Das PMP als hinreichende Bedingung}
+
+Bis jetzt war das PMP nur eine notwendige Bedingung. Wenn nun zusätzlich gilt, das das Zielfunktional konvex ist und die Differentialgleichung linear bezüglich des Zustandes, dann ist das PMP sogar eine hinreichende Bedingung. 
+
+Die Grundform der Aufgabe, die wir betrachten sieht jetzt etwas anders aus und werde ich hier nicht genauer erläutern. Durch die neue Form wird zunächst die Adjungierte Gleichung aufgeschrieben, dann eine Maximumsbedingung hergeleitet und die Transversalitätsbedingung für den Fall, dass $x(t_1)$ frei ist. 
+
+Auch für das erweiterte Kostenfunktional kann das PMP hinreichend sein und zwar genau dann, wenn g konvex und diffbar ist, $x(t_1)$ frei ist und die Transversalitätsbedingung $ w(t_1)= - \nabla g(x*(t_1)) $ gilt. 
+
+\subsection{Linear quadratische Steuerprobleme und das Synthesenproblem}
+Betrachten wir hier ein lineares Ziefunktional, wobei die Matrizen $A, B$ nun von der Zeit abhängig sind. Das Zielfunktional ist quadratisch in $ u$ und in $x$. Außerdem können wir beim Zielfunktional einen quadratischen Term in $x(t_1)$ addieren. Die Matrizen, die vor den quadratischen Termen stehen müssen im sesentlichen sdsp sein. Die Matrizen vor den Termen $x$ und $u$ müssen stetig sein. Damit können wir wieder die Adjungierte Gleichung und die Maximumsbedingung aufstellen. Falls eine freie rechte Seite vorliegt kann die Transversalitätsbedingung aufgestellt werden.   
+
+
+\end{document}
