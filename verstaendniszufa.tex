@@ -1,0 +1,139 @@
+\documentclass[pdftex,a4paper,oneside]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%opening
+\title{Variationsrechnung und Optimale Steuerung - Verst"andniszusammenfassung}
+\author{Ines Ahrens}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Variationsrechnung}
+
+\section{Einleitung}
+In der Variationsrechnung besch"aftigen wir uns damit Optimierungsaufgaben der folgenden Gestalt zu l"osen:
+\begin{align*}
+	\inf J(x(\cdot)) := \int\limits_a^b f(t,x(t),\dot{x}(t))\\
+	x(a)= x_a \: x(b)=x_b \: x(\cdot) \in Z  
+\end{align*}
+Dabei $Z$ die Menge aller zul"assigen Funktionen ist. 
+
+Die Existenz einer L"osung ist nicht immer gegeben und wir werden uns in dieser Vorlesung damit nicht befassen. 
+
+Die L"osung der Variationsaufgabe kann ein starkes oder schwaches Minimum sein. Der Unterschied liegt in der Menge der zugelassenen Funktionen f"ur das Variationsproblem. Ein schwaches lokales Minima liegt vor, wenn das gesuchte Minimum an der Stelle $x*$ minimal bzgl allen Funktionen und deren Ableitungen ist, die in einer $\epsilon$ Umgebung des Minimums liegen. Bei einem starken lokalen Minimum werden als zul"assige Funktionen alle betrachtet, die "ahliche Funktionswerte wie das Minimum $x*$ besitzen. Die Ableitung spielt hier keine Rolle. 
+
+Sp"ater werden wir auch andere Variationsaufgaben zulassen, wie zum Beispiel mit einem Variablen Endpunkt oder nicht vorgegebener Zeit. 
+
+\section{Optimalit"atsbedingungen erster Ordnung}
+
+Wenn ein Minimum vorliegt, muss bei differenzierbaren Funktionen die erste Ableitung Null sein. Hier ist dies "ahnlich. Wir betrachten dazu das Zielfunktional der Variationsaufgabe in einer Umgebung von dem Minimum $x_0$, also an der Stelle $x_0 + \epsilon y(\cdot)$. Offensichtlich liegt bei $\epsilon = 0$ ein Minimum vor. Es muss gelten 
+\begin{align*}
+	F'(0)= \partial J(x_0, y) = 0,
+\end{align*}
+wobei $F(\epsilon)= J(x_0+ \epsilon y(\cdot))$ gilt. Dies nennen wir die erste Variation. 
+
+Die Eulersche Differentialgleichung folgt nach Rechnerei aus der ersten Variation. Diese lautet
+\begin{align*}
+	f_{\dot{x}}(t) = \int\lim\limits_{a}^t f_x(s) \mathrm{d} s + c
+\end{align*} 
+und muss, falls $x_0$ die L"osung des Variationsproblems ist, in jedem Stetigkeitsintervall von $\dot{x}_0$ erf"ullt sein. 
+
+Im weiteren werden durch eine Variablensubstitution von $t:=u(s)$ die eulersche Integrodifferentialgleichung und die Integrodiffgleichung hergeleitet. Dieses sind weitere notwendige Bedingungen f"ur ein Minimum. 
+
+Falls die optimale L"osung ecken hat, so muss der rechtseitige und linkseitige Limes an diesen Stellen von der Funktion $f$ "ubereinstimmen. 
+Ausserdem gilt noch die Weierstrass-erdmannsche Eckbedingung. 
+
+\section{Die Bedingung von Weierstrass}
+
+Die Weierstrasssche Exess funktion muss f"ur die L"osung des Variationsproblems immer gr"osser gleich 0 sein.
+Diese Bedingung besagt, dass die Funktion $y(u) = f(t,x_0(t), u)$ konvex ist f"ur alle $t$. %todo genauer? 
+%todo was bedeutet das nun? 
+
+\section{Bedingungen zweiter Ordnung - Legendresche und Jacobische Bedingung} 
+
+
+
+
+
+\chapter{optimale Steuerung}
+
+\section{Linear autonome zeitoptimale Steuerprobleme}
+
+
+Wir betrachten hier die Aufgabe
+\begin{align*}
+	\min t_1 \\
+	\dot{x}(t) & = A x(t) + B u(t) \\
+	x(0) & = x_0 \\
+	x(t_1) & = 0\\
+	u & \in \mathcal{U}_m \\
+	\mathcal{T}(t) & = \{ 0\}
+\end{align*}
+und suchen dazu eine Zeitoptimale Steuerung. Es gilt, dass die Erreichbarkeitsmenge in $x_0$ zum Zeitpunkt $t$ immer konvex und kompakt ist. F"ur $x_0=0$ ist sie ausserdem symmetrisch bzgl der Null. Die Abbildung, die jeden Zeitpunkt auf die Erreichbarkeitsmenge von $x_0$ abbildet, ist stetig. Diese Abbildung beschreibt den Erreichbarkeitskegel, den wir gleich gebrauchen werden.  
+%todo warum brauche ich das? 
+%todo was heisst stetig in der Hausddorffmetrik des klinsten $E(t,x_0)$ enthaltenden linearen Vektorraum? 
+
+
+Wann existiert nun eine zeitoptimale Steuerung? Falls es eine Steuerung gibt, die den Anfangszustand in die Null "uberf"uhrt, dann gibt es auch eine zeitoptimale Steuerung. Daraus folgt direkt, dass es dann auch eine zeitoptimale Bang-Bang Steuerung gibt. 
+
+
+Jede zeitoptimale Steuerung liegt auf dem Rand des Erreichbarkeitskegels. 
+%todo begruendung verstehen, beim beweis
+Dies f"uhrt uns zu dem Maximumsprinzip. Falls nun ein Zustand f"ur alle Zeiten auf dem Rand des Erreichbarkeitskegels liegt, dann liegt auch die zugeh"orige Steuerung auf dem Rand der Steuerungsmenge. Das Maximumsprinzip sagt nun, dass eine Steuerung genau dann extremal ist, wenn die Maximumsbedingung erf"ullt ist. Da aus zeitoptimal extremal folgt, erf"ullte jede zeitoptimale Steuerung die Maximumsbedingung. 
+
+Die Maximumsbedingung kann in eine konkrete Formel f"ur $u$ umformuliert werden:
+\begin{align*}
+	u^i(t) = \text{sgn} (B^T (e^{-At})^T h)^i
+\end{align*}
+%todo wegen $e^{At}$ berechnen aufschreiben
+Falls nun ein Komponente von  $u^i$ verschwindet, haben wir keine Aussage "uber $u^i$. Deshalb ist die Steuerung hier nicht eindeutig bestimmt und es kann unendlich viele optimale Steuerungen geben. Um das zu vermeiden, definieren wir den Begriff Normalit"at. Fals wir nun Normalit"at und die Existenz einer Steuerung voraussetzen, finden wir genau eine zeitoptimale Steuerung. Diese ist Bang-Bang und st"uckweise konstant, hat also nur endlich viele Umschaltpunkte. 
+
+Ob ein System normal ist, wollen wir nicht direkt berechnen, da wir ein Matrixexponential berechnen m"ussten. Also suchen wir Bedingungen f"ur Normalit"at. Zun"achst findet man, dass ein System genau dann normal ist, wenn die Erreichbarkeitsmenge streng konvex ist. Dieses Kriterium ist schwer zu "uberpr"ufen. Ein einfacheres Kriterium ist es, dass das System genau dann normal ist, wenn f"ur jede Spalte $\{b_j\} \in B$ das System $ \{b_j, A b_j, \dots, A^{n-1} b_j$ linear unabh"angig ist.  
+Eine weitere sch"one Eigenschaft ist es, dass jedes normale System die Kalman Bedingung erf"ullt. 
+Also gilt f"ur jedes normale System, dass es eine Umgebung um der Null gibt, sodass jeder Anfangszustand in dieser Umgebung durch genau eine zeitoptimale Steuerung in die Null gesteuert werden kann. Falls nun die Realteile der Eigenwerte von $A$ nicht negativ sind, kann jeder Anfangszustand in die Null gesteuert werden. 
+
+Falls alle Eigenwerte bei normalen Systemen reell sind, hat jede Komponente einer beliebigen zeitoptimalen Steuerung h"ochstens $n-1$ Umschaltpunkte. 
+
+\subsection{Anwendungsbeispiele}
+Falls wir nun ein konkretes lineares System untersuchen, gehen wir folgende Schritte durch
+\begin{enumerate}
+	\item "Uberpr"ufung auf Normalit"at durch berechnung der Systeme $ \{b_j, A b_j, \dots, A^{n-1} b_j$ f"ur alle $j$. 
+	\item Eigenwerte der Matrix $A$ berechnen. 
+	\begin{itemize}
+		\item reell ? falls ja, max n-1 Umschaltpunkte
+		\item Realteile nicht negativ? falls ja, kann jeder Anfangszustand zeitoptimal in die Null gesteuert werden
+	\end{itemize}
+	\item L"osung des Systems, abh"angigkeiten von den Kompontenten des Zustandes finden, ohne Abh"angigkeit der Steuerung. 
+	\item finde eine Steuerregel in abh"angigkeit der vorher gefundenen Formel
+\end{enumerate}
+%todo besser, genauer, ein paar aufgaben l"osen
+
+\subsection{Maximumsprinzip als hinreichende Bedingung}
+
+Wenn die Kalman Bedingung erf"ullt ist und eine Steuerung $u$, die einen Anfangszustand in einer bestimmten Zeit $t*$ in die Null "uberf"uhrt, die Maximumsbedingung erf"ullt, so ist diese Steuerung zeitoptimal auf $[0,t*]$. 
+
+\section{Notwendige Optimalit"atsbedingungen - Pontrjaginsches Maximumsprinzip} 
+
+In diesem Kapitel betrachten wir das System
+\begin{align*}
+	F(u(\dot)) & = \int\limits_{t_0}^{t_1} f^0 (x(t), u(t)) \mathrm{d}t = \inf \\
+	\dot{x} & = f(x,u) \\
+	x(t_0) & = x_0, \: x(t_1) = x_1 \\
+	x(t_0) & \in \Psi \subset \mathbb{R}^m \: \forall t \in [t_0, t_1(u)], \: \text{u messbar}  
+\end{align*}
+Dabei ist 
+\begin{itemize}
+	\item $t_1$ frei, $t_0 \in \mathbb{R}$, $x_0, x_1 \in \mathbb{R}^n$ fest 
+	\item $\Psi \subset \mathbb{R}^n$ eine beschr"ankte Menge
+	\item $f, f^0$ stetig in $(x,u)$, stetig partiel diffbar in $x$
+\end{itemize}
+
+
+
+
+\end{document}
